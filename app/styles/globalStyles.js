@@ -11,7 +11,6 @@ const colors = {
 const globalStyles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#F8FAFC",
         alignItems: 'center',
         justifyContent: 'center',
       },

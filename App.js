@@ -1,17 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
 import { Text, View } from 'react-native';
 import { colors, globalStyles } from './app/styles/globalStyles.js';
+import { useFonts } from 'expo-font';
+import { StyleSheet, SafeAreaView } from 'react-native';
 import WelcomeScreen from './app/screens/WelcomeScreen.js';
 import LoginScreen from './app/screens/LoginScreen.js';
 import RegisterScreen from './app/screens/RegisterScreen.js';
 import CreateItemScreen from './app/screens/CreateItemScreen.js';
 import MainPageScreen from './app/screens/MainPageScreen.js';
-import { useFonts } from 'expo-font';
-import { StyleSheet } from 'react-native';
 
 
 export default function App() {
-  let [fontsLoaded, error] = useFonts({
+  let [fontsLoaded] = useFonts({
     LatoRegular: require("./app/assets/fonts/Lato-Regular.ttf"),
     LatoBold: require("./app/assets/fonts/Lato-Bold.ttf")
   })
@@ -21,20 +21,26 @@ export default function App() {
   }
 
   return (
-    <View style={[globalStyles.container, globalStyles.body]}>
-      <Text > Hi there beautiful girls! Let the coding begin </Text>
-
-      <Text style={[globalStyles.text, styles.color]} > Hi there beautiful girls! Let the coding begin </Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.cont}>
+      {/* <Text style={[globalStyles.text, styles.color]}> Hi there beautiful girls! Let the coding begin </Text> */}
+      <RegisterScreen/>
+    </SafeAreaView>
   );
 }
 
-
 const styles = StyleSheet.create({
-  color: {
-    backgroundColor: colors.light,
-    padding: 20
-  }
+  cont: {
+    flex: 1,
+    alignItems: 'center',
+    // justifyContent: 'center',
+  },
+  // color: {
+  //   backgroundColor: colors.light,
+  //   marginTop: 100,
+  //   padding: 20,  
+  //   borderWidth: 1,
+  //   borderColor: "black",
+  //   borderRadius: 10,
+  // }
 })
 
