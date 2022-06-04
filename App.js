@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import WelcomeScreen from './app/screens/WelcomeScreen.js';
 import LoginScreen from './app/screens/LoginScreen.js';
 import RegisterScreen from './app/screens/RegisterScreen.js';
-import CreateItem from './app/screens/CreateItem.js';
+import CreateItemScreen from './app/screens/CreateItemScreen.js';
 import MainPageScreen from './app/screens/MainPageScreen.js';
 
 
@@ -14,8 +14,9 @@ export default function App() {
       <Text> Hi there beautiful girls! Let the coding begin </Text>
       <StatusBar style="auto" />
     </View>
+   
   );
-}
+} 
 
 const styles = StyleSheet.create({
   container: {
