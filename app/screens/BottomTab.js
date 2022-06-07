@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./HomeScreen.js";
 import FavoriteScreen from "./FavoriteScreen.js";
-import CameraScreen from "./CameraScreen.js";
+import CreateItemScreen from "./CreateItemScreen.js";
 import ClosetScreen from "./ClosetScreen.js";
 import UserScreen from "./UserScreen.js";
 
@@ -39,8 +39,9 @@ export default function BottomTab() {
       />
       <Tab.Screen
         name=" "
-        component={CameraScreen}
+        component={CreateItemScreen}
         options={{
+          tabBarStyle: { display: "none" },
           tabBarIcon: ({ color, size }) => (
             <View style={styles.circle}>
               <Icon name="camera" color="#FE5F10" size={40} />
