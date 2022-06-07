@@ -2,104 +2,118 @@ import react from "react";
 import { StyleSheet, View, Text, Image, PermissionsAndroid, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { Camera, CameraType } from 'expo-camera';
-import { useState, useEffect } from "react";
+import { useState, useRef } from "react";
+import CameraPreview from "./CameraPreviewScreen";
+
 
 export default function CreateItemScreen() {
   const [hasPermission, setHasPermission] = useState(false);
   const [type, setType] = useState(CameraType.back);
+  const camElement = useRef(null);
+  const [ startCamera, setStartCamera ] = useState(false)
+  const [previewVisible, setPreviewVisible] = useState(false)
+  const [capturedImage, setCapturedImage] = useState(null)
+  const [ savePhoto,setSavePhoto ] = useState(null)
+  const [ retakePicture, setRetakePicture ] = useState(null)
 
 
-  const openCamera = async () => {
-      const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasPermission(status === 'granted');
+  const takeAPic = async () => {
+    const { status } = await Camera.requestCameraPermissionsAsync();
+    setHasPermission(status === 'granted');
+
+    if(status === "granted"){
+      setStartCamera(true)
+      const photo =  await camElement.current.takePictureAsync();
+      setPreviewVisible(true)
+      setCapturedImage(photo)
+    } else{
+      Alert.alert("access denied")
+    }
   }
 
-  if (hasPermission === false) {
-    return (
-      
-      <View style={styles.container}>
-        <Image
-          style={styles.image}
-          source={require("./assets/tee.jpg")} 
-        />
-  
-        <View style={styles.navContainer}>
-          <View style={styles.sideMenus}>         
-            <Icon name="images" size={20} color="orange" />
-            <Text style={styles.text}>Gallery</Text>
-          </View>
-  
-          <View style={styles.cam}>
-            <Icon onPress={()=>{openCamera()}} name="camera" size={30} color="orange" />
-          </View>
-          
-          <View style={styles.sideMenus}>
-            <Icon name="graduation-cap" size={20} color="orange" />
-            <Text style={styles.text}>Tips</Text>
-          </View>
-        </View>
-      </View>
-    );
+  const __retakePicture=()=>{
+    setCapturedImage(null)
+    setPreviewVisible(false)
+   
+  }
+
+  const __savePhoto=()=>{
+    console.log("hi");
+    
   }
 
   return (
-    <View style={styles.container2}>
-      <Camera style={styles.camera} type={type}>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              setType(type === CameraType.back ? CameraType.front : CameraType.back);
-            }}>
-            <Text onPress={()=>setHasPermission(false)}>Go Back</Text>
-          </TouchableOpacity>
-        </View>
-      </Camera>
+    <View style={styles.container}>
+      
+      {previewVisible && capturedImage ? 
+        (<CameraPreview photo={capturedImage} 
+                        savePhoto={__savePhoto} 
+                        retakePhoto={__retakePicture} />)  
+        : 
+        (<Camera style={styles.camera} 
+                type={type} 
+                ref={camElement}
+        />)
+      }
+
+      <View style={styles.navContainer}>
+            <View style={styles.sideMenus}>         
+              <Icon name="images" size={20} color="orange" />
+              <Text style={styles.text}>Gallery</Text>
+            </View>
+    
+            <View style={styles.cam} >
+              <Icon onPress={()=>{takeAPic()}} name="circle" size={30} color="white" />
+            </View>
+            
+            <View style={styles.sideMenus}>
+              <Icon name="graduation-cap" size={20} color="orange" />
+              <Text style={styles.text}>Tips</Text>
+            </View>
+          </View>
+
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+
   container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    flex: 1,   
   },
 
-  image: {
-    // flex: -1,
-    width: "100%",
-    height: "70%",
+  camera: {
+    flex: 1,
   },
+
   navContainer: {
     borderTopWidth: 1,
     borderTopColor: "grey",
-    padding: 10,
     width: "100%",
+    padding: 10,
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
     position: "absolute",
     bottom: 0,
+    backgroundColor: "#fff",
+  },
+  sideMenus:{
+    justifyContent: "space-around",
+    alignItems: "center",
   },
   cam: {
-    height: 60,
-    width: 60,
+    height: 50,
+    width: 50,
     flex: -1,
     justifyContent: "center",
     alignItems: "center",
     borderColor:"white",
-    backgroundColor: "#E4E4E7",
+    backgroundColor: "orange",
     borderWidth: 1,
     borderRadius: 50,   
   },
-  container2: {
-    flex: 1,
-    
-  },
-  camera: {
-    flex: 1,
-  },
+
   buttonContainer: {
     flex: 1,
     backgroundColor: 'transparent',
@@ -112,7 +126,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    fontSize: 18,
-    color: 'white',
+    fontSize: 14,
+    color: 'grey',
   },
 });
