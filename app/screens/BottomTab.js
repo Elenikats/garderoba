@@ -17,6 +17,7 @@ export default function BottomTab() {
         tabBarIcon: ({ focused, color, size }) => {},
         tabBarActiveTintColor: "#27272A",
         tabBarInactiveTintColor: "#C1C1C1",
+        headerShown: false,
       })}
     >
       <Tab.Screen
