@@ -31,6 +31,8 @@ function CameraPreview({ photo,savePhoto,retakePhoto }) {
             flex:-1,
             flexDirection: "row",
             justifyContent: "space-around",
+            position:"absolute",
+            bottom: 0,
           }}>
 
         <TouchableOpacity onPress={savePhoto}>
