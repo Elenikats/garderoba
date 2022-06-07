@@ -21,7 +21,7 @@ export default function App() {
   }
 
   return (
-    <SafeAreaView style={styles.cont}>
+    <SafeAreaView>
       {/* <Text style={[globalStyles.text, styles.color]}> Hi there beautiful girls! Let the coding begin </Text> */}
       <RegisterScreen/>
     </SafeAreaView>
@@ -29,11 +29,10 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  cont: {
-    flex: 1,
-    alignItems: 'center',
-    // justifyContent: 'center',
-  },
+  // cont: {
+  //   flex: 1,
+  //   justifyContent: 'center',
+  // },
   // color: {
   //   backgroundColor: colors.light,
   //   marginTop: 100,

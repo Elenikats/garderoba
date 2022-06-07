@@ -1,58 +1,115 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { SafeAreaView, TextInput, ScrollView, Button } from 'react-native'
-import { globalStyles } from '../styles/globalStyles';
+import { SafeAreaView, TextInput, ScrollView, Button, TouchableOpacity, Image } from 'react-native'
+import CheckBox from "expo-checkbox";
+import googleIcon from "../assets/google.png"
+import { globalStyles, colors } from '../styles/globalStyles';
 
 
 export default function RegisterScreen() {
-  const [name, onChangeName] = React.useState("");
-  const [email, onChangeEmail] = React.useState("");
-  const [password, onChangePassword] = React.useState("");
-  const [repeatPassword, onChangeRepeatPassword] = React.useState("");
+  const [username, setUsername] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [repeatPassword, setRepeatPassword] = React.useState("");
+  const [agree, setAgree] = React.useState(false)
+
+  const handleSignupBtn = () => {
+    const url = "";
+    const payload = {
+      username,
+      email,
+      password,
+      repeatPassword
+    }
+
+    const config = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    }
+
+    fetch(url, config)
+      .then(response => response.json())
+      .then(result => console.log(result))
+      .catch(err => console.log(err))
+
+  }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={ styles.cont}>
       <ScrollView style={styles.regform}>
         <Text style={[styles.header]}>Garderoba logo</Text>
-
-        <Button 
-          title="Sign in with Google"
-          onPress={() => {console.log("pressed button")}}
+        <TouchableOpacity 
+          onPress={() => {console.log("pressed google button")}}
           style={styles.googleButton}
-        ></Button>
+        >
+          <Image 
+            source={require("../assets/google.png")}  
+            style={{width: 20, height: 20, marginRight: 10}} />
+          <Text style={[globalStyles.text, {color: "blue"}]}>Sign in with Google</Text>
+        </TouchableOpacity>
 
         <View style={globalStyles.container}>
-          <Text style={globalStyles.text}>or</Text>
+          <Text style={[globalStyles.text, {marginVertical: 20}]}>or</Text>
           <Text style={globalStyles.text}>Register with email</Text>
         </View>
 
         <Text style={styles.label}>Name:</Text>
         <TextInput 
+          value={username}
           style={styles.textInput}
+          onChangeText={(username) =>{
+            console.log(username)
+             setUsername(username)
+          }}
+
         ></TextInput>
 
         <Text style={styles.label}>Email:</Text>
         <TextInput 
+          value={email}
+          onChangeText={(email) => {
+            console.log(email)
+            setEmail(email)
+          }}
           style={styles.textInput}
         ></TextInput>
 
         <Text style={styles.label}>Password:</Text>
         <TextInput 
+          value={password}
+          onChangeText={(password) => setPassword(password)}
           style={styles.textInput}
         ></TextInput>
 
         <Text style={styles.label}>Repeat password:</Text>
         <TextInput 
+          value={repeatPassword}
+          onChangeText={(repeatPassword) => {
+            console.log(repeatPassword)
+            setRepeatPassword(repeatPassword)
+          }}
           style={styles.textInput}
         ></TextInput>
 
-        <Text>Terms and conditions</Text>
+        <View style={styles.checkboxConWrapper}>
+          <CheckBox     
+          value={agree}
+          onValueChange={() => setAgree(!agree)}
+          style={{marginRight: 10}}
+           />
+          <Text style={{width: "90%"}}>I have read and agreed with the terms and conditions</Text>
+        </View>
 
-        <Button 
-          title="Sign up"
-          onPress={() => {console.log("pressed button")}}
-          style={styles.registerButton}
-        ></Button>
+        <TouchableOpacity 
+          onPress={handleSignupBtn}
+          disabled={!agree}
+          style={agree ? styles.registerButton : styles.unregisterButton}
+
+
+        ><Text style={styles.textBtn}>Sign up</Text></TouchableOpacity >
 
       </ScrollView>
     </SafeAreaView>
@@ -60,39 +117,74 @@ export default function RegisterScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex:1,
-    width: "100%",
-    alignSelf: "center",
+  cont: {
     justifyContent: "center",
-    backgroundColor: "lightblue"
+    alignItems: "center"
   },
   regform: {
-    alignSelf: "center",
-    backgroundColor: "pink",
-    borderWidth: 1,
-  }, 
+    width: "70%"
+  },
   header: {
     fontSize: 28,
     padding: "10%",
-    borderWidth: 1,
-    borderWidth: 1
+    borderWidth: 2,
+    marginTop: "5%"
   },
   googleButton: {
-    padding: 30,
-    color: "red"
+    flexDirection: "row",
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "blue",
+    borderRadius: 4,
+    padding: 20,
+    marginTop: "5%",
+    alignSelf: "center"
   },
   label: {
-    paddingTop: 30,
+    paddingTop: 20,
     marginBottom: 5,
     fontSize: 14
   },
   textInput: {
-    borderWidth: 1,
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingLeft: 2,
-    paddingRight: 2,
-    fontSize: 16
+    borderWidth: 1.2,
+    paddingHorizontal: 2,
+    paddingVertical: 7,
+    fontSize: 16,
+    borderRadius: 4,
+  },
+  checkboxConWrapper: {
+    flexDirection: 'row',
+    paddingTop: 20,
+    marginBottom: 5,
+    fontSize: 14
+  },
+  registerButton: {
+    alignSelf: "center",
+    width: "60%" ,
+    borderWidth: 2,
+    borderRadius: 50,
+    padding: 10,
+    alignItems: "center",
+    justifyContent: 'center',
+    backgroundColor: colors.black,
+    marginTop: 30,
+    marginBottom: 30 
+  }, 
+  unregisterButton: {
+    backgroundColor: "lightgray",     
+    alignSelf: "center",
+    width: "60%" ,
+    borderWidth: 2,
+    borderColor: "lightgray",
+    borderRadius: 50,
+    padding: 10,
+    alignItems: "center",
+    justifyContent: 'center',
+    marginTop: 30,
+    marginBottom: 30
+  },
+  textBtn: {
+    fontSize: 18,
+    color: colors.white
   }
 })
