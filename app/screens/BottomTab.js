@@ -34,7 +34,7 @@ export default function BottomTab() {
         component={FavoriteScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Icon name="heart" color={color} size={size} />
+            <Icon name="heart" color={color} size={size} solid />
           ),
         }}
       />
@@ -64,7 +64,7 @@ export default function BottomTab() {
         component={UserScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Icon name="user" color={color} size={size} />
+            <Icon name="user" color={color} size={size} solid />
           ),
         }}
       />
