@@ -11,54 +11,60 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 
 export default function HomeScreen() {
   return (
-    <SafeAreaView>
-      <ScrollView style={styles.home}>
-        <View style={styles.weather}>
-          <Text>Weather</Text>
-        </View>
-        {/* <Text>Garderoba</Text> */}
+    <SafeAreaView style={styles.container}>
+      <View style={styles.weather}>
+        <Text>Weather</Text>
+      </View>
+      <Text>Garderoba</Text>
+      <View style={styles.home}>
         <View style={[styles.box, { backgroundColor: "white" }]}>
-          <View style={styles.boxFavorite}></View>
-          <Icon
-            style={styles.favoriteIcon}
-            name="heart"
-            color={"red"}
-            size={15}
-            solid
-          />
+          <View style={styles.boxFavorite}>
+            <Icon
+              style={styles.favoriteIcon}
+              name="heart"
+              color={"red"}
+              size={20}
+              solid
+            />
+          </View>
           <Image
             style={styles.image}
             source={require("../assets/tshirt2.png")}
           />
         </View>
         <View style={[styles.box, { backgroundColor: "white" }]}>
-          <Icon
-            style={styles.favoriteIcon}
-            name="heart"
-            color={"red"}
-            size={15}
-          />
-          <Image source={require("../assets/Hose1.png")} />
+          <View style={styles.boxFavorite}>
+            <Icon
+              style={styles.favoriteIcon}
+              name="heart"
+              color={"red"}
+              size={20}
+            />
+          </View>
+          <Image source={require("../assets/Hose1.png")} style={styles.image} />
         </View>
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  //   home: {
-  //     flex: 1,
-  //     flexDirection: "row",
-  //   },
+  container: {
+    flex: 1,
+  },
+  home: {
+    flex: 1,
+
+    height: "100%",
+  },
   weather: {
     height: "10%",
   },
   box: {
-    flex: -1,
+    flex: 1,
     borderRadius: 15,
-    height: "70%",
-    marginBottom: 5,
-    alignItems: "center",
+    height: "50%",
+    marginVertical: 5,
   },
 
   image: {
@@ -69,13 +75,19 @@ const styles = StyleSheet.create({
   },
 
   boxFavorite: {
-    border: 1,
-    borderRadius: "50%",
+    backgroundColor: "#F5F5F5",
+    shadowColor: "#27272A",
+    shadowOpacity: 0.25,
+    elevation: 5,
+    zIndex: 3,
+    borderRadius: 50,
+    borderWidth: 1,
+    borderColor: "lightgrey",
+    position: "absolute",
+    right: 15,
+    top: 15,
   },
   favoriteIcon: {
-    zIndex: 3,
-    alignSelf: "flex-end",
-    marginTop: 15,
-    marginRight: 15,
+    padding: 7,
   },
 });
