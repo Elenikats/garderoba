@@ -18,11 +18,13 @@ export default function HomeScreen() {
         </View>
         {/* <Text>Garderoba</Text> */}
         <View style={[styles.box, { backgroundColor: "white" }]}>
+          <View style={styles.boxFavorite}></View>
           <Icon
             style={styles.favoriteIcon}
             name="heart"
             color={"red"}
             size={15}
+            solid
           />
           <Image
             style={styles.image}
@@ -52,9 +54,9 @@ const styles = StyleSheet.create({
     height: "10%",
   },
   box: {
-    flex: 0,
+    flex: -1,
     borderRadius: 15,
-    height: "50%",
+    height: "70%",
     marginBottom: 5,
     alignItems: "center",
   },
@@ -66,6 +68,10 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
 
+  boxFavorite: {
+    border: 1,
+    borderRadius: "50%",
+  },
   favoriteIcon: {
     zIndex: 3,
     alignSelf: "flex-end",
