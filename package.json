@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@expo-google-fonts/lato": "^0.2.2",
+    "@react-navigation/bottom-tabs": "^6.3.1",
+    "@react-navigation/native": "^6.0.10",
     "expo": "~45.0.0",
     "expo-checkbox": "~2.1.0",
     "expo-font": "~10.1.0",
@@ -18,7 +20,10 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-native": "0.68.2",
-    "react-native-web": "0.17.7"
+    "react-native-vector-icons": "^9.1.0",
+    "react-native-web": "0.17.7",
+    "webpack-dev-server": "~3.11.0",
+    "@expo/webpack-config": "~0.16.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

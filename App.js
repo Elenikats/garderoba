@@ -9,6 +9,9 @@ import RegisterScreen from './app/screens/RegisterScreen.js';
 import CreateItemScreen from './app/screens/CreateItemScreen.js';
 import MainPageScreen from './app/screens/MainPageScreen.js';
 
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import BottomTab from "./app/screens/BottomTab.js";
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -22,8 +25,12 @@ export default function App() {
 
   return (
     <SafeAreaView>
-      {/* <Text style={[globalStyles.text, styles.color]}> Hi there beautiful girls! Let the coding begin </Text> */}
       <RegisterScreen/>
+
+      <NavigationContainer> 
+        <BottomTab />
+      </NavigationContainer>
+
     </SafeAreaView>
   );
 }
