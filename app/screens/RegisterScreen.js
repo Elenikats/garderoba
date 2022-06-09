@@ -6,14 +6,17 @@ import googleIcon from "../assets/google.png"
 import { globalStyles, colors } from '../styles/globalStyles';
 
 
-export default function RegisterScreen() {
-  const [username, setUsername] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [repeatPassword, setRepeatPassword] = React.useState("");
-  const [agree, setAgree] = React.useState(false)
+export default function RegisterScreen({navigation}) {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
+  const [agree, setAgree] = useState(false)
 
   const handleSignupBtn = () => {
+
+    navigation.navigate('Main')
+
     const url = "";
     const payload = {
       username,
@@ -38,9 +41,13 @@ export default function RegisterScreen() {
   }
 
   return (
-    <SafeAreaView style={ styles.cont}>
+    <SafeAreaView >
       <ScrollView style={styles.regform}>
-        <Text style={[styles.header]}>Garderoba logo</Text>
+        {/* <Text style={[styles.header]}>Garderoba logo</Text> */}
+        <View style={ styles.cont}>
+        <Image 
+            source={require("../assets/google.png")}  
+            style={{width: 100, height: 100}} />
         <TouchableOpacity 
           onPress={() => {console.log("pressed google button")}}
           style={styles.googleButton}
@@ -110,7 +117,7 @@ export default function RegisterScreen() {
 
 
         ><Text style={styles.textBtn}>Sign up</Text></TouchableOpacity >
-
+    </View>
       </ScrollView>
     </SafeAreaView>
   )
@@ -122,7 +129,8 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   regform: {
-    width: "70%"
+    width: "100%"
+    
   },
   header: {
     fontSize: 28,
@@ -146,6 +154,7 @@ const styles = StyleSheet.create({
     fontSize: 14
   },
   textInput: {
+    width: "70%",
     borderWidth: 1.2,
     paddingHorizontal: 2,
     paddingVertical: 7,
@@ -153,6 +162,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   checkboxConWrapper: {
+    width: "70%",
     flexDirection: 'row',
     paddingTop: 20,
     marginBottom: 5,
