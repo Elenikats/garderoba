@@ -25,7 +25,8 @@
     "react-native-web": "0.17.7",
     "expo-camera": "~12.2.0",
     "webpack-dev-server": "~3.11.0",
-    "@expo/webpack-config": "~0.16.2"
+    "@expo/webpack-config": "~0.16.2",
+    "expo-image-picker": "~13.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

@@ -7,7 +7,7 @@ import WelcomeScreen from './app/screens/WelcomeScreen.js';
 import LoginScreen from './app/screens/LoginScreen.js';
 import RegisterScreen from './app/screens/RegisterScreen.js';
 import CreateItemScreen from './app/screens/CreateItemScreen.js';
-import MainPageScreen from './app/screens/MainPageScreen.js';
+
 
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
@@ -24,14 +24,15 @@ export default function App() {
   }
 
   return (
-    <SafeAreaView>
-      <RegisterScreen/>
+    // <SafeAreaView>
+    // <RegisterScreen/> 
 
-      <NavigationContainer> 
+      <NavigationContainer>
+      
         <BottomTab />
       </NavigationContainer>
 
-    </SafeAreaView>
+    
   );
 } 
 
