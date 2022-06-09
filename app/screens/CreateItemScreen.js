@@ -1,10 +1,16 @@
-import React from "react";
-import { View, Text } from "react-native";
+import react from "react";
+import { StyleSheet, SafeAreaView, Text, Image, PermissionsAndroid, TouchableOpacity, Button } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome5";
 
-export default function UserScreen() {
-  return (
-    <View>
-      <Text>oha</Text>
-    </View>
-  );
+export default function CreateItemScreen() {
+  return(
+    <>
+    </>
+  )
 }
+
+const styles = StyleSheet.create({
+
+});
+
+
