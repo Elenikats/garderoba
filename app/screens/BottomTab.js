@@ -18,6 +18,7 @@ export default function BottomTab() {
         tabBarActiveTintColor: "#27272A",
         tabBarInactiveTintColor: "#C1C1C1",
         headerShown: false,
+        tabBarStyle: { paddingBottom: 5, height: 50 },
       })}
     >
       <Tab.Screen
@@ -78,12 +79,16 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 1,
     borderColor: "lightgrey",
-    padding: 10,
-    margin: -10,
+
     backgroundColor: "#F5F5F5",
     shadowColor: "#27272A",
     shadowOpacity: 0.25,
     elevation: 5,
-    top: -10,
+    top: -5,
+    width: 70,
+    height: 70,
+    flex: 0,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

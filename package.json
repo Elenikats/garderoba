@@ -23,6 +23,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-native": "0.68.2",
+    "react-native-snap-carousel": "^3.9.1",
     "react-native-vector-icons": "^9.1.0",
     "react-native-web": "0.17.7",
     "webpack-dev-server": "~3.11.0"
