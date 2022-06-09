@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import BottomTab from "./app/screens/BottomTab.js";
 import RegisterScreen from "./app/screens/RegisterScreen.js";
 
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -24,5 +25,6 @@ export default function App() {
         <Stack.Screen name="Main" component={BottomTab} />
       </Stack.Navigator>
     </NavigationContainer>
+
   );
 }

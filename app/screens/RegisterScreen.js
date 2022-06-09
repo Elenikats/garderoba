@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView, TextInput, ScrollView, Button, TouchableOpacity, Image } from 'react-native'
 import CheckBox from "expo-checkbox";
-import googleIcon from "../assets/google.png"
 import { globalStyles, colors } from '../styles/globalStyles';
+
+
 
 
 export default function RegisterScreen({navigation}) {
@@ -82,6 +83,7 @@ export default function RegisterScreen({navigation}) {
             setEmail(email)
           }}
           style={styles.textInput}
+          keyboardType={"email-address"}
         ></TextInput>
 
         <Text style={styles.label}>Password:</Text>
@@ -89,6 +91,7 @@ export default function RegisterScreen({navigation}) {
           value={password}
           onChangeText={(password) => setPassword(password)}
           style={styles.textInput}
+          secureTextEntry={true}
         ></TextInput>
 
         <Text style={styles.label}>Repeat password:</Text>

@@ -61,7 +61,7 @@ export default function BottomTab() {
         }}
       />
       <Tab.Screen
-        name="Cam"
+        name=" "
         component={CreateItemScreen}
         options={{
           // tabBarStyle: { display: "none" },
