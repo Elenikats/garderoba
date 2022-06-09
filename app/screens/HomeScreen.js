@@ -6,6 +6,7 @@ import {
   StyleSheet,
   SafeAreaView,
   Image,
+  Button,
   ScrollView,
   Dimensions,
 } from "react-native";
@@ -106,7 +107,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: width,
     height: height,
-    resizeMode: "contain",
+    resizeMode: "cover",
   },
 
   boxFavorite: {
