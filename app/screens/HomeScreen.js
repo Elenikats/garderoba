@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   View,
   Text,
@@ -6,8 +7,26 @@ import {
   SafeAreaView,
   Image,
   ScrollView,
+  Dimensions,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
+
+const { width } = Dimensions.get("window");
+const { height } = width * 0.6;
+const imagesBox1 = [
+  require("../assets/tshirt1.jpeg"),
+  require("../assets/tshirt2.png"),
+  require("../assets/tshirt3.jpeg"),
+  require("../assets/tshirt4.jpeg"),
+  require("../assets/tshirt5.jpeg"),
+];
+
+const imagesBox2 = [
+  require("../assets/Hose1.png"),
+  require("../assets/Hose2.jpeg"),
+  require("../assets/Hose3.jpeg"),
+  require("../assets/Hose4.jpeg"),
+];
 
 export default function HomeScreen() {
   return (
@@ -27,10 +46,16 @@ export default function HomeScreen() {
               solid
             />
           </View>
-          <Image
-            style={styles.image}
-            source={require("../assets/tshirt2.png")}
-          />
+          <ScrollView
+            pagingEnabled
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={(width, height)}
+          >
+            {imagesBox1.map((image, index) => (
+              <Image key={index} source={image} />
+            ))}
+          </ScrollView>
         </View>
         <View style={[styles.box, { backgroundColor: "white" }]}>
           <View style={styles.boxFavorite}>
@@ -41,7 +66,16 @@ export default function HomeScreen() {
               size={20}
             />
           </View>
-          <Image source={require("../assets/Hose1.png")} style={styles.image} />
+          <ScrollView
+            pagingEnabled
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={(width, height)}
+          >
+            {imagesBox2.map((image, index) => (
+              <Image key={index} source={image} />
+            ))}
+          </ScrollView>
         </View>
       </View>
     </SafeAreaView>
@@ -63,14 +97,15 @@ const styles = StyleSheet.create({
   box: {
     flex: 1,
     borderRadius: 15,
-    height: "50%",
+    height: height,
     marginVertical: 5,
+    width: width,
   },
 
   image: {
     flex: 1,
-    width: "100%",
-    height: "100%",
+    width: width,
+    height: height,
     resizeMode: "contain",
   },
 
