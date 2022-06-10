@@ -5,11 +5,15 @@ import { Link } from '@react-navigation/native';
 import {globalStyles} from '../../styles/globalStyles.js'
 
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation}) {
 
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
     
+
+  function handleLogin() {
+    navigation.navigate("Main")
+  }
   
   return (
     
@@ -61,7 +65,7 @@ export default function LoginScreen() {
       <Button 
       style={styles.LoginButton} 
       title="Login"
-      onPress={() => console.log('Login in with email..')}/>
+      onPress={handleLogin}/>
 
      <View style={styles.links}>
 
@@ -113,7 +117,8 @@ const styles = StyleSheet.create({
   },
   links: {
     flexDirection: "row",
-    marginTop: "10%"
+    marginTop: "10%",
+   
   },
   signup: {
     marginRight: "18%"
