@@ -11,6 +11,7 @@ import {
   Dimensions,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import PermissionLocation from "./PermissionLocation.js";
 
 const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
@@ -34,6 +35,7 @@ export default function HomeScreen() {
     <SafeAreaView style={styles.container}>
       <View style={styles.weather}>
         <Text>Weather</Text>
+        <PermissionLocation/>
       </View>
       <Text>Garderoba</Text>
       <View style={styles.home}>
