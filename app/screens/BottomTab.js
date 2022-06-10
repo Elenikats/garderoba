@@ -15,17 +15,33 @@ const Tab = createBottomTabNavigator();
 export default function BottomTab() {
 
   const [modalVisible, setModalVisible] = useState(false);
+  
+  
 
   async function launchCamera(){
-    const options = { quality: 0.5 };
-    const data = await ImagePicker.launchCameraAsync(options);
-    console.log(data);
+
+    try {
+      const options = { quality: 0.5 };
+      const data = await ImagePicker.launchCameraAsync(options);
+      console.log(data);
+    } catch (error) {
+      console.log("123",error);
+      // show a message to user. you rejected, you cant use without camera permissions.
+    }
+   
   }  
 
   async function launchGallery(){
-    const options = { allowsMultipleSelection: true }
-    const data = await ImagePicker.launchImageLibraryAsync(options)
-    console.log(data);
+    try {
+      const options = { allowsMultipleSelection: true }
+      const data = await ImagePicker.launchImageLibraryAsync(options)
+      console.log(data);
+      
+    } catch (error) {
+      console.log(error);
+    }
+
+   
   }
 
   
@@ -62,7 +78,7 @@ export default function BottomTab() {
       />
       <Tab.Screen
         name=" "
-        component={CreateItemScreen}
+        component={HomeScreen}
         options={{
           // tabBarStyle: { display: "none" },
           tabBarIcon: ({ color, size }) => (
