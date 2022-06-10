@@ -1,12 +1,16 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import react from "react";
+import { StyleSheet, SafeAreaView, Text, Image, PermissionsAndroid, TouchableOpacity, Button } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome5";
 
 export default function CreateItemScreen() {
-  return (
-    <View>
-      <Text>CreateItem</Text>
-    </View>
+  return(
+    <>
+    </>
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+
+});
+
+

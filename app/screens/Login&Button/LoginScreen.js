@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, TextInput, Image, Button, TouchableOpacity } fr
 import React, {useState} from 'react'
 import Logo from '../../assets/Logo.png'
 import { Link } from '@react-navigation/native';
+import {globalStyles} from '../../styles/globalStyles.js'
 
 
 export default function LoginScreen() {
@@ -22,16 +23,16 @@ export default function LoginScreen() {
       
 
       
-      {/* <TouchableOpacity 
+      <TouchableOpacity 
           onPress={() => {console.log("pressed google button")}}
           style={styles.googleButton}
         >
           <Image 
             source={require("../../assets/google.png")}  
-            style={{width: 20, height: 20, marginRight: 10}} />
-          <Text style={[globalStyles.text, {color: "blue"}]}>Sign in with Google</Text>
+          />
+          <Text style={[globalStyles.text, {color: "blue"}]} />
         </TouchableOpacity>
-       */}
+      
 
       <Text style={styles.midHeader}>or</Text>
 
