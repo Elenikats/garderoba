@@ -35,7 +35,11 @@ export default function BottomTab({navigation}) {
     try {
       const options = { allowsMultipleSelection: true };
       const data = await ImagePicker.launchImageLibraryAsync(options);
-      console.log(data);
+      if(!data.cancelled){
+        navigation.navigate("UploadForm",{
+        image: data.uri
+      })
+    }
     } catch (error) {
       console.log(error);
     }

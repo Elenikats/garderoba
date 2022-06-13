@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 
 export default function CreateItemScreen({ route }) {
  const { image } = route.params
- console.log("123", image);
+ console.log("1234567", image);
   return(
     <>
     <SafeAreaView style={styles.container}>
