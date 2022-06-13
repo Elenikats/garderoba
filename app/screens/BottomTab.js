@@ -6,18 +6,23 @@ import HomeScreen from "./HomeScreen.js";
 import FavoriteScreen from "./FavoriteScreen.js";
 import ClosetScreen from "./ClosetScreen.js";
 import UserScreen from "./UserScreen.js";
+import CreateItemScreen from "./CreateItemScreen.js";
 import * as ImagePicker from "expo-image-picker";
 
 const Tab = createBottomTabNavigator();
 
-export default function BottomTab() {
+export default function BottomTab({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
 
   async function launchCamera() {
     try {
       const options = { quality: 0.5 };
       const data = await ImagePicker.launchCameraAsync(options);
-      console.log(data);
+      if (!data.cancelled) {
+        navigation.navigate("UploadForm", {
+          image: data.uri,
+        });
+      }
     } catch (error) {
       console.log("123", error);
       // show a message to user. you rejected, you cant use without camera permissions.
@@ -28,7 +33,11 @@ export default function BottomTab() {
     try {
       const options = { allowsMultipleSelection: true };
       const data = await ImagePicker.launchImageLibraryAsync(options);
-      console.log(data);
+      if (!data.cancelled) {
+        navigation.navigate("UploadForm", {
+          image: data.uri,
+        });
+      }
     } catch (error) {
       console.log(error);
     }
@@ -65,7 +74,7 @@ export default function BottomTab() {
         />
         <Tab.Screen
           name=" "
-          component={HomeScreen}
+          component={CreateItemScreen}
           options={{
             // tabBarStyle: { display: "none" },
             tabBarIcon: ({ color, size }) => (
