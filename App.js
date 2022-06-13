@@ -5,6 +5,7 @@ import { useFonts } from 'expo-font';
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import BottomTab from "./app/screens/BottomTab.js";
+import CreateItemScreen from './app/screens/CreateItemScreen.js';
 
 
 const Stack = createNativeStackNavigator();
@@ -25,6 +26,7 @@ export default function App() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="UploadForm" component={CreateItemScreen} />
         <Stack.Screen name="Main" component={BottomTab} />
       </Stack.Navigator>
     </NavigationContainer>
