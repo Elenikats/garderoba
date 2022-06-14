@@ -5,10 +5,10 @@ import { useFonts } from 'expo-font';
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import BottomTab from "./app/screens/BottomTab.js";
-
+import LocationProvider from './contexts/LocationContext.js';
+import { Text, View } from 'react-native'
 
 const Stack = createNativeStackNavigator();
-
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -21,13 +21,15 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="Main" component={BottomTab} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <LocationProvider>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Register" component={RegisterScreen} />
+          <Stack.Screen name="Main" component={BottomTab}  />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </LocationProvider>
 
   );
 }
