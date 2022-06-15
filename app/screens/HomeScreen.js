@@ -35,7 +35,6 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.weather}>
-        <Text>Weather</Text>
         <PermissionLocation/>
         <WeatherAPI/>
       </View>
