@@ -48,7 +48,7 @@ export default function CreateItemScreen({ route, navigation }) {
     // *********************** AXIOS ******************************+
       try {
          const response = await axios({
-          url: "http://192.168.1.47:9000/upload",
+          url: "http://192.168.1.50:8000/upload",
           headers: {
             'Authorization': '',
             'Content-Type': 'application/json', 

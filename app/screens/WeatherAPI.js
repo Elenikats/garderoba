@@ -10,15 +10,12 @@ export default function WeatherAPI() {
   const [weatherIcon, setWeatherIcon] = useState(null)
 
   const iconUrl = `https://openweathermap.org/img/w/${weatherIcon}.png`
-  console.log("iconUrl:", iconUrl)
-
 
   useEffect(() => {
     // if (coordinates.loading) {
     //   return
     // }
 
-    console.log("coordinates.loading", coordinates.loading)
 
     const getWeather = async () => {
       // calling the weather API key from backend
@@ -28,19 +25,14 @@ export default function WeatherAPI() {
           url: 'http://192.168.1.50:8000/weatherApiKey'
         })
         setWeatherApiKey(result.data)
-        console.log("ApiKey:", weatherApiKey)
 
 
         //getting the current weather
 
         if (weatherApiKey) {
-          const url = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${weatherApiKey}&units=metric`
-          console.log("url", url)
-          console.log("data:", result)
-          
+          const url = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${weatherApiKey}&units=metric`          
           const callingUrl = await fetch(url)
           const response = await callingUrl.json()
-          console.log("response:", response)
           setCurrentWeather(response.main.temp.toFixed())
           setWeatherIcon(response.weather[0].icon)
         }
@@ -50,16 +42,11 @@ export default function WeatherAPI() {
         console.log(error)
       }
     }  
-
-
     
     getWeather()
       
 
   }, [coordinates])
-
-  console.log("currentWeather:",currentWeather)
-
 
   return (
     <View style={styles.weatherContainer}>
