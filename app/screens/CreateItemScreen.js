@@ -11,43 +11,59 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import { Picker } from "@react-native-picker/picker";
 import { globalStyles, colors } from "../styles/globalStyles.js";
 import ColorPalette from "react-native-color-palette";
+import axios from 'axios'
 
 export default function CreateItemScreen({ route, navigation }) {
   const [type, setType] = useState("");
   const [season, setSeason] = useState("");
   const [style, setStyle] = useState("");
   const [color, setColor] = useState("");
+  // const [imageFile, setImageFile] = useState(null)
 
-  console.log("color:", color);
-  console.log("type:", type);
-  console.log("style:", style);
-  console.log("season:", season);
-
+  // console.log("color:", color);
+  // console.log("type:", type);
+  // console.log("style:", style);
+  // console.log("season:", season);
+  console.log("route is");
+  console.log(route);
+  console.log("navigation is");
+  console.log(navigation);
   const { image } = route.params;
   console.log("1234567", image);
 
-  const handleItemSave = () => {
+
+
+  const handleItemSave = async (e) => {
+    console.log("***********wowwwwooowwwooooooo***************");
+    e.preventDefault();
     navigation.navigate("Main");
-    const url = "";
+   
     const payload = {
       type,
       season,
       style,
       color,
+      image,
     };
 
-    const config = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    };
 
-    fetch(url, config)
-      .then((response) => response.json())
-      .then((result) => console.log(result))
-      .catch((err) => console.log(err));
+    // *********************** AXIOS ******************************+
+      try {
+         const response = await axios({
+          url: "http://192.168.1.47:9000/upload",
+          headers: {
+            'Authorization': '',
+            'Content-Type': 'application/json', 
+          },
+          data: payload,
+          method: 'POST'
+        });
+
+        
+      } catch (error) {
+        console.error("error is .....", error.response.data)
+      }
+  
   };
 
   return (
@@ -113,7 +129,7 @@ export default function CreateItemScreen({ route, navigation }) {
           />
         </View>
         <TouchableOpacity
-          onPress={handleItemSave}
+          onPress={(e)=>handleItemSave(e)}
           disabled={!type || !season || !style || !color}
           style={
             type && season && style && color
