@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Image } from 'react-native'
 import React, { useEffect, useState, useContext } from 'react'
 import { LocationContext } from '../../contexts/LocationContext';
 import axios from 'axios';
@@ -6,10 +6,19 @@ import axios from 'axios';
 export default function WeatherAPI() {
   const [coordinates] = useContext(LocationContext);
   const [currentWeather, setCurrentWeather] = useState(null);
-  const [weatherApiKey, setWeatherApiKey] = useState("")
+  const [weatherApiKey, setWeatherApiKey] = useState(null)
+  const [weatherIcon, setWeatherIcon] = useState(null)
+
+  const iconUrl = `https://openweathermap.org/img/w/${weatherIcon}.png`
+  console.log("iconUrl:", iconUrl)
+
 
   useEffect(() => {
-    if (coordinates.loading) return
+    // if (coordinates.loading) {
+    //   return
+    // }
+
+    console.log("coordinates.loading", coordinates.loading)
 
     const getWeather = async () => {
       // calling the weather API key from backend
@@ -24,21 +33,28 @@ export default function WeatherAPI() {
 
         //getting the current weather
 
-        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${weatherApiKey}&units=metric`
-        console.log("url", url)
-        console.log("data:", result)
-        
-        const callingUrl = await fetch(url)
-        const response = await callingUrl.json()
-        const currentWeather = setCurrentWeather(response.main.temp.toFixed())
+        if (weatherApiKey) {
+          const url = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${weatherApiKey}&units=metric`
+          console.log("url", url)
+          console.log("data:", result)
+          
+          const callingUrl = await fetch(url)
+          const response = await callingUrl.json()
+          console.log("response:", response)
+          setCurrentWeather(response.main.temp.toFixed())
+          setWeatherIcon(response.weather[0].icon)
+        }
+
         
       } catch (error) {
         console.log(error)
       }
     }  
 
+
     
     getWeather()
+      
 
   }, [coordinates])
 
@@ -47,7 +63,10 @@ export default function WeatherAPI() {
 
   return (
     <View style={styles.weatherContainer}>
+   
       <Text style={styles.weatherText}>{currentWeather}°C</Text>
+      <Image style={styles.weatherIcon} source ={{ uri: iconUrl }}/>
+
     </View>
   )
 }
@@ -57,7 +76,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row-reverse",
     paddingLeft: 20, 
-    height: "100%"
+    height: "100%",
+    backgroundColor: "lightblue"
+  },
+  weatherText: {
+    fontWeight: "bold",
+    fontSize: 20
+  },
+  weatherIcon: {
+    width: 100,
+    height: 100
   }
 })
 

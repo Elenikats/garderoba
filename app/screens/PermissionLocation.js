@@ -8,8 +8,8 @@ export default function PermissionLocation() {
   const [errorMsg, setErrorMsg] = useState(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      (async () => {
+
+    const intervalFun = (async () => {
         const { status } = await Location.requestForegroundPermissionsAsync();
         if (status !== 'granted') {
           setErrorMsg('Permission to access location was denied');
@@ -26,11 +26,14 @@ export default function PermissionLocation() {
           longitude, 
           loading: false
         });
-      })();
-    }, 30*1000);
+      });
 
-    return () => clearInterval(interval);
+      intervalFun()
 
+      // setInterval(() => {
+      //   intervalFun()
+      //   console.log("interval running")
+      // }, 100000);
   }, []);
 
   // let text = 'Waiting..';
