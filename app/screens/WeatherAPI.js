@@ -1,32 +1,65 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState, useContext } from 'react'
 import { LocationContext } from '../../contexts/LocationContext';
+import axios from 'axios';
 
 export default function WeatherAPI() {
-    const [coordinates, setCoordinates] = useContext(LocationContext);
-    const [currentWeather, setcurrentWeather] = useState(null);
+  const [coordinates] = useContext(LocationContext);
+  const [currentWeather, setCurrentWeather] = useState(null);
+  const [weatherApiKey, setWeatherApiKey] = useState("")
 
-    useEffect(() => {
-        if (coordinates.loading) return
+  useEffect(() => {
+    if (coordinates.loading) return
 
-        const APIkey = "c84c5a060577c41f6cae4faa37b72569"
-        const url =  `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${APIkey}&units=metric`
-        console.log(url)
+    const getWeather = async () => {
+      // calling the weather API key from backend
+      try {
+        const result = await axios({
+          method: 'get',
+          url: 'http://192.168.1.50:8000/weatherApiKey'
+        })
+        setWeatherApiKey(result.data)
+        console.log("ApiKey:", weatherApiKey)
 
-        fetch(url)
-            .then(result => result.json())
-            .then(data => setTemp(data.main.temp))
-            .catch(err => console.log(err))
 
+        //getting the current weather
+
+        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${weatherApiKey}&units=metric`
+        console.log("url", url)
+        console.log("data:", result)
         
-    }, [coordinates])
+        const callingUrl = await fetch(url)
+        const response = await callingUrl.json()
+        const currentWeather = setCurrentWeather(response.main.temp.toFixed())
+        
+      } catch (error) {
+        console.log(error)
+      }
+    }  
+
+    
+    getWeather()
+
+  }, [coordinates])
+
+  console.log("currentWeather:",currentWeather)
 
 
   return (
-    <View>
-      <Text>{temp}</Text>
+    <View style={styles.weatherContainer}>
+      <Text style={styles.weatherText}>{currentWeather}°C</Text>
     </View>
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  weatherContainer: {
+    alignItems: "center",
+    flexDirection: "row-reverse",
+    paddingLeft: 20, 
+    height: "100%"
+  }
+})
+
+
+

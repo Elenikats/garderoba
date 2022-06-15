@@ -8,19 +8,18 @@ export default function PermissionLocation() {
   const [errorMsg, setErrorMsg] = useState(null);
 
   useEffect(() => {
-   const interval = setInterval(() => {
+    const interval = setInterval(() => {
       (async () => {
-        let { status } = await Location.requestForegroundPermissionsAsync();
+        const { status } = await Location.requestForegroundPermissionsAsync();
         if (status !== 'granted') {
           setErrorMsg('Permission to access location was denied');
           console.log("Permission to access location was denied");
           return;
         }
-  
-        let location = await Location.getCurrentPositionAsync({accuracy: Location.Accuracy.Highest});
+
+        const location = await Location.getCurrentPositionAsync({accuracy: Location.Accuracy.Highest});
         const { latitude, longitude } = location.coords
-        console.log(location)
-        // alert(`Latitude: ${latitude} , longitude: ${longitude}`)
+        console.log("location:", location)
         setCoordinates({
           ...coordinates,
           latitude,
@@ -43,7 +42,7 @@ export default function PermissionLocation() {
 
   return (
     <>
-      <Text>langitude: {coordinates.longitude}   latitude: {coordinates.latitude}</Text>
+      {/* <Text>langitude: {coordinates.longitude}   latitude: {coordinates.latitude}</Text> */}
     </>
   );
 }

@@ -6,7 +6,6 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import BottomTab from "./app/screens/BottomTab.js";
 import LocationProvider from './contexts/LocationContext.js';
-import { Text, View } from 'react-native'
 
 const Stack = createNativeStackNavigator();
 
