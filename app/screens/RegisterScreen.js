@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { SafeAreaView, TextInput, ScrollView, Button, TouchableOpacity, Image } from 'react-native'
+import { SafeAreaView, TextInput, ScrollView, TouchableOpacity, Image, StyleSheet, Text, View  } from 'react-native'
 import CheckBox from "expo-checkbox";
 import { globalStyles, colors } from '../styles/globalStyles';
 

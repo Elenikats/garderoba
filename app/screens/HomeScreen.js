@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import PermissionLocation from "./PermissionLocation.js";
+import WeatherAPI from "./WeatherAPI.js";
 
 const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
@@ -46,8 +47,8 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.weather}>
-        <Text>Weather</Text>
-        <PermissionLocation />
+        <PermissionLocation/>
+        <WeatherAPI/>
       </View>
       <Text>Garderoba</Text>
       <View style={styles.home}>
