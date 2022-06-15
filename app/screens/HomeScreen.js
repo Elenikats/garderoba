@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   View,
@@ -6,9 +6,9 @@ import {
   StyleSheet,
   SafeAreaView,
   Image,
-  Button,
   ScrollView,
   Dimensions,
+  TouchableOpacity,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import PermissionLocation from "./PermissionLocation.js";
@@ -32,6 +32,18 @@ const imagesBox2 = [
 ];
 
 export default function HomeScreen() {
+  const [favorite, setFavorite] = useState([]);
+
+  function handleFavoriteBtn(image) {
+    const currentImage = favorite.find((i) => i == image);
+    if (currentImage) {
+      const currentImages = favorite.filter((number) => number !== image);
+      setFavorite(currentImages);
+    } else {
+      setFavorite([...favorite, image]);
+    }
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.weather}>
@@ -41,43 +53,56 @@ export default function HomeScreen() {
       <Text>Garderoba</Text>
       <View style={styles.home}>
         <View style={[styles.box, { backgroundColor: "white" }]}>
-          <View style={styles.boxFavorite}>
-            <Icon
-              style={styles.favoriteIcon}
-              name="heart"
-              color={"red"}
-              size={20}
-              solid
-            />
-          </View>
           <ScrollView
             pagingEnabled
             horizontal
             showsHorizontalScrollIndicator={false}
-            style={(width, height)}
           >
             {imagesBox1.map((image, index) => (
-              <Image key={index} source={image} />
+              <View style={styles.image} key={index}>
+                <Image source={image} />
+                <TouchableOpacity
+                  style={styles.boxFavorite}
+                  onPress={() => {
+                    handleFavoriteBtn(image);
+                  }}
+                >
+                  <Icon
+                    style={styles.favoriteIcon}
+                    name="heart"
+                    color="red"
+                    size={20}
+                    solid={favorite.includes(image) ? true : false}
+                  />
+                </TouchableOpacity>
+              </View>
             ))}
           </ScrollView>
         </View>
         <View style={[styles.box, { backgroundColor: "white" }]}>
-          <View style={styles.boxFavorite}>
-            <Icon
-              style={styles.favoriteIcon}
-              name="heart"
-              color={"red"}
-              size={20}
-            />
-          </View>
           <ScrollView
             pagingEnabled
             horizontal
             showsHorizontalScrollIndicator={false}
-            style={(width, height)}
           >
             {imagesBox2.map((image, index) => (
-              <Image key={index} source={image} />
+              <View style={styles.image} key={index}>
+                <Image source={image} />
+                <TouchableOpacity
+                  style={styles.boxFavorite}
+                  onPress={() => {
+                    handleFavoriteBtn(image);
+                  }}
+                >
+                  <Icon
+                    style={styles.favoriteIcon}
+                    name="heart"
+                    color="red"
+                    size={20}
+                    solid={favorite.includes(image) ? true : false}
+                  />
+                </TouchableOpacity>
+              </View>
             ))}
           </ScrollView>
         </View>
@@ -107,10 +132,9 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    flex: 1,
     width: width,
     height: height,
-    resizeMode: "cover",
+    alignItems: "center",
   },
 
   boxFavorite: {
