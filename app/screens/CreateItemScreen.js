@@ -31,8 +31,6 @@ export default function CreateItemScreen({ route, navigation }) {
   const { image } = route.params;
   console.log("1234567", image);
 
-
-
   const handleItemSave = async (e) => {
     console.log("***********wowwwwooowwwooooooo***************");
     e.preventDefault();
