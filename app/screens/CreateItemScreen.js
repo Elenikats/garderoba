@@ -12,6 +12,7 @@ import { Picker } from "@react-native-picker/picker";
 import { globalStyles, colors } from "../styles/globalStyles.js";
 import ColorPalette from "react-native-color-palette";
 import axios from 'axios'
+import * as FileSystem from 'expo-file-system';
 
 export default function CreateItemScreen({ route, navigation }) {
   const [type, setType] = useState("");
@@ -24,26 +25,41 @@ export default function CreateItemScreen({ route, navigation }) {
   // console.log("type:", type);
   // console.log("style:", style);
   // console.log("season:", season);
-  console.log("route is");
-  console.log(route);
-  console.log("navigation is");
-  console.log(navigation);
+  // console.log("route is");
+  // console.log(route);
+  // console.log("navigation is");
+  // console.log(navigation);
+
   const { image } = route.params;
-  console.log("1234567", image);
-  console.log(typeof image);
+  // console.log("1234567", image);
+  // console.log(typeof image);
+
+  // *****************************************FileSystem*************************
+  const readImage = async() =>{
+    console.log("image inside readImage is---", image);
+    const imageAsString = await FileSystem.readAsStringAsync(image, {encoding: FileSystem.EncodingType.Base64})
+    const base64Image = "data:image/png;base64," + imageAsString 
+   
+    return base64Image
+  }
+
+  
+
 
   const handleItemSave = async (e) => {
     console.log("***********wowwwwooowwwooooooo***************");
     e.preventDefault();
     navigation.navigate("Main");
-   
+    const readImageData = await readImage()
+    console.log(readImageData);
     const payload = {
       type,
       season,
       style,
       color,
-      image,
+      image: readImageData,
     };
+    
 
 
     // *********************** AXIOS ******************************
