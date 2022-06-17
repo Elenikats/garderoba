@@ -17,8 +17,9 @@ export default function BottomTab({ navigation }) {
 
   async function launchCamera() {
     try {
-      const options = { quality: 0.5 };
+      const options = { quality: 0.5, includeBase64: true };
       const data = await ImagePicker.launchCameraAsync(options);
+
       if (!data.cancelled) {
         navigation.navigate("UploadForm", {
           image: data.uri,
@@ -32,7 +33,7 @@ export default function BottomTab({ navigation }) {
 
   async function launchGallery() {
     try {
-      const options = { allowsMultipleSelection: true };
+      const options = { allowsMultipleSelection: true, includeBase64: true  };
       const data = await ImagePicker.launchImageLibraryAsync(options);
       if (!data.cancelled) {
         navigation.navigate("UploadForm", {

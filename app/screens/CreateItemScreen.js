@@ -30,6 +30,7 @@ export default function CreateItemScreen({ route, navigation }) {
   console.log(navigation);
   const { image } = route.params;
   console.log("1234567", image);
+  console.log(typeof image);
 
   const handleItemSave = async (e) => {
     console.log("***********wowwwwooowwwooooooo***************");
@@ -45,7 +46,7 @@ export default function CreateItemScreen({ route, navigation }) {
     };
 
 
-    // *********************** AXIOS ******************************+
+    // *********************** AXIOS ******************************
       try {
          const response = await axios({
           url: "http://192.168.1.47:9000/upload",
@@ -128,7 +129,7 @@ export default function CreateItemScreen({ route, navigation }) {
         </View>
         <TouchableOpacity
           onPress={(e)=>handleItemSave(e)}
-          disabled={!type || !season || !style || !color}
+          // disabled={!type || !season || !style || !color}
           style={
             type && season && style && color
               ? globalStyles.inactiveButton
