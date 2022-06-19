@@ -14,9 +14,6 @@ export default function WeatherAPI() {
   const iconUrl = `https://openweathermap.org/img/w/${weatherIcon}.png`
   console.log("iconUrl:", iconUrl)
 
- 
-      
-
 
 
   useEffect(() => {
@@ -36,7 +33,7 @@ export default function WeatherAPI() {
 
         const result = await axios({
           method: 'get',
-          url: `http://192.168.1.47:8000/weatherApiKey`
+          url: `http://192.168.1.47:9000/weatherApiKey`
         })
         setWeatherApiKey(result.data)      
         console.log("ApiKey:", weatherApiKey)
@@ -60,7 +57,7 @@ export default function WeatherAPI() {
 
         
       } catch (error) {
-        console.error(error.response.data)
+        console.log(error)
       }
     }  
 
