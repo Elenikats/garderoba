@@ -11,7 +11,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import { Picker } from "@react-native-picker/picker";
 import { globalStyles, colors } from "../styles/globalStyles.js";
 import ColorPalette from "react-native-color-palette";
-import axios from 'axios'
+import axios from "axios";
 
 export default function CreateItemScreen({ route, navigation }) {
   const [type, setType] = useState("");
@@ -35,7 +35,7 @@ export default function CreateItemScreen({ route, navigation }) {
     console.log("***********wowwwwooowwwooooooo***************");
     e.preventDefault();
     navigation.navigate("Main");
-   
+
     const payload = {
       type,
       season,
@@ -44,24 +44,20 @@ export default function CreateItemScreen({ route, navigation }) {
       image,
     };
 
-
     // *********************** AXIOS ******************************+
-      try {
-         const response = await axios({
-          url: "http://192.168.1.47:9000/upload",
-          headers: {
-            'Authorization': '',
-            'Content-Type': 'application/json', 
-          },
-          data: payload,
-          method: 'POST'
-        });
-
-        
-      } catch (error) {
-        console.error("error is .....", error.response.data)
-      }
-  
+    try {
+      const response = await axios({
+        url: "http://192.168.1.115:9000/upload",
+        headers: {
+          Authorization: "",
+          "Content-Type": "application/json",
+        },
+        data: payload,
+        method: "POST",
+      });
+    } catch (error) {
+      console.error("error is .....", error.response.data);
+    }
   };
 
   return (
@@ -127,7 +123,7 @@ export default function CreateItemScreen({ route, navigation }) {
           />
         </View>
         <TouchableOpacity
-          onPress={(e)=>handleItemSave(e)}
+          onPress={(e) => handleItemSave(e)}
           disabled={!type || !season || !style || !color}
           style={
             type && season && style && color

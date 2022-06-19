@@ -13,6 +13,7 @@ import {
 import Icon from "react-native-vector-icons/FontAwesome5";
 import PermissionLocation from "./PermissionLocation.js";
 import WeatherAPI from "./WeatherAPI.js";
+import axios from "axios";
 
 const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
@@ -32,23 +33,56 @@ const imagesBox2 = [
 ];
 
 export default function HomeScreen() {
+  const [imagesBoxTop, setImagesBoxTop] = useState(null);
+  const [imagesBoxBottom, setImagesBoxBottom] = useState(null);
+
   const [favorite, setFavorite] = useState([]);
+  const [toggleFav, setToggleFav] = useState({ favorite: true });
 
   function handleFavoriteBtn(image) {
     const currentImage = favorite.find((i) => i == image);
+    console.log("CURRENTIMAGE:", currentImage);
     if (currentImage) {
       const currentImages = favorite.filter((number) => number !== image);
+      console.log("CURRENTIMAGES:", currentImages);
       setFavorite(currentImages);
+
+      setToggleFav({ favorite: true });
+
+      console.log("check toggle1:", toggleFav);
     } else {
       setFavorite([...favorite, image]);
+      setToggleFav({ favorite: false });
+      console.log("check toggle2:", toggleFav);
     }
+
+    favorite.includes(image)
+      ? setToggleFav({ favorite: true })
+      : setToggleFav({ favorite: false });
+    changeFav();
   }
 
+  const changeFav = async (e) => {
+    console.log("***********changeFav***************");
+    console.log("***favorite:", favorite);
+    // console.log("***CURRENTIMAGES:", currentImages);
+    console.log("check toggle3:", toggleFav);
+
+    try {
+      await axios({
+        url: "http://192.168.2.123:9000/cloth/62a9da46cab28870292628d3",
+        method: "PUT",
+        data: toggleFav,
+      });
+    } catch (error) {
+      console.error("error in PUT", error.response.data);
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.weather}>
-        <PermissionLocation/>
-        <WeatherAPI/>
+        <PermissionLocation />
+        <WeatherAPI />
       </View>
       <Text>Garderoba</Text>
       <View style={styles.home}>
