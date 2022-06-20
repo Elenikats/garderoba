@@ -12,7 +12,7 @@ import { Picker } from "@react-native-picker/picker";
 import { globalStyles, colors } from "../styles/globalStyles.js";
 import ColorPalette from "react-native-color-palette";
 import axios from "axios";
-import * as FileSystem from 'expo-file-system';
+import * as FileSystem from "expo-file-system";
 
 export default function CreateItemScreen({ route, navigation }) {
   const [type, setType] = useState("");
@@ -33,21 +33,22 @@ export default function CreateItemScreen({ route, navigation }) {
   const { image } = route.params;
   // console.log("1234567", image);
 
-  const readImage = async() =>{
+  const readImage = async () => {
     console.log("image inside readImage is---", image);
-    const imageAsString = await FileSystem.readAsStringAsync(image, {encoding: FileSystem.EncodingType.Base64})
-    const base64Image = "data:image/png;base64," + imageAsString 
+    const imageAsString = await FileSystem.readAsStringAsync(image, {
+      encoding: FileSystem.EncodingType.Base64,
+    });
+    const base64Image = "data:image/png;base64," + imageAsString;
 
-    return base64Image
-  }
+    return base64Image;
+  };
 
   const handleItemSave = async (e) => {
     console.log("***********wowwwwooowwwooooooo***************");
     e.preventDefault();
     navigation.navigate("Main");
 
-    const readImageData = await readImage()
-
+    const readImageData = await readImage();
 
     const payload = {
       type,
@@ -62,7 +63,7 @@ export default function CreateItemScreen({ route, navigation }) {
     try {
       console.log("request begin****************");
       const response = await axios({
-        url: "http://192.168.1.47:9000/upload",
+        url: "http://192.168.2.131:9000/upload",
         headers: {
           Authorization: "",
           "Content-Type": "application/json",
@@ -119,14 +120,12 @@ export default function CreateItemScreen({ route, navigation }) {
             selectedValue={weather}
             onValueChange={(currentWeather) => setWeather(currentWeather)}
           >
-            <Picker.Item label="choose weather"  />
+            <Picker.Item label="choose weather" />
             <Picker.Item label="sunny" value="sunny" />
             <Picker.Item label="rainy" value="rainy" />
             <Picker.Item label="snow" value="snow" />
-
-       
           </Picker>
-               {/* <Picker.Item label="holiday" value="holiday" /> */}
+          {/* <Picker.Item label="holiday" value="holiday" /> */}
           {/* *******************Color********************** */}
           <ColorPalette
             selectedValue={color}
@@ -189,22 +188,17 @@ const styles = StyleSheet.create({
   textBlack: {
     color: "black",
   },
-  weatherBtns:{
-    
+  weatherBtns: {
     borderWidth: 2,
     padding: 5,
     borderColor: "black",
-    backgroundColor: "orange"
-  }
+    backgroundColor: "orange",
+  },
 });
 
-
-
-
-
-
 // Rough
-          {/* <View style={{flexDirection:"row",  justifyContent: "space-around", }}>
+{
+  /* <View style={{flexDirection:"row",  justifyContent: "space-around", }}>
           
           <View style={styles.weatherBtns}>
           <Icon
@@ -244,7 +238,9 @@ const styles = StyleSheet.create({
                   onPress={() => {
                     setModalVisible(true);
                   }}
-                /> */}
+                /> */
+}
 
-
-          {/* </View> } */}
+{
+  /* </View> } */
+}
