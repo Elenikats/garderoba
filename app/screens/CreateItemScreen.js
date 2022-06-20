@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import react, { useState, useContext } from "react";
 import {
   StyleSheet,
   SafeAreaView,
@@ -77,6 +77,9 @@ export default function CreateItemScreen({ route, navigation }) {
         data: payload,
         method: "POST",
       });
+      //---->need any condition that only one of it will be updated!!!
+      setImagesBoxTop(response.data);
+      setImagesBoxBottom(response.data);
     } catch (error) {
       console.error("error is .....", error.response.data);
     }
