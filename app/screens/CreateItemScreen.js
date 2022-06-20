@@ -13,8 +13,12 @@ import { globalStyles, colors } from "../styles/globalStyles.js";
 import ColorPalette from "react-native-color-palette";
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
+import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
 
 export default function CreateItemScreen({ route, navigation }) {
+  const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
+  const { imagesBoxBottom, setImagesBoxBottom } = useContext(ImageBoxesContext);
+
   const [type, setType] = useState("");
   const [season, setSeason] = useState("");
   const [style, setStyle] = useState("");
@@ -48,6 +52,8 @@ export default function CreateItemScreen({ route, navigation }) {
     e.preventDefault();
     navigation.navigate("Main");
 
+    console.log(imagesBoxTop);
+
     const readImageData = await readImage();
 
     const payload = {
@@ -63,7 +69,7 @@ export default function CreateItemScreen({ route, navigation }) {
     try {
       console.log("request begin****************");
       const response = await axios({
-        url: "http://192.168.2.131:9000/upload",
+        url: "http://192.168.2.123:9000/upload",
         headers: {
           Authorization: "",
           "Content-Type": "application/json",

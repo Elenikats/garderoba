@@ -10,52 +10,52 @@ export default function WeatherAPI() {
   const [weatherIcon, setWeatherIcon] = useState(null);
 
   const iconUrl = `https://openweathermap.org/img/w/${weatherIcon}.png`;
-  console.log("iconUrl:", iconUrl);
+  // console.log("iconUrl:", iconUrl);
 
   useEffect(() => {
     // if (coordinates.loading) {
     //   return
     // }
 
-    console.log("coordinates.loading", coordinates.loading);
+    // console.log("coordinates.loading", coordinates.loading);
 
     const getWeather = async () => {
-      console.log("122464r9689");
-      console.log("ApiKey1:", weatherApiKey);
+      // console.log("122464r9689");
+      // console.log("ApiKey1:", weatherApiKey);
 
       // calling the weather API key from backend
       try {
         const result = await axios({
           method: "get",
-          url: `http://192.168.2.131:9000/weatherApiKey`,
+          url: `http://192.168.2.123:9000/weatherApiKey`,
         });
         setWeatherApiKey(result.data);
-        console.log("ApiKey:", weatherApiKey);
+        // console.log("ApiKey:", weatherApiKey);
 
         //getting the current weather
 
         if (weatherApiKey) {
           const url = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${weatherApiKey}&units=metric`;
-          console.log("url", url);
-          console.log("data:", result);
+          // console.log("url", url);
+          // console.log("data:", result);
 
           const callingUrl = await fetch(url);
           const response = await callingUrl.json();
-          console.log("response:", response);
+          // console.log("response:", response);
 
           setCurrentWeather(response.main.temp.toFixed());
           setWeatherIcon(response.weather[0].icon);
         }
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
 
     getWeather();
   }, [coordinates]);
 
-  console.log("ApiKey2:", weatherApiKey);
-  console.log("currentWeather:", currentWeather);
+  // console.log("ApiKey2:", weatherApiKey);
+  // console.log("currentWeather:", currentWeather);
 
   return (
     <View style={styles.weatherContainer}>

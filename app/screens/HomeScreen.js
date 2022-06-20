@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 import {
   View,
@@ -14,30 +14,64 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import PermissionLocation from "./PermissionLocation.js";
 import WeatherAPI from "./WeatherAPI.js";
 import axios from "axios";
+import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
 
 const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
-const imagesBox1 = [
-  require("../assets/tshirt1.jpeg"),
-  require("../assets/tshirt2.png"),
-  require("../assets/tshirt3.jpeg"),
-  require("../assets/tshirt4.jpeg"),
-  require("../assets/tshirt5.jpeg"),
-];
+// const imagesBox1 = [
+//   require("../assets/tshirt1.jpeg"),
+//   require("../assets/tshirt2.png"),
+//   require("../assets/tshirt3.jpeg"),
+//   require("../assets/tshirt4.jpeg"),
+//   require("../assets/tshirt5.jpeg"),
+// ];
 
-const imagesBox2 = [
-  require("../assets/Hose1.png"),
-  require("../assets/Hose2.jpeg"),
-  require("../assets/Hose3.jpeg"),
-  require("../assets/Hose4.jpeg"),
-];
+// const imagesBox2 = [
+//   require("../assets/Hose1.png"),
+//   require("../assets/Hose2.jpeg"),
+//   require("../assets/Hose3.jpeg"),
+//   require("../assets/Hose4.jpeg"),
+// ];
 
 export default function HomeScreen() {
-  const [imagesBoxTop, setImagesBoxTop] = useState(null);
-  const [imagesBoxBottom, setImagesBoxBottom] = useState(null);
+  // const {
+  //   [top]: [dataTop, setDataTop],
+  // } = useContext(ImageBoxesContext);
+
+  // const {
+  //   [botom]: [dataBottom, setDataBottom],
+  // } = useContext(ImageBoxesContext);
+
+  // const { top } = useContext(ImageBoxesContext);
+  // const { bottom } = useContext(ImageBoxesContext);
+
+  const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
+  const { imagesBoxBottom, setImagesBoxBottom } = useContext(ImageBoxesContext);
 
   const [favorite, setFavorite] = useState([]);
   const [toggleFav, setToggleFav] = useState({ favorite: true });
+
+  //useEffect for images
+  useEffect(() => {
+    console.log("122464r9689");
+    async function getImagesFromBackend() {
+      try {
+        const result = await axios({
+          method: "get",
+          url: `http://192.168.2.123:9000/cloth/home`,
+        });
+
+        console.log("result data from backend:", result.data);
+        setImagesBoxTop(result.data.clothesTopBox);
+
+        setImagesBoxBottom(result.data.clothesBottomBox);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    getImagesFromBackend();
+  }, []);
 
   function handleFavoriteBtn(image) {
     const currentImage = favorite.find((i) => i == image);
@@ -70,7 +104,7 @@ export default function HomeScreen() {
 
     try {
       await axios({
-        url: "http://192.168.2.123:9000/cloth/62a9da46cab28870292628d3",
+        url: "http://192.168.2.123:9000/cloth/62b0592680fe57a3b8bdfd9c",
         method: "PUT",
         data: toggleFav,
       });
@@ -92,25 +126,30 @@ export default function HomeScreen() {
             horizontal
             showsHorizontalScrollIndicator={false}
           >
-            {imagesBox1.map((image, index) => (
-              <View style={styles.image} key={index}>
-                <Image source={image} />
-                <TouchableOpacity
-                  style={styles.boxFavorite}
-                  onPress={() => {
-                    handleFavoriteBtn(image);
-                  }}
-                >
-                  <Icon
-                    style={styles.favoriteIcon}
-                    name="heart"
-                    color="red"
-                    size={20}
-                    solid={favorite.includes(image) ? true : false}
+            {imagesBoxTop &&
+              imagesBoxTop.map((image, index) => (
+                <View style={styles.image} key={index}>
+                  <Image
+                    style={{ width: "80%", height: "80%" }}
+                    source={{ uri: image.image }}
                   />
-                </TouchableOpacity>
-              </View>
-            ))}
+                  {console.log("image link there1:", image.image)}
+                  <TouchableOpacity
+                    style={styles.boxFavorite}
+                    onPress={() => {
+                      handleFavoriteBtn(image);
+                    }}
+                  >
+                    <Icon
+                      style={styles.favoriteIcon}
+                      name="heart"
+                      color="red"
+                      size={20}
+                      solid={favorite.includes(image) ? true : false}
+                    />
+                  </TouchableOpacity>
+                </View>
+              ))}
           </ScrollView>
         </View>
         <View style={[styles.box, { backgroundColor: "white" }]}>
@@ -119,25 +158,31 @@ export default function HomeScreen() {
             horizontal
             showsHorizontalScrollIndicator={false}
           >
-            {imagesBox2.map((image, index) => (
-              <View style={styles.image} key={index}>
-                <Image source={image} />
-                <TouchableOpacity
-                  style={styles.boxFavorite}
-                  onPress={() => {
-                    handleFavoriteBtn(image);
-                  }}
-                >
-                  <Icon
-                    style={styles.favoriteIcon}
-                    name="heart"
-                    color="red"
-                    size={20}
-                    solid={favorite.includes(image) ? true : false}
+            {imagesBoxBottom &&
+              imagesBoxBottom.map((image, index) => (
+                <View style={styles.image} key={index}>
+                  <Image
+                    style={{ width: 100, height: 100 }}
+                    source={{ uri: image.image }}
                   />
-                </TouchableOpacity>
-              </View>
-            ))}
+                  {console.log("image link there2:", image.image)}
+
+                  <TouchableOpacity
+                    style={styles.boxFavorite}
+                    onPress={() => {
+                      handleFavoriteBtn(image);
+                    }}
+                  >
+                    <Icon
+                      style={styles.favoriteIcon}
+                      name="heart"
+                      color="red"
+                      size={20}
+                      solid={favorite.includes(image) ? true : false}
+                    />
+                  </TouchableOpacity>
+                </View>
+              ))}
           </ScrollView>
         </View>
       </View>
@@ -169,6 +214,7 @@ const styles = StyleSheet.create({
     width: width,
     height: height,
     alignItems: "center",
+    justifyContent: "center",
   },
 
   boxFavorite: {
