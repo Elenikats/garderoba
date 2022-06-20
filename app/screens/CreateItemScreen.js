@@ -12,6 +12,7 @@ import { Picker } from "@react-native-picker/picker";
 import { globalStyles, colors } from "../styles/globalStyles.js";
 import ColorPalette from "react-native-color-palette";
 import axios from 'axios'
+import * as Network from 'expo-network';
 
 export default function CreateItemScreen({ route, navigation }) {
   const [type, setType] = useState("");
@@ -31,6 +32,8 @@ export default function CreateItemScreen({ route, navigation }) {
   const { image } = route.params;
   console.log("1234567", image);
 
+
+
   const handleItemSave = async (e) => {
     console.log("***********wowwwwooowwwooooooo***************");
     e.preventDefault();
@@ -46,9 +49,10 @@ export default function CreateItemScreen({ route, navigation }) {
 
 
     // *********************** AXIOS ******************************+
+    const ip = await Network.getIpAddressAsync();
       try {
          const response = await axios({
-          url: "http://192.168.1.50:8000/upload",
+          url: `http://${ip}:9000/upload`,
           headers: {
             'Authorization': '',
             'Content-Type': 'application/json', 
