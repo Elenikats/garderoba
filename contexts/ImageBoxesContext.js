@@ -7,11 +7,6 @@ export default function ImageBoxesProvider({ children }) {
   const [imagesBoxTop, setImagesBoxTop] = useState(null);
   const [imagesBoxBottom, setImagesBoxBottom] = useState(null);
 
-  //   const value = {
-  //     top: [imagesBoxTop, setImagesBoxTop],
-  //     bottom: [imagesBoxBottom, setImagesBoxBottom],
-  //   };
-
   const value = {
     imagesBoxTop,
     setImagesBoxTop,

@@ -78,8 +78,11 @@ export default function CreateItemScreen({ route, navigation }) {
         method: "POST",
       });
       //---->need any condition that only one of it will be updated!!!
-      setImagesBoxTop(response.data);
-      setImagesBoxBottom(response.data);
+      if (response.data[0].type === "top") {
+        setImagesBoxTop(response.data);
+      } else {
+        setImagesBoxBottom(response.data);
+      }
     } catch (error) {
       console.error("error is .....", error.response.data);
     }

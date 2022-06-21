@@ -18,33 +18,8 @@ import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
 
 const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
-// const imagesBox1 = [
-//   require("../assets/tshirt1.jpeg"),
-//   require("../assets/tshirt2.png"),
-//   require("../assets/tshirt3.jpeg"),
-//   require("../assets/tshirt4.jpeg"),
-//   require("../assets/tshirt5.jpeg"),
-// ];
-
-// const imagesBox2 = [
-//   require("../assets/Hose1.png"),
-//   require("../assets/Hose2.jpeg"),
-//   require("../assets/Hose3.jpeg"),
-//   require("../assets/Hose4.jpeg"),
-// ];
 
 export default function HomeScreen() {
-  // const {
-  //   [top]: [dataTop, setDataTop],
-  // } = useContext(ImageBoxesContext);
-
-  // const {
-  //   [botom]: [dataBottom, setDataBottom],
-  // } = useContext(ImageBoxesContext);
-
-  // const { top } = useContext(ImageBoxesContext);
-  // const { bottom } = useContext(ImageBoxesContext);
-
   const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
   const { imagesBoxBottom, setImagesBoxBottom } = useContext(ImageBoxesContext);
 

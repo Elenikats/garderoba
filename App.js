@@ -29,18 +29,8 @@ export default function App() {
           <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Register" component={RegisterScreen} />
-            <Stack.Screen
-              name="UploadForm"
-              component={CreateItemScreen}
-              top="top"
-              bottom="bottom"
-            />
-            <Stack.Screen
-              name="Main"
-              component={BottomTab}
-              top="top"
-              bottom="bottom"
-            />
+            <Stack.Screen name="UploadForm" component={CreateItemScreen} />
+            <Stack.Screen name="Main" component={BottomTab} />
           </Stack.Navigator>
         </NavigationContainer>
       </ImageBoxesProvider>
