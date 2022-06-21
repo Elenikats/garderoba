@@ -3,9 +3,6 @@ import { SafeAreaView, TextInput, ScrollView, TouchableOpacity, Image, StyleShee
 import CheckBox from "expo-checkbox";
 import { globalStyles, colors } from '../styles/globalStyles';
 
-
-
-
 export default function RegisterScreen({navigation}) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -41,13 +38,12 @@ export default function RegisterScreen({navigation}) {
   }
 
   return (
-    <SafeAreaView >
-      <ScrollView style={styles.regform}>
-        {/* <Text style={[styles.header]}>Garderoba logo</Text> */}
-        <View style={ styles.cont}>
+    <SafeAreaView>
+      <ScrollView>
+        <View style={ styles.cont }>
         <Image 
-            source={require("../assets/googleIcon.png")}  
-            style={{width: 100, height: 100}} />
+            source={require("../assets/clothespile.jpg")}  
+            style={{width: 100, height: 100, borderRadius: 50, marginTop: 50}} />
         <TouchableOpacity 
           onPress={() => {console.log("pressed google button")}}
           style={styles.googleButton}
@@ -63,6 +59,8 @@ export default function RegisterScreen({navigation}) {
           <Text style={globalStyles.text}>Register with email</Text>
         </View>
 
+
+        
         <Text style={styles.label}>Name:</Text>
         <TextInput 
           value={username}
@@ -101,6 +99,7 @@ export default function RegisterScreen({navigation}) {
             setRepeatPassword(repeatPassword)
           }}
           style={styles.textInput}
+          secureTextEntry={true}c
         ></TextInput>
 
         <View style={styles.checkboxConWrapper}>
@@ -119,6 +118,7 @@ export default function RegisterScreen({navigation}) {
 
 
         ><Text style={styles.textBtn}>Sign up</Text></TouchableOpacity >
+        
     </View>
       </ScrollView>
     </SafeAreaView>
@@ -128,17 +128,9 @@ export default function RegisterScreen({navigation}) {
 const styles = StyleSheet.create({
   cont: {
     justifyContent: "center",
-    alignItems: "center"
-  },
-  regform: {
-    width: "100%"
-    
-  },
-  header: {
-    fontSize: 28,
-    padding: "10%",
-    borderWidth: 2,
-    marginTop: "5%"
+    alignItems: "center",
+    width: "70%",
+    alignSelf: "center"
   },
   googleButton: {
     flexDirection: "row",
@@ -147,25 +139,26 @@ const styles = StyleSheet.create({
     borderColor: "blue",
     borderRadius: 4,
     padding: 20,
-    marginTop: "5%",
+    marginTop: "10%",
     alignSelf: "center"
   },
   label: {
-    paddingTop: 20,
+    paddingTop: 10,
     marginBottom: 5,
-    fontSize: 14
+    fontSize: 14,
+    alignSelf: "flex-start",
   },
   textInput: {
-    width: "70%",
+    width: "100%",
     borderWidth: 1.2,
     paddingHorizontal: 2,
     paddingVertical: 7,
     fontSize: 16,
-    borderRadius: 4,
+    borderRadius: 5,
   },
   checkboxConWrapper: {
-    width: "70%",
     flexDirection: 'row',
+    alignSelf: "flex-start",
     paddingTop: 20,
     marginBottom: 5,
     fontSize: 14
