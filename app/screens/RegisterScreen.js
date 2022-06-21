@@ -46,18 +46,18 @@ export default function RegisterScreen({navigation}) {
       <ScrollView style={styles.regform}>
         {/* <Text style={[styles.header]}>Garderoba logo</Text> */}
         <View style={ styles.cont}>
-        <Image 
+        {/* <Image 
             source={require("../assets/google.png")}  
             style={{width: 100, height: 100}} />
         <TouchableOpacity 
           onPress={() => {console.log("pressed google button")}}
           style={styles.googleButton}
-        >
-          <Image 
+        > */}
+          {/* <Image 
             source={require("../assets/google.png")}  
             style={{width: 20, height: 20, marginRight: 10}} />
           <Text style={[globalStyles.text, {color: "blue"}]}>Sign in with Google</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <View style={globalStyles.container}>
           <Text style={[globalStyles.text, {marginVertical: 20}]}>or</Text>

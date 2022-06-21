@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View, TextInput, Image, Button, TouchableOpacity } from 'react-native'
-import React, {useState} from 'react'
-import Logo from '../../assets/Logo.png'
+import { StyleSheet, Text, View, TextInput, Image, Button, TouchableOpacity } from 'react-native';
+import React, {useState} from 'react';
+import Logo from '../assets/Logo.png';
 import { Link } from '@react-navigation/native';
-import {globalStyles} from '../../styles/globalStyles.js'
+import {globalStyles} from '../styles/globalStyles.js';
 
 
 export default function LoginScreen({navigation}) {
@@ -27,16 +27,17 @@ export default function LoginScreen({navigation}) {
       
 
       
-      <TouchableOpacity 
+       <TouchableOpacity 
           onPress={() => {console.log("pressed google button")}}
           style={styles.googleButton}
         >
           <Image 
-            source={require("../../assets/google.png")}  
-          />
-          <Text style={[globalStyles.text, {color: "blue"}]} />
+            style={styles.googleLogo}
+            source={require("")}  
+          /> 
+          <Text style={[globalStyles.text, {color: "blue"}]}>Log in with Google</Text>
         </TouchableOpacity>
-      
+       
 
       <Text style={styles.midHeader}>or</Text>
 
@@ -98,7 +99,18 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80
   },
+  googleLogo: {
+    backgroundColor: "green",
+    marginRight: 3,
+    borderRadius: 50,
+    width: 80,
+    height: 80
+  },
   googleButton: {
+    borderWidth: 1,
+    borderColor: "blue",
+    borderRadius: 4,
+    flexDirection: "row",
     
   },
   midHeader: {
@@ -121,6 +133,11 @@ const styles = StyleSheet.create({
    
   },
   signup: {
-    marginRight: "18%"
+    marginRight: "18%",
+    color: "blue"
+
+  },
+  forgotPass: {
+    color: "blue"
   }
 })
