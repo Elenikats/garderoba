@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { SafeAreaView, TextInput, ScrollView, Button, TouchableOpacity, Image } from 'react-native'
+import { SafeAreaView, TextInput, ScrollView, TouchableOpacity, Image, StyleSheet, Text, View  } from 'react-native'
 import CheckBox from "expo-checkbox";
 import { globalStyles, colors } from '../styles/globalStyles';
 
@@ -46,18 +45,18 @@ export default function RegisterScreen({navigation}) {
       <ScrollView style={styles.regform}>
         {/* <Text style={[styles.header]}>Garderoba logo</Text> */}
         <View style={ styles.cont}>
-        {/* <Image 
-            source={require("../assets/google.png")}  
+        <Image 
+            source={require("../assets/googleIcon.png")}  
             style={{width: 100, height: 100}} />
         <TouchableOpacity 
           onPress={() => {console.log("pressed google button")}}
           style={styles.googleButton}
-        > */}
-          {/* <Image 
-            source={require("../assets/google.png")}  
+        >
+          <Image 
+            source={require("../assets/googleIcon.png")}  
             style={{width: 20, height: 20, marginRight: 10}} />
           <Text style={[globalStyles.text, {color: "blue"}]}>Sign in with Google</Text>
-        </TouchableOpacity> */}
+        </TouchableOpacity> 
 
         <View style={globalStyles.container}>
           <Text style={[globalStyles.text, {marginVertical: 20}]}>or</Text>
