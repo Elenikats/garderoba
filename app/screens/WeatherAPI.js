@@ -27,7 +27,7 @@ export default function WeatherAPI() {
       try {
         const result = await axios({
           method: "get",
-          url: `http://192.168.2.123:9000/weatherApiKey`,
+          url: `http://192.168.1.47:9000/weatherApiKey`,
         });
         setWeatherApiKey(result.data);
         // console.log("ApiKey:", weatherApiKey);
