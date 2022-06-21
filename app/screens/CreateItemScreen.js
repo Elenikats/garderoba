@@ -86,7 +86,7 @@ export default function CreateItemScreen({ route, navigation }) {
         console.error("error is .....", error.response.data)
       }
     }
-  };
+  
 
   return (
     <SafeAreaView style={styles.container}>
@@ -180,7 +180,7 @@ export default function CreateItemScreen({ route, navigation }) {
       </View>
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
