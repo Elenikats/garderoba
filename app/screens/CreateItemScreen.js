@@ -85,8 +85,6 @@ export default function CreateItemScreen({ route, navigation }) {
       } catch (error) {
         console.error("error is .....", error.response.data)
       }
-    } catch (error) {
-      console.error("error is .....", error.response.data);
     }
   };
 
