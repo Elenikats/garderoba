@@ -14,6 +14,7 @@ import ColorPalette from "react-native-color-palette";
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
 import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
+import * as Network from 'expo-network';
 
 export default function CreateItemScreen({ route, navigation }) {
   const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
@@ -47,6 +48,8 @@ export default function CreateItemScreen({ route, navigation }) {
     return base64Image;
   };
 
+
+
   const handleItemSave = async (e) => {
     console.log("***********wowwwwooowwwooooooo***************");
     e.preventDefault();
@@ -66,22 +69,21 @@ export default function CreateItemScreen({ route, navigation }) {
     };
 
     // *********************** AXIOS ******************************+
-    try {
-      console.log("request begin****************");
-      const response = await axios({
-        url: "http://192.168.2.123:9000/upload",
-        headers: {
-          Authorization: "",
-          "Content-Type": "application/json",
-        },
-        data: payload,
-        method: "POST",
-      });
-      //---->need any condition that only one of it will be updated!!!
-      if (response.data[0].type === "top") {
-        setImagesBoxTop(response.data);
-      } else {
-        setImagesBoxBottom(response.data);
+    const ip = await Network.getIpAddressAsync();
+      try {
+         const response = await axios({
+          url: `http://${ip}:9000/upload`,
+          headers: {
+            'Authorization': '',
+            'Content-Type': 'application/json', 
+          },
+          data: payload,
+          method: 'POST'
+        });
+
+        
+      } catch (error) {
+        console.error("error is .....", error.response.data)
       }
     } catch (error) {
       console.error("error is .....", error.response.data);
