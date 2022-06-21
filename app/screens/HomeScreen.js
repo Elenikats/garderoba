@@ -23,8 +23,8 @@ export default function HomeScreen() {
   const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
   const { imagesBoxBottom, setImagesBoxBottom } = useContext(ImageBoxesContext);
 
-  const [favorite, setFavorite] = useState([]);
-  const [toggleFav, setToggleFav] = useState({ favorite: true });
+  const [favorites, setFavorites] = useState([]);
+  const [toggleFav, setToggleFav] = useState(false);
 
   //useEffect for images
   useEffect(() => {
@@ -33,60 +33,40 @@ export default function HomeScreen() {
       try {
         const result = await axios({
           method: "get",
-          url: `http://192.168.2.123:9000/cloth/home`,
+          url: `http://192.168.1.47:9000/cloth/home`,
         });
 
         console.log("result data from backend:", result.data);
         setImagesBoxTop(result.data.clothesTopBox);
-
-        setImagesBoxBottom(result.data.clothesBottomBox);
+        setImagesBoxBottom(result.data.clothesBottomBox)
+        setFavorites(result.data.favorites)
       } catch (error) {
         console.log(error);
       }
     }
 
     getImagesFromBackend();
-  }, []);
+  }, [toggleFav]);
 
-  function handleFavoriteBtn(image) {
-    const currentImage = favorite.find((i) => i == image);
-    console.log("CURRENTIMAGE:", currentImage);
-    if (currentImage) {
-      const currentImages = favorite.filter((number) => number !== image);
-      console.log("CURRENTIMAGES:", currentImages);
-      setFavorite(currentImages);
+  async function handleFavoriteBtn(image) {
 
-      setToggleFav({ favorite: true });
+      try {
+        await axios({
+          url: `http://192.168.1.47:9000/cloth/${image._id}`,
+          method: "PUT",
+          data: {favorite: !image.favorite},
+  
+        });
 
-      console.log("check toggle1:", toggleFav);
-    } else {
-      setFavorite([...favorite, image]);
-      setToggleFav({ favorite: false });
-      console.log("check toggle2:", toggleFav);
-    }
+        setToggleFav(!toggleFav)
 
-    favorite.includes(image)
-      ? setToggleFav({ favorite: true })
-      : setToggleFav({ favorite: false });
-    changeFav();
+      } catch (error) {
+        console.error("error in PUT", error.response.data);
+      }
+    
   }
 
-  const changeFav = async (e) => {
-    console.log("***********changeFav***************");
-    console.log("***favorite:", favorite);
-    // console.log("***CURRENTIMAGES:", currentImages);
-    console.log("check toggle3:", toggleFav);
 
-    try {
-      await axios({
-        url: "http://192.168.2.123:9000/cloth/62b0592680fe57a3b8bdfd9c",
-        method: "PUT",
-        data: toggleFav,
-      });
-    } catch (error) {
-      console.error("error in PUT", error.response.data);
-    }
-  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.weather}>
@@ -108,19 +88,21 @@ export default function HomeScreen() {
                     style={{ width: "80%", height: "80%" }}
                     source={{ uri: image.image }}
                   />
-                  {console.log("image link there1:", image.image)}
+             
                   <TouchableOpacity
-                    style={styles.boxFavorite}
+                    style={styles.boxfavorites}
                     onPress={() => {
                       handleFavoriteBtn(image);
                     }}
                   >
                     <Icon
-                      style={styles.favoriteIcon}
+                      style={styles.favoritesIcon}
                       name="heart"
                       color="red"
                       size={20}
-                      solid={favorite.includes(image) ? true : false}
+  
+                      solid={image.favorite ? true : false}
+
                     />
                   </TouchableOpacity>
                 </View>
@@ -140,20 +122,21 @@ export default function HomeScreen() {
                     style={{ width: "80%", height: "80%" }}
                     source={{ uri: image.image }}
                   />
-                  {console.log("image link there2:", image.image)}
+
 
                   <TouchableOpacity
-                    style={styles.boxFavorite}
+                    style={styles.boxfavorites}
                     onPress={() => {
                       handleFavoriteBtn(image);
                     }}
                   >
                     <Icon
-                      style={styles.favoriteIcon}
+                      style={styles.favoritesIcon}
                       name="heart"
                       color="red"
                       size={20}
-                      solid={favorite.includes(image) ? true : false}
+                      solid={image.favorite ? true : false}
+    
                     />
                   </TouchableOpacity>
                 </View>
@@ -192,7 +175,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
-  boxFavorite: {
+  boxfavorites: {
     backgroundColor: "#F5F5F5",
     shadowColor: "#27272A",
     shadowOpacity: 0.25,
@@ -205,7 +188,7 @@ const styles = StyleSheet.create({
     right: 15,
     top: 15,
   },
-  favoriteIcon: {
+  favoritesIcon: {
     padding: 7,
   },
 });
