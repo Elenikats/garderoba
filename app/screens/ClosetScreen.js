@@ -16,105 +16,120 @@ import axios from "axios";
 import ColorPalette from "react-native-color-palette";
 
 export default function ClosetScreen() {
+  const filterCheckboxes = [
+    { id: 1, txt: "casual", isChecked: false },
+    { id: 2, txt: "formal", isChecked: false },
+    { id: 3, txt: "work", isChecked: false },
+    { id: 4, txt: "home", isChecked: false },
+  ];
   const [closet, setCloset] = useState(null);
-  const [filterOptions, setFilterOptions] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
-
-  const [casual, setCasual] = useState(false);
-  const [formal, setFormal] = useState(false);
-  const [work, setWork] = useState(false);
-  const [home, setHome] = useState(false);
-
+  const [clothCategory, setClothCategory] = useState(filterCheckboxes);
   const [color, setColor] = useState("");
 
-  // useEffect(() => {
-  //   async function getImagesFromBackend() {
-  //     // const ip = await currentIP();
-  //     try {
-  //       const result = await axios({
-  //         method: "get",
-  //         url: `http://10.44.57.28:9000/cloth/closet`,
-  //       });
-  //       console.log("result---", result.data);
-  //       setCloset(result.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
+  useEffect(() => {
+    async function getImagesFromBackend() {
+      // const ip = await currentIP();
+      try {
+        const result = await axios({
+          method: "get",
+          url: `http://10.44.57.28:9000/cloth/closet`,
+        });
+        console.log("result---", result.data);
+        setCloset(result.data);
+      } catch (error) {
+        console.log(error);
+      }
 
-  //     console.log("closet here", closet);
-  //   }
+      console.log("closet here", closet);
+    }
 
-  //   getImagesFromBackend();
-  // }, []);
+    getImagesFromBackend();
+  }, []);
 
+  //filter button:
   function handleFilterBtn() {
     return setModalVisible(true);
-    console.log("Its working!!");
   }
-
-  function handleMenuBtn() {}
 
   //handle Category checkboxes:
-  function handleCasual() {
-    setCasual(!casual);
-    setFilterOptions([...filterOptions, "casual"]);
+  const handleFilterCategory = (id) => {
+    let check = clothCategory.map((category) => {
+      if (id === category.id) {
+        return { ...category, isChecked: !category.isChecked };
+      }
+      return category;
+    });
+    setClothCategory(check);
+  };
+  const selectedCategory = clothCategory.filter(
+    (category) => category.isChecked
+  );
+
+  //submit button im Modal:
+  async function handleSubmit() {
+    setModalVisible(!modalVisible);
+    console.log(selectedCategory);
+
+    try {
+      const result = await axios({
+        method: "get",
+        url: `http://10.44.57.28:9000/cloth/closet?category[]=${selectedCategory.txt}`,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  function handleFormal() {
-    setFormal(!formal);
-    setFilterOptions([...filterOptions, "formal"]);
-  }
-
-  function handleWork() {
-    setWork(!work);
-    setFilterOptions([...filterOptions, "work"]);
-  }
-
-  function handleHome() {
-    setHome(!home);
-    setFilterOptions([...filterOptions, "home"]);
-  }
+  //3 dots button:
+  function handleMenuBtn() {}
 
   return (
     <SafeAreaView>
-      {/* <ScrollView> */}
-      <View style={styles.filterContainer}>
-        <TouchableOpacity
-          onPress={() => {
-            handleFilterBtn();
-          }}
-        >
-          <Icon name="filter" size={30} />
-        </TouchableOpacity>
-        {filterOptions &&
-          filterOptions.map((option) => (
-            <Text style={styles.filterOption}>{option}</Text>
-          ))}
-      </View>
-      <View style={styles.clothContainer}>
-        {closet &&
-          closet.map((image, index) => (
-            <View style={styles.clothItem} key={index}>
-              <Image
-                style={{ width: "40%", height: "40%" }}
-                source={{ uri: image.image }}
-              />
-
-              {/* <Text>season: {season}</Text>
-              <Text>style: {style}</Text> */}
-
+      <ScrollView>
+        <View style={styles.filterContainer}>
+          <TouchableOpacity
+            onPress={() => {
+              handleFilterBtn();
+            }}
+          >
+            <Icon name="filter" size={30} />
+          </TouchableOpacity>
+          {selectedCategory &&
+            selectedCategory.map((option) => (
               <TouchableOpacity
-                style={styles.menuBtn}
                 onPress={() => {
-                  handleMenuBtn();
+                  handleFilterCategory(option.id);
                 }}
               >
-                <Icon style={styles.menuIcon} name="ellipsis-v" size={10} />
+                <Text style={styles.filterOption}>{option.txt}</Text>
               </TouchableOpacity>
-            </View>
-          ))}
-      </View>
-      {/* </ScrollView> */}
+            ))}
+        </View>
+        <View style={styles.clothContainer}>
+          {closet &&
+            closet.map((image, index) => (
+              <View style={styles.clothItem} key={index}>
+                <Image
+                  style={{ width: "40%", height: "40%" }}
+                  source={{ uri: image.image }}
+                />
+
+                {/* <Text>season: {season}</Text>
+              <Text>style: {style}</Text> */}
+
+                <TouchableOpacity
+                  style={styles.menuBtn}
+                  onPress={() => {
+                    handleMenuBtn();
+                  }}
+                >
+                  <Icon style={styles.menuIcon} name="ellipsis-v" size={10} />
+                </TouchableOpacity>
+              </View>
+            ))}
+        </View>
+      </ScrollView>
 
       {/* //Filter Modal! */}
       <>
@@ -132,38 +147,19 @@ export default function ClosetScreen() {
               <View style={styles.modalView}>
                 <Text style={{ fontWeight: "bold" }}>Category:</Text>
                 <View style={styles.checkboxContainer}>
-                  <View style={styles.checkboxConWrapper}>
-                    <CheckBox
-                      value={casual}
-                      onValueChange={handleCasual}
-                      style={{ marginRight: 10 }}
-                    />
-                    <Text>casual</Text>
-                  </View>
-                  <View style={styles.checkboxConWrapper}>
-                    <CheckBox
-                      value={formal}
-                      onValueChange={handleFormal}
-                      style={{ marginRight: 10 }}
-                    />
-                    <Text>formal</Text>
-                  </View>
-                  <View style={styles.checkboxConWrapper}>
-                    <CheckBox
-                      value={work}
-                      onValueChange={handleWork}
-                      style={{ marginRight: 10 }}
-                    />
-                    <Text>work</Text>
-                  </View>
-                  <View style={styles.checkboxConWrapper}>
-                    <CheckBox
-                      value={home}
-                      onValueChange={handleHome}
-                      style={{ marginRight: 10 }}
-                    />
-                    <Text>home</Text>
-                  </View>
+                  {clothCategory &&
+                    clothCategory.map((item) => (
+                      <View style={styles.checkboxConWrapper}>
+                        <CheckBox
+                          value={item.isChecked}
+                          onValueChange={() => {
+                            handleFilterCategory(item.id);
+                          }}
+                          style={{ marginRight: 10 }}
+                        />
+                        <Text>{item.txt}</Text>
+                      </View>
+                    ))}
                 </View>
 
                 <ColorPalette
@@ -193,9 +189,7 @@ export default function ClosetScreen() {
                     </Text>
                   }
                 />
-                <TouchableOpacity
-                  onPress={() => setModalVisible(!modalVisible)}
-                >
+                <TouchableOpacity onPress={handleSubmit}>
                   <Text style={globalStyles.activeButton}>ok</Text>
                 </TouchableOpacity>
               </View>
