@@ -15,6 +15,7 @@ import PermissionLocation from "./PermissionLocation.js";
 import WeatherAPI from "./WeatherAPI.js";
 import axios from "axios";
 import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
+import currentIP from "../utils/ip.js";
 
 const ip = await Network.getIpAddressAsync();
 const { width } = Dimensions.get("window");
@@ -29,15 +30,14 @@ export default function HomeScreen() {
 
   //useEffect for images
   useEffect(() => {
-    console.log("122464r9689");
     async function getImagesFromBackend() {
+      const ip = await currentIP();
       try {
         const result = await axios({
           method: "get",
-          url: `http://192.168.1.47:9000/cloth/home`,
+          url: `http://${ip}:9000/cloth/home`,
         });
 
-        console.log("result data from backend:", result.data);
         setImagesBoxTop(result.data.clothesTopBox);
         setImagesBoxBottom(result.data.clothesBottomBox);
         setFavorites(result.data.favorites);
@@ -50,9 +50,11 @@ export default function HomeScreen() {
   }, [toggleFav]);
 
   async function handleFavoriteBtn(image) {
+    const ip = await currentIP();
+
     try {
       await axios({
-        url: `http://192.168.1.47:9000/cloth/${image._id}`,
+        url: `http://${ip}:9000/cloth/${image._id}`,
         method: "PUT",
         data: { favorite: !image.favorite },
       });
