@@ -15,9 +15,9 @@ import PermissionLocation from "./PermissionLocation.js";
 import WeatherAPI from "./WeatherAPI.js";
 import axios from "axios";
 import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
-import currentIP from "../utils/ip.js";
+// import currentIP from "../utils/ip.js";
 
-const ip = await Network.getIpAddressAsync();
+// const ip = await Network.getIpAddressAsync();
 const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
 
@@ -31,11 +31,11 @@ export default function HomeScreen() {
   //useEffect for images
   useEffect(() => {
     async function getImagesFromBackend() {
-      const ip = await currentIP();
+      // const ip = await currentIP();
       try {
         const result = await axios({
           method: "get",
-          url: `http://${ip}:9000/cloth/home`,
+          url: `http://192.168.2.123:9000/cloth/home`,
         });
 
         setImagesBoxTop(result.data.clothesTopBox);
