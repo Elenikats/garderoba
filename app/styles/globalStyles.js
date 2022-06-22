@@ -27,7 +27,7 @@ const globalStyles = StyleSheet.create({
     fontSize: 18,
   },
 
-  activeButton: {
+  inactiveButton: {
     backgroundColor: colors.gray,
     borderRadius: 40,
     padding: 5,
@@ -35,7 +35,7 @@ const globalStyles = StyleSheet.create({
     textAlign: "center",
   },
 
-  inactiveButton: {
+  activeButton: {
     backgroundColor: colors.dark,
     color: colors.white,
     borderRadius: 40,

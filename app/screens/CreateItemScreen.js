@@ -62,7 +62,7 @@ export default function CreateItemScreen({ route, navigation }) {
     const ip = await currentIP();
     try {
       const response = await axios({
-        url: `http://192.168.2.123:9000/upload`,
+        url: `http://10.44.57.28:9000/upload`,
         headers: {
           Authorization: "",
           "Content-Type": "application/json",
@@ -164,8 +164,8 @@ export default function CreateItemScreen({ route, navigation }) {
           disabled={!type || !season || !style || !color || !weather}
           style={
             type && season && style && color && weather
-              ? globalStyles.inactiveButton
-              : globalStyles.activeButton
+              ? globalStyles.activeButton
+              : globalStyles.inactiveButton
           }
         >
           <Text style={styles.textBtn}>Save</Text>

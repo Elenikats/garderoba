@@ -13,6 +13,7 @@ import CheckBox from "expo-checkbox";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { globalStyles, colors } from "../styles/globalStyles.js";
 import axios from "axios";
+import ColorPalette from "react-native-color-palette";
 
 export default function ClosetScreen() {
   const [closet, setCloset] = useState(null);
@@ -24,25 +25,27 @@ export default function ClosetScreen() {
   const [work, setWork] = useState(false);
   const [home, setHome] = useState(false);
 
-  useEffect(() => {
-    async function getImagesFromBackend() {
-      // const ip = await currentIP();
-      try {
-        const result = await axios({
-          method: "get",
-          url: `http://192.168.2.123:9000/cloth/closet`,
-        });
-        console.log("result---", result.data);
-        setCloset(result.data);
-      } catch (error) {
-        console.log(error);
-      }
+  const [color, setColor] = useState("");
 
-      console.log("closet here", closet);
-    }
+  // useEffect(() => {
+  //   async function getImagesFromBackend() {
+  //     // const ip = await currentIP();
+  //     try {
+  //       const result = await axios({
+  //         method: "get",
+  //         url: `http://10.44.57.28:9000/cloth/closet`,
+  //       });
+  //       console.log("result---", result.data);
+  //       setCloset(result.data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
 
-    getImagesFromBackend();
-  }, []);
+  //     console.log("closet here", closet);
+  //   }
+
+  //   getImagesFromBackend();
+  // }, []);
 
   function handleFilterBtn() {
     return setModalVisible(true);
@@ -74,50 +77,50 @@ export default function ClosetScreen() {
 
   return (
     <SafeAreaView>
-      <ScrollView>
-        <View style={styles.filterContainer}>
-          <TouchableOpacity
-            onPress={() => {
-              handleFilterBtn();
-            }}
-          >
-            <Icon name="filter" size={30} />
-          </TouchableOpacity>
-          {filterOptions &&
-            filterOptions.map((option) => (
-              <Text style={styles.filterOption}>{option}</Text>
-            ))}
-        </View>
-        <View style={styles.clothContainer}>
-          {closet &&
-            closet.map((image, index) => (
-              <View style={styles.clothItem} key={index}>
-                <Image
-                  style={{ width: "40%", height: "40%" }}
-                  source={{ uri: image.image }}
-                />
+      {/* <ScrollView> */}
+      <View style={styles.filterContainer}>
+        <TouchableOpacity
+          onPress={() => {
+            handleFilterBtn();
+          }}
+        >
+          <Icon name="filter" size={30} />
+        </TouchableOpacity>
+        {filterOptions &&
+          filterOptions.map((option) => (
+            <Text style={styles.filterOption}>{option}</Text>
+          ))}
+      </View>
+      <View style={styles.clothContainer}>
+        {closet &&
+          closet.map((image, index) => (
+            <View style={styles.clothItem} key={index}>
+              <Image
+                style={{ width: "40%", height: "40%" }}
+                source={{ uri: image.image }}
+              />
 
-                {/* <Text>season: {season}</Text>
+              {/* <Text>season: {season}</Text>
               <Text>style: {style}</Text> */}
 
-                <TouchableOpacity
-                  style={styles.menuBtn}
-                  onPress={() => {
-                    handleMenuBtn();
-                  }}
-                >
-                  <Icon style={styles.menuIcon} name="ellipsis-v" size={10} />
-                </TouchableOpacity>
-              </View>
-            ))}
-        </View>
-      </ScrollView>
+              <TouchableOpacity
+                style={styles.menuBtn}
+                onPress={() => {
+                  handleMenuBtn();
+                }}
+              >
+                <Icon style={styles.menuIcon} name="ellipsis-v" size={10} />
+              </TouchableOpacity>
+            </View>
+          ))}
+      </View>
+      {/* </ScrollView> */}
 
       {/* //Filter Modal! */}
       <>
         {modalVisible && (
           <Modal
-            animationType="slide"
+            animationType="fade"
             transparent={true}
             visible={modalVisible}
             onRequestClose={() => {
@@ -128,39 +131,71 @@ export default function ClosetScreen() {
             <View style={styles.centeredView}>
               <View style={styles.modalView}>
                 <Text style={{ fontWeight: "bold" }}>Category:</Text>
-                <View style={styles.checkboxConWrapper}>
-                  <CheckBox
-                    value={casual}
-                    onValueChange={handleCasual}
-                    style={{ marginRight: 10 }}
-                  />
-                  <Text>casual</Text>
+                <View style={styles.checkboxContainer}>
+                  <View style={styles.checkboxConWrapper}>
+                    <CheckBox
+                      value={casual}
+                      onValueChange={handleCasual}
+                      style={{ marginRight: 10 }}
+                    />
+                    <Text>casual</Text>
+                  </View>
+                  <View style={styles.checkboxConWrapper}>
+                    <CheckBox
+                      value={formal}
+                      onValueChange={handleFormal}
+                      style={{ marginRight: 10 }}
+                    />
+                    <Text>formal</Text>
+                  </View>
+                  <View style={styles.checkboxConWrapper}>
+                    <CheckBox
+                      value={work}
+                      onValueChange={handleWork}
+                      style={{ marginRight: 10 }}
+                    />
+                    <Text>work</Text>
+                  </View>
+                  <View style={styles.checkboxConWrapper}>
+                    <CheckBox
+                      value={home}
+                      onValueChange={handleHome}
+                      style={{ marginRight: 10 }}
+                    />
+                    <Text>home</Text>
+                  </View>
                 </View>
-                <View style={styles.checkboxConWrapper}>
-                  <CheckBox
-                    value={formal}
-                    onValueChange={handleFormal}
-                    style={{ marginRight: 10 }}
-                  />
-                  <Text>formal</Text>
-                </View>
-                <View style={styles.checkboxConWrapper}>
-                  <CheckBox
-                    value={work}
-                    onValueChange={handleWork}
-                    style={{ marginRight: 10 }}
-                  />
-                  <Text>work</Text>
-                </View>
-                <View style={styles.checkboxConWrapper}>
-                  <CheckBox
-                    value={home}
-                    onValueChange={handleHome}
-                    style={{ marginRight: 10 }}
-                  />
-                  <Text>home</Text>
-                </View>
-                <TouchableOpacity>
+
+                <ColorPalette
+                  selectedValue={color}
+                  onChange={(currentColor) => setColor(currentColor)}
+                  colors={[
+                    "#000",
+                    "#fff",
+                    "#1C86EE",
+                    "#EE3B3B",
+                    "#FF82AB",
+                    "#E1C699",
+                    "#C1FFC1",
+                    "#2E8B57",
+                    "#7A8B8B",
+                    "#FFB90F",
+                    "#8B4500",
+                  ]}
+                  title={"Color:"}
+                  icon={
+                    <Text
+                      style={
+                        color == "#000" ? styles.textWhite : styles.textBlack
+                      }
+                    >
+                      ✔
+                    </Text>
+                  }
+                />
+                <TouchableOpacity
+                  onPress={() => setModalVisible(!modalVisible)}
+                >
                   <Text style={globalStyles.activeButton}>ok</Text>
                 </TouchableOpacity>
               </View>
@@ -175,8 +210,10 @@ export default function ClosetScreen() {
 const styles = StyleSheet.create({
   filterContainer: {
     top: 60,
-    left: 30,
+
+    marginHorizontal: 20,
     flexDirection: "row",
+    flexWrap: "wrap",
   },
 
   clothContainer: {
@@ -205,19 +242,17 @@ const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
 
-    justifyContent: "flex-end",
     alignItems: "center",
-    marginTop: 22,
-    marginBottom: 70,
+    marginTop: 50,
   },
   modalView: {
     width: "80%",
-    height: "80%",
-    margin: 20,
+    height: "60%",
+
     backgroundColor: "white",
     borderRadius: 20,
     padding: 35,
-    alignItems: "center",
+
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -226,5 +261,15 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+  },
+
+  checkboxContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+  },
+  checkboxConWrapper: {
+    flexDirection: "row",
+    marginVertical: 15,
+    marginHorizontal: 5,
   },
 });
