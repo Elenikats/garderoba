@@ -37,7 +37,7 @@ export default function HomeScreen() {
           url: `http://${ip}:9000/cloth/home`,
         });
 
-        console.log("result data from backend:", result.data);
+ 
         setImagesBoxTop(result.data.clothesTopBox);
         setImagesBoxBottom(result.data.clothesBottomBox)
         setFavorites(result.data.favorites)

@@ -28,16 +28,8 @@ export default function CreateItemScreen({ route, navigation }) {
   const [weather, setWeather] = useState("");
   // const [imageFile, setImageFile] = useState(null)
 
-  // console.log("color:", color);
-  // console.log("type:", type);
-  // console.log("style:", style);
-  // console.log("season:", season);
-  // console.log("route is");
-  // console.log(route);
-  // console.log("navigation is");
-  // console.log(navigation);
+
   const { image } = route.params;
-  // console.log("1234567", image);
 
   const readImage = async () => {
     console.log("image inside readImage is---", image);
@@ -56,7 +48,7 @@ export default function CreateItemScreen({ route, navigation }) {
     e.preventDefault();
     navigation.navigate("Main");
 
-    console.log(imagesBoxTop);
+    // console.log(imagesBoxTop);
 
     const readImageData = await readImage();
 

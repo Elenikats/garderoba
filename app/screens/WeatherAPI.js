@@ -29,7 +29,6 @@ export default function WeatherAPI() {
         // const ip = await Network.getIpAddressAsync();
         const ip = await currentIP()
 
-        console.log("ip:", ip);
         const result = await axios({
           method: "get",
           url: `http://${ip}:9000/weatherApiKey`,
