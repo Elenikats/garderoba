@@ -7,7 +7,9 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  Modal,
 } from "react-native";
+import CheckBox from "expo-checkbox";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { globalStyles, colors } from "../styles/globalStyles.js";
 import axios from "axios";
@@ -15,6 +17,10 @@ import axios from "axios";
 export default function ClosetScreen() {
   const [closet, setCloset] = useState(null);
   const [filterOptions, setFilterOptions] = useState(["casual", "summer"]);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const [summer, setSummer] = useState(false);
+  const [winter, setWinter] = useState(false);
 
   useEffect(() => {
     async function getImagesFromBackend() {
@@ -36,21 +42,32 @@ export default function ClosetScreen() {
     getImagesFromBackend();
   }, []);
 
-  function handleFilterBtn() {}
+  function handleFilterBtn() {
+    return setModalVisible(true);
+    console.log("Its working!!");
+  }
 
   function handleMenuBtn() {}
+
+  function handleWhat(e) {
+    console.log(e.target.value);
+  }
   return (
     <SafeAreaView>
-      <View style={styles.filterContainer}>
-        <TouchableOpacity onPress={handleFilterBtn}>
-          <Icon name="filter" size={30} />
-        </TouchableOpacity>
-        {filterOptions &&
-          filterOptions.map((option) => (
-            <Text style={styles.filterOption}>{option}</Text>
-          ))}
-      </View>
       <ScrollView>
+        <View style={styles.filterContainer}>
+          <TouchableOpacity
+            onPress={() => {
+              handleFilterBtn();
+            }}
+          >
+            <Icon name="filter" size={30} />
+          </TouchableOpacity>
+          {filterOptions &&
+            filterOptions.map((option) => (
+              <Text style={styles.filterOption}>{option}</Text>
+            ))}
+        </View>
         <View style={styles.clothContainer}>
           {closet &&
             closet.map((image, index) => (
@@ -75,6 +92,43 @@ export default function ClosetScreen() {
             ))}
         </View>
       </ScrollView>
+
+      {/* //Filter Modal! */}
+      <>
+        {modalVisible && (
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+              Alert.alert("Modal has been closed.");
+              setModalVisible(!modalVisible);
+            }}
+          >
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <Text>Category:</Text>
+                <View style={styles.checkboxConWrapper}>
+                  <CheckBox
+                    value={summer}
+                    onValueChange={(e) => handleWhat(e)}
+                    style={{ marginRight: 10 }}
+                  />
+                  <Text style={{ width: "90%" }}>summer</Text>
+                </View>
+                <View style={styles.checkboxConWrapper}>
+                  <CheckBox
+                    // value={agree}
+                    // onValueChange={() => setAgree(!agree)}
+                    style={{ marginRight: 10 }}
+                  />
+                  <Text style={{ width: "90%" }}>winter</Text>
+                </View>
+              </View>
+            </View>
+          </Modal>
+        )}
+      </>
     </SafeAreaView>
   );
 }
@@ -107,5 +161,31 @@ const styles = StyleSheet.create({
     backgroundColor: "#FE5F10",
     color: "white",
     textAlign: "center",
+  },
+
+  centeredView: {
+    flex: 1,
+
+    justifyContent: "flex-end",
+    alignItems: "center",
+    marginTop: 22,
+    marginBottom: 70,
+  },
+  modalView: {
+    width: "80%",
+    height: "80%",
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
 });
