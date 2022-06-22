@@ -118,7 +118,7 @@ export default function CreateItemScreen({ route, navigation }) {
             <Picker.Item label="casual" value="casual" />
             <Picker.Item label="formal" value="formal" />
             <Picker.Item label="work" value="work" />
-            <Picker.Item label="holiday" value="holiday" />
+            <Picker.Item label="holiday" value="home" />
           </Picker>
           {/* **************Weather********************* */}
           <Picker

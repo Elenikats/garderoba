@@ -16,11 +16,13 @@ import axios from "axios";
 
 export default function ClosetScreen() {
   const [closet, setCloset] = useState(null);
-  const [filterOptions, setFilterOptions] = useState(["casual", "summer"]);
+  const [filterOptions, setFilterOptions] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
 
-  const [summer, setSummer] = useState(false);
-  const [winter, setWinter] = useState(false);
+  const [casual, setCasual] = useState(false);
+  const [formal, setFormal] = useState(false);
+  const [work, setWork] = useState(false);
+  const [home, setHome] = useState(false);
 
   useEffect(() => {
     async function getImagesFromBackend() {
@@ -49,9 +51,27 @@ export default function ClosetScreen() {
 
   function handleMenuBtn() {}
 
-  function handleWhat(e) {
-    console.log(e.target.value);
+  //handle Category checkboxes:
+  function handleCasual() {
+    setCasual(!casual);
+    setFilterOptions([...filterOptions, "casual"]);
   }
+
+  function handleFormal() {
+    setFormal(!formal);
+    setFilterOptions([...filterOptions, "formal"]);
+  }
+
+  function handleWork() {
+    setWork(!work);
+    setFilterOptions([...filterOptions, "work"]);
+  }
+
+  function handleHome() {
+    setHome(!home);
+    setFilterOptions([...filterOptions, "home"]);
+  }
+
   return (
     <SafeAreaView>
       <ScrollView>
@@ -107,23 +127,42 @@ export default function ClosetScreen() {
           >
             <View style={styles.centeredView}>
               <View style={styles.modalView}>
-                <Text>Category:</Text>
+                <Text style={{ fontWeight: "bold" }}>Category:</Text>
                 <View style={styles.checkboxConWrapper}>
                   <CheckBox
-                    value={summer}
-                    onValueChange={(e) => handleWhat(e)}
+                    value={casual}
+                    onValueChange={handleCasual}
                     style={{ marginRight: 10 }}
                   />
-                  <Text style={{ width: "90%" }}>summer</Text>
+                  <Text>casual</Text>
                 </View>
                 <View style={styles.checkboxConWrapper}>
                   <CheckBox
-                    // value={agree}
-                    // onValueChange={() => setAgree(!agree)}
+                    value={formal}
+                    onValueChange={handleFormal}
                     style={{ marginRight: 10 }}
                   />
-                  <Text style={{ width: "90%" }}>winter</Text>
+                  <Text>formal</Text>
                 </View>
+                <View style={styles.checkboxConWrapper}>
+                  <CheckBox
+                    value={work}
+                    onValueChange={handleWork}
+                    style={{ marginRight: 10 }}
+                  />
+                  <Text>work</Text>
+                </View>
+                <View style={styles.checkboxConWrapper}>
+                  <CheckBox
+                    value={home}
+                    onValueChange={handleHome}
+                    style={{ marginRight: 10 }}
+                  />
+                  <Text>home</Text>
+                </View>
+                <TouchableOpacity>
+                  <Text style={globalStyles.activeButton}>ok</Text>
+                </TouchableOpacity>
               </View>
             </View>
           </Modal>
