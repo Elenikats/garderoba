@@ -71,6 +71,12 @@ export default function CreateItemScreen({ route, navigation }) {
         data: payload,
         method: "POST",
       });
+
+      if (response.data.type == "top") {
+        setImagesBoxTop(response.data.clothTopBox);
+      } else {
+        setImagesBoxBottom(response.data.clothBottomBox);
+      }
     } catch (error) {
       console.error("error is .....", error.response.data);
     }
