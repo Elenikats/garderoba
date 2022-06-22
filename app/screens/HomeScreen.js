@@ -16,6 +16,7 @@ import WeatherAPI from "./WeatherAPI.js";
 import axios from "axios";
 import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
 
+const ip = await Network.getIpAddressAsync();
 const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
 
@@ -38,8 +39,8 @@ export default function HomeScreen() {
 
         console.log("result data from backend:", result.data);
         setImagesBoxTop(result.data.clothesTopBox);
-        setImagesBoxBottom(result.data.clothesBottomBox)
-        setFavorites(result.data.favorites)
+        setImagesBoxBottom(result.data.clothesBottomBox);
+        setFavorites(result.data.favorites);
       } catch (error) {
         console.log(error);
       }
@@ -49,23 +50,18 @@ export default function HomeScreen() {
   }, [toggleFav]);
 
   async function handleFavoriteBtn(image) {
+    try {
+      await axios({
+        url: `http://192.168.1.47:9000/cloth/${image._id}`,
+        method: "PUT",
+        data: { favorite: !image.favorite },
+      });
 
-      try {
-        await axios({
-          url: `http://192.168.1.47:9000/cloth/${image._id}`,
-          method: "PUT",
-          data: {favorite: !image.favorite},
-  
-        });
-
-        setToggleFav(!toggleFav)
-
-      } catch (error) {
-        console.error("error in PUT", error.response.data);
-      }
-    
+      setToggleFav(!toggleFav);
+    } catch (error) {
+      console.error("error in PUT", error.response.data);
+    }
   }
-
 
   return (
     <SafeAreaView style={styles.container}>
@@ -88,7 +84,7 @@ export default function HomeScreen() {
                     style={{ width: "80%", height: "80%" }}
                     source={{ uri: image.image }}
                   />
-             
+
                   <TouchableOpacity
                     style={styles.boxfavorites}
                     onPress={() => {
@@ -100,9 +96,7 @@ export default function HomeScreen() {
                       name="heart"
                       color="red"
                       size={20}
-  
                       solid={image.favorite ? true : false}
-
                     />
                   </TouchableOpacity>
                 </View>
@@ -123,7 +117,6 @@ export default function HomeScreen() {
                     source={{ uri: image.image }}
                   />
 
-
                   <TouchableOpacity
                     style={styles.boxfavorites}
                     onPress={() => {
@@ -136,7 +129,6 @@ export default function HomeScreen() {
                       color="red"
                       size={20}
                       solid={image.favorite ? true : false}
-    
                     />
                   </TouchableOpacity>
                 </View>

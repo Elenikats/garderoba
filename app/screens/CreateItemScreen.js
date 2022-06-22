@@ -14,7 +14,7 @@ import ColorPalette from "react-native-color-palette";
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
 import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
-import * as Network from 'expo-network';
+// import * as Network from "expo-network";
 
 export default function CreateItemScreen({ route, navigation }) {
   const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
@@ -48,8 +48,6 @@ export default function CreateItemScreen({ route, navigation }) {
     return base64Image;
   };
 
-
-
   const handleItemSave = async (e) => {
     console.log("***********wowwwwooowwwooooooo***************");
     e.preventDefault();
@@ -70,21 +68,16 @@ export default function CreateItemScreen({ route, navigation }) {
 
     // *********************** AXIOS ******************************+
     const ip = await Network.getIpAddressAsync();
-      try {
-         const response = await axios({
-          url: `http://${ip}:9000/upload`,
-          headers: {
-            'Authorization': '',
-            'Content-Type': 'application/json', 
-          },
-          data: payload,
-          method: 'POST'
-        });
-
-        
-      } catch (error) {
-        console.error("error is .....", error.response.data)
-      }
+    try {
+      const response = await axios({
+        url: `http://${ip}:9000/upload`,
+        headers: {
+          Authorization: "",
+          "Content-Type": "application/json",
+        },
+        data: payload,
+        method: "POST",
+      });
     } catch (error) {
       console.error("error is .....", error.response.data);
     }
