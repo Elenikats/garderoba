@@ -34,7 +34,7 @@ export default function WeatherAPI() {
           url: `http://${ip}:9000/weatherApiKey`,
         });
         setWeatherApiKey(result.data);
-        console.log("data", result);
+        // console.log("data", result);
 
         //getting the current weather
 

@@ -19,7 +19,7 @@ export default function PermissionLocation() {
 
         const location = await Location.getCurrentPositionAsync({accuracy: Location.Accuracy.Highest});
         const { latitude, longitude } = location.coords
-        console.log("location:", location)
+        // console.log("location:", location)
         setCoordinates({
           ...coordinates,
           latitude,

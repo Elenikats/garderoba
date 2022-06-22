@@ -14,8 +14,8 @@ import ColorPalette from "react-native-color-palette";
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
 import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
-import * as Network from "expo-network";
 import currentIP from "../utils/ip.js";
+// import * as Network from "expo-network";
 
 export default function CreateItemScreen({ route, navigation }) {
   const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
@@ -31,7 +31,7 @@ export default function CreateItemScreen({ route, navigation }) {
   const { image } = route.params;
 
   const readImage = async () => {
-    console.log("image inside readImage is---", image);
+    // console.log("image inside readImage is---", image);
     const imageAsString = await FileSystem.readAsStringAsync(image, {
       encoding: FileSystem.EncodingType.Base64,
     });
