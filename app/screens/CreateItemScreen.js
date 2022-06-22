@@ -14,7 +14,7 @@ import ColorPalette from "react-native-color-palette";
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
 import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
-import * as Network from 'expo-network';
+import * as Network from "expo-network";
 import currentIP from "../utils/ip.js";
 
 export default function CreateItemScreen({ route, navigation }) {
@@ -28,7 +28,6 @@ export default function CreateItemScreen({ route, navigation }) {
   const [weather, setWeather] = useState("");
   // const [imageFile, setImageFile] = useState(null)
 
-
   const { image } = route.params;
 
   const readImage = async () => {
@@ -40,8 +39,6 @@ export default function CreateItemScreen({ route, navigation }) {
 
     return base64Image;
   };
-
-
 
   const handleItemSave = async (e) => {
     console.log("***********wowwwwooowwwooooooo***************");
@@ -63,24 +60,27 @@ export default function CreateItemScreen({ route, navigation }) {
 
     // *********************** AXIOS ******************************+
     // const ip = await Network.getIpAddressAsync();
-    const ip = await currentIP()
-      try {
-         const response = await axios({
-          url: `http://${ip}:9000/upload`,
-          headers: {
-            'Authorization': '',
-            'Content-Type': 'application/json', 
-          },
-          data: payload,
-          method: 'POST'
-        });
+    const ip = await currentIP();
+    try {
+      const response = await axios({
+        url: `http://${ip}:9000/upload`,
+        headers: {
+          Authorization: "",
+          "Content-Type": "application/json",
+        },
+        data: payload,
+        method: "POST",
+      });
 
-        
-      } catch (error) {
-        console.error("error is .....", error.response.data)
+      if (response.data.type == "top") {
+        setImagesBoxTop(response.data.clothTopBox);
+      } else {
+        setImagesBoxBottom(response.data.clothBottomBox);
       }
-  } 
-  
+    } catch (error) {
+      console.error("error is .....", error.response.data);
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -174,7 +174,7 @@ export default function CreateItemScreen({ route, navigation }) {
       </View>
     </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
