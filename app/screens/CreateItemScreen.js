@@ -26,8 +26,9 @@ export default function CreateItemScreen({ route, navigation }) {
   const [color, setColor] = useState("");
   const [weather, setWeather] = useState("");
   // const [imageFile, setImageFile] = useState(null)
-
+  
   // console.log("color:", color);
+
   // console.log("type:", type);
   // console.log("style:", style);
   // console.log("season:", season);
@@ -37,7 +38,7 @@ export default function CreateItemScreen({ route, navigation }) {
   // console.log(navigation);
   const { image } = route.params;
   // console.log("1234567", image);
-
+  
   const readImage = async () => {
     console.log("image inside readImage is---", image);
     const imageAsString = await FileSystem.readAsStringAsync(image, {
@@ -85,13 +86,11 @@ export default function CreateItemScreen({ route, navigation }) {
       } catch (error) {
         console.error("error is .....", error.response.data)
       }
-    } catch (error) {
-      console.error("error is .....", error.response.data);
-    }
-  };
-
-  return (
-    <SafeAreaView style={styles.container}>
+    } 
+    
+    
+    return (
+      <SafeAreaView style={styles.container}>
       <View>
         <View>
           <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
@@ -182,7 +181,7 @@ export default function CreateItemScreen({ route, navigation }) {
       </View>
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

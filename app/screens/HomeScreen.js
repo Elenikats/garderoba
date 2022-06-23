@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import * as Network from 'expo-network';
 
 import {
   View,
@@ -20,20 +21,22 @@ const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
 
 export default function HomeScreen() {
+  
   const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
   const { imagesBoxBottom, setImagesBoxBottom } = useContext(ImageBoxesContext);
-
+  
   const [favorites, setFavorites] = useState([]);
   const [toggleFav, setToggleFav] = useState(false);
-
+  
   //useEffect for images
   useEffect(() => {
     console.log("122464r9689");
     async function getImagesFromBackend() {
+      const ip = await Network.getIpAddressAsync();
       try {
         const result = await axios({
           method: "get",
-          url: `http://192.168.1.47:9000/cloth/home`,
+          url: `http://${ip}:9000/cloth/home`,
         });
 
         console.log("result data from backend:", result.data);
