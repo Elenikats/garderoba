@@ -14,7 +14,8 @@ import ColorPalette from "react-native-color-palette";
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
 import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
-import * as Network from 'expo-network';
+//import * as Network from "expo-network";
+import currentIP from "../utils/ip.js";
 
 export default function CreateItemScreen({ route, navigation }) {
   const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
@@ -26,19 +27,9 @@ export default function CreateItemScreen({ route, navigation }) {
   const [color, setColor] = useState("");
   const [weather, setWeather] = useState("");
   // const [imageFile, setImageFile] = useState(null)
-  
-  // console.log("color:", color);
 
-  // console.log("type:", type);
-  // console.log("style:", style);
-  // console.log("season:", season);
-  // console.log("route is");
-  // console.log(route);
-  // console.log("navigation is");
-  // console.log(navigation);
   const { image } = route.params;
-  // console.log("1234567", image);
-  
+
   const readImage = async () => {
     console.log("image inside readImage is---", image);
     const imageAsString = await FileSystem.readAsStringAsync(image, {
@@ -49,14 +40,12 @@ export default function CreateItemScreen({ route, navigation }) {
     return base64Image;
   };
 
-
-
   const handleItemSave = async (e) => {
     console.log("***********wowwwwooowwwooooooo***************");
     e.preventDefault();
     navigation.navigate("Main");
 
-    console.log(imagesBoxTop);
+    // console.log(imagesBoxTop);
 
     const readImageData = await readImage();
 
@@ -70,24 +59,29 @@ export default function CreateItemScreen({ route, navigation }) {
     };
 
     // *********************** AXIOS ******************************+
-    const ip = await Network.getIpAddressAsync();
-      try {
-         const response = await axios({
-          url: `http://${ip}:9000/upload`,
-          headers: {
-            'Authorization': '',
-            'Content-Type': 'application/json', 
-          },
-          data: payload,
-          method: 'POST'
-        });
+    //const ip = await Network.getIpAddressAsync();
+    const ip = await currentIP();
+    try {
+      const response = await axios({
+        url: `http://${ip}:9000/upload`,
+        headers: {
+          Authorization: "",
+          "Content-Type": "application/json",
+        },
+        data: payload,
+        method: "POST",
+      });
 
-        
-      } catch (error) {
-        console.error("error is .....", error.response.data)
+      if (response.data.type == "top") {
+        setImagesBoxTop(response.data.clothTopBox);
+      } else {
+        setImagesBoxBottom(response.data.clothBottomBox);
       }
-    } 
-    
+      catch (error) {
+        console.error("error is .....", error.response.data);
+      }
+      
+    };
     
     return (
       <SafeAreaView style={styles.container}>
@@ -182,7 +176,7 @@ export default function CreateItemScreen({ route, navigation }) {
     </SafeAreaView>
   );
 };
-
+};
 const styles = StyleSheet.create({
   container: {
     marginTop: "15%",
@@ -208,52 +202,3 @@ const styles = StyleSheet.create({
     backgroundColor: "orange",
   },
 });
-
-// Rough
-{
-  /* <View style={{flexDirection:"row",  justifyContent: "space-around", }}>
-          
-          <View style={styles.weatherBtns}>
-          <Icon
-                  name="day-sunny"
-                  color="white"
-                  size={25}
-                  onPress={() => {
-                    setModalVisible(true);
-                  }}
-                />
-          </View>
-          <View style={styles.weatherBtns}>     
-          <Icon
-                  name="rain"
-                  color="white"
-                  size={25}
-                  onPress={() => {
-                    setModalVisible(true);
-                  }}
-                />
-          </View>
-          <View style={styles.weatherBtns}>
-          <Icon
-                  name="snowflake"
-                  color="white"
-                  size={25}
-                  onPress={() => {
-                    setModalVisible(true);
-                  }}
-                />  
-
-          </View>
-          {/* <Icon
-                  name=""
-                  color="#FE5F10"
-                  size={40}
-                  onPress={() => {
-                    setModalVisible(true);
-                  }}
-                /> */
-}
-
-{
-  /* </View> } */
-}
