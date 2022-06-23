@@ -14,7 +14,7 @@ import ColorPalette from "react-native-color-palette";
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
 import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
-// import currentIP from "../utils/ip.js";
+import currentIP from "../utils/ip.js";
 
 export default function CreateItemScreen({ route, navigation }) {
   const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
@@ -59,10 +59,10 @@ export default function CreateItemScreen({ route, navigation }) {
 
     // *********************** AXIOS ******************************+
     // const ip = await Network.getIpAddressAsync();
-    // const ip = await currentIP();
+    const ip = await currentIP();
     try {
       const response = await axios({
-        url: `http://192.168.2.123:9000/upload`,
+        url: `http://${ip}:9000/upload`,
         headers: {
           Authorization: "",
           "Content-Type": "application/json",

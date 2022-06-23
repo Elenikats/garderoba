@@ -79,7 +79,7 @@ export default function ClosetScreen() {
       console.log("STRING___:", queryString);
       const result = await axios({
         method: "get",
-        url: `http://192.168.2.123:9000/cloth/closet?color=${color}&${queryString}`,
+        url: `http://192.168.2.123:9000/cloth/closet?${queryString}`,
       });
       setCloset(result.data);
     } catch (error) {
@@ -113,7 +113,6 @@ export default function ClosetScreen() {
       </View>
       <ScrollView>
         <View style={styles.clothContainer}>
-          {console.log("whole closet---", closet)}
           {closet &&
             closet.map((image, index) => (
               <View style={styles.clothItem} key={index}>
@@ -224,7 +223,7 @@ const styles = StyleSheet.create({
     height: 150,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#F5F5F5",
+    backgroundColor: "#Fff",
     shadowColor: "#27272A",
     shadowOpacity: 0.25,
     elevation: 5,
@@ -239,7 +238,7 @@ const styles = StyleSheet.create({
   image: {
     width: 100,
     height: 100,
-    borderWidth: 1,
+    // borderWidth: 1,
     borderColor: "lightgray",
   },
 

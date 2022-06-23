@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import React, { useEffect, useState, useContext } from "react";
 import { LocationContext } from "../../contexts/LocationContext";
 import axios from "axios";
-// import currentIP from "../utils/ip";
+import currentIP from "../utils/ip";
 
 export default function WeatherAPI() {
   const [coordinates] = useContext(LocationContext);
@@ -31,7 +31,7 @@ export default function WeatherAPI() {
 
         const result = await axios({
           method: "get",
-          url: `http://192.168.2.123:9000/weatherApiKey`,
+          url: `http://${ip}:9000/weatherApiKey`,
         });
         setWeatherApiKey(result.data);
         console.log("data", result);
