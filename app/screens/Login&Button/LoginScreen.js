@@ -1,18 +1,42 @@
 import { StyleSheet, Text, View, TextInput, Image, Button, TouchableOpacity } from 'react-native'
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import Logo from '../../assets/Logo.png'
 import { Link } from '@react-navigation/native';
 import {globalStyles} from '../../styles/globalStyles.js'
+import currentIP from "../../utils/ip.js";
+import  { userContext }  from '../../../contexts/userContext';
+import axios from "axios";
 
 
 export default function LoginScreen({navigation}) {
-
+  const [user, setUser, token, setToken] = useContext(userContext);
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
     
 
-  function handleLogin() {
-    navigation.navigate("Main")
+  const handleLogin = async () => {
+   
+
+    const ip = await currentIP()
+    console.log("ip:", ip);
+
+    const url = `http://${ip}:9000/users/login`;
+    try {
+      const res = await axios.post(url, { email, password });
+      console.log("res data:", res.data);
+      setUser(res.data.username);
+      setToken(res.data.token);
+      navigation.navigate("Main");
+     
+    } catch (error) {
+      console.log(error);
+      alert(error?.response?.data?.error || "Login failed, try again");
+    }
+
+
+
+    
+
   }
   
   return (
@@ -44,6 +68,7 @@ export default function LoginScreen({navigation}) {
       <Text style={styles.label}>Email</Text>
       <TextInput 
       value={email}
+      autoCapitalize="none"
       onChangeText={(email) => {
         console.log(email)
         setEmail(email)
@@ -57,6 +82,7 @@ export default function LoginScreen({navigation}) {
       <Text style={styles.label}>Password</Text>
       <TextInput 
       value={password}
+      autoCapitalize="none"
       onChangeText={(password) => setPassword(password)}
       style={styles.textInput}/>
 

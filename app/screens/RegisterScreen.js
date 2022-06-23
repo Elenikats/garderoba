@@ -13,14 +13,13 @@ export default function RegisterScreen({navigation}) {
   const [repeatPassword, setRepeatPassword] = useState("");
   const [agree, setAgree] = useState(false)
   const [hidePassword, setHidePassword] = useState(true)
+  const [errors, setErrors] = useState([])
 
   const handleOpenEye = () => {
     setHidePassword(!hidePassword)
   }
 
   const handleSignupBtn = async () => {
-
-    navigation.navigate('Main')
 
 
     // const ip = await Network.getIpAddressAsync();
@@ -45,9 +44,23 @@ export default function RegisterScreen({navigation}) {
 
     fetch(url, config)
       .then(response => response.json())
-      .then(result => console.log(result))
-      .catch(err => console.log(err))
+      .then(result => {
+        // console.log(result.error)
+        // console.log("status:", result.status)
+        // console.log("ok", result.ok)
+        // console.log("result:", result)
+        if (result.error) {
+          throw new Error(result.error)
+        }
+        navigation.navigate('Main')
+      })
+      .catch(err => {
+        setErrors(err)
+        console.log("errError:", err)
+      })
   }
+
+  console.log("errors:", errors)
 
   return (
     <SafeAreaView>
@@ -74,16 +87,20 @@ export default function RegisterScreen({navigation}) {
 
           
           {/* <Text style={styles.label}>Name:</Text> */}
+
+          {/* { errors.includes("username") && <Text>username is too short</Text> } */}
           <TextInput 
             value={username}
             placeholder="Enter username"
             style={styles.textInput}
             autoCapitalize="none"
             onChangeText={(text) => setUsername(text)}
-
+            
           ></TextInput>
 
           {/* <Text style={styles.label}>Email:</Text> */}
+          {/* { errors.includes("email") && <Text>email is invalid</Text> } */}
+          
           <TextInput 
             value={email}
             placeholder="Enter email"
@@ -94,6 +111,7 @@ export default function RegisterScreen({navigation}) {
           ></TextInput>
 
           {/* <Text style={styles.label}>Password:</Text> */}
+         
           <TextInput 
             value={password}
             placeholder="Enter password"
@@ -107,6 +125,7 @@ export default function RegisterScreen({navigation}) {
           
 
           {/* <Text style={styles.label}>Repeat password:</Text> */}
+      
           <TextInput 
             value={repeatPassword}
             placeholder="Repeat password"
