@@ -26,12 +26,13 @@ export default function WeatherAPI() {
 
       // calling the weather API key from backend
       try {
-        // const ip = await Network.getIpAddressAsync();
-        const ip = await currentIP()
+        const ip = await Network.getIpAddressAsync();
+        console.log(ip);
+        const ip2 = await currentIP()
 
         const result = await axios({
           method: "get",
-          url: `http://${ip}:9000/weatherApiKey`,
+          url: `http://${ip2}:9000/weatherApiKey`,
         });
         setWeatherApiKey(result.data);
         // console.log("data", result);
