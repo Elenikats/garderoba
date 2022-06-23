@@ -15,7 +15,7 @@ import { globalStyles, colors } from "../styles/globalStyles.js";
 import axios from "axios";
 import ColorPalette from "react-native-color-palette";
 import currentIP from "../utils/ip.js";
-
+ 
 
 export default function ClosetScreen() {
   const filterCheckboxes = [
@@ -28,7 +28,7 @@ export default function ClosetScreen() {
   const [modalVisible, setModalVisible] = useState(false);
   const [clothCategory, setClothCategory] = useState(filterCheckboxes);
   const [color, setColor] = useState("");
-
+  const [ selectedTxt, setSelectedTxt ] = useState()
   useEffect(() => {
     async function getImagesFromBackend() {
       const ip = await currentIP();
@@ -54,7 +54,7 @@ export default function ClosetScreen() {
     return setModalVisible(true);
   }
 
-  //handle Category checkboxes:
+  //handle Category checkboxes:&color[]=%238B4500
   const handleFilterCategory = (id) => {
     let check = clothCategory.map((category) => {
       if (id === category.id) {
@@ -68,15 +68,37 @@ export default function ClosetScreen() {
     (category) => category.isChecked
   );
 
+  selectedCategory = [
+    {id:1, txt:"casual", isChecked:true},
+    {id:2, txt:"casual", isChecked:true}
+  ]
+
+  // check length of the array
+  // if length > 1, we need to add an "&" after each key values
+  // we need to map
+
+  // selectedCategory.map((item)=>{
+  //   const value = item.txt
+  //   return value; 
+  // })
+  // const params = selectedCategory[0]
+  // const paramString = Object.keys(params).map(key => key + "=" + params[key]).join('&')
+
+  // note:
+  // queryString = newArr.map((item) => "style" + '=' + item).join('&') --this will go after the url
+
   //submit button im Modal:
   async function handleSubmit() {
     setModalVisible(!modalVisible);
     console.log(selectedCategory);
 
     try {
+      console.log("selected cat is _____",selectedCategory.txt);
       const result = await axios({
         method: "get",
-        url: `http://${ip}:9000/cloth/closet?category[]=${selectedCategory.txt}`,
+        // url: `http://${ip}:9000/cloth/closet?category[]=${selectedCategory.txt}`,
+        url: `http://${ip}:9000/cloth/closet?style=${selectedCategory.txt}`,
+        // http://localhost:9000/cloth/closet?style=work
       });
     } catch (error) {
       console.log(error);
