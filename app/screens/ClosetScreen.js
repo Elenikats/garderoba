@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Modal,
+  Dimensions,
 } from "react-native";
 import CheckBox from "expo-checkbox";
 import Icon from "react-native-vector-icons/FontAwesome5";
@@ -15,16 +16,18 @@ import { globalStyles, colors } from "../styles/globalStyles.js";
 import axios from "axios";
 import ColorPalette from "react-native-color-palette";
 
+const { width } = Dimensions.get("window");
+
 export default function ClosetScreen() {
   const filterCheckboxes = [
-    { id: 1, txt: "casual", isChecked: false },
-    { id: 2, txt: "formal", isChecked: false },
-    { id: 3, txt: "work", isChecked: false },
-    { id: 4, txt: "home", isChecked: false },
+    { id: 1, style: "casual", isChecked: false },
+    { id: 2, style: "formal", isChecked: false },
+    { id: 3, style: "work", isChecked: false },
+    { id: 4, style: "home", isChecked: false },
   ];
   const [closet, setCloset] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
-  const [clothCategory, setClothCategory] = useState(filterCheckboxes);
+  const [clothStyle, setClothStyle] = useState(filterCheckboxes);
   const [color, setColor] = useState("");
 
   useEffect(() => {
@@ -33,7 +36,7 @@ export default function ClosetScreen() {
       try {
         const result = await axios({
           method: "get",
-          url: `http://10.44.57.28:9000/cloth/closet`,
+          url: `http://192.168.2.123:9000/cloth/closet`,
         });
         console.log("result---", result.data);
         setCloset(result.data);
@@ -52,30 +55,33 @@ export default function ClosetScreen() {
     return setModalVisible(true);
   }
 
-  //handle Category checkboxes:
-  const handleFilterCategory = (id) => {
-    let check = clothCategory.map((category) => {
-      if (id === category.id) {
-        return { ...category, isChecked: !category.isChecked };
+  //handle Style checkboxes:
+  const handleFilterStyle = (id) => {
+    let check = clothStyle.map((style) => {
+      if (id === style.id) {
+        return { ...style, isChecked: !style.isChecked };
       }
-      return category;
+      return style;
     });
-    setClothCategory(check);
+    setClothStyle(check);
   };
-  const selectedCategory = clothCategory.filter(
-    (category) => category.isChecked
-  );
+  const selectedStyle = clothStyle.filter((style) => style.isChecked);
 
   //submit button im Modal:
   async function handleSubmit() {
     setModalVisible(!modalVisible);
-    console.log(selectedCategory);
+    console.log("color---:", color);
 
     try {
+      let queryString = selectedStyle
+        .map((item) => "style" + "=" + item.style)
+        .join("&"); //--this will go after the url
+      console.log("STRING___:", queryString);
       const result = await axios({
         method: "get",
-        url: `http://10.44.57.28:9000/cloth/closet?category[]=${selectedCategory.txt}`,
+        url: `http://192.168.2.123:9000/cloth/closet?color=${color}&${queryString}`,
       });
+      setCloset(result.data);
     } catch (error) {
       console.log(error);
     }
@@ -86,37 +92,36 @@ export default function ClosetScreen() {
 
   return (
     <SafeAreaView>
+      <View style={styles.filterContainer}>
+        <TouchableOpacity
+          onPress={() => {
+            handleFilterBtn();
+          }}
+        >
+          <Icon name="filter" size={30} />
+        </TouchableOpacity>
+        {selectedStyle &&
+          selectedStyle.map((option) => (
+            <TouchableOpacity
+              onPress={() => {
+                handleFilterStyle(option.id);
+              }}
+            >
+              <Text style={styles.filterOption}>{option.style}</Text>
+            </TouchableOpacity>
+          ))}
+      </View>
       <ScrollView>
-        <View style={styles.filterContainer}>
-          <TouchableOpacity
-            onPress={() => {
-              handleFilterBtn();
-            }}
-          >
-            <Icon name="filter" size={30} />
-          </TouchableOpacity>
-          {selectedCategory &&
-            selectedCategory.map((option) => (
-              <TouchableOpacity
-                onPress={() => {
-                  handleFilterCategory(option.id);
-                }}
-              >
-                <Text style={styles.filterOption}>{option.txt}</Text>
-              </TouchableOpacity>
-            ))}
-        </View>
         <View style={styles.clothContainer}>
+          {console.log("whole closet---", closet)}
           {closet &&
             closet.map((image, index) => (
               <View style={styles.clothItem} key={index}>
-                <Image
-                  style={{ width: "40%", height: "40%" }}
-                  source={{ uri: image.image }}
-                />
-
-                {/* <Text>season: {season}</Text>
-              <Text>style: {style}</Text> */}
+                <Image style={styles.image} source={{ uri: image.image }} />
+                <View>
+                  <Text>season: {image.category}</Text>
+                  <Text>style: {image.style}</Text>
+                </View>
 
                 <TouchableOpacity
                   style={styles.menuBtn}
@@ -124,7 +129,7 @@ export default function ClosetScreen() {
                     handleMenuBtn();
                   }}
                 >
-                  <Icon style={styles.menuIcon} name="ellipsis-v" size={10} />
+                  <Icon style={styles.menuIcon} name="ellipsis-v" size={20} />
                 </TouchableOpacity>
               </View>
             ))}
@@ -145,19 +150,19 @@ export default function ClosetScreen() {
           >
             <View style={styles.centeredView}>
               <View style={styles.modalView}>
-                <Text style={{ fontWeight: "bold" }}>Category:</Text>
+                <Text style={{ fontWeight: "bold" }}>Style:</Text>
                 <View style={styles.checkboxContainer}>
-                  {clothCategory &&
-                    clothCategory.map((item) => (
+                  {clothStyle &&
+                    clothStyle.map((item) => (
                       <View style={styles.checkboxConWrapper}>
                         <CheckBox
                           value={item.isChecked}
                           onValueChange={() => {
-                            handleFilterCategory(item.id);
+                            handleFilterStyle(item.id);
                           }}
                           style={{ marginRight: 10 }}
                         />
-                        <Text>{item.txt}</Text>
+                        <Text>{item.style}</Text>
                       </View>
                     ))}
                 </View>
@@ -204,7 +209,7 @@ export default function ClosetScreen() {
 const styles = StyleSheet.create({
   filterContainer: {
     top: 60,
-
+    height: 120,
     marginHorizontal: 20,
     flexDirection: "row",
     flexWrap: "wrap",
@@ -215,12 +220,33 @@ const styles = StyleSheet.create({
   },
 
   clothItem: {
-    width: 200,
-    height: 200,
+    width: width,
+    height: 150,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#F5F5F5",
+    shadowColor: "#27272A",
+    shadowOpacity: 0.25,
+    elevation: 5,
+    margin: 3,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "lightgrey",
+    justifyContent: "space-around",
+    flexDirection: "row",
   },
 
+  image: {
+    width: 100,
+    height: 100,
+    borderWidth: 1,
+    borderColor: "lightgray",
+  },
+
+  menuIcon: {
+    position: "absolute",
+    bottom: 30,
+  },
   filterOption: {
     paddingVertical: 5,
     paddingHorizontal: 10,
