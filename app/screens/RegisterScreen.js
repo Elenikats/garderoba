@@ -3,7 +3,8 @@ import { SafeAreaView, TextInput, ScrollView, TouchableOpacity, Image, StyleShee
 import CheckBox from "expo-checkbox";
 import { globalStyles, colors } from '../styles/globalStyles';
 import Icon from "react-native-vector-icons/Ionicons";
-import * as Network from "expo-network";
+//import * as Network from "expo-network";
+import currentIP from "../utils/ip.js";
 
 export default function RegisterScreen({navigation}) {
   const [username, setUsername] = useState("");
@@ -22,7 +23,8 @@ export default function RegisterScreen({navigation}) {
     navigation.navigate('Main')
 
 
-    const ip = await Network.getIpAddressAsync();
+    // const ip = await Network.getIpAddressAsync();
+    const ip = await currentIP()
     console.log("ip:", ip);
 
     const url = `http://${ip}:9000/users/signup`;
