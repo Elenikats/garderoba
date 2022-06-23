@@ -15,9 +15,9 @@ import PermissionLocation from "./PermissionLocation.js";
 import WeatherAPI from "./WeatherAPI.js";
 import axios from "axios";
 import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
-import currentIP from "../utils/ip.js";
+// import currentIP from "../utils/ip.js";
 
-
+// const ip = await Network.getIpAddressAsync();
 const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
 
@@ -31,11 +31,11 @@ export default function HomeScreen() {
   //useEffect for images
   useEffect(() => {
     async function getImagesFromBackend() {
-      const ip = await currentIP();
+      // const ip = await currentIP();
       try {
         const result = await axios({
           method: "get",
-          url: `http://${ip}:9000/cloth/home`,
+          url: `http://10.44.57.28:9000/cloth/home`,
         });
 
         setImagesBoxTop(result.data.clothesTopBox);
@@ -54,7 +54,7 @@ export default function HomeScreen() {
 
     try {
       await axios({
-        url: `http://${ip}:9000/cloth/${image._id}`,
+        url: `http://10.44.57.28:9000/cloth/${image._id}`,
         method: "PUT",
         data: { favorite: !image.favorite },
       });
@@ -120,7 +120,7 @@ export default function HomeScreen() {
                   />
 
                   <TouchableOpacity
-                    style={styles.boxfavorites}
+                    style={styles.boxFavorites}
                     onPress={() => {
                       handleFavoriteBtn(image);
                     }}
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
-  boxfavorites: {
+  boxFavorites: {
     backgroundColor: "#F5F5F5",
     shadowColor: "#27272A",
     shadowOpacity: 0.25,
