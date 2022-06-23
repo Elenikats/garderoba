@@ -77,13 +77,13 @@ export default function CreateItemScreen({ route, navigation }) {
       } else {
         setImagesBoxBottom(response.data.clothBottomBox);
       }
+      
     } catch (error) {
       console.error("error is .....", error.response.data);
-    }
-  };
-
-  return (
-    <SafeAreaView style={styles.container}>
+    };
+    
+    return (
+      <SafeAreaView style={styles.container}>
       <View>
         <View>
           <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
@@ -174,8 +174,8 @@ export default function CreateItemScreen({ route, navigation }) {
       </View>
     </SafeAreaView>
   );
-}
-
+};
+};
 const styles = StyleSheet.create({
   container: {
     marginTop: "15%",

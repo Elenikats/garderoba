@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import * as Network from 'expo-network';
 
 import {
   View,
@@ -16,18 +17,19 @@ import WeatherAPI from "./WeatherAPI.js";
 import axios from "axios";
 import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
 import currentIP from "../utils/ip.js";
-
 //const ip = await Network.getIpAddressAsync();
+
 const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
 
 export default function HomeScreen() {
+  
   const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
   const { imagesBoxBottom, setImagesBoxBottom } = useContext(ImageBoxesContext);
-
+  
   const [favorites, setFavorites] = useState([]);
   const [toggleFav, setToggleFav] = useState(false);
-
+  
   //useEffect for images
   useEffect(() => {
     async function getImagesFromBackend() {
