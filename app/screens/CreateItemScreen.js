@@ -77,9 +77,7 @@ export default function CreateItemScreen({ route, navigation }) {
       } else {
         setImagesBoxBottom(response.data.clothBottomBox);
       }
-    } catch (error) {
-      console.error("error is .....", error.response.data);
-    }
+
   };
 
   return (

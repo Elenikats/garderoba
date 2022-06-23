@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import { SafeAreaView, TextInput, ScrollView, TouchableOpacity, Image, StyleSheet, Text, View  } from 'react-native'
 import CheckBox from "expo-checkbox";
 import { globalStyles, colors } from '../styles/globalStyles';
-
-
-
+import Icon from "react-native-vector-icons/Ionicons";
+import * as Network from "expo-network";
 
 export default function RegisterScreen({navigation}) {
   const [username, setUsername] = useState("");
@@ -12,12 +11,21 @@ export default function RegisterScreen({navigation}) {
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [agree, setAgree] = useState(false)
+  const [hidePassword, setHidePassword] = useState(true)
 
-  const handleSignupBtn = () => {
+  const handleOpenEye = () => {
+    setHidePassword(!hidePassword)
+  }
+
+  const handleSignupBtn = async () => {
 
     navigation.navigate('Main')
 
-    const url = "";
+
+    const ip = await Network.getIpAddressAsync();
+    console.log("ip:", ip);
+
+    const url = `http://${ip}:9000/users/signup`;
     const payload = {
       username,
       email,
@@ -37,89 +45,93 @@ export default function RegisterScreen({navigation}) {
       .then(response => response.json())
       .then(result => console.log(result))
       .catch(err => console.log(err))
-
   }
 
   return (
-    <SafeAreaView >
-      <ScrollView style={styles.regform}>
-        {/* <Text style={[styles.header]}>Garderoba logo</Text> */}
-        <View style={ styles.cont}>
-        <Image 
-            source={require("../assets/googleIcon.png")}  
-            style={{width: 100, height: 100}} />
-        <TouchableOpacity 
-          onPress={() => {console.log("pressed google button")}}
-          style={styles.googleButton}
-        >
+    <SafeAreaView>
+      <ScrollView>
+        <View style={ styles.cont }>
           <Image 
-            source={require("../assets/googleIcon.png")}  
-            style={{width: 20, height: 20, marginRight: 10}} />
-          <Text style={[globalStyles.text, {color: "blue"}]}>Sign in with Google</Text>
-        </TouchableOpacity>
+              source={require("../assets/clothespile.jpg")}  
+              style={{width: 100, height: 100, borderRadius: 50, marginTop: 50}} />
+          <TouchableOpacity 
+            onPress={() => {console.log("pressed google button")}}
+            style={styles.googleButton}
+          >
+            <Image 
+              source={require("../assets/googleIcon.png")}  
+              style={{width: 20, height: 20, marginRight: 10}} />
+            <Text style={[globalStyles.text, {color: "blue"}]}>Sign in with Google</Text>
+          </TouchableOpacity>
 
-        <View style={globalStyles.container}>
-          <Text style={[globalStyles.text, {marginVertical: 20}]}>or</Text>
-          <Text style={globalStyles.text}>Register with email</Text>
+          <View style={globalStyles.container}>
+            <Text style={[globalStyles.text, {marginVertical: 20}]}>or</Text>
+            <Text style={[globalStyles.text, {marginBottom: 14}]}>Register with email</Text>
+          </View>
+
+
+          
+          {/* <Text style={styles.label}>Name:</Text> */}
+          <TextInput 
+            value={username}
+            placeholder="Enter username"
+            style={styles.textInput}
+            autoCapitalize="none"
+            onChangeText={(text) => setUsername(text)}
+
+          ></TextInput>
+
+          {/* <Text style={styles.label}>Email:</Text> */}
+          <TextInput 
+            value={email}
+            placeholder="Enter email"
+            onChangeText={(text) => setEmail(text)}
+            style={styles.textInput}
+            keyboardType={"email-address"}
+            autoCapitalize="none"
+          ></TextInput>
+
+          {/* <Text style={styles.label}>Password:</Text> */}
+          <TextInput 
+            value={password}
+            placeholder="Enter password"
+            onChangeText={(text) => setPassword(text)}
+            style={styles.textInput}
+            autoCapitalize="none"
+            secureTextEntry={hidePassword}
+          ></TextInput>
+          {hidePassword ? <Icon name="eye-off"solid style={styles.pswIcon} onPress={handleOpenEye}/> : <Icon name="eye"solid style={styles.pswIcon} onPress={handleOpenEye}/>}
+        
+          
+
+          {/* <Text style={styles.label}>Repeat password:</Text> */}
+          <TextInput 
+            value={repeatPassword}
+            placeholder="Repeat password"
+            autoCapitalize="none"
+            onChangeText={(text) => setRepeatPassword(text)}
+            style={styles.textInput}
+            secureTextEntry={hidePassword}
+          ></TextInput>
+          {hidePassword ? <Icon name="eye-off"solid style={styles.repeatPswIcon} onPress={handleOpenEye}/> : <Icon name="eye"solid style={styles.repeatPswIcon} onPress={handleOpenEye}/>}
+
+          <View style={styles.checkboxConWrapper}>
+            <CheckBox     
+            value={agree}
+            onValueChange={() => setAgree(!agree)}
+            style={{marginRight: 10}}
+            />
+            <Text style={{width: "90%"}}>I have read and agreed with the terms and conditions</Text>
+          </View>
+
+          <TouchableOpacity 
+            onPress={handleSignupBtn}
+            disabled={!agree}
+            style={agree ? styles.registerButton : styles.unregisterButton}>
+              <Text style={styles.textBtn}>Sign up</Text>
+          </TouchableOpacity >
+          
         </View>
-
-        <Text style={styles.label}>Name:</Text>
-        <TextInput 
-          value={username}
-          style={styles.textInput}
-          onChangeText={(username) =>{
-            console.log(username)
-             setUsername(username)
-          }}
-
-        ></TextInput>
-
-        <Text style={styles.label}>Email:</Text>
-        <TextInput 
-          value={email}
-          onChangeText={(email) => {
-            console.log(email)
-            setEmail(email)
-          }}
-          style={styles.textInput}
-          keyboardType={"email-address"}
-        ></TextInput>
-
-        <Text style={styles.label}>Password:</Text>
-        <TextInput 
-          value={password}
-          onChangeText={(password) => setPassword(password)}
-          style={styles.textInput}
-          secureTextEntry={true}
-        ></TextInput>
-
-        <Text style={styles.label}>Repeat password:</Text>
-        <TextInput 
-          value={repeatPassword}
-          onChangeText={(repeatPassword) => {
-            console.log(repeatPassword)
-            setRepeatPassword(repeatPassword)
-          }}
-          style={styles.textInput}
-        ></TextInput>
-
-        <View style={styles.checkboxConWrapper}>
-          <CheckBox     
-          value={agree}
-          onValueChange={() => setAgree(!agree)}
-          style={{marginRight: 10}}
-           />
-          <Text style={{width: "90%"}}>I have read and agreed with the terms and conditions</Text>
-        </View>
-
-        <TouchableOpacity 
-          onPress={handleSignupBtn}
-          disabled={!agree}
-          style={agree ? styles.registerButton : styles.unregisterButton}
-
-
-        ><Text style={styles.textBtn}>Sign up</Text></TouchableOpacity >
-    </View>
       </ScrollView>
     </SafeAreaView>
   )
@@ -128,17 +140,9 @@ export default function RegisterScreen({navigation}) {
 const styles = StyleSheet.create({
   cont: {
     justifyContent: "center",
-    alignItems: "center"
-  },
-  regform: {
-    width: "100%"
-    
-  },
-  header: {
-    fontSize: 28,
-    padding: "10%",
-    borderWidth: 2,
-    marginTop: "5%"
+    alignItems: "center",
+    width: "70%",
+    alignSelf: "center"
   },
   googleButton: {
     flexDirection: "row",
@@ -147,25 +151,28 @@ const styles = StyleSheet.create({
     borderColor: "blue",
     borderRadius: 4,
     padding: 20,
-    marginTop: "5%",
+    marginTop: "10%",
     alignSelf: "center"
   },
   label: {
-    paddingTop: 20,
+    paddingTop: 10,
     marginBottom: 5,
-    fontSize: 14
+    fontSize: 14,
+    alignSelf: "flex-start",
   },
   textInput: {
-    width: "70%",
-    borderWidth: 1.2,
-    paddingHorizontal: 2,
-    paddingVertical: 7,
-    fontSize: 16,
-    borderRadius: 4,
+    width: "100%",
+    borderWidth: 1,
+    borderColor: "#bbb",
+    paddingHorizontal: 8,
+    paddingVertical: 10,
+    fontSize: 14,
+    borderRadius: 5,
+    marginTop: 12,
   },
   checkboxConWrapper: {
-    width: "70%",
     flexDirection: 'row',
+    alignSelf: "flex-start",
     paddingTop: 20,
     marginBottom: 5,
     fontSize: 14
@@ -198,5 +205,17 @@ const styles = StyleSheet.create({
   textBtn: {
     fontSize: 18,
     color: colors.white
+  },
+  pswIcon: {
+    position: "absolute",
+    bottom: 225,
+    right: 10,
+    fontSize: 17
+  },
+  repeatPswIcon: {
+    position: "absolute",
+    bottom: 175,
+    right: 10,
+    fontSize: 17
   }
 })
