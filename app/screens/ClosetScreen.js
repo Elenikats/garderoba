@@ -14,6 +14,8 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import { globalStyles, colors } from "../styles/globalStyles.js";
 import axios from "axios";
 import ColorPalette from "react-native-color-palette";
+import currentIP from "../utils/ip.js";
+
 
 export default function ClosetScreen() {
   const filterCheckboxes = [
@@ -29,11 +31,11 @@ export default function ClosetScreen() {
 
   useEffect(() => {
     async function getImagesFromBackend() {
-      // const ip = await currentIP();
+      const ip = await currentIP();
       try {
         const result = await axios({
           method: "get",
-          url: `http://10.44.57.28:9000/cloth/closet`,
+          url: `http://${ip}:9000/cloth/closet`,
         });
         console.log("result---", result.data);
         setCloset(result.data);
@@ -74,7 +76,7 @@ export default function ClosetScreen() {
     try {
       const result = await axios({
         method: "get",
-        url: `http://10.44.57.28:9000/cloth/closet?category[]=${selectedCategory.txt}`,
+        url: `http://${ip}:9000/cloth/closet?category[]=${selectedCategory.txt}`,
       });
     } catch (error) {
       console.log(error);

@@ -63,7 +63,7 @@ export default function CreateItemScreen({ route, navigation }) {
     const ip = await currentIP();
     try {
       const response = await axios({
-        url: `http://10.44.57.28:9000/upload`,
+        url: `http://${ip}:9000/upload`,
         headers: {
           Authorization: "",
           "Content-Type": "application/json",
