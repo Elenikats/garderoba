@@ -14,7 +14,7 @@ import ColorPalette from "react-native-color-palette";
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
 import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
-// import * as Network from "expo-network";
+//import * as Network from "expo-network";
 import currentIP from "../utils/ip.js";
 
 export default function CreateItemScreen({ route, navigation }) {
@@ -59,7 +59,7 @@ export default function CreateItemScreen({ route, navigation }) {
     };
 
     // *********************** AXIOS ******************************+
-    // const ip = await Network.getIpAddressAsync();
+    //const ip = await Network.getIpAddressAsync();
     const ip = await currentIP();
     try {
       const response = await axios({
@@ -77,13 +77,14 @@ export default function CreateItemScreen({ route, navigation }) {
       } else {
         setImagesBoxBottom(response.data.clothBottomBox);
       }
-    } catch (error) {
-      console.error("error is .....", error.response.data);
-    }
-  };
-
-  return (
-    <SafeAreaView style={styles.container}>
+      catch (error) {
+        console.error("error is .....", error.response.data);
+      }
+      
+    };
+    
+    return (
+      <SafeAreaView style={styles.container}>
       <View>
         <View>
           <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
@@ -174,8 +175,8 @@ export default function CreateItemScreen({ route, navigation }) {
       </View>
     </SafeAreaView>
   );
-}
-
+};
+};
 const styles = StyleSheet.create({
   container: {
     marginTop: "15%",
