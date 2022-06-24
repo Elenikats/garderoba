@@ -1,6 +1,4 @@
 import React, { useEffect, useState, useContext } from "react";
-import * as Network from 'expo-network';
-
 import {
   View,
   Text,
@@ -16,7 +14,7 @@ import PermissionLocation from "./PermissionLocation.js";
 import WeatherAPI from "./WeatherAPI.js";
 import axios from "axios";
 import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
-import currentIP from "../utils/ip.js";
+import currentIP from "../utils/Ip.js";
 
 const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
