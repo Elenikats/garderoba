@@ -54,7 +54,7 @@ export default function HomeScreen() {
 
     try {
       await axios({
-        url: `http://$:9000/cloth/${image._id}`,
+        url: `http://${ip}:9000/cloth/${image._id}`,
         method: "PUT",
         data: { favorite: !image.favorite },
       });
