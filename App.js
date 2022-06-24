@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import LoginScreen from "./app/screens/Login&Button/LoginScreen.js";
+import LoginScreen from "./app/screens/LoginScreen.js";
 import RegisterScreen from "./app/screens/RegisterScreen.js";
 import { useFonts } from "expo-font";
 import * as React from "react";

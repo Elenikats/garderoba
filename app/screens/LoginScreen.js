@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View, TextInput, Image, Button, TouchableOpacity } from 'react-native'
 import React, {useContext, useState} from 'react'
-import Logo from '../../assets/Logo.png'
+import Logo from '../assets/Logo.png'
 import { Link } from '@react-navigation/native';
-import {globalStyles} from '../../styles/globalStyles.js'
-import currentIP from "../../utils/ip.js";
-import  { userContext }  from '../../../contexts/userContext';
+import {globalStyles} from '../styles/globalStyles.js'
+import currentIP from "../utils/ip.js";
 import axios from "axios";
+import { userContext } from '../../contexts/userContext';
 
 
 export default function LoginScreen({navigation}) {
@@ -33,10 +33,6 @@ export default function LoginScreen({navigation}) {
       alert(error?.response?.data?.error || "Login failed, try again");
     }
 
-
-
-    
-
   }
   
   return (
@@ -56,7 +52,7 @@ export default function LoginScreen({navigation}) {
           style={styles.googleButton}
         >
           <Image 
-            source={require("../../assets/google.png")}  
+            source={require("../assets/google.png")}  
           />
           <Text style={[globalStyles.text, {color: "blue"}]} />
         </TouchableOpacity>
