@@ -26,6 +26,8 @@ export default function UserProvider(props) {
     const [user, setUser] = useState(userDefault);
     const [token, setToken] = useState(tokenDefault);
 
+    console.log("token",token)
+
 
     // this stores the login to AsyncStorage in JSON format. The useEffect will update when [.. ] changes. WE SEND DATA
     useEffect( () => {

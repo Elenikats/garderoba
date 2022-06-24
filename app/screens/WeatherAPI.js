@@ -3,10 +3,12 @@ import React, { useEffect, useState, useContext } from "react";
 import { LocationContext } from "../../contexts/LocationContext";
 import axios from "axios";
 import currentIP from "../utils/ip";
+import { userContext } from "../../contexts/userContext";
 //import * as Network from 'expo-network'
 
 export default function WeatherAPI() {
   const [coordinates] = useContext(LocationContext);
+  const [user, setUser, token, setToken] = useContext(userContext);
   const [currentWeather, setCurrentWeather] = useState(null);
   const [weatherApiKey, setWeatherApiKey] = useState(null);
   const [weatherIcon, setWeatherIcon] = useState(null);
@@ -32,6 +34,9 @@ export default function WeatherAPI() {
         console.log("hi my ip is : ", ip);
         const result = await axios({
           method: "get",
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
           url: `http://${ip}:9000/weatherApiKey`,
         });
         setWeatherApiKey(result.data);

@@ -17,6 +17,7 @@ import WeatherAPI from "./WeatherAPI.js";
 import axios from "axios";
 import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
 import currentIP from "../utils/ip.js";
+import { userContext } from "../../contexts/userContext.js";
 //const ip = await Network.getIpAddressAsync();
 
 const { width } = Dimensions.get("window");
@@ -26,6 +27,7 @@ export default function HomeScreen() {
   
   const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
   const { imagesBoxBottom, setImagesBoxBottom } = useContext(ImageBoxesContext);
+  const [user, setUser, token, setToken] = useContext(userContext);
   
   const [favorites, setFavorites] = useState([]);
   const [toggleFav, setToggleFav] = useState(false);
@@ -37,6 +39,9 @@ export default function HomeScreen() {
       try {
         const result = await axios({
           method: "get",
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
           url: `http://${ip}:9000/cloth/home`,
         });
 
