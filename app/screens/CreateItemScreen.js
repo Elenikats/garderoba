@@ -14,7 +14,7 @@ import ColorPalette from "react-native-color-palette";
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
 import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
-import * as Network from "expo-network";
+// import * as Network from "expo-network";
 import currentIP from "../utils/ip.js";
 
 export default function CreateItemScreen({ route, navigation }) {

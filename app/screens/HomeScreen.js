@@ -17,7 +17,7 @@ import axios from "axios";
 import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
 import currentIP from "../utils/ip.js";
 
-const ip = await Network.getIpAddressAsync();
+// const ip = await Network.getIpAddressAsync();
 const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
 
