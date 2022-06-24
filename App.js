@@ -1,7 +1,7 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LoginScreen from './app/screens/LoginScreen.js';
-import RegisterScreen from './app/screens/RegisterScreen.js';
-import { useFonts } from 'expo-font';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import LoginScreen from "./app/screens/LoginScreen.js";
+import RegisterScreen from "./app/screens/RegisterScreen.js";
+import { useFonts } from "expo-font";
 import * as React from "react";
 import { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
@@ -34,7 +34,7 @@ export default function App() {
             <Stack.Screen name="User" component={UserScreen} />
             <Stack.Screen name="UploadForm" component={CreateItemScreen} />
             <Stack.Screen name="Main" component={BottomTab} />
-          <Stack.Screen name="EndScreen" component={EndScreen} />
+            <Stack.Screen name="EndScreen" component={EndScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </ImageBoxesProvider>
