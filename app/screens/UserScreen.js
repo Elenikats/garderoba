@@ -1,10 +1,314 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React, { useState } from "react";
+import * as ImagePicker from "expo-image-picker";
+import { 
+  View,
+  Text,
+  Image,
+  Modal,
+  Link,
+  Pressable,
+  StyleSheet,
+  TouchableOpacity,
+  ImageBackground,
+  Alert,
+  AsyncStorage
+} from 'react-native'
+import { withSafeAreaInsets } from "react-native-safe-area-context";
 
-export default function UserScreen() {
+
+export default function UserScreen({navigation}) {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  function handleLogout() {
+
+
+    Alert.alert(
+      "Logout",
+      "Are you sure yo want to logout?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => {
+          
+          navigation.navigate("EndScreen", {name: 'EndScreen'})
+        }}
+      ]
+    );
+  }
+
+  async function launchCamera() {
+    console.log("Camera is on");
+    try {
+      const options = { quality: 0.5, base64: true };
+      const data = await ImagePicker.launchCameraAsync(options);
+
+      
+    } catch (error) {
+      console.log("123", error);
+      // show a message to user. you rejected, you cant use without camera permissions.
+    }
+  }
+
+  async function launchGallery() {
+    try {
+      const options = { allowsMultipleSelection: true, base64: true  };
+      const data = await ImagePicker.launchImageLibraryAsync(options);
+      console.log(data.base64.length);
+      if (!data.cancelled) {
+        navigation.navigate("UploadForm", {
+          image: data.uri,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
-    <View>
-      <Text>oha</Text>
+    <View style={styles.cont}>
+        <View style={styles.subCont}>
+          <ImageBackground
+          style={styles.backgroundImage}
+          source={require('../assets/closetDoors.jpg')} />
+
+          <View style={styles.profileImageCont}>
+
+            <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
+              <Image 
+              style={styles.profileImage} 
+              source={require('../assets/userImage.png')} 
+              style={{width:100,height:100}} />
+
+            </TouchableOpacity> 
+          </View>
+
+          <View style={styles.nameNemail}>
+            <Text style={styles.name}>Latifah Alsubaie</Text>
+            <Text style={styles.email}>Latifah@email.com</Text>
+
+            <TouchableOpacity> 
+              <Image 
+              style={styles.editIcon} 
+              source={require('../assets/edit.png')} 
+              style={{width:30,height:30}} />
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.settingsCont}>
+            <TouchableOpacity>          
+            <Text style={styles.settings}> Settings
+              <Image style={styles.arrow}  source={require('../assets/arrow.png')} />
+            </Text>
+            </TouchableOpacity>
+
+              <TouchableOpacity>
+            <Text style={styles.settings}> Terms & Conditions
+              <Image style={styles.arrow} source={require('../assets/arrow.png')} />
+            </Text>
+            </TouchableOpacity>  
+
+              <TouchableOpacity>
+            <Text style={styles.settings} onPress={handleLogout}> Logout
+              <Image style={styles.arrow} source={require('../assets/arrow.png')} />
+            </Text>
+            </TouchableOpacity>  
+
+              <TouchableOpacity>
+            <Text style={styles.settings}> Link to DevWebsite
+              {/* <Link to={{}}/> */}
+            </Text>
+            </TouchableOpacity>  
+          </View>
+        </View>
+
+           <>
+             {modalVisible && (
+              <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                  Alert.alert("Modal has been closed.");
+                  setModalVisible(!modalVisible);
+                }}
+              >
+                <View style={styles.centeredView}>
+                  <View style={styles.modalView}>
+                    <Pressable
+                      style={styles.closeModal}
+                      onPress={() => setModalVisible(!modalVisible)}
+                    >
+                      <Text style={styles.textStyleX}>X</Text>
+                    </Pressable>
+        
+                    <Pressable
+                      style={[styles.button, styles.buttonClose]}
+                      onPress={() => {
+                        launchCamera();
+                        setModalVisible(!modalVisible);
+                      }}
+                    >
+                      <Text style={styles.textStyle}>Camera</Text>
+                    </Pressable>
+        
+                    <Pressable
+                      style={[styles.button, styles.buttonClose]}
+                      onPress={() => {
+                        launchGallery();
+                        setModalVisible(!modalVisible);
+                      }}
+                    >
+                      <Text style={styles.textStyle}>Gallery</Text>
+                    </Pressable>
+                  </View>
+                </View>
+              </Modal>
+            )}
+        </>
     </View>
   );
+   
 }
+
+
+const styles = StyleSheet.create({
+  cont: {
+    flex:1,
+    backgroundColor: 'white'
+  
+  },
+  subCont: {
+    marginTop: 40,
+    // padding: 10,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  backgroundImage: {
+    height:200,
+    width: 393,
+  },
+  profileImageCont: {
+     width: 130,
+     height: 130,
+     borderRadius: 100,
+     marginTop: -70,
+     backgroundColor: 'white',
+     justifyContent: 'center',
+     alignItems: 'center',
+     alignSelf: 'center',
+  },
+  nameNemail: {
+    marginTop: 10,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  name: {
+    marginBottom:5,
+    fontSize:16,
+    fontWeight:'bold'
+  },
+  email:{
+    fontStyle: 'italic',
+    fontSize: 13,
+    color: 'gray'
+  },
+  settingsCont: {
+    width: 380,
+    height: 270,
+    borderRadius:5,
+    shadowOpacity:1,
+    elevation:5,
+    marginTop: 35,
+    justifyContent: 'space-around',
+    // alignItems: 'center'
+  },
+  settings: {
+    marginLeft: 30,
+  },
+  arrow: {
+  width:20,
+  height:20,
+  }, circle: {
+    zIndex: 3,
+    borderRadius: 50,
+    borderWidth: 1,
+    borderColor: "lightgrey",
+
+    backgroundColor: "#F5F5F5",
+    shadowColor: "#27272A",
+    shadowOpacity: 0.25,
+    elevation: 5,
+    top: -5,
+    width: 70,
+    height: 70,
+    flex: 0,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  closeModal: {
+    borderWidth: 0.5,
+    backgroundColor: "white",
+    borderRadius: 50,
+    paddingHorizontal: 5,
+    position: "absolute",
+    right: -5,
+    top: -7,
+  },
+  textStyleX: {
+    color: "black",
+    fontWeight: "bold",
+  },
+  centeredView: {
+    flex: 1,
+
+    justifyContent: "flex-end",
+    alignItems: "center",
+    marginTop: 22,
+    marginBottom: 70,
+  },
+  modalView: {
+    width: "50%",
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  button: {
+    width: "100%",
+    borderRadius: 20,
+    marginTop: 10,
+    padding: 10,
+    elevation: 2,
+    backgroundColor: "black",
+  },
+  buttonOpen: {
+    backgroundColor: "black",
+  },
+  buttonClose: {
+    backgroundColor: "black",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
+  },
+  
+});
