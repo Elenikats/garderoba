@@ -27,6 +27,7 @@ export default function ClosetScreen() {
   ];
   const [closet, setCloset] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const [menuModalVisible, setMenuModalVisible] = useState(false);
   const [clothStyle, setClothStyle] = useState(filterCheckboxes);
   const [color, setColor] = useState("");
 
@@ -201,6 +202,24 @@ export default function ClosetScreen() {
           </Modal>
         )}
       </>
+      {/* // 3 dots Modal! */}
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setMenuModalVisible(!menuModalVisible);
+        }}
+      >
+        <View>
+          <View>
+            <TouchableOpacity>
+              <Text>Delete cloth</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 }
