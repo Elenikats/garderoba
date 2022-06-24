@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import React, { useEffect, useState, useContext } from "react";
 import { LocationContext } from "../../contexts/LocationContext";
 import axios from "axios";
-import currentIP from "../utils/ip";
+import currentIP from "../utils/ip.js";
 //import * as Network from 'expo-network'
 
 export default function WeatherAPI() {
