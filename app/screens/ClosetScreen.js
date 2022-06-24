@@ -24,6 +24,7 @@ export default function ClosetScreen() {
     { id: 2, style: "formal", isChecked: false },
     { id: 3, style: "work", isChecked: false },
     { id: 4, style: "home", isChecked: false },
+    { id: 5, color: "black", isChecked: false },
   ];
   const [closet, setCloset] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
@@ -75,7 +76,7 @@ export default function ClosetScreen() {
 
     try {
       let queryString = selectedStyle
-        .map((item) => "style" + "=" + item.style)
+        .map((item) => Object.keys(item)[1] + "=" + Object.values(item)[1])
         .join("&"); //--this will go after the url
       console.log("STRING___:", queryString);
       const result = await axios({
@@ -162,12 +163,12 @@ export default function ClosetScreen() {
                           }}
                           style={{ marginRight: 10 }}
                         />
-                        <Text>{item.style}</Text>
+                        <Text>{Object.values(item)[1]}</Text>
                       </View>
                     ))}
                 </View>
 
-                <ColorPalette
+                {/* <ColorPalette
                   selectedValue={color}
                   onChange={(currentColor) => setColor(currentColor)}
                   colors={[
@@ -193,7 +194,7 @@ export default function ClosetScreen() {
                       ✔
                     </Text>
                   }
-                />
+                /> */}
                 <TouchableOpacity onPress={handleSubmit}>
                   <Text style={globalStyles.activeButton}>ok</Text>
                 </TouchableOpacity>
@@ -203,7 +204,7 @@ export default function ClosetScreen() {
         )}
       </>
       {/* // 3 dots Modal! */}
-      <Modal
+      {/* <Modal
         animationType="fade"
         transparent={true}
         visible={modalVisible}
@@ -219,7 +220,7 @@ export default function ClosetScreen() {
             </TouchableOpacity>
           </View>
         </View>
-      </Modal>
+      </Modal> */}
     </SafeAreaView>
   );
 }
