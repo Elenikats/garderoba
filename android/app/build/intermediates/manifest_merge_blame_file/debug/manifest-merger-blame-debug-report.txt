@@ -1,0 +1,348 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.eleniwebdev.garderoba"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="31" />
+10
+11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+11-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:8:3-75
+11-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:8:20-73
+12    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+12-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:2:3-78
+12-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:2:20-76
+13    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+13-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:3:3-76
+13-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:3:20-74
+14    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+14-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:4:3-74
+14-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:4:20-72
+15    <uses-permission android:name="android.permission.INTERNET" />
+15-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:5:3-64
+15-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:5:20-62
+16    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+16-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:6:3-77
+16-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:6:20-75
+17    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+17-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:7:3-68
+17-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:7:20-66
+18    <uses-permission android:name="android.permission.VIBRATE" />
+18-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:9:3-63
+18-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:9:20-61
+19    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+19-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:10:3-78
+19-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:10:20-76
+20
+21    <queries>
+21-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:11:3-17:13
+22        <intent>
+22-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:12:5-16:14
+23            <action android:name="android.intent.action.VIEW" />
+23-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:13:7-58
+23-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:13:15-56
+24
+25            <category android:name="android.intent.category.BROWSABLE" />
+25-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:14:7-67
+25-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:14:17-65
+26
+27            <data android:scheme="https" />
+27-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:15:7-37
+27-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:15:13-35
+28        </intent>
+29        <!-- Query open documents -->
+30        <intent>
+30-->[:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:9-19:18
+31            <action android:name="android.intent.action.OPEN_DOCUMENT_TREE" />
+31-->[:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-79
+31-->[:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:21-76
+32        </intent>
+33        <intent>
+33-->[:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:9-20:18
+34
+35            <!-- Required for picking images from the camera roll if targeting API 30 -->
+36            <action android:name="android.media.action.IMAGE_CAPTURE" />
+36-->[:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:13-73
+36-->[:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:21-70
+37        </intent>
+38        <intent>
+38-->[:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:9-25:18
+39
+40            <!-- Required for picking images from the camera if targeting API 30 -->
+41            <action android:name="android.media.action.ACTION_VIDEO_CAPTURE" />
+41-->[:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:24:13-80
+41-->[:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:24:21-77
+42        </intent>
+43    </queries>
+44
+45    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+45-->[com.facebook.flipper:flipper:0.125.0] /home/user/.gradle/caches/transforms-3/b2ec3232205e095c09543a31d56ae642/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:16:5-76
+45-->[com.facebook.flipper:flipper:0.125.0] /home/user/.gradle/caches/transforms-3/b2ec3232205e095c09543a31d56ae642/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:16:22-73
+46    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Required for picking images from camera directly -->
+46-->[:expo-updates] /home/user/Documents/garderoba/node_modules/expo-updates/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-79
+46-->[:expo-updates] /home/user/Documents/garderoba/node_modules/expo-updates/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:22-76
+47    <uses-permission android:name="android.permission.CAMERA" />
+47-->[:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-65
+47-->[:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:22-62
+48    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+48-->[com.android.installreferrer:installreferrer:1.0] /home/user/.gradle/caches/transforms-3/3fe1ec2c8f8c663bc2c2834082f95108/transformed/jetified-installreferrer-1.0/AndroidManifest.xml:9:5-110
+48-->[com.android.installreferrer:installreferrer:1.0] /home/user/.gradle/caches/transforms-3/3fe1ec2c8f8c663bc2c2834082f95108/transformed/jetified-installreferrer-1.0/AndroidManifest.xml:9:22-107
+49    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+49-->[io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:15:5-98
+49-->[io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:15:22-95
+50    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
+50-->[io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:16:5-94
+50-->[io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:16:22-91
+51
+52    <application
+52-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:18:3-37:17
+53        android:name="com.eleniwebdev.garderoba.MainApplication"
+53-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:18:16-47
+54        android:allowBackup="true"
+54-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:18:162-188
+55        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+55-->[androidx.core:core:1.6.0] /home/user/.gradle/caches/transforms-3/5c61d7afbc1bcd99cb491da6ba2ee6c1/transformed/core-1.6.0/AndroidManifest.xml:24:18-86
+56        android:debuggable="true"
+57        android:icon="@mipmap/ic_launcher"
+57-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:18:81-115
+58        android:label="@string/app_name"
+58-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:18:48-80
+59        android:roundIcon="@mipmap/ic_launcher_round"
+59-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:18:116-161
+60        android:theme="@style/AppTheme"
+60-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:18:189-220
+61        android:usesCleartextTraffic="true" >
+61-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:18:221-256
+62        <meta-data
+62-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:19:5-82
+63            android:name="expo.modules.updates.ENABLED"
+63-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:19:16-59
+64            android:value="true" />
+64-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:19:60-80
+65        <meta-data
+65-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:20:5-93
+66            android:name="expo.modules.updates.EXPO_SDK_VERSION"
+66-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:20:16-68
+67            android:value="45.0.0" />
+67-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:20:69-91
+68        <meta-data
+68-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:21:5-105
+69            android:name="expo.modules.updates.EXPO_UPDATES_CHECK_ON_LAUNCH"
+69-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:21:16-80
+70            android:value="ALWAYS" />
+70-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:21:81-103
+71        <meta-data
+71-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:22:5-99
+72            android:name="expo.modules.updates.EXPO_UPDATES_LAUNCH_WAIT_MS"
+72-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:22:16-79
+73            android:value="0" />
+73-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:22:80-97
+74        <meta-data
+74-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:23:5-123
+75            android:name="expo.modules.updates.EXPO_UPDATE_URL"
+75-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:23:16-67
+76            android:value="https://exp.host/@anonymous/garderoba" />
+76-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:23:68-121
+77
+78        <activity
+78-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:24:5-35:16
+79            android:name="com.eleniwebdev.garderoba.MainActivity"
+79-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:24:15-43
+80            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+80-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:24:77-154
+81            android:exported="true"
+81-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:24:276-299
+82            android:label="@string/app_name"
+82-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:24:44-76
+83            android:launchMode="singleTask"
+83-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:24:155-186
+84            android:screenOrientation="portrait"
+84-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:24:300-336
+85            android:theme="@style/Theme.App.SplashScreen"
+85-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:24:230-275
+86            android:windowSoftInputMode="adjustResize" >
+86-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:24:187-229
+87            <intent-filter>
+87-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:25:7-28:23
+88                <action android:name="android.intent.action.MAIN" />
+88-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:26:9-60
+88-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:26:17-58
+89
+90                <category android:name="android.intent.category.LAUNCHER" />
+90-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:27:9-68
+90-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:27:19-66
+91            </intent-filter>
+92            <intent-filter>
+92-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:29:7-34:23
+93                <action android:name="android.intent.action.VIEW" />
+93-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:13:7-58
+93-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:13:15-56
+94
+95                <category android:name="android.intent.category.DEFAULT" />
+95-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:31:9-67
+95-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:31:19-65
+96                <category android:name="android.intent.category.BROWSABLE" />
+96-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:14:7-67
+96-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:14:17-65
+97
+98                <data android:scheme="com.eleniwebdev.garderoba" />
+98-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:15:7-37
+98-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:15:13-35
+99            </intent-filter>
+100        </activity>
+101        <activity
+101-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:36:5-106
+102            android:name="com.facebook.react.devsupport.DevSettingsActivity"
+102-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:36:15-79
+103            android:exported="false" />
+103-->/home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:36:80-104
+104
+105        <provider
+105-->[:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:23:9-32:20
+106            android:name="expo.modules.filesystem.FileSystemFileProvider"
+106-->[:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:24:13-74
+107            android:authorities="com.eleniwebdev.garderoba.FileSystemFileProvider"
+107-->[:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:13-74
+108            android:exported="false"
+108-->[:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:26:13-37
+109            android:grantUriPermissions="true" >
+109-->[:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-47
+110            <meta-data
+110-->[:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:13-31:70
+111                android:name="android.support.FILE_PROVIDER_PATHS"
+111-->[:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:17-67
+112                android:resource="@xml/file_system_provider_paths" />
+112-->[:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:31:17-67
+113        </provider>
+114
+115        <activity
+115-->[:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:9-31:59
+116            android:name="com.canhub.cropper.CropImageActivity"
+116-->[:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:13-64
+117            android:theme="@style/Base.Theme.AppCompat" /> <!-- https://developer.android.com/guide/topics/manifest/provider-element.html -->
+117-->[:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:31:13-56
+118        <provider
+118-->[:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:33:9-41:20
+119            android:name="expo.modules.imagepicker.ImagePickerFileProvider"
+119-->[:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:34:13-76
+120            android:authorities="com.eleniwebdev.garderoba.ImagePickerFileProvider"
+120-->[:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:35:13-75
+121            android:exported="false"
+121-->[:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:36:13-37
+122            android:grantUriPermissions="true" >
+122-->[:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:37:13-47
+123            <meta-data
+123-->[:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:13-31:70
+124                android:name="android.support.FILE_PROVIDER_PATHS"
+124-->[:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:17-67
+125                android:resource="@xml/image_picker_provider_paths" />
+125-->[:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:31:17-67
+126        </provider>
+127
+128        <service
+128-->[:expo-location] /home/user/Documents/garderoba/node_modules/expo-location/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:9-17:56
+129            android:name="expo.modules.location.services.LocationTaskService"
+129-->[:expo-location] /home/user/Documents/garderoba/node_modules/expo-location/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-78
+130            android:exported="false"
+130-->[:expo-location] /home/user/Documents/garderoba/node_modules/expo-location/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-37
+131            android:foregroundServiceType="location" />
+131-->[:expo-location] /home/user/Documents/garderoba/node_modules/expo-location/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-53
+132
+133        <meta-data
+133-->[:expo-modules-core] /home/user/Documents/garderoba/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-12:89
+134            android:name="org.unimodules.core.AppLoader#react-native-headless"
+134-->[:expo-modules-core] /home/user/Documents/garderoba/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-79
+135            android:value="expo.modules.adapters.react.apploader.RNHeadlessAppLoader" />
+135-->[:expo-modules-core] /home/user/Documents/garderoba/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-86
+136
+137        <provider
+137-->[com.github.CanHub:Android-Image-Cropper:1.1.1] /home/user/.gradle/caches/transforms-3/16e93bdb207d6fecfd3a883fe9345c66/transformed/jetified-Android-Image-Cropper-1.1.1/AndroidManifest.xml:12:9-20:20
+138            android:name="com.canhub.cropper.CropFileProvider"
+138-->[com.github.CanHub:Android-Image-Cropper:1.1.1] /home/user/.gradle/caches/transforms-3/16e93bdb207d6fecfd3a883fe9345c66/transformed/jetified-Android-Image-Cropper-1.1.1/AndroidManifest.xml:13:13-63
+139            android:authorities="com.eleniwebdev.garderoba.cropper.fileprovider"
+139-->[com.github.CanHub:Android-Image-Cropper:1.1.1] /home/user/.gradle/caches/transforms-3/16e93bdb207d6fecfd3a883fe9345c66/transformed/jetified-Android-Image-Cropper-1.1.1/AndroidManifest.xml:14:13-72
+140            android:exported="false"
+140-->[com.github.CanHub:Android-Image-Cropper:1.1.1] /home/user/.gradle/caches/transforms-3/16e93bdb207d6fecfd3a883fe9345c66/transformed/jetified-Android-Image-Cropper-1.1.1/AndroidManifest.xml:15:13-37
+141            android:grantUriPermissions="true" >
+141-->[com.github.CanHub:Android-Image-Cropper:1.1.1] /home/user/.gradle/caches/transforms-3/16e93bdb207d6fecfd3a883fe9345c66/transformed/jetified-Android-Image-Cropper-1.1.1/AndroidManifest.xml:16:13-47
+142            <meta-data
+142-->[:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:13-31:70
+143                android:name="android.support.FILE_PROVIDER_PATHS"
+143-->[:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:17-67
+144                android:resource="@xml/library_file_paths" />
+144-->[:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:31:17-67
+145        </provider>
+146
+147        <service
+147-->[androidx.room:room-runtime:2.4.2] /home/user/.gradle/caches/transforms-3/921c441ada39367fda6e8688e606d479/transformed/room-runtime-2.4.2/AndroidManifest.xml:25:9-28:40
+148            android:name="androidx.room.MultiInstanceInvalidationService"
+148-->[androidx.room:room-runtime:2.4.2] /home/user/.gradle/caches/transforms-3/921c441ada39367fda6e8688e606d479/transformed/room-runtime-2.4.2/AndroidManifest.xml:26:13-74
+149            android:directBootAware="true"
+149-->[androidx.room:room-runtime:2.4.2] /home/user/.gradle/caches/transforms-3/921c441ada39367fda6e8688e606d479/transformed/room-runtime-2.4.2/AndroidManifest.xml:27:13-43
+150            android:exported="false" />
+150-->[androidx.room:room-runtime:2.4.2] /home/user/.gradle/caches/transforms-3/921c441ada39367fda6e8688e606d479/transformed/room-runtime-2.4.2/AndroidManifest.xml:28:13-37
+151
+152        <activity
+152-->[com.google.android.gms:play-services-auth:19.2.0] /home/user/.gradle/caches/transforms-3/248a4b254b4876c3cb169d69362e7f5d/transformed/jetified-play-services-auth-19.2.0/AndroidManifest.xml:23:9-27:75
+153            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+153-->[com.google.android.gms:play-services-auth:19.2.0] /home/user/.gradle/caches/transforms-3/248a4b254b4876c3cb169d69362e7f5d/transformed/jetified-play-services-auth-19.2.0/AndroidManifest.xml:24:13-93
+154            android:excludeFromRecents="true"
+154-->[com.google.android.gms:play-services-auth:19.2.0] /home/user/.gradle/caches/transforms-3/248a4b254b4876c3cb169d69362e7f5d/transformed/jetified-play-services-auth-19.2.0/AndroidManifest.xml:25:13-46
+155            android:exported="false"
+155-->[com.google.android.gms:play-services-auth:19.2.0] /home/user/.gradle/caches/transforms-3/248a4b254b4876c3cb169d69362e7f5d/transformed/jetified-play-services-auth-19.2.0/AndroidManifest.xml:26:13-37
+156            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+156-->[com.google.android.gms:play-services-auth:19.2.0] /home/user/.gradle/caches/transforms-3/248a4b254b4876c3cb169d69362e7f5d/transformed/jetified-play-services-auth-19.2.0/AndroidManifest.xml:27:13-72
+157        <!--
+158            Service handling Google Sign-In user revocation. For apps that do not integrate with
+159            Google Sign-In, this service will never be started.
+160        -->
+161        <service
+161-->[com.google.android.gms:play-services-auth:19.2.0] /home/user/.gradle/caches/transforms-3/248a4b254b4876c3cb169d69362e7f5d/transformed/jetified-play-services-auth-19.2.0/AndroidManifest.xml:33:9-37:51
+162            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+162-->[com.google.android.gms:play-services-auth:19.2.0] /home/user/.gradle/caches/transforms-3/248a4b254b4876c3cb169d69362e7f5d/transformed/jetified-play-services-auth-19.2.0/AndroidManifest.xml:34:13-89
+163            android:exported="true"
+163-->[com.google.android.gms:play-services-auth:19.2.0] /home/user/.gradle/caches/transforms-3/248a4b254b4876c3cb169d69362e7f5d/transformed/jetified-play-services-auth-19.2.0/AndroidManifest.xml:35:13-36
+164            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+164-->[com.google.android.gms:play-services-auth:19.2.0] /home/user/.gradle/caches/transforms-3/248a4b254b4876c3cb169d69362e7f5d/transformed/jetified-play-services-auth-19.2.0/AndroidManifest.xml:36:13-107
+165            android:visibleToInstantApps="true" />
+165-->[com.google.android.gms:play-services-auth:19.2.0] /home/user/.gradle/caches/transforms-3/248a4b254b4876c3cb169d69362e7f5d/transformed/jetified-play-services-auth-19.2.0/AndroidManifest.xml:37:13-48
+166
+167        <activity
+167-->[com.google.android.gms:play-services-base:17.5.0] /home/user/.gradle/caches/transforms-3/45cdf3d9003203bd7d99a3752c1d90db/transformed/jetified-play-services-base-17.5.0/AndroidManifest.xml:23:9-26:75
+168            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+168-->[com.google.android.gms:play-services-base:17.5.0] /home/user/.gradle/caches/transforms-3/45cdf3d9003203bd7d99a3752c1d90db/transformed/jetified-play-services-base-17.5.0/AndroidManifest.xml:24:13-79
+169            android:exported="false"
+169-->[com.google.android.gms:play-services-base:17.5.0] /home/user/.gradle/caches/transforms-3/45cdf3d9003203bd7d99a3752c1d90db/transformed/jetified-play-services-base-17.5.0/AndroidManifest.xml:25:13-37
+170            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+170-->[com.google.android.gms:play-services-base:17.5.0] /home/user/.gradle/caches/transforms-3/45cdf3d9003203bd7d99a3752c1d90db/transformed/jetified-play-services-base-17.5.0/AndroidManifest.xml:26:13-72
+171
+172        <meta-data
+172-->[com.google.android.gms:play-services-basement:17.5.0] /home/user/.gradle/caches/transforms-3/4bfcc3cc7dc077bb4e2d6439b89117bc/transformed/jetified-play-services-basement-17.5.0/AndroidManifest.xml:23:9-25:69
+173            android:name="com.google.android.gms.version"
+173-->[com.google.android.gms:play-services-basement:17.5.0] /home/user/.gradle/caches/transforms-3/4bfcc3cc7dc077bb4e2d6439b89117bc/transformed/jetified-play-services-basement-17.5.0/AndroidManifest.xml:24:13-58
+174            android:value="@integer/google_play_services_version" />
+174-->[com.google.android.gms:play-services-basement:17.5.0] /home/user/.gradle/caches/transforms-3/4bfcc3cc7dc077bb4e2d6439b89117bc/transformed/jetified-play-services-basement-17.5.0/AndroidManifest.xml:25:13-66
+175
+176        <service
+176-->[io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:19:9-21:40
+177            android:name="io.nlopez.smartlocation.activity.providers.ActivityGooglePlayServicesProvider$ActivityRecognitionService"
+177-->[io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:20:13-132
+178            android:exported="false" />
+178-->[io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:21:13-37
+179        <service
+179-->[io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:22:9-24:40
+180            android:name="io.nlopez.smartlocation.geofencing.providers.GeofencingGooglePlayServicesProvider$GeofencingService"
+180-->[io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:23:13-127
+181            android:exported="false" />
+181-->[io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:24:13-37
+182        <service
+182-->[io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:25:9-27:40
+183            android:name="io.nlopez.smartlocation.geocoding.providers.AndroidGeocodingProvider$AndroidGeocodingService"
+183-->[io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:26:13-120
+184            android:exported="false" />
+184-->[io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:27:13-37
+185    </application>
+186
+187</manifest>
