@@ -88,7 +88,7 @@ export default function HomeScreen() {
                   />
 
                   <TouchableOpacity
-                    style={styles.boxfavorites}
+                    style={styles.boxFavorites}
                     onPress={() => {
                       handleFavoriteBtn(image);
                     }}

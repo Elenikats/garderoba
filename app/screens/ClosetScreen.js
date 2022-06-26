@@ -16,6 +16,8 @@ import { globalStyles, colors } from "../styles/globalStyles.js";
 import axios from "axios";
 import ColorPalette from "react-native-color-palette";
 
+import currentIP from "../utils/ip.js";
+
 const { width } = Dimensions.get("window");
 
 export default function ClosetScreen() {
@@ -24,21 +26,32 @@ export default function ClosetScreen() {
     { id: 2, style: "formal", isChecked: false },
     { id: 3, style: "work", isChecked: false },
     { id: 4, style: "home", isChecked: false },
-    { id: 5, color: "black", isChecked: false },
+    { id: 5, color: "black", hex: "#000", isChecked: false },
+    { id: 6, color: "white", hex: "#fff", isChecked: false },
+    { id: 7, color: "blue", hex: "#1C86EE", isChecked: false },
+    { id: 8, color: "red", hex: "#EE3B3B", isChecked: false },
+    { id: 9, color: "pink", hex: "#FF82AB", isChecked: false },
+    { id: 10, color: "beige", hex: "#E1C699", isChecked: false },
+    { id: 11, color: "lightgreen", hex: "#C1FFC1", isChecked: false },
+    { id: 12, color: "green", hex: "#2E8B57", isChecked: false },
+    { id: 13, color: "gray", hex: "#7A8B8B", isChecked: false },
+    { id: 14, color: "gold", hex: "#FFB90F", isChecked: false },
+    { id: 15, color: "brown", hex: "#8B4500", isChecked: false },
   ];
+
   const [closet, setCloset] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [menuModalVisible, setMenuModalVisible] = useState(false);
-  const [clothStyle, setClothStyle] = useState(filterCheckboxes);
+  const [clothFilterOpt, setClothFilterOpt] = useState(filterCheckboxes);
   const [color, setColor] = useState("");
 
   useEffect(() => {
     async function getImagesFromBackend() {
-      // const ip = await currentIP();
+      const ip = await currentIP();
       try {
         const result = await axios({
           method: "get",
-          url: `http://192.168.2.123:9000/cloth/closet`,
+          url: `http://${ip}:9000/cloth/closet`,
         });
         console.log("result---", result.data);
         setCloset(result.data);
@@ -59,18 +72,20 @@ export default function ClosetScreen() {
 
   //handle Style checkboxes:
   const handleFilterStyle = (id) => {
-    let check = clothStyle.map((style) => {
+    let check = clothFilterOpt.map((style) => {
       if (id === style.id) {
         return { ...style, isChecked: !style.isChecked };
       }
       return style;
     });
-    setClothStyle(check);
+    setClothFilterOpt(check);
   };
-  const selectedStyle = clothStyle.filter((style) => style.isChecked);
+  const selectedStyle = clothFilterOpt.filter((style) => style.isChecked);
 
   //submit button im Modal:
   async function handleSubmit() {
+    const ip = await currentIP();
+
     setModalVisible(!modalVisible);
     console.log("color---:", color);
 
@@ -81,7 +96,7 @@ export default function ClosetScreen() {
       console.log("STRING___:", queryString);
       const result = await axios({
         method: "get",
-        url: `http://192.168.2.123:9000/cloth/closet?${queryString}`,
+        url: `http://${ip}:9000/cloth/closet?${queryString}`,
       });
       setCloset(result.data);
     } catch (error) {
@@ -153,19 +168,45 @@ export default function ClosetScreen() {
               <View style={styles.modalView}>
                 <Text style={{ fontWeight: "bold" }}>Style:</Text>
                 <View style={styles.checkboxContainer}>
-                  {clothStyle &&
-                    clothStyle.map((item) => (
-                      <View style={styles.checkboxConWrapper}>
-                        <CheckBox
-                          value={item.isChecked}
-                          onValueChange={() => {
-                            handleFilterStyle(item.id);
-                          }}
-                          style={{ marginRight: 10 }}
-                        />
-                        <Text>{Object.values(item)[1]}</Text>
-                      </View>
-                    ))}
+                  {clothFilterOpt &&
+                    clothFilterOpt.map(
+                      (item) =>
+                        Object.keys(item)[1] == "style" && (
+                          <View style={styles.checkboxConWrapper} key={item.id}>
+                            <CheckBox
+                              value={item.isChecked}
+                              style={styles.checkbox}
+                              onValueChange={() => {
+                                handleFilterStyle(item.id);
+                              }}
+                            />
+                            <Text>{Object.values(item)[1]}</Text>
+                          </View>
+                        )
+                    )}
+                </View>
+
+                <Text style={{ fontWeight: "bold" }}>Color:</Text>
+                <View style={styles.checkboxContainer}>
+                  {clothFilterOpt &&
+                    clothFilterOpt.map(
+                      (item) =>
+                        Object.keys(item)[1] == "color" && (
+                          <View style={styles.checkboxConWrapper} key={item.id}>
+                            <CheckBox
+                              value={item.isChecked}
+                              style={[
+                                styles.colorBox,
+                                { backgroundColor: item.hex, color: "red" },
+                              ]}
+                              color={item.isChecked ? item.hex : undefined}
+                              onValueChange={() => {
+                                handleFilterStyle(item.id);
+                              }}
+                            ></CheckBox>
+                          </View>
+                        )
+                    )}
                 </View>
 
                 {/* <ColorPalette
@@ -310,5 +351,23 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginVertical: 15,
     marginHorizontal: 5,
+  },
+
+  checkbox: {
+    color: "blue",
+    marginRight: 10,
+  },
+  colorBox: {
+    marginRight: 10,
+    borderRadius: 50,
+    border: "none",
+    padding: 10,
+  },
+
+  textWhite: {
+    color: "white",
+  },
+  textBlack: {
+    color: "black",
   },
 });
