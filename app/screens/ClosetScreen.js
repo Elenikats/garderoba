@@ -53,7 +53,7 @@ export default function ClosetScreen() {
           method: "get",
           url: `http://${ip}:9000/cloth/closet`,
         });
-        console.log("result---", result.data);
+        // console.log("result---", result.data);
         setCloset(result.data);
       } catch (error) {
         console.log(error);
@@ -135,7 +135,7 @@ export default function ClosetScreen() {
               <View style={styles.clothItem} key={index}>
                 <Image style={styles.image} source={{ uri: image.image }} />
                 <View>
-                  <Text>season: {image.category}</Text>
+                  <Text>season: {image.season}</Text>
                   <Text>style: {image.style}</Text>
                 </View>
 
