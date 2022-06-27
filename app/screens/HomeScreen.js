@@ -16,6 +16,7 @@ import WeatherAPI from "./WeatherAPI.js";
 import axios from "axios";
 import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
 import currentIP from "../utils/ip.js";
+import LocationProvider, { LocationContext } from "../../contexts/LocationContext.js";
 
 // const ip = await Network.getIpAddressAsync();
 const { width } = Dimensions.get("window");
@@ -24,30 +25,76 @@ const { height } = width * 0.6;
 export default function HomeScreen() {
   const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
   const { imagesBoxBottom, setImagesBoxBottom } = useContext(ImageBoxesContext);
-
+  const { helper } = useContext(LocationContext)
   const [favorites, setFavorites] = useState([]);
   const [toggleFav, setToggleFav] = useState(false);
+  const { currentWeather, setCurrentWeather } = useContext(LocationContext)
+  // console.log(currentWeather) need to get the state of current weather and pass it on as a value in query params of get request
+  // const [presentWeather, setPresentWeather] = useState(null)
+  
+  // const WeatherObj = {
+  //   summer: above 24
+  //   winter: below 12
+  //   fall: 12-24 degrees
+  // }
+
 
   //useEffect for images
   useEffect(() => {
+    console.log("curr weather in Home---",currentWeather);
     async function getImagesFromBackend() {
       const ip = await currentIP();
+    
       try {
-        const result = await axios({
-          method: "get",
-          url: `http://${ip}:9000/cloth/home`,
-        });
+        if(currentWeather >= 24){
+          const result = await axios({
+            method: "get",
+            url: `http://${ip}:9000/cloth/home?season=summer`
+          });
+          setImagesBoxTop(result.data.clothesTopBox);
+          setImagesBoxBottom(result.data.clothesBottomBox);
+          setFavorites(result.data.favorites);
+          // return result; 
+        } else if( currentWeather >= 12 && currentWeather <= 23){
+          const result = await axios({
+            method: "get",
+            url: `http://${ip}:9000/cloth/home?season=fall`,
+          })
+          console.log("result of fall is", result);
+          setImagesBoxTop(result.data.clothesTopBox);
+          setImagesBoxBottom(result.data.clothesBottomBox);
+          setFavorites(result.data.favorites);
+        }else{
+          
+            const result = await axios({
+              method: "get",
+              url: `http://${ip}:9000/cloth/home?season=winter`,
+            });
+            setImagesBoxTop(result.data.clothesTopBox);
+            setImagesBoxBottom(result.data.clothesBottomBox);
+            setFavorites(result.data.favorites);
+      
+        }
+        // >24 = summer
+        // >12 <24 = fall/spring
+        // <12 = winter
+        // const result = await axios({
+        //   method: "get",
+        //   url: `http://${ip}:9000/cloth/home`,
+        // });
+        // setImagesBoxTop(result.data.clothesTopBox);
+        // setImagesBoxBottom(result.data.clothesBottomBox);
+        // setFavorites(result.data.favorites);
 
-        setImagesBoxTop(result.data.clothesTopBox);
-        setImagesBoxBottom(result.data.clothesBottomBox);
-        setFavorites(result.data.favorites);
+
+        
       } catch (error) {
         console.log(error);
       }
     }
 
     getImagesFromBackend();
-  }, [toggleFav]);
+  }, [toggleFav, helper]);
 
   async function handleFavoriteBtn(image) {
     const ip = await currentIP();
@@ -63,6 +110,10 @@ export default function HomeScreen() {
     } catch (error) {
       console.error("error in PUT", error.response.data);
     }
+  }
+
+  if (!currentWeather) {
+    return <Text>Loading</Text>
   }
 
   return (

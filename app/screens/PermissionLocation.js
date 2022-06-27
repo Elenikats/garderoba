@@ -4,7 +4,7 @@ import * as Location from 'expo-location';
 import { LocationContext } from '../../contexts/LocationContext';
 
 export default function PermissionLocation() {
-  const [coordinates, setCoordinates] = useContext(LocationContext);
+  const {coordinates, setCoordinates} = useContext(LocationContext);
   const [errorMsg, setErrorMsg] = useState(null);
 
   useEffect(() => {

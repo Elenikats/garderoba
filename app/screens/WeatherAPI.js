@@ -6,69 +6,67 @@ import currentIP from "../utils/ip.js";
 //import * as Network from 'expo-network'
 
 export default function WeatherAPI() {
-  const [coordinates] = useContext(LocationContext);
-  const [currentWeather, setCurrentWeather] = useState(null);
-  const [weatherApiKey, setWeatherApiKey] = useState(null);
-  const [weatherIcon, setWeatherIcon] = useState(null);
+  const {coordinates} = useContext(LocationContext);
+  // const [currentWeather, setCurrentWeather] = useState(null);
+  const {currentWeather, setCurrentWeather} = useContext(LocationContext)
+  const {weatherIcon, setWeatherIcon} = useContext(LocationContext); 
   // useState to cover dates.
 
-  const iconUrl = `https://openweathermap.org/img/w/${weatherIcon}.png`;
   // console.log("iconUrl:", iconUrl);
 
-  useEffect(() => {
-    // if (coordinates.loading) {
-    //   return
-    // }
+  // useEffect(() => {
+  //   // if (coordinates.loading) {
+  //   //   return
+  //   // }
 
-    // console.log("coordinates.loading", coordinates.loading);
+  //   // console.log("coordinates.loading", coordinates.loading);
 
-    const getWeather = async () => {
-      // console.log("122464r9689");
-      // console.log("ApiKey1:", weatherApiKey);
-
-      // calling the weather API key from backend
-      try {
-       // const ip = await Network.getIpAddressAsync();
-        const ip = await currentIP()
-        console.log("hi my ip is : ", ip);
-        const result = await axios({
-          method: "get",
-          url: `http://${ip}:9000/weatherApiKey`,
-        });
-        setWeatherApiKey(result.data);
+  //   const getWeather = async () => {
+  //     // console.log("122464r9689");
+  //     // console.log("ApiKey1:", weatherApiKey);
+  //     console.log("curr Weather is 1----",currentWeather);
+  //     // calling the weather API key from backend
+  //     try {
+  //      // const ip = await Network.getIpAddressAsync();
+  //       const ip = await currentIP()
+  //       // console.log("hi my ip is : ", ip);
+  //       const result = await axios({
+  //         method: "get",
+  //         url: `http://${ip}:9000/weatherApiKey`,
+  //       });
+  //       setWeatherApiKey(result.data);
         
 
-        //getting the current weather
+  //       //getting the current weather
 
-        if (weatherApiKey) {
-          const url = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${weatherApiKey}&units=metric`;
-          // const url = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${coordinates.latitude}&lon=${coordinates.longitude}&cnt=14&appid=729f9a5767727471e69bd342825d0b4b
-          // &units=metric`
+  //       if (weatherApiKey) {
+  //         const url = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${weatherApiKey}&units=metric`;
+  //         // const url = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${coordinates.latitude}&lon=${coordinates.longitude}&cnt=14&appid=729f9a5767727471e69bd342825d0b4b
+  //         // &units=metric`
 
+  //         const callingUrl = await fetch(url);
+  //         const response = await callingUrl.json();
+  //         // console.log("weather response:", response);
 
-         
+  //         setCurrentWeather(response.main.temp.toFixed());
+  //         console.log("curr Weather is 2----",currentWeather);
+  //         setWeatherIcon(response.weather[0].icon);
+  //       }
+  //     } catch (error) {
+  //       // console.log(error);
+  //     }
+  //   };
 
-          const callingUrl = await fetch(url);
-          const response = await callingUrl.json();
-          console.log("weather response:", response);
+  //   getWeather();
+  // }, [coordinates]); //
 
-          setCurrentWeather(response.main.temp.toFixed());
-          setWeatherIcon(response.weather[0].icon);
-        }
-      } catch (error) {
-        // console.log(error);
-      }
-    };
-
-    getWeather();
-  }, [coordinates]); //
-
-  function getWeatherFor5Days(){
-     // forecast part -----
-          // const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${weatherApiKey}&units=metric`
-          // console.log("url", url);
-          // console.log("data:", result);
-  }
+  console.log("curr Weather is 3----",currentWeather);
+  // function getWeatherFor5Days(){
+  //    // forecast part -----
+  //         // const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${weatherApiKey}&units=metric`
+  //         // console.log("url", url);
+  //         // console.log("data:", result);
+  // }
 
 
 
