@@ -12,7 +12,8 @@ export default function LocationProvider(props) {
     const [weatherApiKey, setWeatherApiKey] = useState(null);
     const [ helper, setHelper ] = useState(false)
     const [weatherIcon, setWeatherIcon] = useState(null);
-    const value = {coordinates, setCoordinates, currentWeather, setCurrentWeather, helper, setHelper, weatherIcon, setWeatherIcon};
+    const [iconUrl, setIconUrl ] = useState(null)
+    const value = {coordinates, setCoordinates, currentWeather, setCurrentWeather, helper, setHelper, weatherIcon};
 
     const iconUrl = `https://openweathermap.org/img/w/${weatherIcon}.png`;
 
