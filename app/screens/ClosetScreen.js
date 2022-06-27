@@ -14,7 +14,6 @@ import CheckBox from "expo-checkbox";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { globalStyles, colors } from "../styles/globalStyles.js";
 import axios from "axios";
-import ColorPalette from "react-native-color-palette";
 
 import currentIP from "../utils/ip.js";
 
@@ -40,7 +39,7 @@ export default function ClosetScreen() {
   ];
 
   const [closet, setCloset] = useState(null);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [filterModalVisible, setFilterModalVisible] = useState(false);
   const [menuModalVisible, setMenuModalVisible] = useState(false);
   const [clothFilterOpt, setClothFilterOpt] = useState(filterCheckboxes);
   const [color, setColor] = useState("");
@@ -67,32 +66,52 @@ export default function ClosetScreen() {
 
   //filter button:
   function handleFilterBtn() {
-    return setModalVisible(true);
+    return setFilterModalVisible(true);
   }
 
-  //handle Style checkboxes:
-  const handleFilterStyle = (id) => {
-    let check = clothFilterOpt.map((style) => {
-      if (id === style.id) {
-        return { ...style, isChecked: !style.isChecked };
+  //handle Style and color checkboxes:
+  const handleFilter = (id) => {
+    let check = clothFilterOpt.map((item) => {
+      if (id === item.id) {
+        return { ...item, isChecked: !item.isChecked };
       }
-      return style;
+      return item;
     });
     setClothFilterOpt(check);
+    console.log("selected---", clothFilterOpt);
   };
-  const selectedStyle = clothFilterOpt.filter((style) => style.isChecked);
+  const selectedFilter = clothFilterOpt.filter((item) => item.isChecked);
 
-  //submit button im Modal:
+  // //remove filter:
+  // async function handleFilterRemove(id) {
+  //   const ip = await currentIP();
+
+  //   try {
+  //     let queryString = selectedFilter
+  //       .map((item) => Object.keys(item)[1] + "=" + Object.values(item)[1])
+  //       .join("&");
+  //     console.log("STRING___:", queryString);
+  //     const result = await axios({
+  //       method: "get",
+  //       url: `http://${ip}:9000/cloth/closet?${queryString}`,
+  //     });
+  //     setCloset(result.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+  // }
+
+  //submit button im filterModal:
   async function handleSubmit() {
     const ip = await currentIP();
 
-    setModalVisible(!modalVisible);
-    console.log("color---:", color);
+    setFilterModalVisible(!filterModalVisible);
 
     try {
-      let queryString = selectedStyle
+      let queryString = selectedFilter
         .map((item) => Object.keys(item)[1] + "=" + Object.values(item)[1])
-        .join("&"); //--this will go after the url
+        .join("&");
       console.log("STRING___:", queryString);
       const result = await axios({
         method: "get",
@@ -105,7 +124,29 @@ export default function ClosetScreen() {
   }
 
   //3 dots button:
-  function handleMenuBtn() {}
+  async function handleDeleteBtn(image) {
+    const ip = await currentIP();
+
+    try {
+      const result = await axios({
+        url: `http://${ip}:9000/cloth/closet/${image._id}`,
+        method: "DELETE",
+      });
+
+      setCloset(result.data);
+    } catch (error) {
+      console.error("error in DELETE", error.response.data);
+    }
+
+    // console.log("image.id---", image._id);
+    // const ip = await currentIP();
+    // try {
+    //   await axios.delete(`http://${ip}:9000/cloth/closet/${image._id}`);
+    //   // setStatus("Delete successful");
+    // } catch (error) {
+    //   console.log(error);
+    // }
+  }
 
   return (
     <SafeAreaView>
@@ -117,14 +158,22 @@ export default function ClosetScreen() {
         >
           <Icon name="filter" size={30} />
         </TouchableOpacity>
-        {selectedStyle &&
-          selectedStyle.map((option) => (
+        {selectedFilter &&
+          selectedFilter.map((item) => (
             <TouchableOpacity
               onPress={() => {
-                handleFilterStyle(option.id);
+                // handleFilter(item.id), handleFilterRemove();
               }}
             >
-              <Text style={styles.filterOption}>{option.style}</Text>
+              <Text
+                style={
+                  item.style
+                    ? styles.filterOptionStyle
+                    : [styles.filterOptionColor, { backgroundColor: item.hex }]
+                }
+              >
+                {item.style}
+              </Text>
             </TouchableOpacity>
           ))}
       </View>
@@ -142,10 +191,11 @@ export default function ClosetScreen() {
                 <TouchableOpacity
                   style={styles.menuBtn}
                   onPress={() => {
-                    handleMenuBtn();
+                    handleDeleteBtn(image);
                   }}
                 >
-                  <Icon style={styles.menuIcon} name="ellipsis-v" size={20} />
+                  {/* <Icon style={styles.menuIcon} name="ellipsis-v" size={20} /> */}
+                  <Icon style={styles.menuIcon} name="trash" size={20} />
                 </TouchableOpacity>
               </View>
             ))}
@@ -154,18 +204,18 @@ export default function ClosetScreen() {
 
       {/* //Filter Modal! */}
       <>
-        {modalVisible && (
+        {filterModalVisible && (
           <Modal
             animationType="fade"
             transparent={true}
-            visible={modalVisible}
+            visible={filterModalVisible}
             onRequestClose={() => {
               Alert.alert("Modal has been closed.");
-              setModalVisible(!modalVisible);
+              setFilterModalVisible(!filterModalVisible);
             }}
           >
-            <View style={styles.centeredView}>
-              <View style={styles.modalView}>
+            <View style={styles.centeredViewFilter}>
+              <View style={styles.modalViewFilter}>
                 <Text style={{ fontWeight: "bold" }}>Style:</Text>
                 <View style={styles.checkboxContainer}>
                   {clothFilterOpt &&
@@ -177,7 +227,7 @@ export default function ClosetScreen() {
                               value={item.isChecked}
                               style={styles.checkbox}
                               onValueChange={() => {
-                                handleFilterStyle(item.id);
+                                handleFilter(item.id);
                               }}
                             />
                             <Text>{Object.values(item)[1]}</Text>
@@ -192,50 +242,39 @@ export default function ClosetScreen() {
                     clothFilterOpt.map(
                       (item) =>
                         Object.keys(item)[1] == "color" && (
-                          <View style={styles.checkboxConWrapper} key={item.id}>
-                            <CheckBox
-                              value={item.isChecked}
+                          <View
+                            style={styles.checkboxConWrapper2}
+                            key={item.id}
+                          >
+                            <TouchableOpacity
                               style={[
                                 styles.colorBox,
-                                { backgroundColor: item.hex, color: "red" },
+                                { backgroundColor: item.hex },
                               ]}
-                              color={item.isChecked ? item.hex : undefined}
-                              onValueChange={() => {
-                                handleFilterStyle(item.id);
+                              onPress={() => {
+                                handleFilter(item.id);
                               }}
-                            ></CheckBox>
+                            >
+                              {item.isChecked ? (
+                                <Text
+                                  style={[
+                                    styles.colorTik,
+                                    item.hex == "#000"
+                                      ? styles.textWhite
+                                      : styles.textBlack,
+                                  ]}
+                                >
+                                  ✔
+                                </Text>
+                              ) : (
+                                <Text> </Text>
+                              )}
+                            </TouchableOpacity>
                           </View>
                         )
                     )}
                 </View>
 
-                {/* <ColorPalette
-                  selectedValue={color}
-                  onChange={(currentColor) => setColor(currentColor)}
-                  colors={[
-                    "#000",
-                    "#fff",
-                    "#1C86EE",
-                    "#EE3B3B",
-                    "#FF82AB",
-                    "#E1C699",
-                    "#C1FFC1",
-                    "#2E8B57",
-                    "#7A8B8B",
-                    "#FFB90F",
-                    "#8B4500",
-                  ]}
-                  title={"Color:"}
-                  icon={
-                    <Text
-                      style={
-                        color == "#000" ? styles.textWhite : styles.textBlack
-                      }
-                    >
-                      ✔
-                    </Text>
-                  }
-                /> */}
                 <TouchableOpacity onPress={handleSubmit}>
                   <Text style={globalStyles.activeButton}>ok</Text>
                 </TouchableOpacity>
@@ -248,14 +287,15 @@ export default function ClosetScreen() {
       {/* <Modal
         animationType="fade"
         transparent={true}
-        visible={modalVisible}
+        visible={menuModalVisible}
         onRequestClose={() => {
           Alert.alert("Modal has been closed.");
           setMenuModalVisible(!menuModalVisible);
         }}
+        statusBarTranslucent={false}
       >
-        <View>
-          <View>
+        <View style={styles.centeredViewMenu}>
+          <View style={styles.modalViewMenu}>
             <TouchableOpacity>
               <Text>Delete cloth</Text>
             </TouchableOpacity>
@@ -307,7 +347,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 30,
   },
-  filterOption: {
+  filterOptionStyle: {
     paddingVertical: 5,
     paddingHorizontal: 10,
     margin: 5,
@@ -319,20 +359,49 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 
-  centeredView: {
-    flex: 1,
+  filterOptionColor: {
+    paddingVertical: 2,
+    paddingHorizontal: 12,
+    margin: 5,
+    borderRadius: 50,
+    borderWidth: 1,
+    borderColor: "lightgrey",
+  },
 
+  centeredViewFilter: {
+    flex: 1,
     alignItems: "center",
     marginTop: 50,
   },
-  modalView: {
+
+  modalViewFilter: {
     width: "80%",
     height: "60%",
-
     backgroundColor: "white",
     borderRadius: 20,
     padding: 35,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
 
+  centeredViewMenu: {
+    flex: 1,
+    alignItems: "flex-end",
+    position: "relative",
+  },
+
+  modalViewMenu: {
+    width: "50%",
+    height: "30%",
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -357,11 +426,32 @@ const styles = StyleSheet.create({
     color: "blue",
     marginRight: 10,
   },
+
+  checkboxConWrapper2: {
+    // flexDirection: "row",
+    marginVertical: 15,
+    marginHorizontal: 5,
+    padding: 5,
+  },
+
   colorBox: {
-    marginRight: 10,
     borderRadius: 50,
-    border: "none",
-    padding: 10,
+
+    paddingVertical: 1,
+    paddingHorizontal: 8,
+    borderWidth: 1,
+    padding: 5,
+    backgroundColor: "#fff",
+    justifyContent: "flex-start",
+    flexDirection: "row",
+    borderColor: "#ddd",
+    position: "relative",
+  },
+
+  colorTik: {
+    fontSize: 10,
+
+    paddingVertical: 3,
   },
 
   textWhite: {
