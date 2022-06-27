@@ -34,6 +34,9 @@ export default function HomeScreen() {
   
   //useEffect for images
   useEffect(() => {
+    if (!token) {
+      return
+    }
     async function getImagesFromBackend() {
       const ip = await currentIP();
       try {
@@ -45,16 +48,17 @@ export default function HomeScreen() {
           url: `http://${ip}:9000/cloth/home`,
         });
 
+        
         setImagesBoxTop(result.data.clothesTopBox);
         setImagesBoxBottom(result.data.clothesBottomBox);
         setFavorites(result.data.favorites);
       } catch (error) {
-        console.log(error);
+        console.log("error in homescreen:", error);
       }
     }
 
     getImagesFromBackend();
-  }, [toggleFav]);
+  }, [toggleFav, token]);
 
   async function handleFavoriteBtn(image) {
     const ip = await currentIP();
