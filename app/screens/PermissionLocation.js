@@ -8,7 +8,7 @@ export default function PermissionLocation() {
   const [errorMsg, setErrorMsg] = useState(null);
 
   useEffect(() => {
-
+    console.log("permission loading-------?");
     const intervalFun = (async () => {
         const { status } = await Location.requestForegroundPermissionsAsync();
         if (status !== 'granted') {
@@ -45,7 +45,7 @@ export default function PermissionLocation() {
 
   return (
     <>
-      {/* <Text>langitude: {coordinates.longitude}   latitude: {coordinates.latitude}</Text> */}
+       {/* <Text>langitude: {coordinates.longitude}   latitude: {coordinates.latitude}</Text>  */}
     </>
   );
 }

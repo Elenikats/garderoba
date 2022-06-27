@@ -25,7 +25,7 @@ const { height } = width * 0.6;
 export default function HomeScreen() {
   const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
   const { imagesBoxBottom, setImagesBoxBottom } = useContext(ImageBoxesContext);
-  const { helper } = useContext(LocationContext)
+  // const { helper } = useContext(LocationContext)
   const [favorites, setFavorites] = useState([]);
   const [toggleFav, setToggleFav] = useState(false);
   const { currentWeather, setCurrentWeather } = useContext(LocationContext)
@@ -41,51 +41,24 @@ export default function HomeScreen() {
 
   //useEffect for images
   useEffect(() => {
-    console.log("curr weather in Home---",currentWeather);
+    // console.log("curr weather in Home---",currentWeather);
     async function getImagesFromBackend() {
       const ip = await currentIP();
-    
+      console.log("currentWeather is ----",currentWeather);
       try {
-        if(currentWeather >= 24){
-          const result = await axios({
-            method: "get",
-            url: `http://${ip}:9000/cloth/home?season=summer`
-          });
-          setImagesBoxTop(result.data.clothesTopBox);
-          setImagesBoxBottom(result.data.clothesBottomBox);
-          setFavorites(result.data.favorites);
-          // return result; 
-        } else if( currentWeather >= 12 && currentWeather <= 23){
-          const result = await axios({
-            method: "get",
-            url: `http://${ip}:9000/cloth/home?season=fall`,
-          })
-          console.log("result of fall is", result);
-          setImagesBoxTop(result.data.clothesTopBox);
-          setImagesBoxBottom(result.data.clothesBottomBox);
-          setFavorites(result.data.favorites);
-        }else{
-          
-            const result = await axios({
-              method: "get",
-              url: `http://${ip}:9000/cloth/home?season=winter`,
-            });
-            setImagesBoxTop(result.data.clothesTopBox);
-            setImagesBoxBottom(result.data.clothesBottomBox);
-            setFavorites(result.data.favorites);
-      
-        }
-        // >24 = summer
-        // >12 <24 = fall/spring
-        // <12 = winter
-        // const result = await axios({
-        //   method: "get",
-        //   url: `http://${ip}:9000/cloth/home`,
-        // });
-        // setImagesBoxTop(result.data.clothesTopBox);
-        // setImagesBoxBottom(result.data.clothesBottomBox);
-        // setFavorites(result.data.favorites);
+          if(!currentWeather){
+            return;
+          }
 
+          const result = await axios({
+            method: "get",
+            url: `http://${ip}:9000/cloth/home?temperature=${currentWeather}`
+          });
+
+          setImagesBoxTop(result.data.clothesTopBox);
+          setImagesBoxBottom(result.data.clothesBottomBox);
+          setFavorites(result.data.favorites);
+     
 
         
       } catch (error) {
@@ -94,8 +67,8 @@ export default function HomeScreen() {
     }
 
     getImagesFromBackend();
-  }, [toggleFav, helper]);
-
+  }, [currentWeather]);
+// [toggleFav, currentWeather]
   async function handleFavoriteBtn(image) {
     const ip = await currentIP();
 
@@ -112,9 +85,9 @@ export default function HomeScreen() {
     }
   }
 
-  if (!currentWeather) {
-    return <Text>Loading</Text>
-  }
+  // if (!currentWeather) {
+  //   return <Text>Loading</Text>
+  // }
 
   return (
     <SafeAreaView style={styles.container}>

@@ -21,7 +21,7 @@ import currentIP from "../utils/ip.js";
 export default function CreateItemScreen({ route, navigation }) {
   const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
   const { imagesBoxBottom, setImagesBoxBottom } = useContext(ImageBoxesContext);
-  const { helper, setHelper } = useContext(LocationContext)
+  // const { helper, setHelper } = useContext(LocationContext)
   const [type, setType] = useState("");
   const [season, setSeason] = useState("");
   const [style, setStyle] = useState("");
@@ -73,17 +73,8 @@ export default function CreateItemScreen({ route, navigation }) {
         data: payload,
         method: "POST",
       });
-
-      if (response.data.type == "top" ) {
-        setImagesBoxTop(response.data.clothTopBox);
-        setHelper(!helper)
-        
-      } else {
-        setImagesBoxBottom(response.data.clothBottomBox);
-        setHelper(!helper)
-
-      }
-    } catch (error) {
+      // setHelper(!helper)
+      }catch (error) {
       console.error("error is .....", error.response.data);
     }
   };

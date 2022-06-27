@@ -61,7 +61,7 @@ export default function WeatherAPI() {
   //   getWeather();
   // }, [coordinates]); //
 
-  console.log("curr Weather is 3----",currentWeather);
+  // console.log("curr Weather is 3----",currentWeather);
   // function getWeatherFor5Days(){
   //    // forecast part -----
   //         // const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${weatherApiKey}&units=metric`
