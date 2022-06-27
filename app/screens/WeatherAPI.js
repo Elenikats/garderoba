@@ -10,6 +10,7 @@ export default function WeatherAPI() {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [weatherApiKey, setWeatherApiKey] = useState(null);
   const [weatherIcon, setWeatherIcon] = useState(null);
+  // useState to cover dates.
 
   const iconUrl = `https://openweathermap.org/img/w/${weatherIcon}.png`;
   // console.log("iconUrl:", iconUrl);
@@ -35,17 +36,21 @@ export default function WeatherAPI() {
           url: `http://${ip}:9000/weatherApiKey`,
         });
         setWeatherApiKey(result.data);
+        
 
         //getting the current weather
 
         if (weatherApiKey) {
           const url = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${weatherApiKey}&units=metric`;
-          // console.log("url", url);
-          // console.log("data:", result);
+          // const url = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${coordinates.latitude}&lon=${coordinates.longitude}&cnt=14&appid=729f9a5767727471e69bd342825d0b4b
+          // &units=metric`
+
+
+         
 
           const callingUrl = await fetch(url);
           const response = await callingUrl.json();
-          // console.log("response:", response);
+          console.log("weather response:", response);
 
           setCurrentWeather(response.main.temp.toFixed());
           setWeatherIcon(response.weather[0].icon);
@@ -56,7 +61,16 @@ export default function WeatherAPI() {
     };
 
     getWeather();
-  }, [coordinates]);
+  }, [coordinates]); //
+
+  function getWeatherFor5Days(){
+     // forecast part -----
+          // const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${weatherApiKey}&units=metric`
+          // console.log("url", url);
+          // console.log("data:", result);
+  }
+
+
 
   // console.log("ApiKey2:", weatherApiKey);
   // console.log("currentWeather:", currentWeather);
