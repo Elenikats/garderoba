@@ -8,14 +8,15 @@ export const LocationContext = React.createContext();
 
 export default function LocationProvider(props) {
     const [coordinates, setCoordinates] = useState({latitude: "52.5431638633", longitude: "13.4187698364", loading: true});
-    const [currentWeather, setCurrentWeather] = useState(null)
-    const [weatherApiKey, setWeatherApiKey] = useState(null);
+    const [ currentWeather, setCurrentWeather ] = useState(null)
+    const [ weatherApiKey, setWeatherApiKey ] = useState(null);
     const [ helper, setHelper ] = useState(false)
-    const [weatherIcon, setWeatherIcon] = useState(null);
-    const [iconUrl, setIconUrl ] = useState(null)
-    const value = {coordinates, setCoordinates, currentWeather, setCurrentWeather, helper, setHelper, weatherIcon};
+    const [ weatherIcon, setWeatherIcon ] = useState(null);
+    const [ iconUrl, setIconUrl ] = useState(null);
+    // const [iconUrl, setIconUrl ] = useState(null)
+    const value = {coordinates, setCoordinates, currentWeather, setCurrentWeather, helper, setHelper, weatherIcon };
 
-    const iconUrl = `https://openweathermap.org/img/w/${weatherIcon}.png`;
+    
 
 
   useEffect(() => {
@@ -66,7 +67,7 @@ export default function LocationProvider(props) {
     };
 
     getWeather();
-  }, [coordinates, weatherApiKey]); //
+  }, [coordinates, weatherApiKey ]); //
 
 
     return (

@@ -6,12 +6,15 @@ import currentIP from "../utils/ip.js";
 //import * as Network from 'expo-network'
 
 export default function WeatherAPI() {
-  const {coordinates} = useContext(LocationContext);
+  // const {coordinates} = useContext(LocationContext);
   // const [currentWeather, setCurrentWeather] = useState(null);
-  const {currentWeather, setCurrentWeather} = useContext(LocationContext)
-  const {weatherIcon, setWeatherIcon} = useContext(LocationContext); 
+  const { currentWeather, weatherIcon } = useContext(LocationContext)
+
   // useState to cover dates.
 
+  
+
+  const iconUrl = `https://openweathermap.org/img/w/${weatherIcon}.png`;
   // console.log("iconUrl:", iconUrl);
 
   // useEffect(() => {
@@ -41,8 +44,6 @@ export default function WeatherAPI() {
 
   //       if (weatherApiKey) {
   //         const url = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${weatherApiKey}&units=metric`;
-  //         // const url = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${coordinates.latitude}&lon=${coordinates.longitude}&cnt=14&appid=729f9a5767727471e69bd342825d0b4b
-  //         // &units=metric`
 
   //         const callingUrl = await fetch(url);
   //         const response = await callingUrl.json();
@@ -76,7 +77,7 @@ export default function WeatherAPI() {
   return (
     <View style={styles.weatherContainer}>
       <Text style={styles.weatherText}>{currentWeather}°C</Text>
-      <Image style={styles.weatherIcon} source={{ uri: iconUrl }} />
+     {weatherIcon && <Image style={styles.weatherIcon} source={{ uri: iconUrl }} />}
     </View>
   );
 }
