@@ -14,18 +14,22 @@ import ColorPalette from "react-native-color-palette";
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
 import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
+import { LocationContext } from "../../contexts/LocationContext.js";
 //import * as Network from "expo-network";
 import currentIP from "../utils/ip.js";
+import { userContext } from "../../contexts/userContext.js";
 
 export default function CreateItemScreen({ route, navigation }) {
   const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
   const { imagesBoxBottom, setImagesBoxBottom } = useContext(ImageBoxesContext);
+  const { user, setUser, token, setToken } = useContext(userContext);
 
   const [type, setType] = useState("");
   const [season, setSeason] = useState("");
   const [style, setStyle] = useState("");
   const [color, setColor] = useState("");
   const [weather, setWeather] = useState("");
+
   // const [imageFile, setImageFile] = useState(null)
 
   const { image } = route.params;
@@ -65,24 +69,19 @@ export default function CreateItemScreen({ route, navigation }) {
       const response = await axios({
         url: `http://${ip}:9000/upload`,
         headers: {
-          Authorization: "",
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
         data: payload,
         method: "POST",
       });
-
-      if (response.data.type == "top") {
-        setImagesBoxTop(response.data.clothTopBox);
-      } else {
-        setImagesBoxBottom(response.data.clothBottomBox);
-      }
+      // setHelper(!helper)
     } catch (error) {
       console.error("error is .....", error.response.data);
     }
-    
-    return (
-      <SafeAreaView style={styles.container}>
+  };
+  return (
+    <SafeAreaView style={styles.container}>
       <View>
         <View>
           <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
@@ -118,7 +117,7 @@ export default function CreateItemScreen({ route, navigation }) {
             <Picker.Item label="casual" value="casual" />
             <Picker.Item label="formal" value="formal" />
             <Picker.Item label="work" value="work" />
-            <Picker.Item label="holiday" value="holiday" />
+            <Picker.Item label="holiday" value="home" />
           </Picker>
           {/* **************Weather********************* */}
           <Picker
@@ -164,8 +163,8 @@ export default function CreateItemScreen({ route, navigation }) {
           disabled={!type || !season || !style || !color || !weather}
           style={
             type && season && style && color && weather
-              ? globalStyles.inactiveButton
-              : globalStyles.activeButton
+              ? globalStyles.activeButton
+              : globalStyles.inactiveButton
           }
         >
           <Text style={styles.textBtn}>Save</Text>
@@ -173,8 +172,7 @@ export default function CreateItemScreen({ route, navigation }) {
       </View>
     </SafeAreaView>
   );
-};
-};
+}
 
 const styles = StyleSheet.create({
   container: {

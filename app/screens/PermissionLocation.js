@@ -4,11 +4,11 @@ import * as Location from 'expo-location';
 import { LocationContext } from '../../contexts/LocationContext';
 
 export default function PermissionLocation() {
-  const [coordinates, setCoordinates] = useContext(LocationContext);
+  const {coordinates, setCoordinates} = useContext(LocationContext);
   const [errorMsg, setErrorMsg] = useState(null);
 
   useEffect(() => {
-
+    console.log("permission loading-------?");
     const intervalFun = (async () => {
         const { status } = await Location.requestForegroundPermissionsAsync();
         if (status !== 'granted') {
@@ -19,7 +19,7 @@ export default function PermissionLocation() {
 
         const location = await Location.getCurrentPositionAsync({accuracy: Location.Accuracy.Highest});
         const { latitude, longitude } = location.coords
-        console.log("location:", location)
+        // console.log("location:", location)
         setCoordinates({
           ...coordinates,
           latitude,
@@ -45,7 +45,7 @@ export default function PermissionLocation() {
 
   return (
     <>
-      {/* <Text>langitude: {coordinates.longitude}   latitude: {coordinates.latitude}</Text> */}
+       {/* <Text>langitude: {coordinates.longitude}   latitude: {coordinates.latitude}</Text>  */}
     </>
   );
 }

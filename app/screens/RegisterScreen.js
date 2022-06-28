@@ -1,26 +1,27 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { SafeAreaView, TextInput, ScrollView, TouchableOpacity, Image, StyleSheet, Text, View  } from 'react-native'
 import CheckBox from "expo-checkbox";
 import { globalStyles, colors } from '../styles/globalStyles';
 import Icon from "react-native-vector-icons/Ionicons";
 //import * as Network from "expo-network";
 import currentIP from "../utils/ip.js";
+import { userContext } from '../../contexts/userContext';
 
 export default function RegisterScreen({navigation}) {
+  const {user, setUser, token, setToken} = useContext(userContext);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [agree, setAgree] = useState(false)
   const [hidePassword, setHidePassword] = useState(true)
+  const [errors, setErrors] = useState([])
 
   const handleOpenEye = () => {
     setHidePassword(!hidePassword)
   }
 
   const handleSignupBtn = async () => {
-
-    navigation.navigate('Main')
 
 
     // const ip = await Network.getIpAddressAsync();
@@ -42,11 +43,29 @@ export default function RegisterScreen({navigation}) {
       },
       body: JSON.stringify(payload)
     }
+    console.log("payload:", payload)
 
     fetch(url, config)
       .then(response => response.json())
-      .then(result => console.log(result))
-      .catch(err => console.log(err))
+      .then(result => {
+        // console.log(result.error)
+        // console.log("status:", result.status)
+        // console.log("ok", result.ok)
+        console.log("result:", result)
+        if (result.error) {
+         throw new Error(result.error) 
+        }
+        setUser(result.username);
+        setToken(result.token);
+
+        navigation.navigate('Main')
+        
+      })
+      .catch(err => {
+        setErrors(err)
+        //alert(err?.response?.data?.error || "Login failed, please try again");
+        
+      })
   }
 
   return (
@@ -71,19 +90,29 @@ export default function RegisterScreen({navigation}) {
             <Text style={[globalStyles.text, {marginBottom: 14}]}>Register with email</Text>
           </View>
 
-
           
           {/* <Text style={styles.label}>Name:</Text> */}
+
+          {/* { errors.includes("username") && <Text>username is too short</Text> } */}
           <TextInput 
             value={username}
             placeholder="Enter username"
             style={styles.textInput}
             autoCapitalize="none"
+            autoComplete="off"
             onChangeText={(text) => setUsername(text)}
-
+            
           ></TextInput>
 
+          { errors && errors.message && errors.message.includes("username-invalid") && <Text style={styles.errorMessage}>The username can contain only small letters, numbers and - or _.</Text>}
+          { errors && errors.message && errors.message.includes("duplicate key") && errors.message.includes("username") && <Text style={styles.errorMessage}>This username is already being used.</Text>}
+
+
+
           {/* <Text style={styles.label}>Email:</Text> */}
+          {/* { errors.includes("email") && <Text>email is invalid</Text> } */}
+
+          
           <TextInput 
             value={email}
             placeholder="Enter email"
@@ -91,31 +120,46 @@ export default function RegisterScreen({navigation}) {
             style={styles.textInput}
             keyboardType={"email-address"}
             autoCapitalize="none"
+            autoComplete="off"
           ></TextInput>
 
+          { errors && errors.message && errors.message.includes("email-invalid") && <Text style={styles.errorMessage}>The email is not valid.</Text>}
+          { errors && errors.message && errors.message.includes("duplicate key") && errors.message.includes("email") && <Text style={styles.errorMessage}>An account already exists with this email.</Text>}
+
           {/* <Text style={styles.label}>Password:</Text> */}
+         
+         <View style={styles.passCont}>
           <TextInput 
             value={password}
             placeholder="Enter password"
             onChangeText={(text) => setPassword(text)}
-            style={styles.textInput}
+            style={[styles.textInput, {position: "relative"}]}
             autoCapitalize="none"
+            autoComplete="off"
             secureTextEntry={hidePassword}
           ></TextInput>
+
           {hidePassword ? <Icon name="eye-off"solid style={styles.pswIcon} onPress={handleOpenEye}/> : <Icon name="eye"solid style={styles.pswIcon} onPress={handleOpenEye}/>}
+          </View>
+
+          { errors && errors.message && errors.message.includes("password-too-short") && <Text style={styles.errorMessage}>The password is too short (min 6 characters).</Text>}
+          { errors && errors.message && errors.message.includes("password-too-long") && <Text style={styles.errorMessage}>The password is too long (max 20 characters).</Text>}
         
           
 
           {/* <Text style={styles.label}>Repeat password:</Text> */}
+      
           <TextInput 
             value={repeatPassword}
             placeholder="Repeat password"
             autoCapitalize="none"
+            autoComplete="off"
             onChangeText={(text) => setRepeatPassword(text)}
             style={styles.textInput}
             secureTextEntry={hidePassword}
           ></TextInput>
-          {hidePassword ? <Icon name="eye-off"solid style={styles.repeatPswIcon} onPress={handleOpenEye}/> : <Icon name="eye"solid style={styles.repeatPswIcon} onPress={handleOpenEye}/>}
+          { password !== repeatPassword && <Text style={styles.errorMessage}>The passwords don't match.</Text>}
+          
 
           <View style={styles.checkboxConWrapper}>
             <CheckBox     
@@ -172,6 +216,12 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginTop: 12,
   },
+  passCont: {
+    position: "relative",
+    width: "100%",
+    justifyContent: "center",
+
+  },
   checkboxConWrapper: {
     flexDirection: 'row',
     alignSelf: "flex-start",
@@ -210,8 +260,10 @@ const styles = StyleSheet.create({
   },
   pswIcon: {
     position: "absolute",
-    bottom: 225,
+    alignSelf: "flex-end",
+    bottom: 10,
     right: 10,
+    color: "gray",
     fontSize: 17
   },
   repeatPswIcon: {
@@ -219,5 +271,11 @@ const styles = StyleSheet.create({
     bottom: 175,
     right: 10,
     fontSize: 17
+  },
+  errorMessage: {
+    alignSelf: "flex-start",
+    color: "red",
+    paddingTop: 3,
+    fontSize: 12
   }
 })
