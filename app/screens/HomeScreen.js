@@ -18,6 +18,7 @@ import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
 import currentIP from "../utils/ip.js";
 import { userContext } from "../../contexts/userContext.js";
 //const ip = await Network.getIpAddressAsync();
+import LocationProvider, { LocationContext } from "../../contexts/LocationContext.js";
 
 const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
@@ -30,6 +31,16 @@ export default function HomeScreen() {
 
   const [favorites, setFavorites] = useState([]);
   const [toggleFav, setToggleFav] = useState(false);
+  const { currentWeather, setCurrentWeather } = useContext(LocationContext)
+  // console.log(currentWeather) need to get the state of current weather and pass it on as a value in query params of get request
+  // const [presentWeather, setPresentWeather] = useState(null)
+  
+  // const WeatherObj = {
+  //   summer: above 24
+  //   winter: below 12
+  //   fall: 12-24 degrees
+  // }
+
 
   //useEffect for images
   useEffect(() => {
@@ -38,27 +49,35 @@ export default function HomeScreen() {
     }
     async function getImagesFromBackend() {
       const ip = await currentIP();
+      console.log("currentWeather is ----",currentWeather);
       try {
-        const result = await axios({
-          method: "get",
-          headers: {
-            Authorization: `Bearer ${token}`
-          },
-          url: `http://${ip}:9000/cloth/home`,
-        });
+          if(!currentWeather){
+            return;
+          }
+
+          const result = await axios({
+            method: "get",
+            Authorization: `Bearer ${token}`,
+            url: `http://${ip}:9000/cloth/home?temperature=${currentWeather}`
+          });
+
+          setImagesBoxTop(result.data.clothesTopBox);
+          setImagesBoxBottom(result.data.clothesBottomBox);
+          setFavorites(result.data.favorites);
+     
 
         
-        setImagesBoxTop(result.data.clothesTopBox);
-        setImagesBoxBottom(result.data.clothesBottomBox);
-        setFavorites(result.data.favorites);
       } catch (error) {
         console.log("error in homescreen:", error);
       }
     }
 
     getImagesFromBackend();
-  }, [toggleFav, token]);
+  
 
+  }, [currentWeather, token, toggleFav])
+};
+// [toggleFav, currentWeather]
   async function handleFavoriteBtn(image) {
     const ip = await currentIP();
 
@@ -66,6 +85,7 @@ export default function HomeScreen() {
       await axios({
         url: `http://${ip}:9000/cloth/${image._id}`,
         method: "PUT",
+        Authorization: `Bearer ${token}`,
         data: { favorite: !image.favorite },
       });
 
@@ -74,6 +94,10 @@ export default function HomeScreen() {
       console.error("error in PUT", error.response.data);
     }
   }
+
+  // if (!currentWeather) {
+  //   return <Text>Loading</Text>
+  // }
 
   return (
     <SafeAreaView style={styles.container}>
