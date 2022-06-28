@@ -52,6 +52,7 @@ export default function HomeScreen() {
 
           const result = await axios({
             method: "get",
+            Authorization: "",
             url: `http://${ip}:9000/cloth/home?temperature=${currentWeather}`
           });
 
