@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from "react";
-import * as Network from 'expo-network';
 
 import {
   View,
@@ -24,14 +23,14 @@ const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
 
 export default function HomeScreen() {
-  
   const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
   const { imagesBoxBottom, setImagesBoxBottom } = useContext(ImageBoxesContext);
   const [user, setUser, token, setToken] = useContext(userContext);
   
+
   const [favorites, setFavorites] = useState([]);
   const [toggleFav, setToggleFav] = useState(false);
-  
+
   //useEffect for images
   useEffect(() => {
     if (!token) {
@@ -131,7 +130,7 @@ export default function HomeScreen() {
                   />
 
                   <TouchableOpacity
-                    style={styles.boxfavorites}
+                    style={styles.boxFavorites}
                     onPress={() => {
                       handleFavoriteBtn(image);
                     }}
@@ -180,7 +179,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
-  boxfavorites: {
+  boxFavorites: {
     backgroundColor: "#F5F5F5",
     shadowColor: "#27272A",
     shadowOpacity: 0.25,

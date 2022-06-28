@@ -1,0 +1,769 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:1:1-38:12
+INJECTED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:1:1-38:12
+INJECTED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:1:1-38:12
+INJECTED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:1:1-38:12
+MERGED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:1:1-38:12
+MERGED from [com.facebook.flipper:flipper:0.125.0] /home/user/.gradle/caches/transforms-3/b2ec3232205e095c09543a31d56ae642/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:8:1-18:12
+MERGED from [com.facebook.flipper:flipper-network-plugin:0.125.0] /home/user/.gradle/caches/transforms-3/674677064ce29f9763dc420868735b8b/transformed/jetified-flipper-network-plugin-0.125.0/AndroidManifest.xml:8:1-15:12
+MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.125.0] /home/user/.gradle/caches/transforms-3/df731ac58fe0112a493f9730ba0671c1/transformed/jetified-flipper-fresco-plugin-0.125.0/AndroidManifest.xml:8:1-15:12
+MERGED from [:react-native-community_masked-view] /home/user/Documents/garderoba/node_modules/@react-native-community/masked-view/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-google-signin_google-signin] /home/user/Documents/garderoba/node_modules/@react-native-google-signin/google-signin/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-picker_picker] /home/user/Documents/garderoba/node_modules/@react-native-picker/picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:expo] /home/user/Documents/garderoba/node_modules/expo/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-gesture-handler] /home/user/Documents/garderoba/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-safe-area-context] /home/user/Documents/garderoba/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-screens] /home/user/Documents/garderoba/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-vector-icons] /home/user/Documents/garderoba/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:expo-application] /home/user/Documents/garderoba/node_modules/expo-application/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:expo-constants] /home/user/Documents/garderoba/node_modules/expo-constants/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:expo-device] /home/user/Documents/garderoba/node_modules/expo-device/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:expo-updates] /home/user/Documents/garderoba/node_modules/expo-updates/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:expo-eas-client] /home/user/Documents/garderoba/node_modules/expo-eas-client/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:expo-error-recovery] /home/user/Documents/garderoba/node_modules/expo-error-recovery/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-35:12
+MERGED from [:expo-font] /home/user/Documents/garderoba/node_modules/expo-font/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:expo-image-loader] /home/user/Documents/garderoba/node_modules/expo-image-loader/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-44:12
+MERGED from [:expo-keep-awake] /home/user/Documents/garderoba/node_modules/expo-keep-awake/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:expo-location] /home/user/Documents/garderoba/node_modules/expo-location/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-20:12
+MERGED from [:expo-network] /home/user/Documents/garderoba/node_modules/expo-network/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-12:12
+MERGED from [:expo-splash-screen] /home/user/Documents/garderoba/node_modules/expo-splash-screen/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:expo-modules-core] /home/user/Documents/garderoba/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-15:12
+MERGED from [:react-native-google-signin-google-signin] /home/user/Documents/garderoba/node_modules/@react-native-google-signin/google-signin/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.react:react-native:0.68.2] /home/user/.gradle/caches/transforms-3/7d9d92dc8ec1ba2e45aff2ecbb549550/transformed/jetified-react-native-0.68.2/AndroidManifest.xml:2:1-11:12
+MERGED from [com.facebook.fresco:flipper:2.6.0] /home/user/.gradle/caches/transforms-3/f1204f1df4399a7f5bba753264d308f1/transformed/jetified-flipper-2.6.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:stetho:2.6.0] /home/user/.gradle/caches/transforms-3/48655c27af2d8105f1ca68a72c6d2d94/transformed/jetified-stetho-2.6.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:fresco:2.6.0] /home/user/.gradle/caches/transforms-3/955859de3514d49daf50e48783988c6b/transformed/jetified-fresco-2.6.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline-okhttp3:2.5.0] /home/user/.gradle/caches/transforms-3/c97c2155eb2986713ed2b8ff0b2111f1/transformed/jetified-imagepipeline-okhttp3-2.5.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:animated-gif:2.5.0] /home/user/.gradle/caches/transforms-3/65c39e1efc2af318444ca69c36f870ba/transformed/jetified-animated-gif-2.5.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:webpsupport:2.5.0] /home/user/.gradle/caches/transforms-3/d3e1619df7c4d687f6c7cd1deb628443/transformed/jetified-webpsupport-2.5.0/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /home/user/.gradle/caches/transforms-3/1c161fcc0ab2f622c9addf9ca5c940bd/transformed/legacy-support-v4-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/user/.gradle/caches/transforms-3/da5abf003c85c9bda8d04768581d7d80/transformed/legacy-support-core-ui-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/user/.gradle/caches/transforms-3/6ca4772dc16ee0aa26e0cc717aaeee42/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [org.webkit:android-jsc:r250230] /home/user/.gradle/caches/transforms-3/b26b48339e296557281f3d12b79a5a5f/transformed/jetified-android-jsc-r250230/AndroidManifest.xml:2:1-11:12
+MERGED from [com.facebook.fresco:animated-base:2.5.0] /home/user/.gradle/caches/transforms-3/44fbeb9e5d97ebdac905bc192e5fa348/transformed/jetified-animated-base-2.5.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:animated-drawable:2.5.0] /home/user/.gradle/caches/transforms-3/d0539ff110dbfb66d144faf76e2ea526/transformed/jetified-animated-drawable-2.5.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:drawee:2.6.0] /home/user/.gradle/caches/transforms-3/c7977fd619a5c9c7402b26c015a446b5/transformed/jetified-drawee-2.6.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:nativeimagefilters:2.6.0] /home/user/.gradle/caches/transforms-3/aad08df4ea2803d9a2b64d39a6ab67f3/transformed/jetified-nativeimagefilters-2.6.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:memory-type-native:2.6.0] /home/user/.gradle/caches/transforms-3/142e17e43e7a2752eb06b358b31a5754/transformed/jetified-memory-type-native-2.6.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:memory-type-java:2.6.0] /home/user/.gradle/caches/transforms-3/a7af9e67d9e39f229f8ed6c552536507/transformed/jetified-memory-type-java-2.6.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline-native:2.6.0] /home/user/.gradle/caches/transforms-3/cfc11596b02ddcde93270fd539703419/transformed/jetified-imagepipeline-native-2.6.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:soloader:2.6.0] /home/user/.gradle/caches/transforms-3/b5f62ec22b8838bfa3cec27d252ab1b1/transformed/jetified-soloader-2.6.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.soloader:soloader:0.10.3] /home/user/.gradle/caches/transforms-3/d1cf27a24c7f89c3464d079b8866a14d/transformed/jetified-soloader-0.10.3/AndroidManifest.xml:2:1-13:12
+MERGED from [com.facebook.fresco:memory-type-ashmem:2.6.0] /home/user/.gradle/caches/transforms-3/d0dd1bcdfa42605a38e7a2d49e27616b/transformed/jetified-memory-type-ashmem-2.6.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline:2.6.0] /home/user/.gradle/caches/transforms-3/d17ba0b24e99bcbe08235f5ac3c68ce5/transformed/jetified-imagepipeline-2.6.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:nativeimagetranscoder:2.6.0] /home/user/.gradle/caches/transforms-3/f9a2d938b75495bd7cdac36014e3286c/transformed/jetified-nativeimagetranscoder-2.6.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline-base:2.6.0] /home/user/.gradle/caches/transforms-3/9c755bc2eb685f65d8af07bd054b04e3/transformed/jetified-imagepipeline-base-2.6.0/AndroidManifest.xml:2:1-9:12
+MERGED from [:expo-structured-headers] /home/user/Documents/garderoba/node_modules/expo-structured-headers/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.material:material:1.1.0] /home/user/.gradle/caches/transforms-3/f61858ab2d463bfc75fa0b69b40e6339/transformed/material-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.github.CanHub:Android-Image-Cropper:1.1.1] /home/user/.gradle/caches/transforms-3/16e93bdb207d6fecfd3a883fe9345c66/transformed/jetified-Android-Image-Cropper-1.1.1/AndroidManifest.xml:2:1-23:12
+MERGED from [androidx.appcompat:appcompat:1.3.0] /home/user/.gradle/caches/transforms-3/1cfd312f13f537668e1e1c85780e6dcd/transformed/appcompat-1.3.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.room:room-runtime:2.4.2] /home/user/.gradle/caches/transforms-3/921c441ada39367fda6e8688e606d479/transformed/room-runtime-2.4.2/AndroidManifest.xml:17:1-31:12
+MERGED from [androidx.sqlite:sqlite-framework:2.2.0] /home/user/.gradle/caches/transforms-3/45b79fc60ef257621d1810230d06a18b/transformed/sqlite-framework-2.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.autofill:autofill:1.1.0] /home/user/.gradle/caches/transforms-3/930952dd781abe29ac754d98b6b40877/transformed/jetified-autofill-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.facebook.fresco:middleware:2.6.0] /home/user/.gradle/caches/transforms-3/695cd9fd50f6d80d04115758e75e7659/transformed/jetified-middleware-2.6.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:ui-common:2.6.0] /home/user/.gradle/caches/transforms-3/be4a764f02daa2ca46928826cd2dfd4e/transformed/jetified-ui-common-2.6.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:fbcore:2.6.0] /home/user/.gradle/caches/transforms-3/53007099516bea6db8367ba9bce19768/transformed/jetified-fbcore-2.6.0/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.appcompat:appcompat-resources:1.3.0] /home/user/.gradle/caches/transforms-3/c4ff51766d2b17fd775f47ff34c2b0a4/transformed/jetified-appcompat-resources-1.3.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.github.bumptech.glide:glide:4.9.0] /home/user/.gradle/caches/transforms-3/02801f7db0996aabeeb24e6002268366/transformed/jetified-glide-4.9.0/AndroidManifest.xml:2:1-12:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/user/.gradle/caches/transforms-3/442417dc11991ec6cf60896054083eb2/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/user/.gradle/caches/transforms-3/aa57ff3ce2015847aa0b72d99132ba86/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core-ktx:1.6.0] /home/user/.gradle/caches/transforms-3/b2fa1c1bb511a790a674eefcef2075aa/transformed/jetified-core-ktx-1.6.0/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/user/.gradle/caches/transforms-3/6656116c8ef532d42c3b0001eda45954/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-auth:19.2.0] /home/user/.gradle/caches/transforms-3/248a4b254b4876c3cb169d69362e7f5d/transformed/jetified-play-services-auth-19.2.0/AndroidManifest.xml:17:1-40:12
+MERGED from [com.google.android.gms:play-services-auth-api-phone:17.0.0] /home/user/.gradle/caches/transforms-3/83c11849f2271bcd693f901841795870/transformed/jetified-play-services-auth-api-phone-17.0.0/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-auth-base:17.0.0] /home/user/.gradle/caches/transforms-3/b3c79c48e04ee3e1bb43375e35e836f8/transformed/jetified-play-services-auth-base-17.0.0/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/user/.gradle/caches/transforms-3/918f09b108e03a031dd9ffcea4f893c0/transformed/jetified-play-services-location-16.0.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-base:17.5.0] /home/user/.gradle/caches/transforms-3/45cdf3d9003203bd7d99a3752c1d90db/transformed/jetified-play-services-base-17.5.0/AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.android.gms:play-services-tasks:17.2.0] /home/user/.gradle/caches/transforms-3/2e4e7cbb0cc5f0db7fccf34aaa91921c/transformed/jetified-play-services-tasks-17.2.0/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/user/.gradle/caches/transforms-3/6aa99418bb675e39b54f2a482985c2e8/transformed/jetified-play-services-places-placereport-16.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-basement:17.5.0] /home/user/.gradle/caches/transforms-3/4bfcc3cc7dc077bb4e2d6439b89117bc/transformed/jetified-play-services-basement-17.5.0/AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/user/.gradle/caches/transforms-3/460f707a98ca30d659c55d0af740e8a5/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment:1.3.4] /home/user/.gradle/caches/transforms-3/fa5673892f2eb4bac1a553c16525d1a8/transformed/fragment-1.3.4/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/user/.gradle/caches/transforms-3/000634452e2a6e3478fcbddcff1ba8cb/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.2.3] /home/user/.gradle/caches/transforms-3/8dcc3b035de8502a3cca3f88856b2edf/transformed/jetified-activity-1.2.3/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/user/.gradle/caches/transforms-3/3d8e05803b602e10b4ced719a870a6cc/transformed/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /home/user/.gradle/caches/transforms-3/aae1b44b14da90de2bc6234fa0cda5e0/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.1.0] /home/user/.gradle/caches/transforms-3/efdb780696dc99090705bacc43bed7b8/transformed/jetified-savedstate-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/user/.gradle/caches/transforms-3/93829add0e4f45c796a8a060a5b87cff/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /home/user/.gradle/caches/transforms-3/6dcfad40ce61ece4738360beb445cf45/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/user/.gradle/caches/transforms-3/230a96d2aba8ad4caa16273ff08055ea/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/user/.gradle/caches/transforms-3/acda78127728beaf3cb34e67de212732/transformed/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/user/.gradle/caches/transforms-3/ddccc4a0cdd13c52f5a4f38b2b832f02/transformed/slidingpanelayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] /home/user/.gradle/caches/transforms-3/c8273fa885909ca67232676c28fc218f/transformed/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.transition:transition:1.2.0] /home/user/.gradle/caches/transforms-3/e34f23f166ba047a8cd5504be5cc44c2/transformed/transition-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/user/.gradle/caches/transforms-3/344a34c26439bf03c0529e7406151c1f/transformed/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.media:media:1.0.0] /home/user/.gradle/caches/transforms-3/97d1bb1821cbf33959d70d68c3d771dd/transformed/media-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/user/.gradle/caches/transforms-3/c0c2d651f76e044f02bd7a1ba19c4d42/transformed/asynclayoutinflater-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.6.0] /home/user/.gradle/caches/transforms-3/5c61d7afbc1bcd99cb491da6ba2ee6c1/transformed/core-1.6.0/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /home/user/.gradle/caches/transforms-3/026d9a07e2404c8e8b926c84dc89fc1c/transformed/lifecycle-runtime-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] /home/user/.gradle/caches/transforms-3/974b7eb2566eaa5ff6cad3a657787855/transformed/lifecycle-viewmodel-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.3] /home/user/.gradle/caches/transforms-3/4b04d6d67c75a339f45ca5bd7f16c982/transformed/exifinterface-1.3.3/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cardview:cardview:1.0.0] /home/user/.gradle/caches/transforms-3/f1d633fd64daa2015a40f00739216189/transformed/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/user/.gradle/caches/transforms-3/fe3e391fdb037f499c7b6cfdeb5e5dc4/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.tracing:tracing:1.0.0] /home/user/.gradle/caches/transforms-3/b97adc1dc534b4d6ac2a3344cb481593/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/user/.gradle/caches/transforms-3/a82a9a1b169999c7869e0239c40f1514/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /home/user/.gradle/caches/transforms-3/8c4f4207472eb79fd90ca97204dd8c2e/transformed/lifecycle-livedata-core-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/user/.gradle/caches/transforms-3/ce91150bb7fb05f70a42033bb97da78f/transformed/core-runtime-2.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /home/user/.gradle/caches/transforms-3/270085bc5399f5124ccdb76983f3bc75/transformed/jetified-gifdecoder-4.9.0/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.databinding:viewbinding:4.1.1] /home/user/.gradle/caches/transforms-3/d4f51c10638bbe1feaff772180c7aa11/transformed/jetified-viewbinding-4.1.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.sqlite:sqlite:2.2.0] /home/user/.gradle/caches/transforms-3/73936c05bbf519b9fb3040a6bc5e287f/transformed/sqlite-2.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/user/.gradle/caches/transforms-3/79163c133a8793c5c0e5d00e7087bf10/transformed/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/user/.gradle/caches/transforms-3/2096766628f12184b5deb4651c08b5b5/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /home/user/.gradle/caches/transforms-3/9bdeb687976f00af90cf5f35581388b4/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [:expo-manifests] /home/user/Documents/garderoba/node_modules/expo-manifests/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:expo-json-utils] /home/user/Documents/garderoba/node_modules/expo-json-utils/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:expo-updates-interface] /home/user/Documents/garderoba/node_modules/expo-updates-interface/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [com.android.installreferrer:installreferrer:1.0] /home/user/.gradle/caches/transforms-3/3fe1ec2c8f8c663bc2c2834082f95108/transformed/jetified-installreferrer-1.0/AndroidManifest.xml:2:1-13:12
+MERGED from [io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:2:1-30:12
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /home/user/.gradle/caches/transforms-3/248c0f564962b01f80874ef1b418707d/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:17:1-24:12
+INJECTED from /home/user/Documents/garderoba/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+INJECTED from /home/user/Documents/garderoba/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+INJECTED from /home/user/Documents/garderoba/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+	package
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:1:70-105
+		INJECTED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:1:70-105
+		INJECTED from /home/user/Documents/garderoba/android/app/src/debug/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:1:1-38:12
+		INJECTED from /home/user/Documents/garderoba/android/app/src/debug/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:1:106-152
+	android:versionCode
+		INJECTED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:1:1-38:12
+		INJECTED from /home/user/Documents/garderoba/android/app/src/debug/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:1:11-69
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:2:3-78
+MERGED from [:expo-location] /home/user/Documents/garderoba/node_modules/expo-location/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-81
+MERGED from [:expo-location] /home/user/Documents/garderoba/node_modules/expo-location/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-81
+MERGED from [io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:12:5-81
+MERGED from [io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:12:5-81
+	android:name
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:2:20-76
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:3:3-76
+MERGED from [:expo-location] /home/user/Documents/garderoba/node_modules/expo-location/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-79
+MERGED from [:expo-location] /home/user/Documents/garderoba/node_modules/expo-location/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-79
+MERGED from [io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:14:5-79
+MERGED from [io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:14:5-79
+	android:name
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:3:20-74
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:4:3-74
+MERGED from [:expo-location] /home/user/Documents/garderoba/node_modules/expo-location/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:5-77
+MERGED from [:expo-location] /home/user/Documents/garderoba/node_modules/expo-location/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:5-77
+	android:name
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:4:20-72
+uses-permission#android.permission.INTERNET
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:5:3-64
+MERGED from [com.facebook.flipper:flipper:0.125.0] /home/user/.gradle/caches/transforms-3/b2ec3232205e095c09543a31d56ae642/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:15:5-67
+MERGED from [com.facebook.flipper:flipper:0.125.0] /home/user/.gradle/caches/transforms-3/b2ec3232205e095c09543a31d56ae642/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:15:5-67
+MERGED from [:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-67
+MERGED from [:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-67
+	android:name
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:5:20-62
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:6:3-77
+MERGED from [:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:5-80
+MERGED from [:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:5-80
+MERGED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:5-80
+MERGED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:5-80
+	android:name
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:6:20-75
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:7:3-68
+	android:name
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:7:20-66
+uses-permission#android.permission.SYSTEM_ALERT_WINDOW
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:8:3-75
+MERGED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:8:3-75
+MERGED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:8:3-75
+	android:name
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:8:20-73
+uses-permission#android.permission.VIBRATE
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:9:3-63
+	android:name
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:9:20-61
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:10:3-78
+MERGED from [:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:5-81
+MERGED from [:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:5-81
+MERGED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:5-81
+MERGED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:5-81
+	android:name
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:10:20-76
+queries
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:11:3-17:13
+MERGED from [:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:5-20:15
+MERGED from [:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:5-20:15
+MERGED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:5-26:15
+MERGED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:5-26:15
+intent#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+data:scheme:https
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:12:5-16:14
+action#android.intent.action.VIEW
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:13:7-58
+	android:name
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:13:15-56
+category#android.intent.category.BROWSABLE
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:14:7-67
+	android:name
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:14:17-65
+data
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:15:7-37
+	android:scheme
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:15:13-35
+application
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:18:3-37:17
+MERGED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:18:3-37:17
+MERGED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:18:3-37:17
+MERGED from [:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:22:5-33:19
+MERGED from [:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:22:5-33:19
+MERGED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:5-42:19
+MERGED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:5-42:19
+MERGED from [:expo-location] /home/user/Documents/garderoba/node_modules/expo-location/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:5-18:19
+MERGED from [:expo-location] /home/user/Documents/garderoba/node_modules/expo-location/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:5-18:19
+MERGED from [:expo-modules-core] /home/user/Documents/garderoba/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-13:19
+MERGED from [:expo-modules-core] /home/user/Documents/garderoba/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-13:19
+MERGED from [com.facebook.react:react-native:0.68.2] /home/user/.gradle/caches/transforms-3/7d9d92dc8ec1ba2e45aff2ecbb549550/transformed/jetified-react-native-0.68.2/AndroidManifest.xml:9:5-20
+MERGED from [com.facebook.react:react-native:0.68.2] /home/user/.gradle/caches/transforms-3/7d9d92dc8ec1ba2e45aff2ecbb549550/transformed/jetified-react-native-0.68.2/AndroidManifest.xml:9:5-20
+MERGED from [com.facebook.soloader:soloader:0.10.3] /home/user/.gradle/caches/transforms-3/d1cf27a24c7f89c3464d079b8866a14d/transformed/jetified-soloader-0.10.3/AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.soloader:soloader:0.10.3] /home/user/.gradle/caches/transforms-3/d1cf27a24c7f89c3464d079b8866a14d/transformed/jetified-soloader-0.10.3/AndroidManifest.xml:11:5-20
+MERGED from [com.google.android.material:material:1.1.0] /home/user/.gradle/caches/transforms-3/f61858ab2d463bfc75fa0b69b40e6339/transformed/material-1.1.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.1.0] /home/user/.gradle/caches/transforms-3/f61858ab2d463bfc75fa0b69b40e6339/transformed/material-1.1.0/AndroidManifest.xml:22:5-20
+MERGED from [com.github.CanHub:Android-Image-Cropper:1.1.1] /home/user/.gradle/caches/transforms-3/16e93bdb207d6fecfd3a883fe9345c66/transformed/jetified-Android-Image-Cropper-1.1.1/AndroidManifest.xml:11:5-21:19
+MERGED from [com.github.CanHub:Android-Image-Cropper:1.1.1] /home/user/.gradle/caches/transforms-3/16e93bdb207d6fecfd3a883fe9345c66/transformed/jetified-Android-Image-Cropper-1.1.1/AndroidManifest.xml:11:5-21:19
+MERGED from [androidx.room:room-runtime:2.4.2] /home/user/.gradle/caches/transforms-3/921c441ada39367fda6e8688e606d479/transformed/room-runtime-2.4.2/AndroidManifest.xml:24:5-29:19
+MERGED from [androidx.room:room-runtime:2.4.2] /home/user/.gradle/caches/transforms-3/921c441ada39367fda6e8688e606d479/transformed/room-runtime-2.4.2/AndroidManifest.xml:24:5-29:19
+MERGED from [com.github.bumptech.glide:glide:4.9.0] /home/user/.gradle/caches/transforms-3/02801f7db0996aabeeb24e6002268366/transformed/jetified-glide-4.9.0/AndroidManifest.xml:10:5-20
+MERGED from [com.github.bumptech.glide:glide:4.9.0] /home/user/.gradle/caches/transforms-3/02801f7db0996aabeeb24e6002268366/transformed/jetified-glide-4.9.0/AndroidManifest.xml:10:5-20
+MERGED from [com.google.android.gms:play-services-auth:19.2.0] /home/user/.gradle/caches/transforms-3/248a4b254b4876c3cb169d69362e7f5d/transformed/jetified-play-services-auth-19.2.0/AndroidManifest.xml:22:5-38:19
+MERGED from [com.google.android.gms:play-services-auth:19.2.0] /home/user/.gradle/caches/transforms-3/248a4b254b4876c3cb169d69362e7f5d/transformed/jetified-play-services-auth-19.2.0/AndroidManifest.xml:22:5-38:19
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/user/.gradle/caches/transforms-3/918f09b108e03a031dd9ffcea4f893c0/transformed/jetified-play-services-location-16.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/user/.gradle/caches/transforms-3/918f09b108e03a031dd9ffcea4f893c0/transformed/jetified-play-services-location-16.0.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-base:17.5.0] /home/user/.gradle/caches/transforms-3/45cdf3d9003203bd7d99a3752c1d90db/transformed/jetified-play-services-base-17.5.0/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:17.5.0] /home/user/.gradle/caches/transforms-3/45cdf3d9003203bd7d99a3752c1d90db/transformed/jetified-play-services-base-17.5.0/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-tasks:17.2.0] /home/user/.gradle/caches/transforms-3/2e4e7cbb0cc5f0db7fccf34aaa91921c/transformed/jetified-play-services-tasks-17.2.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:17.2.0] /home/user/.gradle/caches/transforms-3/2e4e7cbb0cc5f0db7fccf34aaa91921c/transformed/jetified-play-services-tasks-17.2.0/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/user/.gradle/caches/transforms-3/6aa99418bb675e39b54f2a482985c2e8/transformed/jetified-play-services-places-placereport-16.0.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/user/.gradle/caches/transforms-3/6aa99418bb675e39b54f2a482985c2e8/transformed/jetified-play-services-places-placereport-16.0.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-basement:17.5.0] /home/user/.gradle/caches/transforms-3/4bfcc3cc7dc077bb4e2d6439b89117bc/transformed/jetified-play-services-basement-17.5.0/AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:17.5.0] /home/user/.gradle/caches/transforms-3/4bfcc3cc7dc077bb4e2d6439b89117bc/transformed/jetified-play-services-basement-17.5.0/AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.core:core:1.6.0] /home/user/.gradle/caches/transforms-3/5c61d7afbc1bcd99cb491da6ba2ee6c1/transformed/core-1.6.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.6.0] /home/user/.gradle/caches/transforms-3/5c61d7afbc1bcd99cb491da6ba2ee6c1/transformed/core-1.6.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/user/.gradle/caches/transforms-3/fe3e391fdb037f499c7b6cfdeb5e5dc4/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/user/.gradle/caches/transforms-3/fe3e391fdb037f499c7b6cfdeb5e5dc4/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /home/user/.gradle/caches/transforms-3/270085bc5399f5124ccdb76983f3bc75/transformed/jetified-gifdecoder-4.9.0/AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /home/user/.gradle/caches/transforms-3/270085bc5399f5124ccdb76983f3bc75/transformed/jetified-gifdecoder-4.9.0/AndroidManifest.xml:9:5-20
+MERGED from [com.android.installreferrer:installreferrer:1.0] /home/user/.gradle/caches/transforms-3/3fe1ec2c8f8c663bc2c2834082f95108/transformed/jetified-installreferrer-1.0/AndroidManifest.xml:11:5-20
+MERGED from [com.android.installreferrer:installreferrer:1.0] /home/user/.gradle/caches/transforms-3/3fe1ec2c8f8c663bc2c2834082f95108/transformed/jetified-installreferrer-1.0/AndroidManifest.xml:11:5-20
+MERGED from [io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:18:5-28:19
+MERGED from [io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:18:5-28:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.6.0] /home/user/.gradle/caches/transforms-3/5c61d7afbc1bcd99cb491da6ba2ee6c1/transformed/core-1.6.0/AndroidManifest.xml:24:18-86
+	android:label
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:18:48-80
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:18:48-80
+	tools:ignore
+		ADDED from /home/user/Documents/garderoba/android/app/src/debug/AndroidManifest.xml:6:75-114
+	android:roundIcon
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:18:116-161
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:18:116-161
+	tools:targetApi
+		ADDED from /home/user/Documents/garderoba/android/app/src/debug/AndroidManifest.xml:6:54-74
+	android:icon
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:18:81-115
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:18:81-115
+	android:allowBackup
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:18:162-188
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:18:162-188
+	android:theme
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:18:189-220
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:18:189-220
+	android:usesCleartextTraffic
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:18:221-256
+	android:name
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:18:16-47
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:18:16-47
+meta-data#expo.modules.updates.ENABLED
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:19:5-82
+	android:value
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:19:60-80
+	android:name
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:19:16-59
+meta-data#expo.modules.updates.EXPO_SDK_VERSION
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:20:5-93
+	android:value
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:20:69-91
+	android:name
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:20:16-68
+meta-data#expo.modules.updates.EXPO_UPDATES_CHECK_ON_LAUNCH
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:21:5-105
+	android:value
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:21:81-103
+	android:name
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:21:16-80
+meta-data#expo.modules.updates.EXPO_UPDATES_LAUNCH_WAIT_MS
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:22:5-99
+	android:value
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:22:80-97
+	android:name
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:22:16-79
+meta-data#expo.modules.updates.EXPO_UPDATE_URL
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:23:5-123
+	android:value
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:23:68-121
+	android:name
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:23:16-67
+activity#com.eleniwebdev.garderoba.MainActivity
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:24:5-35:16
+	android:screenOrientation
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:24:300-336
+	android:label
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:24:44-76
+	android:launchMode
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:24:155-186
+	android:windowSoftInputMode
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:24:187-229
+	android:exported
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:24:276-299
+	android:configChanges
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:24:77-154
+	android:theme
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:24:230-275
+	android:name
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:24:15-43
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:25:7-28:23
+action#android.intent.action.MAIN
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:26:9-60
+	android:name
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:26:17-58
+category#android.intent.category.LAUNCHER
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:27:9-68
+	android:name
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:27:19-66
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:scheme:com.eleniwebdev.garderoba
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:29:7-34:23
+category#android.intent.category.DEFAULT
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:31:9-67
+	android:name
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:31:19-65
+activity#com.facebook.react.devsupport.DevSettingsActivity
+ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:36:5-106
+	android:exported
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:36:80-104
+	android:name
+		ADDED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml:36:15-79
+uses-sdk
+INJECTED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml
+INJECTED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml
+MERGED from [com.facebook.flipper:flipper:0.125.0] /home/user/.gradle/caches/transforms-3/b2ec3232205e095c09543a31d56ae642/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:11:5-13:41
+MERGED from [com.facebook.flipper:flipper:0.125.0] /home/user/.gradle/caches/transforms-3/b2ec3232205e095c09543a31d56ae642/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:11:5-13:41
+MERGED from [com.facebook.flipper:flipper-network-plugin:0.125.0] /home/user/.gradle/caches/transforms-3/674677064ce29f9763dc420868735b8b/transformed/jetified-flipper-network-plugin-0.125.0/AndroidManifest.xml:11:5-13:41
+MERGED from [com.facebook.flipper:flipper-network-plugin:0.125.0] /home/user/.gradle/caches/transforms-3/674677064ce29f9763dc420868735b8b/transformed/jetified-flipper-network-plugin-0.125.0/AndroidManifest.xml:11:5-13:41
+MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.125.0] /home/user/.gradle/caches/transforms-3/df731ac58fe0112a493f9730ba0671c1/transformed/jetified-flipper-fresco-plugin-0.125.0/AndroidManifest.xml:11:5-13:41
+MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.125.0] /home/user/.gradle/caches/transforms-3/df731ac58fe0112a493f9730ba0671c1/transformed/jetified-flipper-fresco-plugin-0.125.0/AndroidManifest.xml:11:5-13:41
+MERGED from [:react-native-community_masked-view] /home/user/Documents/garderoba/node_modules/@react-native-community/masked-view/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-community_masked-view] /home/user/Documents/garderoba/node_modules/@react-native-community/masked-view/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-google-signin_google-signin] /home/user/Documents/garderoba/node_modules/@react-native-google-signin/google-signin/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-google-signin_google-signin] /home/user/Documents/garderoba/node_modules/@react-native-google-signin/google-signin/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-picker_picker] /home/user/Documents/garderoba/node_modules/@react-native-picker/picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-picker_picker] /home/user/Documents/garderoba/node_modules/@react-native-picker/picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo] /home/user/Documents/garderoba/node_modules/expo/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo] /home/user/Documents/garderoba/node_modules/expo/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-gesture-handler] /home/user/Documents/garderoba/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-gesture-handler] /home/user/Documents/garderoba/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-safe-area-context] /home/user/Documents/garderoba/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-safe-area-context] /home/user/Documents/garderoba/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-screens] /home/user/Documents/garderoba/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-screens] /home/user/Documents/garderoba/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-vector-icons] /home/user/Documents/garderoba/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-vector-icons] /home/user/Documents/garderoba/node_modules/react-native-vector-icons/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-application] /home/user/Documents/garderoba/node_modules/expo-application/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-application] /home/user/Documents/garderoba/node_modules/expo-application/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-constants] /home/user/Documents/garderoba/node_modules/expo-constants/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-constants] /home/user/Documents/garderoba/node_modules/expo-constants/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-device] /home/user/Documents/garderoba/node_modules/expo-device/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-device] /home/user/Documents/garderoba/node_modules/expo-device/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-updates] /home/user/Documents/garderoba/node_modules/expo-updates/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-updates] /home/user/Documents/garderoba/node_modules/expo-updates/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-eas-client] /home/user/Documents/garderoba/node_modules/expo-eas-client/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-eas-client] /home/user/Documents/garderoba/node_modules/expo-eas-client/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-error-recovery] /home/user/Documents/garderoba/node_modules/expo-error-recovery/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-error-recovery] /home/user/Documents/garderoba/node_modules/expo-error-recovery/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:6:5-8:41
+MERGED from [:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:6:5-8:41
+MERGED from [:expo-font] /home/user/Documents/garderoba/node_modules/expo-font/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-font] /home/user/Documents/garderoba/node_modules/expo-font/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-image-loader] /home/user/Documents/garderoba/node_modules/expo-image-loader/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-image-loader] /home/user/Documents/garderoba/node_modules/expo-image-loader/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-keep-awake] /home/user/Documents/garderoba/node_modules/expo-keep-awake/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-keep-awake] /home/user/Documents/garderoba/node_modules/expo-keep-awake/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-location] /home/user/Documents/garderoba/node_modules/expo-location/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-location] /home/user/Documents/garderoba/node_modules/expo-location/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-network] /home/user/Documents/garderoba/node_modules/expo-network/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-network] /home/user/Documents/garderoba/node_modules/expo-network/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-splash-screen] /home/user/Documents/garderoba/node_modules/expo-splash-screen/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-splash-screen] /home/user/Documents/garderoba/node_modules/expo-splash-screen/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-modules-core] /home/user/Documents/garderoba/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-modules-core] /home/user/Documents/garderoba/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-google-signin-google-signin] /home/user/Documents/garderoba/node_modules/@react-native-google-signin/google-signin/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-google-signin-google-signin] /home/user/Documents/garderoba/node_modules/@react-native-google-signin/google-signin/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.react:react-native:0.68.2] /home/user/.gradle/caches/transforms-3/7d9d92dc8ec1ba2e45aff2ecbb549550/transformed/jetified-react-native-0.68.2/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.react:react-native:0.68.2] /home/user/.gradle/caches/transforms-3/7d9d92dc8ec1ba2e45aff2ecbb549550/transformed/jetified-react-native-0.68.2/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:flipper:2.6.0] /home/user/.gradle/caches/transforms-3/f1204f1df4399a7f5bba753264d308f1/transformed/jetified-flipper-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:flipper:2.6.0] /home/user/.gradle/caches/transforms-3/f1204f1df4399a7f5bba753264d308f1/transformed/jetified-flipper-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:stetho:2.6.0] /home/user/.gradle/caches/transforms-3/48655c27af2d8105f1ca68a72c6d2d94/transformed/jetified-stetho-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:stetho:2.6.0] /home/user/.gradle/caches/transforms-3/48655c27af2d8105f1ca68a72c6d2d94/transformed/jetified-stetho-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fresco:2.6.0] /home/user/.gradle/caches/transforms-3/955859de3514d49daf50e48783988c6b/transformed/jetified-fresco-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fresco:2.6.0] /home/user/.gradle/caches/transforms-3/955859de3514d49daf50e48783988c6b/transformed/jetified-fresco-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-okhttp3:2.5.0] /home/user/.gradle/caches/transforms-3/c97c2155eb2986713ed2b8ff0b2111f1/transformed/jetified-imagepipeline-okhttp3-2.5.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-okhttp3:2.5.0] /home/user/.gradle/caches/transforms-3/c97c2155eb2986713ed2b8ff0b2111f1/transformed/jetified-imagepipeline-okhttp3-2.5.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:animated-gif:2.5.0] /home/user/.gradle/caches/transforms-3/65c39e1efc2af318444ca69c36f870ba/transformed/jetified-animated-gif-2.5.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:animated-gif:2.5.0] /home/user/.gradle/caches/transforms-3/65c39e1efc2af318444ca69c36f870ba/transformed/jetified-animated-gif-2.5.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:webpsupport:2.5.0] /home/user/.gradle/caches/transforms-3/d3e1619df7c4d687f6c7cd1deb628443/transformed/jetified-webpsupport-2.5.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:webpsupport:2.5.0] /home/user/.gradle/caches/transforms-3/d3e1619df7c4d687f6c7cd1deb628443/transformed/jetified-webpsupport-2.5.0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /home/user/.gradle/caches/transforms-3/1c161fcc0ab2f622c9addf9ca5c940bd/transformed/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /home/user/.gradle/caches/transforms-3/1c161fcc0ab2f622c9addf9ca5c940bd/transformed/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/user/.gradle/caches/transforms-3/da5abf003c85c9bda8d04768581d7d80/transformed/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/user/.gradle/caches/transforms-3/da5abf003c85c9bda8d04768581d7d80/transformed/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/user/.gradle/caches/transforms-3/6ca4772dc16ee0aa26e0cc717aaeee42/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/user/.gradle/caches/transforms-3/6ca4772dc16ee0aa26e0cc717aaeee42/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [org.webkit:android-jsc:r250230] /home/user/.gradle/caches/transforms-3/b26b48339e296557281f3d12b79a5a5f/transformed/jetified-android-jsc-r250230/AndroidManifest.xml:7:5-9:41
+MERGED from [org.webkit:android-jsc:r250230] /home/user/.gradle/caches/transforms-3/b26b48339e296557281f3d12b79a5a5f/transformed/jetified-android-jsc-r250230/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.fresco:animated-base:2.5.0] /home/user/.gradle/caches/transforms-3/44fbeb9e5d97ebdac905bc192e5fa348/transformed/jetified-animated-base-2.5.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:animated-base:2.5.0] /home/user/.gradle/caches/transforms-3/44fbeb9e5d97ebdac905bc192e5fa348/transformed/jetified-animated-base-2.5.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:animated-drawable:2.5.0] /home/user/.gradle/caches/transforms-3/d0539ff110dbfb66d144faf76e2ea526/transformed/jetified-animated-drawable-2.5.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:animated-drawable:2.5.0] /home/user/.gradle/caches/transforms-3/d0539ff110dbfb66d144faf76e2ea526/transformed/jetified-animated-drawable-2.5.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:drawee:2.6.0] /home/user/.gradle/caches/transforms-3/c7977fd619a5c9c7402b26c015a446b5/transformed/jetified-drawee-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:drawee:2.6.0] /home/user/.gradle/caches/transforms-3/c7977fd619a5c9c7402b26c015a446b5/transformed/jetified-drawee-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagefilters:2.6.0] /home/user/.gradle/caches/transforms-3/aad08df4ea2803d9a2b64d39a6ab67f3/transformed/jetified-nativeimagefilters-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagefilters:2.6.0] /home/user/.gradle/caches/transforms-3/aad08df4ea2803d9a2b64d39a6ab67f3/transformed/jetified-nativeimagefilters-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:memory-type-native:2.6.0] /home/user/.gradle/caches/transforms-3/142e17e43e7a2752eb06b358b31a5754/transformed/jetified-memory-type-native-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:memory-type-native:2.6.0] /home/user/.gradle/caches/transforms-3/142e17e43e7a2752eb06b358b31a5754/transformed/jetified-memory-type-native-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:memory-type-java:2.6.0] /home/user/.gradle/caches/transforms-3/a7af9e67d9e39f229f8ed6c552536507/transformed/jetified-memory-type-java-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:memory-type-java:2.6.0] /home/user/.gradle/caches/transforms-3/a7af9e67d9e39f229f8ed6c552536507/transformed/jetified-memory-type-java-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-native:2.6.0] /home/user/.gradle/caches/transforms-3/cfc11596b02ddcde93270fd539703419/transformed/jetified-imagepipeline-native-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-native:2.6.0] /home/user/.gradle/caches/transforms-3/cfc11596b02ddcde93270fd539703419/transformed/jetified-imagepipeline-native-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:soloader:2.6.0] /home/user/.gradle/caches/transforms-3/b5f62ec22b8838bfa3cec27d252ab1b1/transformed/jetified-soloader-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:soloader:2.6.0] /home/user/.gradle/caches/transforms-3/b5f62ec22b8838bfa3cec27d252ab1b1/transformed/jetified-soloader-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.soloader:soloader:0.10.3] /home/user/.gradle/caches/transforms-3/d1cf27a24c7f89c3464d079b8866a14d/transformed/jetified-soloader-0.10.3/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.soloader:soloader:0.10.3] /home/user/.gradle/caches/transforms-3/d1cf27a24c7f89c3464d079b8866a14d/transformed/jetified-soloader-0.10.3/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.fresco:memory-type-ashmem:2.6.0] /home/user/.gradle/caches/transforms-3/d0dd1bcdfa42605a38e7a2d49e27616b/transformed/jetified-memory-type-ashmem-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:memory-type-ashmem:2.6.0] /home/user/.gradle/caches/transforms-3/d0dd1bcdfa42605a38e7a2d49e27616b/transformed/jetified-memory-type-ashmem-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline:2.6.0] /home/user/.gradle/caches/transforms-3/d17ba0b24e99bcbe08235f5ac3c68ce5/transformed/jetified-imagepipeline-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline:2.6.0] /home/user/.gradle/caches/transforms-3/d17ba0b24e99bcbe08235f5ac3c68ce5/transformed/jetified-imagepipeline-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagetranscoder:2.6.0] /home/user/.gradle/caches/transforms-3/f9a2d938b75495bd7cdac36014e3286c/transformed/jetified-nativeimagetranscoder-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:nativeimagetranscoder:2.6.0] /home/user/.gradle/caches/transforms-3/f9a2d938b75495bd7cdac36014e3286c/transformed/jetified-nativeimagetranscoder-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-base:2.6.0] /home/user/.gradle/caches/transforms-3/9c755bc2eb685f65d8af07bd054b04e3/transformed/jetified-imagepipeline-base-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-base:2.6.0] /home/user/.gradle/caches/transforms-3/9c755bc2eb685f65d8af07bd054b04e3/transformed/jetified-imagepipeline-base-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-structured-headers] /home/user/Documents/garderoba/node_modules/expo-structured-headers/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-structured-headers] /home/user/Documents/garderoba/node_modules/expo-structured-headers/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.android.material:material:1.1.0] /home/user/.gradle/caches/transforms-3/f61858ab2d463bfc75fa0b69b40e6339/transformed/material-1.1.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.1.0] /home/user/.gradle/caches/transforms-3/f61858ab2d463bfc75fa0b69b40e6339/transformed/material-1.1.0/AndroidManifest.xml:20:5-44
+MERGED from [com.github.CanHub:Android-Image-Cropper:1.1.1] /home/user/.gradle/caches/transforms-3/16e93bdb207d6fecfd3a883fe9345c66/transformed/jetified-Android-Image-Cropper-1.1.1/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.CanHub:Android-Image-Cropper:1.1.1] /home/user/.gradle/caches/transforms-3/16e93bdb207d6fecfd3a883fe9345c66/transformed/jetified-Android-Image-Cropper-1.1.1/AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.appcompat:appcompat:1.3.0] /home/user/.gradle/caches/transforms-3/1cfd312f13f537668e1e1c85780e6dcd/transformed/appcompat-1.3.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.3.0] /home/user/.gradle/caches/transforms-3/1cfd312f13f537668e1e1c85780e6dcd/transformed/appcompat-1.3.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.room:room-runtime:2.4.2] /home/user/.gradle/caches/transforms-3/921c441ada39367fda6e8688e606d479/transformed/room-runtime-2.4.2/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.room:room-runtime:2.4.2] /home/user/.gradle/caches/transforms-3/921c441ada39367fda6e8688e606d479/transformed/room-runtime-2.4.2/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.sqlite:sqlite-framework:2.2.0] /home/user/.gradle/caches/transforms-3/45b79fc60ef257621d1810230d06a18b/transformed/sqlite-framework-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.sqlite:sqlite-framework:2.2.0] /home/user/.gradle/caches/transforms-3/45b79fc60ef257621d1810230d06a18b/transformed/sqlite-framework-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.autofill:autofill:1.1.0] /home/user/.gradle/caches/transforms-3/930952dd781abe29ac754d98b6b40877/transformed/jetified-autofill-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.autofill:autofill:1.1.0] /home/user/.gradle/caches/transforms-3/930952dd781abe29ac754d98b6b40877/transformed/jetified-autofill-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.facebook.fresco:middleware:2.6.0] /home/user/.gradle/caches/transforms-3/695cd9fd50f6d80d04115758e75e7659/transformed/jetified-middleware-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:middleware:2.6.0] /home/user/.gradle/caches/transforms-3/695cd9fd50f6d80d04115758e75e7659/transformed/jetified-middleware-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:ui-common:2.6.0] /home/user/.gradle/caches/transforms-3/be4a764f02daa2ca46928826cd2dfd4e/transformed/jetified-ui-common-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:ui-common:2.6.0] /home/user/.gradle/caches/transforms-3/be4a764f02daa2ca46928826cd2dfd4e/transformed/jetified-ui-common-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fbcore:2.6.0] /home/user/.gradle/caches/transforms-3/53007099516bea6db8367ba9bce19768/transformed/jetified-fbcore-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fbcore:2.6.0] /home/user/.gradle/caches/transforms-3/53007099516bea6db8367ba9bce19768/transformed/jetified-fbcore-2.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.appcompat:appcompat-resources:1.3.0] /home/user/.gradle/caches/transforms-3/c4ff51766d2b17fd775f47ff34c2b0a4/transformed/jetified-appcompat-resources-1.3.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.3.0] /home/user/.gradle/caches/transforms-3/c4ff51766d2b17fd775f47ff34c2b0a4/transformed/jetified-appcompat-resources-1.3.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.github.bumptech.glide:glide:4.9.0] /home/user/.gradle/caches/transforms-3/02801f7db0996aabeeb24e6002268366/transformed/jetified-glide-4.9.0/AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.bumptech.glide:glide:4.9.0] /home/user/.gradle/caches/transforms-3/02801f7db0996aabeeb24e6002268366/transformed/jetified-glide-4.9.0/AndroidManifest.xml:6:5-8:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/user/.gradle/caches/transforms-3/442417dc11991ec6cf60896054083eb2/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/user/.gradle/caches/transforms-3/442417dc11991ec6cf60896054083eb2/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/user/.gradle/caches/transforms-3/aa57ff3ce2015847aa0b72d99132ba86/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/user/.gradle/caches/transforms-3/aa57ff3ce2015847aa0b72d99132ba86/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core-ktx:1.6.0] /home/user/.gradle/caches/transforms-3/b2fa1c1bb511a790a674eefcef2075aa/transformed/jetified-core-ktx-1.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.core:core-ktx:1.6.0] /home/user/.gradle/caches/transforms-3/b2fa1c1bb511a790a674eefcef2075aa/transformed/jetified-core-ktx-1.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/user/.gradle/caches/transforms-3/6656116c8ef532d42c3b0001eda45954/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/user/.gradle/caches/transforms-3/6656116c8ef532d42c3b0001eda45954/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.gms:play-services-auth:19.2.0] /home/user/.gradle/caches/transforms-3/248a4b254b4876c3cb169d69362e7f5d/transformed/jetified-play-services-auth-19.2.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth:19.2.0] /home/user/.gradle/caches/transforms-3/248a4b254b4876c3cb169d69362e7f5d/transformed/jetified-play-services-auth-19.2.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:17.0.0] /home/user/.gradle/caches/transforms-3/83c11849f2271bcd693f901841795870/transformed/jetified-play-services-auth-api-phone-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:17.0.0] /home/user/.gradle/caches/transforms-3/83c11849f2271bcd693f901841795870/transformed/jetified-play-services-auth-api-phone-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:17.0.0] /home/user/.gradle/caches/transforms-3/b3c79c48e04ee3e1bb43375e35e836f8/transformed/jetified-play-services-auth-base-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:17.0.0] /home/user/.gradle/caches/transforms-3/b3c79c48e04ee3e1bb43375e35e836f8/transformed/jetified-play-services-auth-base-17.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/user/.gradle/caches/transforms-3/918f09b108e03a031dd9ffcea4f893c0/transformed/jetified-play-services-location-16.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-location:16.0.0] /home/user/.gradle/caches/transforms-3/918f09b108e03a031dd9ffcea4f893c0/transformed/jetified-play-services-location-16.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:17.5.0] /home/user/.gradle/caches/transforms-3/45cdf3d9003203bd7d99a3752c1d90db/transformed/jetified-play-services-base-17.5.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:17.5.0] /home/user/.gradle/caches/transforms-3/45cdf3d9003203bd7d99a3752c1d90db/transformed/jetified-play-services-base-17.5.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks:17.2.0] /home/user/.gradle/caches/transforms-3/2e4e7cbb0cc5f0db7fccf34aaa91921c/transformed/jetified-play-services-tasks-17.2.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:17.2.0] /home/user/.gradle/caches/transforms-3/2e4e7cbb0cc5f0db7fccf34aaa91921c/transformed/jetified-play-services-tasks-17.2.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/user/.gradle/caches/transforms-3/6aa99418bb675e39b54f2a482985c2e8/transformed/jetified-play-services-places-placereport-16.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] /home/user/.gradle/caches/transforms-3/6aa99418bb675e39b54f2a482985c2e8/transformed/jetified-play-services-places-placereport-16.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.5.0] /home/user/.gradle/caches/transforms-3/4bfcc3cc7dc077bb4e2d6439b89117bc/transformed/jetified-play-services-basement-17.5.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.5.0] /home/user/.gradle/caches/transforms-3/4bfcc3cc7dc077bb4e2d6439b89117bc/transformed/jetified-play-services-basement-17.5.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/user/.gradle/caches/transforms-3/460f707a98ca30d659c55d0af740e8a5/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/user/.gradle/caches/transforms-3/460f707a98ca30d659c55d0af740e8a5/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.4] /home/user/.gradle/caches/transforms-3/fa5673892f2eb4bac1a553c16525d1a8/transformed/fragment-1.3.4/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.4] /home/user/.gradle/caches/transforms-3/fa5673892f2eb4bac1a553c16525d1a8/transformed/fragment-1.3.4/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/user/.gradle/caches/transforms-3/000634452e2a6e3478fcbddcff1ba8cb/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/user/.gradle/caches/transforms-3/000634452e2a6e3478fcbddcff1ba8cb/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.2.3] /home/user/.gradle/caches/transforms-3/8dcc3b035de8502a3cca3f88856b2edf/transformed/jetified-activity-1.2.3/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.2.3] /home/user/.gradle/caches/transforms-3/8dcc3b035de8502a3cca3f88856b2edf/transformed/jetified-activity-1.2.3/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/user/.gradle/caches/transforms-3/3d8e05803b602e10b4ced719a870a6cc/transformed/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/user/.gradle/caches/transforms-3/3d8e05803b602e10b4ced719a870a6cc/transformed/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /home/user/.gradle/caches/transforms-3/aae1b44b14da90de2bc6234fa0cda5e0/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] /home/user/.gradle/caches/transforms-3/aae1b44b14da90de2bc6234fa0cda5e0/transformed/jetified-lifecycle-viewmodel-savedstate-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.1.0] /home/user/.gradle/caches/transforms-3/efdb780696dc99090705bacc43bed7b8/transformed/jetified-savedstate-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.1.0] /home/user/.gradle/caches/transforms-3/efdb780696dc99090705bacc43bed7b8/transformed/jetified-savedstate-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/user/.gradle/caches/transforms-3/93829add0e4f45c796a8a060a5b87cff/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/user/.gradle/caches/transforms-3/93829add0e4f45c796a8a060a5b87cff/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/user/.gradle/caches/transforms-3/6dcfad40ce61ece4738360beb445cf45/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/user/.gradle/caches/transforms-3/6dcfad40ce61ece4738360beb445cf45/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/user/.gradle/caches/transforms-3/230a96d2aba8ad4caa16273ff08055ea/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/user/.gradle/caches/transforms-3/230a96d2aba8ad4caa16273ff08055ea/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/user/.gradle/caches/transforms-3/acda78127728beaf3cb34e67de212732/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/user/.gradle/caches/transforms-3/acda78127728beaf3cb34e67de212732/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/user/.gradle/caches/transforms-3/ddccc4a0cdd13c52f5a4f38b2b832f02/transformed/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/user/.gradle/caches/transforms-3/ddccc4a0cdd13c52f5a4f38b2b832f02/transformed/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /home/user/.gradle/caches/transforms-3/c8273fa885909ca67232676c28fc218f/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /home/user/.gradle/caches/transforms-3/c8273fa885909ca67232676c28fc218f/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.2.0] /home/user/.gradle/caches/transforms-3/e34f23f166ba047a8cd5504be5cc44c2/transformed/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] /home/user/.gradle/caches/transforms-3/e34f23f166ba047a8cd5504be5cc44c2/transformed/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/user/.gradle/caches/transforms-3/344a34c26439bf03c0529e7406151c1f/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/user/.gradle/caches/transforms-3/344a34c26439bf03c0529e7406151c1f/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.0.0] /home/user/.gradle/caches/transforms-3/97d1bb1821cbf33959d70d68c3d771dd/transformed/media-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] /home/user/.gradle/caches/transforms-3/97d1bb1821cbf33959d70d68c3d771dd/transformed/media-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/user/.gradle/caches/transforms-3/c0c2d651f76e044f02bd7a1ba19c4d42/transformed/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/user/.gradle/caches/transforms-3/c0c2d651f76e044f02bd7a1ba19c4d42/transformed/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.6.0] /home/user/.gradle/caches/transforms-3/5c61d7afbc1bcd99cb491da6ba2ee6c1/transformed/core-1.6.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.6.0] /home/user/.gradle/caches/transforms-3/5c61d7afbc1bcd99cb491da6ba2ee6c1/transformed/core-1.6.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /home/user/.gradle/caches/transforms-3/026d9a07e2404c8e8b926c84dc89fc1c/transformed/lifecycle-runtime-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] /home/user/.gradle/caches/transforms-3/026d9a07e2404c8e8b926c84dc89fc1c/transformed/lifecycle-runtime-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] /home/user/.gradle/caches/transforms-3/974b7eb2566eaa5ff6cad3a657787855/transformed/lifecycle-viewmodel-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] /home/user/.gradle/caches/transforms-3/974b7eb2566eaa5ff6cad3a657787855/transformed/lifecycle-viewmodel-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.3] /home/user/.gradle/caches/transforms-3/4b04d6d67c75a339f45ca5bd7f16c982/transformed/exifinterface-1.3.3/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.3] /home/user/.gradle/caches/transforms-3/4b04d6d67c75a339f45ca5bd7f16c982/transformed/exifinterface-1.3.3/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cardview:cardview:1.0.0] /home/user/.gradle/caches/transforms-3/f1d633fd64daa2015a40f00739216189/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /home/user/.gradle/caches/transforms-3/f1d633fd64daa2015a40f00739216189/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/user/.gradle/caches/transforms-3/fe3e391fdb037f499c7b6cfdeb5e5dc4/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/user/.gradle/caches/transforms-3/fe3e391fdb037f499c7b6cfdeb5e5dc4/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /home/user/.gradle/caches/transforms-3/b97adc1dc534b4d6ac2a3344cb481593/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /home/user/.gradle/caches/transforms-3/b97adc1dc534b4d6ac2a3344cb481593/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/user/.gradle/caches/transforms-3/a82a9a1b169999c7869e0239c40f1514/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/user/.gradle/caches/transforms-3/a82a9a1b169999c7869e0239c40f1514/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /home/user/.gradle/caches/transforms-3/8c4f4207472eb79fd90ca97204dd8c2e/transformed/lifecycle-livedata-core-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /home/user/.gradle/caches/transforms-3/8c4f4207472eb79fd90ca97204dd8c2e/transformed/lifecycle-livedata-core-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/user/.gradle/caches/transforms-3/ce91150bb7fb05f70a42033bb97da78f/transformed/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/user/.gradle/caches/transforms-3/ce91150bb7fb05f70a42033bb97da78f/transformed/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /home/user/.gradle/caches/transforms-3/270085bc5399f5124ccdb76983f3bc75/transformed/jetified-gifdecoder-4.9.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /home/user/.gradle/caches/transforms-3/270085bc5399f5124ccdb76983f3bc75/transformed/jetified-gifdecoder-4.9.0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.databinding:viewbinding:4.1.1] /home/user/.gradle/caches/transforms-3/d4f51c10638bbe1feaff772180c7aa11/transformed/jetified-viewbinding-4.1.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.databinding:viewbinding:4.1.1] /home/user/.gradle/caches/transforms-3/d4f51c10638bbe1feaff772180c7aa11/transformed/jetified-viewbinding-4.1.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite:2.2.0] /home/user/.gradle/caches/transforms-3/73936c05bbf519b9fb3040a6bc5e287f/transformed/sqlite-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.sqlite:sqlite:2.2.0] /home/user/.gradle/caches/transforms-3/73936c05bbf519b9fb3040a6bc5e287f/transformed/sqlite-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/user/.gradle/caches/transforms-3/79163c133a8793c5c0e5d00e7087bf10/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/user/.gradle/caches/transforms-3/79163c133a8793c5c0e5d00e7087bf10/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/user/.gradle/caches/transforms-3/2096766628f12184b5deb4651c08b5b5/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/user/.gradle/caches/transforms-3/2096766628f12184b5deb4651c08b5b5/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/user/.gradle/caches/transforms-3/9bdeb687976f00af90cf5f35581388b4/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/user/.gradle/caches/transforms-3/9bdeb687976f00af90cf5f35581388b4/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [:expo-manifests] /home/user/Documents/garderoba/node_modules/expo-manifests/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-manifests] /home/user/Documents/garderoba/node_modules/expo-manifests/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-json-utils] /home/user/Documents/garderoba/node_modules/expo-json-utils/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-json-utils] /home/user/Documents/garderoba/node_modules/expo-json-utils/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-updates-interface] /home/user/Documents/garderoba/node_modules/expo-updates-interface/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:expo-updates-interface] /home/user/Documents/garderoba/node_modules/expo-updates-interface/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.installreferrer:installreferrer:1.0] /home/user/.gradle/caches/transforms-3/3fe1ec2c8f8c663bc2c2834082f95108/transformed/jetified-installreferrer-1.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.installreferrer:installreferrer:1.0] /home/user/.gradle/caches/transforms-3/3fe1ec2c8f8c663bc2c2834082f95108/transformed/jetified-installreferrer-1.0/AndroidManifest.xml:5:5-7:41
+MERGED from [io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:8:5-10:41
+MERGED from [io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:8:5-10:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /home/user/.gradle/caches/transforms-3/248c0f564962b01f80874ef1b418707d/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /home/user/.gradle/caches/transforms-3/248c0f564962b01f80874ef1b418707d/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
+INJECTED from /home/user/Documents/garderoba/android/app/src/debug/AndroidManifest.xml
+INJECTED from /home/user/Documents/garderoba/android/app/src/debug/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/user/Documents/garderoba/android/app/src/debug/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/user/Documents/garderoba/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/user/Documents/garderoba/android/app/src/debug/AndroidManifest.xml
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from [com.facebook.flipper:flipper:0.125.0] /home/user/.gradle/caches/transforms-3/b2ec3232205e095c09543a31d56ae642/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:16:5-76
+MERGED from [:expo-network] /home/user/Documents/garderoba/node_modules/expo-network/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-76
+MERGED from [:expo-network] /home/user/Documents/garderoba/node_modules/expo-network/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-76
+	android:name
+		ADDED from [com.facebook.flipper:flipper:0.125.0] /home/user/.gradle/caches/transforms-3/b2ec3232205e095c09543a31d56ae642/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:16:22-73
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [:expo-updates] /home/user/Documents/garderoba/node_modules/expo-updates/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-79
+MERGED from [:expo-network] /home/user/Documents/garderoba/node_modules/expo-network/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-79
+MERGED from [:expo-network] /home/user/Documents/garderoba/node_modules/expo-network/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-79
+MERGED from [io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:13:5-79
+MERGED from [io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:13:5-79
+	android:name
+		ADDED from [:expo-updates] /home/user/Documents/garderoba/node_modules/expo-updates/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:22-76
+intent#action:name:android.intent.action.OPEN_DOCUMENT_TREE
+ADDED from [:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:9-19:18
+action#android.intent.action.OPEN_DOCUMENT_TREE
+ADDED from [:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-79
+	android:name
+		ADDED from [:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:21-76
+provider#expo.modules.filesystem.FileSystemFileProvider
+ADDED from [:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:23:9-32:20
+	android:grantUriPermissions
+		ADDED from [:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-47
+	android:authorities
+		ADDED from [:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:13-74
+	android:exported
+		ADDED from [:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:26:13-37
+	tools:replace
+		ADDED from [:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:13-48
+	android:name
+		ADDED from [:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:24:13-74
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from [:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:13-31:70
+	android:resource
+		ADDED from [:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:31:17-67
+	android:name
+		ADDED from [:expo-file-system] /home/user/Documents/garderoba/node_modules/expo-file-system/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:17-67
+uses-permission#android.permission.CAMERA
+ADDED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-65
+	android:name
+		ADDED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:22-62
+intent#action:name:android.media.action.IMAGE_CAPTURE
+ADDED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:9-20:18
+action#android.media.action.IMAGE_CAPTURE
+ADDED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:13-73
+	android:name
+		ADDED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:21-70
+intent#action:name:android.media.action.ACTION_VIDEO_CAPTURE
+ADDED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:9-25:18
+action#android.media.action.ACTION_VIDEO_CAPTURE
+ADDED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:24:13-80
+	android:name
+		ADDED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:24:21-77
+activity#com.canhub.cropper.CropImageActivity
+ADDED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:9-31:59
+	android:theme
+		ADDED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:31:13-56
+	android:name
+		ADDED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:13-64
+provider#expo.modules.imagepicker.ImagePickerFileProvider
+ADDED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:33:9-41:20
+	android:grantUriPermissions
+		ADDED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:37:13-47
+	android:authorities
+		ADDED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:35:13-75
+	android:exported
+		ADDED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:36:13-37
+	android:name
+		ADDED from [:expo-image-picker] /home/user/Documents/garderoba/node_modules/expo-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:34:13-76
+service#expo.modules.location.services.LocationTaskService
+ADDED from [:expo-location] /home/user/Documents/garderoba/node_modules/expo-location/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:9-17:56
+	android:exported
+		ADDED from [:expo-location] /home/user/Documents/garderoba/node_modules/expo-location/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-37
+	android:foregroundServiceType
+		ADDED from [:expo-location] /home/user/Documents/garderoba/node_modules/expo-location/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-53
+	android:name
+		ADDED from [:expo-location] /home/user/Documents/garderoba/node_modules/expo-location/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-78
+meta-data#org.unimodules.core.AppLoader#react-native-headless
+ADDED from [:expo-modules-core] /home/user/Documents/garderoba/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-12:89
+	android:value
+		ADDED from [:expo-modules-core] /home/user/Documents/garderoba/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-86
+	android:name
+		ADDED from [:expo-modules-core] /home/user/Documents/garderoba/node_modules/expo-modules-core/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-79
+provider#com.canhub.cropper.CropFileProvider
+ADDED from [com.github.CanHub:Android-Image-Cropper:1.1.1] /home/user/.gradle/caches/transforms-3/16e93bdb207d6fecfd3a883fe9345c66/transformed/jetified-Android-Image-Cropper-1.1.1/AndroidManifest.xml:12:9-20:20
+	android:grantUriPermissions
+		ADDED from [com.github.CanHub:Android-Image-Cropper:1.1.1] /home/user/.gradle/caches/transforms-3/16e93bdb207d6fecfd3a883fe9345c66/transformed/jetified-Android-Image-Cropper-1.1.1/AndroidManifest.xml:16:13-47
+	android:authorities
+		ADDED from [com.github.CanHub:Android-Image-Cropper:1.1.1] /home/user/.gradle/caches/transforms-3/16e93bdb207d6fecfd3a883fe9345c66/transformed/jetified-Android-Image-Cropper-1.1.1/AndroidManifest.xml:14:13-72
+	android:exported
+		ADDED from [com.github.CanHub:Android-Image-Cropper:1.1.1] /home/user/.gradle/caches/transforms-3/16e93bdb207d6fecfd3a883fe9345c66/transformed/jetified-Android-Image-Cropper-1.1.1/AndroidManifest.xml:15:13-37
+	android:name
+		ADDED from [com.github.CanHub:Android-Image-Cropper:1.1.1] /home/user/.gradle/caches/transforms-3/16e93bdb207d6fecfd3a883fe9345c66/transformed/jetified-Android-Image-Cropper-1.1.1/AndroidManifest.xml:13:13-63
+service#androidx.room.MultiInstanceInvalidationService
+ADDED from [androidx.room:room-runtime:2.4.2] /home/user/.gradle/caches/transforms-3/921c441ada39367fda6e8688e606d479/transformed/room-runtime-2.4.2/AndroidManifest.xml:25:9-28:40
+	android:exported
+		ADDED from [androidx.room:room-runtime:2.4.2] /home/user/.gradle/caches/transforms-3/921c441ada39367fda6e8688e606d479/transformed/room-runtime-2.4.2/AndroidManifest.xml:28:13-37
+	android:directBootAware
+		ADDED from [androidx.room:room-runtime:2.4.2] /home/user/.gradle/caches/transforms-3/921c441ada39367fda6e8688e606d479/transformed/room-runtime-2.4.2/AndroidManifest.xml:27:13-43
+	android:name
+		ADDED from [androidx.room:room-runtime:2.4.2] /home/user/.gradle/caches/transforms-3/921c441ada39367fda6e8688e606d479/transformed/room-runtime-2.4.2/AndroidManifest.xml:26:13-74
+activity#com.google.android.gms.auth.api.signin.internal.SignInHubActivity
+ADDED from [com.google.android.gms:play-services-auth:19.2.0] /home/user/.gradle/caches/transforms-3/248a4b254b4876c3cb169d69362e7f5d/transformed/jetified-play-services-auth-19.2.0/AndroidManifest.xml:23:9-27:75
+	android:excludeFromRecents
+		ADDED from [com.google.android.gms:play-services-auth:19.2.0] /home/user/.gradle/caches/transforms-3/248a4b254b4876c3cb169d69362e7f5d/transformed/jetified-play-services-auth-19.2.0/AndroidManifest.xml:25:13-46
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:19.2.0] /home/user/.gradle/caches/transforms-3/248a4b254b4876c3cb169d69362e7f5d/transformed/jetified-play-services-auth-19.2.0/AndroidManifest.xml:26:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-auth:19.2.0] /home/user/.gradle/caches/transforms-3/248a4b254b4876c3cb169d69362e7f5d/transformed/jetified-play-services-auth-19.2.0/AndroidManifest.xml:27:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:19.2.0] /home/user/.gradle/caches/transforms-3/248a4b254b4876c3cb169d69362e7f5d/transformed/jetified-play-services-auth-19.2.0/AndroidManifest.xml:24:13-93
+service#com.google.android.gms.auth.api.signin.RevocationBoundService
+ADDED from [com.google.android.gms:play-services-auth:19.2.0] /home/user/.gradle/caches/transforms-3/248a4b254b4876c3cb169d69362e7f5d/transformed/jetified-play-services-auth-19.2.0/AndroidManifest.xml:33:9-37:51
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:19.2.0] /home/user/.gradle/caches/transforms-3/248a4b254b4876c3cb169d69362e7f5d/transformed/jetified-play-services-auth-19.2.0/AndroidManifest.xml:35:13-36
+	android:visibleToInstantApps
+		ADDED from [com.google.android.gms:play-services-auth:19.2.0] /home/user/.gradle/caches/transforms-3/248a4b254b4876c3cb169d69362e7f5d/transformed/jetified-play-services-auth-19.2.0/AndroidManifest.xml:37:13-48
+	android:permission
+		ADDED from [com.google.android.gms:play-services-auth:19.2.0] /home/user/.gradle/caches/transforms-3/248a4b254b4876c3cb169d69362e7f5d/transformed/jetified-play-services-auth-19.2.0/AndroidManifest.xml:36:13-107
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:19.2.0] /home/user/.gradle/caches/transforms-3/248a4b254b4876c3cb169d69362e7f5d/transformed/jetified-play-services-auth-19.2.0/AndroidManifest.xml:34:13-89
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:17.5.0] /home/user/.gradle/caches/transforms-3/45cdf3d9003203bd7d99a3752c1d90db/transformed/jetified-play-services-base-17.5.0/AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:17.5.0] /home/user/.gradle/caches/transforms-3/45cdf3d9003203bd7d99a3752c1d90db/transformed/jetified-play-services-base-17.5.0/AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:17.5.0] /home/user/.gradle/caches/transforms-3/45cdf3d9003203bd7d99a3752c1d90db/transformed/jetified-play-services-base-17.5.0/AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:17.5.0] /home/user/.gradle/caches/transforms-3/45cdf3d9003203bd7d99a3752c1d90db/transformed/jetified-play-services-base-17.5.0/AndroidManifest.xml:24:13-79
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:17.5.0] /home/user/.gradle/caches/transforms-3/4bfcc3cc7dc077bb4e2d6439b89117bc/transformed/jetified-play-services-basement-17.5.0/AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:17.5.0] /home/user/.gradle/caches/transforms-3/4bfcc3cc7dc077bb4e2d6439b89117bc/transformed/jetified-play-services-basement-17.5.0/AndroidManifest.xml:25:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:17.5.0] /home/user/.gradle/caches/transforms-3/4bfcc3cc7dc077bb4e2d6439b89117bc/transformed/jetified-play-services-basement-17.5.0/AndroidManifest.xml:24:13-58
+uses-permission#com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE
+ADDED from [com.android.installreferrer:installreferrer:1.0] /home/user/.gradle/caches/transforms-3/3fe1ec2c8f8c663bc2c2834082f95108/transformed/jetified-installreferrer-1.0/AndroidManifest.xml:9:5-110
+	android:name
+		ADDED from [com.android.installreferrer:installreferrer:1.0] /home/user/.gradle/caches/transforms-3/3fe1ec2c8f8c663bc2c2834082f95108/transformed/jetified-installreferrer-1.0/AndroidManifest.xml:9:22-107
+uses-permission#com.google.android.providers.gsf.permission.READ_GSERVICES
+ADDED from [io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:15:5-98
+	android:name
+		ADDED from [io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:15:22-95
+uses-permission#com.google.android.gms.permission.ACTIVITY_RECOGNITION
+ADDED from [io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:16:5-94
+	android:name
+		ADDED from [io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:16:22-91
+service#io.nlopez.smartlocation.activity.providers.ActivityGooglePlayServicesProvider$ActivityRecognitionService
+ADDED from [io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:19:9-21:40
+	android:exported
+		ADDED from [io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:21:13-37
+	android:name
+		ADDED from [io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:20:13-132
+service#io.nlopez.smartlocation.geofencing.providers.GeofencingGooglePlayServicesProvider$GeofencingService
+ADDED from [io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:22:9-24:40
+	android:exported
+		ADDED from [io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:24:13-37
+	android:name
+		ADDED from [io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:23:13-127
+service#io.nlopez.smartlocation.geocoding.providers.AndroidGeocodingProvider$AndroidGeocodingService
+ADDED from [io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:25:9-27:40
+	android:exported
+		ADDED from [io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [io.nlopez.smartlocation:library:3.2.11] /home/user/.gradle/caches/transforms-3/520bcbb039b6ea2f2bc695cf3b3aa394/transformed/jetified-library-3.2.11/AndroidManifest.xml:26:13-120

@@ -48,14 +48,14 @@ export default function LoginScreen({navigation}) {
 
       
       <TouchableOpacity 
-          onPress={() => {console.log("pressed google button")}}
-          style={styles.googleButton}
-        >
-          <Image 
-            source={require("../assets/google.png")}  
-          />
-          <Text style={[globalStyles.text, {color: "blue"}]} />
-        </TouchableOpacity>
+            onPress={() => {console.log("pressed google button")}}
+            style={styles.googleButton}
+          >
+            <Image 
+              source={require("../assets/googleIcon.png")}  
+              style={{width: 20, height: 20, marginRight: 10}} />
+            <Text style={[globalStyles.text, {color: "blue"}]}>Sign in with Google</Text>
+          </TouchableOpacity>
       
 
       <Text style={styles.midHeader}>or</Text>
