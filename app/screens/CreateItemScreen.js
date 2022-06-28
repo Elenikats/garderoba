@@ -13,7 +13,6 @@ import { globalStyles, colors } from "../styles/globalStyles.js";
 import ColorPalette from "react-native-color-palette";
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
-import { LocationContext } from "../../contexts/LocationContext.js";
 //import * as Network from "expo-network";
 import currentIP from "../utils/ip.js";
 import { userContext } from "../../contexts/userContext.js";
@@ -27,8 +26,6 @@ export default function CreateItemScreen({ route, navigation }) {
   const [style, setStyle] = useState("");
   const [color, setColor] = useState("");
   const [weather, setWeather] = useState("");
-
-  // const [imageFile, setImageFile] = useState(null)
 
   const { image } = route.params;
 

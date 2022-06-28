@@ -25,17 +25,10 @@ const { height } = width * 0.6;
 
 export default function HomeScreen() {
   const [ images, setImages ] = useState([]);
-  const {user, setUser, token, setToken} = useContext(userContext);
+  const { user, setUser, token, setToken } = useContext(userContext);
   const [toggleFav, setToggleFav] = useState(false);
   const { currentWeather, setCurrentWeather } = useContext(LocationContext)
-  // console.log(currentWeather) need to get the state of current weather and pass it on as a value in query params of get request
-  // const [presentWeather, setPresentWeather] = useState(null)
   
-  // const WeatherObj = {
-  //   summer: above 24
-  //   winter: below 12
-  //   fall: 12-24 degrees
-  // }
 
 
   //useEffect for images
@@ -44,9 +37,9 @@ export default function HomeScreen() {
       return
     }
     async function getImagesFromBackend() {
-      console.log("getting images take 1----");
+      // console.log("getting images take 1----");
       const ip = await currentIP();
-      console.log("currentWeather is ----",currentWeather);
+
       try {
           if(!currentWeather){
             return;
@@ -61,17 +54,7 @@ export default function HomeScreen() {
           });
           
           // console.log("result from BE for weather----", result.data);
-
-          // result.data.clothesAsPerWeather.forEach(element => {
-          //   console.log(element.type);
-          // });
-
           setImages(result.data.clothesAsPerWeather)
-          // setImagesBoxTop(result.data.clothesTopBox);
-          // setImagesBoxBottom(result.data.clothesBottomBox);
-          // setFavorites(result.data.favorites);
-     
-
         
       } catch (error) {
         console.log("error in homescreen:", error);
@@ -122,7 +105,8 @@ export default function HomeScreen() {
             showsHorizontalScrollIndicator={false}
           >
             {
-              images.filter((item)=>item.type ==="top").map((image, index) => (
+              images.filter((item)=>item.type ==="top")
+                    .map((image, index) => (
                 <View style={styles.image} key={index}>
                   <Image
                     style={{ width: "80%", height: "80%" }}
@@ -154,7 +138,8 @@ export default function HomeScreen() {
             showsHorizontalScrollIndicator={false}
           >
             { 
-              images.filter((item)=>item.type ==="bottom").map((image, index) => (
+              images.filter((item)=>item.type ==="bottom")
+                    .map((image, index) => (
                 <View style={styles.image} key={index}>
                   <Image
                     style={{ width: "80%", height: "80%" }}
