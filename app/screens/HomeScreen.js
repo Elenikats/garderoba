@@ -64,7 +64,7 @@ export default function HomeScreen() {
       console.error("error in PUT", error.response.data);
     }
   }
-
+   console.log(imagesBoxTop);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.weather}>

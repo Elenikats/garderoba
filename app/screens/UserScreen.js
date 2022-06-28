@@ -69,7 +69,6 @@ export default function UserScreen({ navigation }) {
             <Image
               style={styles.profileImage}
               source={require("../assets/userImage.png")}
-              style={{ width: 100, height: 100 }}
             />
           </TouchableOpacity>
         </View>
@@ -82,7 +81,6 @@ export default function UserScreen({ navigation }) {
             <Image
               style={styles.editIcon}
               source={require("../assets/edit.png")}
-              style={{ width: 30, height: 30 }}
             />
           </TouchableOpacity>
         </View>
@@ -210,6 +208,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
   },
+  profileImage:{
+    width:100,
+    height:100
+  },
   nameNemail: {
     marginTop: 10,
     alignItems: "center",
@@ -296,6 +298,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+  },
+  editIcon: {
+    width: 30,
+    height:30
   },
   button: {
     width: "100%",
