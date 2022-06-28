@@ -22,7 +22,7 @@ import { userContext } from "../../contexts/userContext.js";
 export default function CreateItemScreen({ route, navigation }) {
   const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
   const { imagesBoxBottom, setImagesBoxBottom } = useContext(ImageBoxesContext);
-  const [user, setUser, token, setToken] = useContext(userContext);
+  const { user, setUser, token, setToken } = useContext(userContext);
 
   const [type, setType] = useState("");
   const [season, setSeason] = useState("");

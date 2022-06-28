@@ -26,7 +26,7 @@ const { height } = width * 0.6;
 export default function HomeScreen() {
   const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
   const { imagesBoxBottom, setImagesBoxBottom } = useContext(ImageBoxesContext);
-  const [user, setUser, token, setToken] = useContext(userContext);
+  const {user, setUser, token, setToken} = useContext(userContext);
   
 
   const [favorites, setFavorites] = useState([]);
@@ -48,16 +48,19 @@ export default function HomeScreen() {
       return
     }
     async function getImagesFromBackend() {
+      console.log("getting images take 1----");
       const ip = await currentIP();
       console.log("currentWeather is ----",currentWeather);
       try {
-          if(!currentWeather){
-            return;
-          }
+          // if(!currentWeather){
+          //   return;
+          // }
 
           const result = await axios({
             method: "get",
-            Authorization: `Bearer ${token}`,
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },            
             url: `http://${ip}:9000/cloth/home?temperature=${currentWeather}`
           });
 
@@ -76,7 +79,7 @@ export default function HomeScreen() {
   
 
   }, [currentWeather, token, toggleFav])
-};
+
 // [toggleFav, currentWeather]
   async function handleFavoriteBtn(image) {
     const ip = await currentIP();
@@ -85,7 +88,9 @@ export default function HomeScreen() {
       await axios({
         url: `http://${ip}:9000/cloth/${image._id}`,
         method: "PUT",
-        Authorization: `Bearer ${token}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },    
         data: { favorite: !image.favorite },
       });
 

@@ -9,7 +9,7 @@ import { userContext } from '../../contexts/userContext';
 
 
 export default function LoginScreen({navigation}) {
-  const [user, setUser, token, setToken] = useContext(userContext);
+  const {user, setUser, token, setToken} = useContext(userContext);
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
     
