@@ -76,12 +76,12 @@ export default function CreateItemScreen({ route, navigation }) {
         method: "POST",
       });
       // setHelper(!helper)
-      }catch (error) {
+    } catch (error) {
       console.error("error is .....", error.response.data);
     }
   };
-    return (
-      <SafeAreaView style={styles.container}>
+  return (
+    <SafeAreaView style={styles.container}>
       <View>
         <View>
           <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
@@ -117,7 +117,7 @@ export default function CreateItemScreen({ route, navigation }) {
             <Picker.Item label="casual" value="casual" />
             <Picker.Item label="formal" value="formal" />
             <Picker.Item label="work" value="work" />
-            <Picker.Item label="holiday" value="holiday" />
+            <Picker.Item label="holiday" value="home" />
           </Picker>
           {/* **************Weather********************* */}
           <Picker
@@ -163,17 +163,16 @@ export default function CreateItemScreen({ route, navigation }) {
           disabled={!type || !season || !style || !color || !weather}
           style={
             type && season && style && color && weather
-              ? globalStyles.inactiveButton
-              : globalStyles.activeButton
+              ? globalStyles.activeButton
+              : globalStyles.inactiveButton
           }
         >
           <Text style={styles.textBtn}>Save</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
-    );
-  
-};
+  );
+}
 
 const styles = StyleSheet.create({
   container: {

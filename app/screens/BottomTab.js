@@ -9,7 +9,6 @@ import UserScreen from "./UserScreen.js";
 import CreateItemScreen from "./CreateItemScreen.js";
 import * as ImagePicker from "expo-image-picker";
 
-
 const Tab = createBottomTabNavigator();
 
 export default function BottomTab({ navigation }) {
@@ -33,7 +32,7 @@ export default function BottomTab({ navigation }) {
 
   async function launchGallery() {
     try {
-      const options = { allowsMultipleSelection: true, base64: true  };
+      const options = { allowsMultipleSelection: true, base64: true };
       const data = await ImagePicker.launchImageLibraryAsync(options);
       console.log(data.base64.length);
       if (!data.cancelled) {
@@ -112,10 +111,8 @@ export default function BottomTab({ navigation }) {
             ),
           }}
         />
-       
 
-{/* children={()=><CreateItemScreen image={imageData} />} */}
-
+        {/* children={()=><CreateItemScreen image={imageData} />} */}
       </Tab.Navigator>
 
       <>
