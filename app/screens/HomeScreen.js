@@ -16,38 +16,48 @@ import WeatherAPI from "./WeatherAPI.js";
 import axios from "axios";
 import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
 import currentIP from "../utils/ip.js";
+import { userContext } from "../../contexts/userContext.js";
+//const ip = await Network.getIpAddressAsync();
 
-// const ip = await Network.getIpAddressAsync();
 const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
 
 export default function HomeScreen() {
   const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
   const { imagesBoxBottom, setImagesBoxBottom } = useContext(ImageBoxesContext);
+  const [user, setUser, token, setToken] = useContext(userContext);
+  
 
   const [favorites, setFavorites] = useState([]);
   const [toggleFav, setToggleFav] = useState(false);
 
   //useEffect for images
   useEffect(() => {
+    if (!token) {
+      return
+    }
     async function getImagesFromBackend() {
       const ip = await currentIP();
       try {
         const result = await axios({
           method: "get",
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
           url: `http://${ip}:9000/cloth/home`,
         });
 
+        
         setImagesBoxTop(result.data.clothesTopBox);
         setImagesBoxBottom(result.data.clothesBottomBox);
         setFavorites(result.data.favorites);
       } catch (error) {
-        console.log(error);
+        console.log("error in homescreen:", error);
       }
     }
 
     getImagesFromBackend();
-  }, [toggleFav]);
+  }, [toggleFav, token]);
 
   async function handleFavoriteBtn(image) {
     const ip = await currentIP();
