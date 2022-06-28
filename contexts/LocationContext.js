@@ -13,11 +13,11 @@ export default function LocationProvider(props) {
     const [ currentWeather, setCurrentWeather ] = useState(null)
     const [ weatherApiKey, setWeatherApiKey ] = useState(null);
     const {user, setUser, token, setToken} = useContext(userContext);
-    // const [ helper, setHelper ] = useState(false)
+    const [ helper, setHelper ] = useState(false)
     const [ weatherIcon, setWeatherIcon ] = useState(null);
     // const [ iconUrl, setIconUrl ] = useState(null);
     // const [iconUrl, setIconUrl ] = useState(null)
-    const value = {coordinates, setCoordinates, currentWeather, setCurrentWeather, weatherIcon };
+    const value = {coordinates, setCoordinates, currentWeather, setCurrentWeather, weatherIcon, helper };
 
     
 

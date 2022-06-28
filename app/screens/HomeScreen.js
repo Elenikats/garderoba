@@ -14,7 +14,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import PermissionLocation from "./PermissionLocation.js";
 import WeatherAPI from "./WeatherAPI.js";
 import axios from "axios";
-import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
+
 import currentIP from "../utils/ip.js";
 import { userContext } from "../../contexts/userContext.js";
 //const ip = await Network.getIpAddressAsync();
@@ -24,12 +24,8 @@ const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
 
 export default function HomeScreen() {
-  const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
-  const { imagesBoxBottom, setImagesBoxBottom } = useContext(ImageBoxesContext);
+  const [ images, setImages ] = useState([]);
   const {user, setUser, token, setToken} = useContext(userContext);
-  
-
-  const [favorites, setFavorites] = useState([]);
   const [toggleFav, setToggleFav] = useState(false);
   const { currentWeather, setCurrentWeather } = useContext(LocationContext)
   // console.log(currentWeather) need to get the state of current weather and pass it on as a value in query params of get request
@@ -52,9 +48,9 @@ export default function HomeScreen() {
       const ip = await currentIP();
       console.log("currentWeather is ----",currentWeather);
       try {
-          // if(!currentWeather){
-          //   return;
-          // }
+          if(!currentWeather){
+            return;
+          }
           console.log("token---", token);
           const result = await axios({
             method: "get",
@@ -63,10 +59,17 @@ export default function HomeScreen() {
             },            
             url: `http://${ip}:9000/cloth/home?temperature=${currentWeather}`
           });
-     
-          setImagesBoxTop(result.data.clothesTopBox);
-          setImagesBoxBottom(result.data.clothesBottomBox);
-          setFavorites(result.data.favorites);
+          
+          // console.log("result from BE for weather----", result.data);
+
+          // result.data.clothesAsPerWeather.forEach(element => {
+          //   console.log(element.type);
+          // });
+
+          setImages(result.data.clothesAsPerWeather)
+          // setImagesBoxTop(result.data.clothesTopBox);
+          // setImagesBoxBottom(result.data.clothesBottomBox);
+          // setFavorites(result.data.favorites);
      
 
         
@@ -118,8 +121,8 @@ export default function HomeScreen() {
             horizontal
             showsHorizontalScrollIndicator={false}
           >
-            {imagesBoxTop &&
-              imagesBoxTop.map((image, index) => (
+            {
+              images.filter((item)=>item.type ==="top").map((image, index) => (
                 <View style={styles.image} key={index}>
                   <Image
                     style={{ width: "80%", height: "80%" }}
@@ -127,7 +130,7 @@ export default function HomeScreen() {
                   />
 
                   <TouchableOpacity
-                    style={styles.boxfavorites}
+                    style={styles.boxFavorites}
                     onPress={() => {
                       handleFavoriteBtn(image);
                     }}
@@ -150,8 +153,8 @@ export default function HomeScreen() {
             horizontal
             showsHorizontalScrollIndicator={false}
           >
-            {imagesBoxBottom &&
-              imagesBoxBottom.map((image, index) => (
+            { 
+              images.filter((item)=>item.type ==="bottom").map((image, index) => (
                 <View style={styles.image} key={index}>
                   <Image
                     style={{ width: "80%", height: "80%" }}
