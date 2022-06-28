@@ -14,6 +14,7 @@ import ColorPalette from "react-native-color-palette";
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
 import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
+import { LocationContext } from "../../contexts/LocationContext.js";
 //import * as Network from "expo-network";
 import currentIP from "../utils/ip.js";
 import { userContext } from "../../contexts/userContext.js";
@@ -21,13 +22,14 @@ import { userContext } from "../../contexts/userContext.js";
 export default function CreateItemScreen({ route, navigation }) {
   const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
   const { imagesBoxBottom, setImagesBoxBottom } = useContext(ImageBoxesContext);
-  const [user, setUser, token, setToken] = useContext(userContext);
+  const { user, setUser, token, setToken } = useContext(userContext);
 
   const [type, setType] = useState("");
   const [season, setSeason] = useState("");
   const [style, setStyle] = useState("");
   const [color, setColor] = useState("");
   const [weather, setWeather] = useState("");
+
   // const [imageFile, setImageFile] = useState(null)
 
   const { image } = route.params;
@@ -73,19 +75,19 @@ export default function CreateItemScreen({ route, navigation }) {
         data: payload,
         method: "POST",
       });
-
-      if (response.data.type == "top") {
-        setImagesBoxTop(response.data.clothTopBox);
-      } else {
-        setImagesBoxBottom(response.data.clothBottomBox);
-      }
-    } catch (error) {
+      // setHelper(!helper)
+      }catch (error) {
       console.error("error is .....", error.response.data);
     }
   };
+<<<<<<< HEAD
 
   return (
     <SafeAreaView style={styles.container}>
+=======
+    return (
+      <SafeAreaView style={styles.container}>
+>>>>>>> 381b3949d4ca7f25ec8e59f7ac247b24b3ffc705
       <View>
         <View>
           <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
@@ -175,8 +177,14 @@ export default function CreateItemScreen({ route, navigation }) {
         </TouchableOpacity>
       </View>
     </SafeAreaView>
+<<<<<<< HEAD
   );
 }
+=======
+    );
+  
+};
+>>>>>>> 381b3949d4ca7f25ec8e59f7ac247b24b3ffc705
 
 const styles = StyleSheet.create({
   container: {

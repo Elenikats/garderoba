@@ -50,7 +50,7 @@ export default function UserProvider(props) {
         }
     }, [token]);
 
-    const value = [user, setUser, token, setToken];
+    const value = {user, setUser, token, setToken};
 
     return (
         <userContext.Provider value={value}>{props.children}</userContext.Provider>
