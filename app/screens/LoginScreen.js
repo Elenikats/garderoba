@@ -31,10 +31,10 @@ export default function LoginScreen({navigation}) {
           onPress={() => {console.log("pressed google button")}}
           style={styles.googleButton}
         >
-          <Image 
+          {/* <Image 
             style={styles.googleLogo}
             source={require("")}  
-          /> 
+          />  */}
           <Text style={[globalStyles.text, {color: "blue"}]}>Log in with Google</Text>
         </TouchableOpacity>
        

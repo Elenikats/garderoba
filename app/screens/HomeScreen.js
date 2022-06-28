@@ -14,7 +14,7 @@ import PermissionLocation from "./PermissionLocation.js";
 import WeatherAPI from "./WeatherAPI.js";
 import axios from "axios";
 import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
-import currentIP from "../utils/Ip.js";
+import currentIP from "../utils/ip.js";
 
 
 const { width } = Dimensions.get("window");
