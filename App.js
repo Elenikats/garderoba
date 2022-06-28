@@ -36,7 +36,7 @@ export default function App() {
               <Stack.Screen name="User" component={UserScreen} />
               <Stack.Screen name="UploadForm" component={CreateItemScreen} />
               <Stack.Screen name="Main" component={BottomTab} />
-            <Stack.Screen name="EndScreen" component={EndScreen} />
+              <Stack.Screen name="EndScreen" component={EndScreen} />
             </Stack.Navigator>
           </NavigationContainer>
         </ImageBoxesProvider>

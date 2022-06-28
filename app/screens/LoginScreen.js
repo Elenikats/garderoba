@@ -28,19 +28,20 @@ export default function LoginScreen({navigation}) {
 
     const url = `http://${ip}:9000/users/login`;
     try {
-      const res = await axios.post(url, { email, password });
+      const res = await axios.post(url, {
+        email: "angela.h@web.de",
+        password: "123456",
+      });
       console.log("res data:", res.data);
       setUser(res.data.username);
       setToken(res.data.token);
       navigation.navigate("Main");
-     
     } catch (error) {
       console.log(error);
       alert(error?.response?.data?.error || "Login failed, try again");
     }
+  };
 
-  }
-  
   return (
     <SafeAreaView>
       <ScrollView>
