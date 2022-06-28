@@ -13,8 +13,8 @@ export default function UpdateUserScreen(navigation) {
       return (
         <View>
         <Text> You've made it to settings</Text>
-        <TextInput>Input</TextInput>
-        <TextInput>Input</TextInput>
+        <TextInput>Username</TextInput>
+        <TextInput>Email</TextInput>
         <TextInput>Input</TextInput>
         <TextInput>Input</TextInput>
         </View>
