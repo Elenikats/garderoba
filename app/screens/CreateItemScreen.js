@@ -76,18 +76,12 @@ export default function CreateItemScreen({ route, navigation }) {
         method: "POST",
       });
       // setHelper(!helper)
-      }catch (error) {
+    } catch (error) {
       console.error("error is .....", error.response.data);
     }
   };
-<<<<<<< HEAD
-
   return (
     <SafeAreaView style={styles.container}>
-=======
-    return (
-      <SafeAreaView style={styles.container}>
->>>>>>> 381b3949d4ca7f25ec8e59f7ac247b24b3ffc705
       <View>
         <View>
           <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
@@ -177,14 +171,8 @@ export default function CreateItemScreen({ route, navigation }) {
         </TouchableOpacity>
       </View>
     </SafeAreaView>
-<<<<<<< HEAD
   );
 }
-=======
-    );
-  
-};
->>>>>>> 381b3949d4ca7f25ec8e59f7ac247b24b3ffc705
 
 const styles = StyleSheet.create({
   container: {
