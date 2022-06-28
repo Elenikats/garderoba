@@ -16,10 +16,12 @@ import * as FileSystem from "expo-file-system";
 import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
 //import * as Network from "expo-network";
 import currentIP from "../utils/ip.js";
+import { userContext } from "../../contexts/userContext.js";
 
 export default function CreateItemScreen({ route, navigation }) {
   const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
   const { imagesBoxBottom, setImagesBoxBottom } = useContext(ImageBoxesContext);
+  const [user, setUser, token, setToken] = useContext(userContext);
 
   const [type, setType] = useState("");
   const [season, setSeason] = useState("");
@@ -65,7 +67,7 @@ export default function CreateItemScreen({ route, navigation }) {
       const response = await axios({
         url: `http://${ip}:9000/upload`,
         headers: {
-          Authorization: "",
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
         data: payload,
