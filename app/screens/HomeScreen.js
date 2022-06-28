@@ -55,7 +55,7 @@ export default function HomeScreen() {
           // if(!currentWeather){
           //   return;
           // }
-
+          console.log("token---", token);
           const result = await axios({
             method: "get",
             headers: {
@@ -63,7 +63,7 @@ export default function HomeScreen() {
             },            
             url: `http://${ip}:9000/cloth/home?temperature=${currentWeather}`
           });
-
+     
           setImagesBoxTop(result.data.clothesTopBox);
           setImagesBoxBottom(result.data.clothesBottomBox);
           setFavorites(result.data.favorites);

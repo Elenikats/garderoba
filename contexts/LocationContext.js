@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { useEffect, useState } from "react";
 import currentIP from "../app/utils/ip.js";
 import axios from "axios";
+import { userContext } from './userContext.js';
+
 
 export const LocationContext = React.createContext();
 
@@ -10,6 +12,7 @@ export default function LocationProvider(props) {
     const [coordinates, setCoordinates] = useState({latitude: "", longitude: "", loading: true});
     const [ currentWeather, setCurrentWeather ] = useState(null)
     const [ weatherApiKey, setWeatherApiKey ] = useState(null);
+    const {user, setUser, token, setToken} = useContext(userContext);
     // const [ helper, setHelper ] = useState(false)
     const [ weatherIcon, setWeatherIcon ] = useState(null);
     // const [ iconUrl, setIconUrl ] = useState(null);
@@ -23,7 +26,9 @@ export default function LocationProvider(props) {
     // if (coordinates.loading) {
     //   return
     // }
-
+    if(!token){
+      return;
+    }
     // console.log("coordinates.loading", coordinates.loading);
 
     const getWeather = async () => {
@@ -39,9 +44,12 @@ export default function LocationProvider(props) {
         // console.log("hi my ip is : ", ip);
         const result = await axios({
           method: "get",
+          // headers:{
+          //   Authorization: `Bearer ${token}`
+          // },
           url: `http://${ip}:9000/weatherApiKey`,
         });
-        // console.log(99999999, result.data)
+        console.log(99999999, result.data)
 
         setWeatherApiKey(result.data);
         
@@ -62,12 +70,12 @@ export default function LocationProvider(props) {
           setWeatherIcon(response.weather[0].icon);
         }
       } catch (error) {
-        console.log(error);
+        console.log("location context weather", error);
       }
     };
-
+    console.log("coords---", coordinates, weatherApiKey);
     getWeather();
-  }, [coordinates, weatherApiKey ]); //
+  }, [coordinates, weatherApiKey, token ]); //
 
 
     return (
