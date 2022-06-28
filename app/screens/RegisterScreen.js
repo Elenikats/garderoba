@@ -4,6 +4,7 @@ import CheckBox from "expo-checkbox";
 import { globalStyles, colors } from '../styles/globalStyles';
 import Icon from "react-native-vector-icons/Ionicons";
 //import * as Network from "expo-network";
+import { Link } from '@react-navigation/native';
 import currentIP from "../utils/ip.js";
 import { userContext } from '../../contexts/userContext';
 
@@ -176,6 +177,9 @@ export default function RegisterScreen({navigation}) {
             style={agree ? styles.registerButton : styles.unregisterButton}>
               <Text style={styles.textBtn}>Sign up</Text>
           </TouchableOpacity >
+
+          <Text>You have already an account?</Text>
+          <Link to={{screen: 'Login'}} style={{color: "blue"} }>Login</Link>
           
         </View>
       </ScrollView>
@@ -261,10 +265,10 @@ const styles = StyleSheet.create({
   pswIcon: {
     position: "absolute",
     alignSelf: "flex-end",
-    bottom: 10,
-    right: 10,
+    bottom: 14,
+    right: 12,
     color: "gray",
-    fontSize: 17
+    fontSize: 18
   },
   repeatPswIcon: {
     position: "absolute",
