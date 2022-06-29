@@ -14,7 +14,6 @@ export default function LoginScreen({navigation}) {
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
   const [hidePassword, setHidePassword] = useState(true)
-  const [errors, setErrors] = useState([])
 
   const handleOpenEye = () => {
     setHidePassword(!hidePassword)
@@ -29,8 +28,8 @@ export default function LoginScreen({navigation}) {
     const url = `http://${ip}:9000/users/login`;
     try {
       const res = await axios.post(url, {
-        email: "angela.h@web.de",
-        password: "123456",
+        email: "cabbage@gmail.com",
+        password: "cabbage",
       });
       console.log("res data:", res.data);
       setUser(res.data.username);
