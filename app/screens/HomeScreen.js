@@ -51,7 +51,7 @@ export default function HomeScreen() {
           });
           
           setImages((result.data.clothesAsPerWeather).reverse())
-          setRefresh(!refresh)
+          // setRefresh(!refresh)
         
       } catch (error) {
         console.log("error in homescreen:", error);

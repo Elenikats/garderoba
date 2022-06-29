@@ -22,9 +22,11 @@ export default function LoginScreen({navigation}) {
   const handleLogin = async () => {
 
     // login emails to use:
-    // { email: "baba123@gmail.com", password: "monika" }
+    // { email: "baba123@gmail.com", password: "kanmio123" }
     // { email: "angela.h@web.de", password: "123456" }
-    // {email: "cabbage@gmail.com",password: "cabbage",}
+    // {email: "cabbage@gmail.com",password: "cabbage"}
+  // {email: "testuser1@example.com",password: "random"}
+    
    
     const ip = await currentIP()
 
@@ -33,7 +35,10 @@ export default function LoginScreen({navigation}) {
       const res = await axios.post(url, {
         // email,        
         // password,
-        email: "baba123@gmail.com", password: "monika" 
+        // email: "baba123@gmail.com", 
+        // password: "kanimo123" 
+        email: "testuser1@example.com",
+        password: "random"
       });
 
       setUserObj(res.data)

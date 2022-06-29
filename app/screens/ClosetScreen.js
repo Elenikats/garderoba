@@ -58,7 +58,7 @@ export default function ClosetScreen() {
           url: `http://${ip}:9000/cloth/closet`,
         });
         setCloset(result.data);
-        setRefresh(!refresh)
+        // setRefresh(!refresh)
       } catch (error) {
         console.log("error in receiving images from BE",error);
       }
