@@ -10,7 +10,7 @@ import { userContext } from '../../contexts/userContext';
 
 
 export default function LoginScreen({navigation}) {
-  const {user, setUser, token, setToken} = useContext(userContext);
+  const {user, setUser, token, setToken, userObj, setUserObj} = useContext(userContext);
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
   const [hidePassword, setHidePassword] = useState(true)
@@ -22,6 +22,10 @@ export default function LoginScreen({navigation}) {
     
 
   const handleLogin = async () => {
+
+    // login emails to use:
+    // { email: "baba123@gmail.com", password: "monika" }
+    // { email: "angela.h@web.de", password: "123456" }
    
     const ip = await currentIP()
     console.log("ip:", ip);
@@ -33,6 +37,7 @@ export default function LoginScreen({navigation}) {
         password
       });
       console.log("res data:", res.data);
+      setUserObj(res.data)
       setUser(res.data.username);
       setToken(res.data.token);
       navigation.navigate("Main");

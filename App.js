@@ -3,12 +3,10 @@ import LoginScreen from "./app/screens/LoginScreen.js";
 import RegisterScreen from "./app/screens/RegisterScreen.js";
 import { useFonts } from "expo-font";
 import * as React from "react";
-import { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import BottomTab from "./app/screens/BottomTab.js";
 import CreateItemScreen from "./app/screens/CreateItemScreen.js";
 import LocationProvider from "./contexts/LocationContext.js";
-import ImageBoxesProvider from "./contexts/ImageBoxesContext.js";
 import UserScreen from "./app/screens/UserScreen.js";
 import EndScreen from "./app/screens/EndScreen.js";
 import UserProvider from "./contexts/userContext.js";
@@ -28,7 +26,7 @@ export default function App() {
   return (
     <UserProvider>
       <LocationProvider>
-        <ImageBoxesProvider>
+        
           <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
               <Stack.Screen name="Login" component={LoginScreen} />
@@ -39,7 +37,6 @@ export default function App() {
               <Stack.Screen name="EndScreen" component={EndScreen} />
             </Stack.Navigator>
           </NavigationContainer>
-        </ImageBoxesProvider>
       </LocationProvider>
     </UserProvider>
   );

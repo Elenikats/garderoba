@@ -14,7 +14,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import PermissionLocation from "./PermissionLocation.js";
 import WeatherAPI from "./WeatherAPI.js";
 import axios from "axios";
-import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
+
 import currentIP from "../utils/ip.js";
 import { userContext } from "../../contexts/userContext.js";
 //const ip = await Network.getIpAddressAsync();
@@ -24,22 +24,11 @@ const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
 
 export default function HomeScreen() {
-  const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
-  const { imagesBoxBottom, setImagesBoxBottom } = useContext(ImageBoxesContext);
-  const {user, setUser, token, setToken} = useContext(userContext);
-  
-
-  const [favorites, setFavorites] = useState([]);
+  const [ images, setImages ] = useState([]);
+  const { user, setUser, token, setToken } = useContext(userContext);
   const [toggleFav, setToggleFav] = useState(false);
   const { currentWeather, setCurrentWeather } = useContext(LocationContext)
-  // console.log(currentWeather) need to get the state of current weather and pass it on as a value in query params of get request
-  // const [presentWeather, setPresentWeather] = useState(null)
   
-  // const WeatherObj = {
-  //   summer: above 24
-  //   winter: below 12
-  //   fall: 12-24 degrees
-  // }
 
 
   //useEffect for images
@@ -48,13 +37,13 @@ export default function HomeScreen() {
       return
     }
     async function getImagesFromBackend() {
-      console.log("getting images take 1----");
+      // console.log("getting images take 1----");
       const ip = await currentIP();
-      console.log("currentWeather is ----",currentWeather);
+
       try {
-          // if(!currentWeather){
-          //   return;
-          // }
+          if(!currentWeather){
+            return;
+          }
           console.log("token---", token);
           const result = await axios({
             method: "get",
@@ -63,12 +52,9 @@ export default function HomeScreen() {
             },            
             url: `http://${ip}:9000/cloth/home?temperature=${currentWeather}`
           });
-     
-          setImagesBoxTop(result.data.clothesTopBox);
-          setImagesBoxBottom(result.data.clothesBottomBox);
-          setFavorites(result.data.favorites);
-     
-
+          
+          // console.log("result from BE for weather----", result.data);
+          setImages(result.data.clothesAsPerWeather)
         
       } catch (error) {
         console.log("error in homescreen:", error);
@@ -118,8 +104,9 @@ export default function HomeScreen() {
             horizontal
             showsHorizontalScrollIndicator={false}
           >
-            {imagesBoxTop &&
-              imagesBoxTop.map((image, index) => (
+            {
+              images.filter((item)=>item.type ==="top")
+                    .map((image, index) => (
                 <View style={styles.image} key={index}>
                   <Image
                     style={{ width: "80%", height: "80%" }}
@@ -150,8 +137,9 @@ export default function HomeScreen() {
             horizontal
             showsHorizontalScrollIndicator={false}
           >
-            {imagesBoxBottom &&
-              imagesBoxBottom.map((image, index) => (
+            { 
+              images.filter((item)=>item.type ==="bottom")
+                    .map((image, index) => (
                 <View style={styles.image} key={index}>
                   <Image
                     style={{ width: "80%", height: "80%" }}

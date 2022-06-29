@@ -87,7 +87,7 @@ export default function ClosetScreen() {
   };
   const selectedFilter = clothFilterOpt.filter((item) => item.isChecked);
 
-  // //remove filter:
+  // //remove filter: --- take note
   // async function handleFilterRemove(id) {
   //   const ip = await currentIP();
 
