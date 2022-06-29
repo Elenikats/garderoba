@@ -9,7 +9,7 @@ import { userContext } from '../../contexts/userContext';
 
 
 export default function LoginScreen({navigation}) {
-  const {user, setUser, token, setToken} = useContext(userContext);
+  const {user, setUser, token, setToken, setUserEmail, currentUserId, setCurrentUserId} = useContext(userContext);
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
     
@@ -26,6 +26,9 @@ export default function LoginScreen({navigation}) {
       console.log("res data:", res.data);
       setUser(res.data.username);
       setToken(res.data.token);
+      setUserEmail(res.data.email)
+      setCurrentUserId(res.data._id)
+
       navigation.navigate("Main");
      
     } catch (error) {

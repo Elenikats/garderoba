@@ -8,7 +8,7 @@ import currentIP from "../utils/ip.js";
 import { userContext } from '../../contexts/userContext';
 
 export default function RegisterScreen({navigation}) {
-  const {user, setUser, token, setToken} = useContext(userContext);
+  const {user, setUser, token, setToken, setUserEmail} = useContext(userContext);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -57,6 +57,7 @@ export default function RegisterScreen({navigation}) {
         }
         setUser(result.username);
         setToken(result.token);
+        setUserEmail(result.email)
 
         navigation.navigate('Main')
         

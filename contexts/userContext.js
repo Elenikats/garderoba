@@ -5,14 +5,21 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export const userContext = React.createContext();
 let userFromStorage;
 let userDefault;
+let userIdDefault;
+let userIdFromStorage;
 let tokenFromStorage;
 let tokenDefault;
+let emailDefault;
+let emailFromStorage
 
 // get data
 const getDataFromAsyncStorage = async () => {
      userFromStorage = await AsyncStorage.getItem("user");
      userDefault = userFromStorage ? JSON.parse(userFromStorage) : null;
-
+     userIdFromStorage = await AsyncStorage.getItem("userId");
+     userIdDefault = userIdFromStorage ? JSON.parse(userIdFromStorage) : null;
+     emailFromStorage = await AsyncStorage.getItem("email");
+     emailDefault = emailFromStorage ? JSON.parse(emailFromStorage) : null;
      tokenFromStorage = await AsyncStorage.getItem("token");
      tokenDefault = tokenFromStorage ? tokenFromStorage : null;
 }
@@ -25,8 +32,11 @@ export default function UserProvider(props) {
 
     const [user, setUser] = useState(userDefault);
     const [token, setToken] = useState(tokenDefault);
+    const [userEmail, setUserEmail] = useState(emailDefault)
+    const [currentUserId, setCurrentUserId] = useState(userIdDefault)
 
     console.log("token",token)
+    console.log(user);
 
 
     // this stores the login to AsyncStorage in JSON format. The useEffect will update when [.. ] changes. WE SEND DATA
@@ -39,7 +49,15 @@ export default function UserProvider(props) {
              }
         }
     }, [user]);
-
+    useEffect( () => {
+        const setUserEmail = async () => {
+            if (userEmail) {
+                await AsyncStorage.setItem("userEmail", userEmail);
+            } else {
+                await AsyncStorage.removeItem("userEmail");
+            }
+        }
+    }, [userEmail]);
     useEffect( () => {
         const setToken = async () => {
             if (token) {
@@ -50,7 +68,7 @@ export default function UserProvider(props) {
         }
     }, [token]);
 
-    const value = {user, setUser, token, setToken};
+    const value = {user, setUser, token, setToken, userEmail, setUserEmail, currentUserId, setCurrentUserId};
 
     return (
         <userContext.Provider value={value}>{props.children}</userContext.Provider>
