@@ -17,6 +17,7 @@ export default function LocationProvider(props) {
     const [ weatherIcon, setWeatherIcon ] = useState(null);
     // const [ iconUrl, setIconUrl ] = useState(null);
     // const [iconUrl, setIconUrl ] = useState(null)
+    
     const value = {coordinates, setCoordinates, currentWeather, setCurrentWeather, weatherIcon, helper };
 
     
@@ -28,12 +29,9 @@ export default function LocationProvider(props) {
       return;
     }
     const getWeather = async () => {
-      // console.log("122464r9689");
-      // console.log("ApiKey1:", weatherApiKey);
-      // console.log("curr Weather is 1----",currentWeather);
-      // calling the weather API key from backend
+     
       try {
-        // const ip = await Network.getIpAddressAsync();
+
         const ip = await currentIP()
        
         const result = await axios({
@@ -43,7 +41,7 @@ export default function LocationProvider(props) {
           // }, -- might need it later?
           url: `http://${ip}:9000/weatherApiKey`,
         });
-        console.log(99999999, result.data)
+
 
         setWeatherApiKey(result.data);
         //getting the current weather
@@ -58,10 +56,10 @@ export default function LocationProvider(props) {
           setWeatherIcon(response.weather[0].icon);
         }
       } catch (error) {
-        console.log("location context weather", error);
+        console.log("error in location context weather", error);
       }
     };
-    console.log("coords---", coordinates, weatherApiKey);
+
     getWeather();
   }, [coordinates, weatherApiKey, token ]); 
 
