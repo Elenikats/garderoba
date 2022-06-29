@@ -43,7 +43,7 @@ export default function LocationProvider(props) {
           // }, -- might need it later?
           url: `http://${ip}:9000/weatherApiKey`,
         });
-        console.log(99999999, result.data)
+ 
 
         setWeatherApiKey(result.data);
         //getting the current weather

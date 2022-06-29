@@ -11,7 +11,7 @@ let tokenDefault;
 // get data
 const getDataFromAsyncStorage = async () => {
      userFromStorage = await AsyncStorage.getItem("user");
-     console.log("async storage", AsyncStorage);
+  
      userDefault = userFromStorage ? JSON.parse(userFromStorage) : null;
 
      tokenFromStorage = await AsyncStorage.getItem("token");
