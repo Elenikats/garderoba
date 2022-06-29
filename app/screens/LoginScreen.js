@@ -14,7 +14,6 @@ export default function LoginScreen({navigation}) {
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
   const [hidePassword, setHidePassword] = useState(true)
-  const [errors, setErrors] = useState([])
 
   const handleOpenEye = () => {
     setHidePassword(!hidePassword)
@@ -25,14 +24,15 @@ export default function LoginScreen({navigation}) {
     // login emails to use:
     // { email: "baba123@gmail.com", password: "monika" }
     // { email: "angela.h@web.de", password: "123456" }
+    // {email: "cabbage@gmail.com",password: "cabbage",}
    
     const ip = await currentIP()
 
     const url = `http://${ip}:9000/users/login`;
     try {
       const res = await axios.post(url, {
-        email: "baba123@gmail.com",        
-        password: "monika",
+        email,        
+        password,
       });
 
       setUserObj(res.data)
@@ -78,7 +78,7 @@ export default function LoginScreen({navigation}) {
         placeholder='Enter email'
         autoComplete="off"
         onChangeText={(email) => {
-          console.log(email)
+ 
           setEmail(email)
         }}
         style={styles.textInput}
