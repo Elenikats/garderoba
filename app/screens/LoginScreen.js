@@ -20,7 +20,6 @@ export default function LoginScreen({navigation}) {
     setHidePassword(!hidePassword)
   }
     
-
   const handleLogin = async () => {
 
     // login emails to use:
@@ -28,18 +27,20 @@ export default function LoginScreen({navigation}) {
     // { email: "angela.h@web.de", password: "123456" }
    
     const ip = await currentIP()
-    console.log("ip:", ip);
 
     const url = `http://${ip}:9000/users/login`;
     try {
-      const res = await axios.post(url, { email: "baba123@gmail.com", password: "monika" });
-      console.log("res data:", res.data);
+      const res = await axios.post(url, {
+        email: "baba123@gmail.com",        
+        password: "monika",
+      });
+
       setUserObj(res.data)
       setUser(res.data.username);
       setToken(res.data.token);
       navigation.navigate("Main");
     } catch (error) {
-      console.log(error);
+      console.log("error in login", error);
       alert(error?.response?.data?.error || "Login failed, try again");
     }
   };

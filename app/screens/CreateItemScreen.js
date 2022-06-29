@@ -7,20 +7,20 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
-import Icon from "react-native-vector-icons/Fontisto";
 import { Picker } from "@react-native-picker/picker";
 import { globalStyles, colors } from "../styles/globalStyles.js";
 import ColorPalette from "react-native-color-palette";
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
-//import * as Network from "expo-network";
 import currentIP from "../utils/ip.js";
 import { userContext } from "../../contexts/userContext.js";
+//import * as Network from "expo-network";
+// import Icon from "react-native-vector-icons/Fontisto";
+
 
 export default function CreateItemScreen({ route, navigation }) {
 
-  const { user, setUser, token, setToken, userObj } = useContext(userContext);
-
+  const { user, token, userObj } = useContext(userContext);
   const [type, setType] = useState("");
   const [season, setSeason] = useState("");
   const [style, setStyle] = useState("");
@@ -29,9 +29,9 @@ export default function CreateItemScreen({ route, navigation }) {
 
   const { image } = route.params;
 
-  console.log("user id is", user);
+  // console.log("user id is", user);
+  
   const readImage = async () => {
-    console.log("image inside readImage is---", image);
     const imageAsString = await FileSystem.readAsStringAsync(image, {
       encoding: FileSystem.EncodingType.Base64,
     });
@@ -41,14 +41,11 @@ export default function CreateItemScreen({ route, navigation }) {
   };
 
   const handleItemSave = async (e) => {
-    console.log("***********wowwwwooowwwooooooo***************");
     e.preventDefault();
     navigation.navigate("Main");
 
-    // console.log(imagesBoxTop);
-
     const readImageData = await readImage();
-    // add userId in the payload
+
     const payload = {
       type,
       season,
@@ -74,7 +71,7 @@ export default function CreateItemScreen({ route, navigation }) {
       });
       // setHelper(!helper)
     } catch (error) {
-      console.error("error is .....", error.response.data);
+      console.error("error in POST to upload an item", error.response.data);
     }
   };
   return (

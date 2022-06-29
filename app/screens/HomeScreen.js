@@ -14,14 +14,14 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import PermissionLocation from "./PermissionLocation.js";
 import WeatherAPI from "./WeatherAPI.js";
 import axios from "axios";
-
 import currentIP from "../utils/ip.js";
 import { userContext } from "../../contexts/userContext.js";
-//const ip = await Network.getIpAddressAsync();
 import LocationProvider, { LocationContext } from "../../contexts/LocationContext.js";
+//const ip = await Network.getIpAddressAsync();
 
 const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
+
 
 export default function HomeScreen() {
   const [ images, setImages ] = useState([]);
@@ -29,22 +29,18 @@ export default function HomeScreen() {
   const [toggleFav, setToggleFav] = useState(false);
   const { currentWeather, setCurrentWeather } = useContext(LocationContext)
   
-
-
   //useEffect for images
   useEffect(() => {
     if (!token) {
       return
     }
     async function getImagesFromBackend() {
-      // console.log("getting images take 1----");
       const ip = await currentIP();
 
       try {
           if(!currentWeather){
             return;
           }
-          console.log("token---", token);
           const result = await axios({
             method: "get",
             headers: {
@@ -53,7 +49,6 @@ export default function HomeScreen() {
             url: `http://${ip}:9000/cloth/home?temperature=${currentWeather}`
           });
           
-          // console.log("result from BE for weather----", result.data);
           setImages(result.data.clothesAsPerWeather)
         
       } catch (error) {
@@ -66,7 +61,6 @@ export default function HomeScreen() {
 
   }, [currentWeather, token, toggleFav])
 
-// [toggleFav, currentWeather]
   async function handleFavoriteBtn(image) {
     const ip = await currentIP();
 
