@@ -59,6 +59,7 @@ export default function CreateItemScreen({ route, navigation }) {
       style,
       color,
       weather,
+      user,
       image: readImageData,
     };
 
