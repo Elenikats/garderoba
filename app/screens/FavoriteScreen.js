@@ -3,10 +3,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { userContext } from "../../contexts/userContext";
 import currentIP from "../utils/ip.js";
 import axios from "axios";
+import { RefreshContext } from "../../contexts/refreshContext";
 
 export default function FavoriteScreen() {
   const { token } = useContext(userContext);
   const [fav, setFav] = useState(null);
+  const {refresh, setRefresh} = useContext(RefreshContext)
 
   useEffect(() => {
     async function getImagesFromBackend() {
@@ -29,13 +31,16 @@ export default function FavoriteScreen() {
     }
 
     getImagesFromBackend();
-  }, []);
+  }, [refresh]);
   
   return (
     <SafeAreaView>
       <View style={styles.outerCont}></View>
       <ScrollView>
         <View style={styles.cont}>
+        {fav && <View style={styles.clothItem}>
+                    <Text>Folder</Text>
+                </View>}
         {fav &&
             fav.map((image, index) => (
               <View style={styles.clothItem} key={index}>

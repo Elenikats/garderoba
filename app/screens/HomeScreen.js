@@ -19,6 +19,7 @@ import currentIP from "../utils/ip.js";
 import { userContext } from "../../contexts/userContext.js";
 //const ip = await Network.getIpAddressAsync();
 import LocationProvider, { LocationContext } from "../../contexts/LocationContext.js";
+import { RefreshContext } from "../../contexts/refreshContext.js";
 
 const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
@@ -27,11 +28,10 @@ export default function HomeScreen() {
   const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
   const { imagesBoxBottom, setImagesBoxBottom } = useContext(ImageBoxesContext);
   const {user, setUser, token, setToken} = useContext(userContext);
-  
-
   const [favorites, setFavorites] = useState([]);
   const [toggleFav, setToggleFav] = useState(false);
   const { currentWeather, setCurrentWeather } = useContext(LocationContext)
+  const {refresh, setRefresh} = useContext(RefreshContext)
   // console.log(currentWeather) need to get the state of current weather and pass it on as a value in query params of get request
   // const [presentWeather, setPresentWeather] = useState(null)
   
@@ -78,7 +78,7 @@ export default function HomeScreen() {
     getImagesFromBackend();
   
 
-  }, [currentWeather, token, toggleFav])
+  }, [currentWeather, token, toggleFav, refresh])
 
 // [toggleFav, currentWeather]
   async function handleFavoriteBtn(image) {

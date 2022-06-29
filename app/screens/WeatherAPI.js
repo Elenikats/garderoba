@@ -90,6 +90,8 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     height: "100%",
     backgroundColor: "lightblue",
+    position: "relative",
+    top: 20
   },
   weatherText: {
     fontWeight: "bold",

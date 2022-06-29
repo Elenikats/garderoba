@@ -12,6 +12,7 @@ import ImageBoxesProvider from "./contexts/ImageBoxesContext.js";
 import UserScreen from "./app/screens/UserScreen.js";
 import EndScreen from "./app/screens/EndScreen.js";
 import UserProvider from "./contexts/userContext.js";
+import  RefreshProvider  from "./contexts/refreshContext.js";
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,7 @@ export default function App() {
   }
 
   return (
+    <RefreshProvider>
     <UserProvider>
       <LocationProvider>
         <ImageBoxesProvider>
@@ -42,5 +44,6 @@ export default function App() {
         </ImageBoxesProvider>
       </LocationProvider>
     </UserProvider>
+    </RefreshProvider>
   );
 }

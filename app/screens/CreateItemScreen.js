@@ -18,11 +18,13 @@ import { LocationContext } from "../../contexts/LocationContext.js";
 //import * as Network from "expo-network";
 import currentIP from "../utils/ip.js";
 import { userContext } from "../../contexts/userContext.js";
+import { RefreshContext } from "../../contexts/refreshContext.js";
 
 export default function CreateItemScreen({ route, navigation }) {
   const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
   const { imagesBoxBottom, setImagesBoxBottom } = useContext(ImageBoxesContext);
   const { user, setUser, token, setToken } = useContext(userContext);
+  const {refresh, setRefresh} = useContext(RefreshContext)
 
   const [type, setType] = useState("");
   const [season, setSeason] = useState("");
@@ -65,6 +67,7 @@ export default function CreateItemScreen({ route, navigation }) {
     // *********************** AXIOS ******************************+
     //const ip = await Network.getIpAddressAsync();
     const ip = await currentIP();
+
     try {
       const response = await axios({
         url: `http://${ip}:9000/upload`,
@@ -76,6 +79,10 @@ export default function CreateItemScreen({ route, navigation }) {
         method: "POST",
       });
       // setHelper(!helper)
+      if (response.data) {
+        setRefresh(!refresh)
+      } 
+      
     } catch (error) {
       console.error("error is .....", error.response.data);
     }
