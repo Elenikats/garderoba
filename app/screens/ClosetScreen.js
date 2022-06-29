@@ -58,6 +58,7 @@ export default function ClosetScreen() {
           url: `http://${ip}:9000/cloth/closet`,
         });
         setCloset(result.data);
+        setRefresh(!refresh)
       } catch (error) {
         console.log("error in receiving images from BE",error);
       }
@@ -65,7 +66,7 @@ export default function ClosetScreen() {
     }
 
     getImagesFromBackend();
-  }, []);
+  }, [refresh]);
 
   //filter button:
   function handleFilterBtn() {

@@ -50,7 +50,8 @@ export default function HomeScreen() {
             url: `http://${ip}:9000/cloth/home?temperature=${currentWeather}`
           });
           
-          setImages(result.data.clothesAsPerWeather)
+          setImages((result.data.clothesAsPerWeather).reverse())
+          setRefresh(!refresh)
         
       } catch (error) {
         console.log("error in homescreen:", error);

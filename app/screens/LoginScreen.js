@@ -31,8 +31,9 @@ export default function LoginScreen({navigation}) {
     const url = `http://${ip}:9000/users/login`;
     try {
       const res = await axios.post(url, {
-        email,        
-        password,
+        // email,        
+        // password,
+        email: "baba123@gmail.com", password: "monika" 
       });
 
       setUserObj(res.data)
@@ -78,7 +79,6 @@ export default function LoginScreen({navigation}) {
         placeholder='Enter email'
         autoComplete="off"
         onChangeText={(email) => {
- 
           setEmail(email)
         }}
         style={styles.textInput}

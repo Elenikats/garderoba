@@ -28,7 +28,6 @@ export default function App() {
     <RefreshProvider>
     <UserProvider>
       <LocationProvider>
-        
           <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
               <Stack.Screen name="Login" component={LoginScreen} />
