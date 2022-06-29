@@ -9,6 +9,18 @@ const colors = {
 };
 
 const globalStyles = StyleSheet.create({
+  logoContainer: {
+    zIndex: 5,
+    borderWidth: 1,
+    borderColor: "lightgrey",
+    backgroundColor: "#Fff",
+    shadowColor: "#black",
+    shadowOpacity: 0.5,
+    elevation: 20,
+    width: 80,
+    height: 80,
+    // borderRadius: 30,
+  },
   container: {
     flex: 1,
     alignItems: "center",

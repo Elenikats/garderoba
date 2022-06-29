@@ -42,8 +42,9 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <View style={styles.cont}>
-      <Image source={Logo} style={styles.logo} />
-
+      <View style={globalStyles.logoContainer}>
+        <Image source={require("../assets/Garderoba_medium.png")} />
+      </View>
       <TouchableOpacity
         onPress={() => {
           console.log("pressed google button");
