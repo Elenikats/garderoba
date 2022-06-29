@@ -19,7 +19,7 @@ import { userContext } from "../../contexts/userContext.js";
 
 export default function CreateItemScreen({ route, navigation }) {
 
-  const { user, setUser, token, setToken } = useContext(userContext);
+  const { user, setUser, token, setToken, userObj } = useContext(userContext);
 
   const [type, setType] = useState("");
   const [season, setSeason] = useState("");
@@ -29,6 +29,7 @@ export default function CreateItemScreen({ route, navigation }) {
 
   const { image } = route.params;
 
+  console.log("user id is", user);
   const readImage = async () => {
     console.log("image inside readImage is---", image);
     const imageAsString = await FileSystem.readAsStringAsync(image, {
@@ -47,13 +48,14 @@ export default function CreateItemScreen({ route, navigation }) {
     // console.log(imagesBoxTop);
 
     const readImageData = await readImage();
-
+    // add userId in the payload
     const payload = {
       type,
       season,
       style,
       color,
       weather,
+      user: userObj._id,
       image: readImageData,
     };
 

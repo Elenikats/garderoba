@@ -11,6 +11,7 @@ let tokenDefault;
 // get data
 const getDataFromAsyncStorage = async () => {
      userFromStorage = await AsyncStorage.getItem("user");
+     console.log("async storage", AsyncStorage);
      userDefault = userFromStorage ? JSON.parse(userFromStorage) : null;
 
      tokenFromStorage = await AsyncStorage.getItem("token");
@@ -25,6 +26,7 @@ export default function UserProvider(props) {
 
     const [user, setUser] = useState(userDefault);
     const [token, setToken] = useState(tokenDefault);
+    const [userObj, setUserObj] = useState(null)
 
     console.log("token",token)
 
@@ -50,7 +52,7 @@ export default function UserProvider(props) {
         }
     }, [token]);
 
-    const value = {user, setUser, token, setToken};
+    const value = {user, setUser, token, setToken, userObj, setUserObj};
 
     return (
         <userContext.Provider value={value}>{props.children}</userContext.Provider>
