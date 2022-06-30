@@ -9,7 +9,6 @@ import {
   ScrollView,
 } from "react-native";
 import React, { useContext, useState } from "react";
-import Logo from "../assets/Logo.png";
 import { Link } from "@react-navigation/native";
 import currentIP from "../utils/ip.js";
 import axios from "axios";
@@ -18,8 +17,17 @@ import { globalStyles, colors } from "../styles/globalStyles";
 import { userContext } from "../../contexts/userContext";
 
 export default function LoginScreen({ navigation }) {
-  const { user, setUser, token, setToken, userObj, setUserObj } =
-    useContext(userContext);
+  const {
+    user,
+    setUser,
+    token,
+    setToken,
+    setUserEmail,
+    currentUserId,
+    setCurrentUserId,
+    userObj,
+    setUserObj,
+  } = useContext(userContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
@@ -31,8 +39,10 @@ export default function LoginScreen({ navigation }) {
 
   const handleLogin = async () => {
     // login emails to use:
-    // { email: "baba123@gmail.com", password: "monika" }
+    // { email: "baba123@gmail.com", password: "kanmio123" }
     // { email: "angela.h@web.de", password: "123456" }
+    // {email: "cabbage@gmail.com",password: "cabbage"}
+    // {email: "testuser1@example.com",password: "random"}
 
     const ip = await currentIP();
 
@@ -46,6 +56,9 @@ export default function LoginScreen({ navigation }) {
       setUserObj(res.data);
       setUser(res.data.username);
       setToken(res.data.token);
+      setUserEmail(res.data.email);
+      setCurrentUserId(res.data._id);
+
       navigation.navigate("Main");
     } catch (error) {
       console.log("error in login", error);
@@ -60,6 +73,35 @@ export default function LoginScreen({ navigation }) {
           <View style={globalStyles.logoContainer}>
             <Image source={require("../assets/Garderoba_medium.png")} />
           </View>
+
+          <TouchableOpacity
+            onPress={() => {
+              console.log("pressed google button");
+            }}
+            style={styles.googleButton}
+          >
+            <Image
+              source={require("../assets/googleIcon.png")}
+              style={{ width: 20, height: 20, marginRight: 10 }}
+            />
+            <Text style={[globalStyles.text, { color: "blue" }]}>
+              Login with Google
+            </Text>
+          </TouchableOpacity>
+
+          <Text style={[globalStyles.text, { marginVertical: 30 }]}>or</Text>
+
+          {/* <Text style={styles.label}>Email</Text> */}
+          <TextInput
+            value={email}
+            autoCapitalize="none"
+            placeholder="Enter email"
+            autoComplete="off"
+            onChangeText={(email) => {
+              setEmail(email);
+            }}
+            style={styles.textInput}
+          />
 
           <TouchableOpacity
             onPress={() => {

@@ -22,7 +22,7 @@ import { userContext } from "../../contexts/userContext.js";
 import LocationProvider, {
   LocationContext,
 } from "../../contexts/LocationContext.js";
-//const ip = await Network.getIpAddressAsync();
+import { RefreshContext } from "../../contexts/refreshContext.js";
 
 const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
@@ -33,6 +33,7 @@ export default function HomeScreen() {
   const [toggleFav, setToggleFav] = useState(false);
   const { currentWeather, setCurrentWeather } = useContext(LocationContext);
   const [forecast, setForecast] = useState("");
+  const { refresh, setRefresh } = useContext(RefreshContext);
 
   //useEffect for images
   useEffect(() => {
@@ -61,7 +62,7 @@ export default function HomeScreen() {
     }
 
     getImagesFromBackend();
-  }, [currentWeather, token, toggleFav]);
+  }, [currentWeather, token, toggleFav, refresh]);
 
   async function handleFavoriteBtn(image) {
     const ip = await currentIP();

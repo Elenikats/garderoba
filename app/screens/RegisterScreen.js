@@ -9,7 +9,7 @@ import { userContext } from '../../contexts/userContext';
 //import * as Network from "expo-network";
 
 export default function RegisterScreen({navigation}) {
-  const {user, setUser, token, setToken} = useContext(userContext);
+  const {user, setUser, token, setToken, setUserEmail} = useContext(userContext);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -47,12 +47,13 @@ export default function RegisterScreen({navigation}) {
       .then(response => response.json())
       .then(result => {
         
-        console.log("result:", result)
+
         if (result.error) {
          throw new Error(result.error) 
         }
         setUser(result.username);
         setToken(result.token);
+        setUserEmail(result.email)
 
         navigation.navigate('Main')
         

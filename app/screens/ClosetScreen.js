@@ -16,6 +16,7 @@ import { globalStyles, colors } from "../styles/globalStyles.js";
 import axios from "axios";
 import { userContext } from "../../contexts/userContext.js";
 import currentIP from "../utils/ip.js";
+import { RefreshContext } from "../../contexts/refreshContext.js";
 
 const { width } = Dimensions.get("window");
 
@@ -43,7 +44,7 @@ export default function ClosetScreen() {
   const [filterModalVisible, setFilterModalVisible] = useState(false);
   const [clothFilterOpt, setClothFilterOpt] = useState(filterCheckboxes);
   const [color, setColor] = useState("");
-   // const [menuModalVisible, setMenuModalVisible] = useState(false);
+  const {refresh, setRefresh} = useContext(RefreshContext)
 
   useEffect(() => {
     async function getImagesFromBackend() {
@@ -141,6 +142,7 @@ export default function ClosetScreen() {
       });
 
       setCloset(result.data);
+      setRefresh(!refresh);
     } catch (error) {
       console.error("error in DELETE", error.response.data);
     }
