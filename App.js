@@ -26,11 +26,7 @@ export default function App() {
   }
 
   return (
-<<<<<<< HEAD
-   
-=======
     <RefreshProvider>
->>>>>>> 4ce386a3e2aa793741f3e45f2d4dd3181a447f5c
     <UserProvider>
       <LocationProvider>
           <NavigationContainer>
