@@ -78,6 +78,7 @@ export default function HomeScreen() {
       });
 
       setToggleFav(!toggleFav);
+      setRefresh(!refresh);
     } catch (error) {
       console.error("error in PUT", error.response.data);
     }

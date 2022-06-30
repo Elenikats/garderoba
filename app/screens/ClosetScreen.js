@@ -229,9 +229,9 @@ export default function ClosetScreen() {
                 <View style={styles.checkboxContainer}>
                   {clothFilterOpt &&
                     clothFilterOpt.map(
-                      (item) =>
+                      (item, index) =>
                         Object.keys(item)[1] == "style" && (
-                          <View style={styles.checkboxConWrapper} key={item.id}>
+                          <View style={styles.checkboxConWrapper} key={index}>
                             <CheckBox
                               value={item.isChecked}
                               style={styles.checkbox}
@@ -249,11 +249,11 @@ export default function ClosetScreen() {
                 <View style={styles.checkboxContainer}>
                   {clothFilterOpt &&
                     clothFilterOpt.map(
-                      (item) =>
+                      (item, index) =>
                         Object.keys(item)[1] == "color" && (
                           <View
                             style={styles.checkboxConWrapper2}
-                            key={item.id}
+                            key={index}
                           >
                             <TouchableOpacity
                               style={[

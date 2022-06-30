@@ -7,7 +7,7 @@ import { RefreshContext } from "../../contexts/refreshContext";
 
 export default function FavoriteScreen() {
   const { token } = useContext(userContext);
-  const [fav, setFav] = useState(null);
+  const [fav, setFav] = useState([]);
   const {refresh, setRefresh} = useContext(RefreshContext)
 
   useEffect(() => {
@@ -21,8 +21,10 @@ export default function FavoriteScreen() {
           },
           url: `http://${ip}:9000/cloth/favorite`,
         });
-        // console.log("result---", result.data);
+        //console.log("result---", result.data);
         setFav(result.data);
+
+
       } catch (error) {
         console.log("error in fetching favorites",error);
       }
@@ -38,11 +40,10 @@ export default function FavoriteScreen() {
       <View style={styles.outerCont}></View>
       <ScrollView>
         <View style={styles.cont}>
-        {fav && <View style={styles.clothItem}>
+        {<View style={styles.clothItem}>
                     <Text>Folder</Text>
                 </View>}
-        {fav &&
-            fav.map((image, index) => (
+        { fav.map((image, index) => (
               <View style={styles.clothItem} key={index}>
                 <Image style={styles.image} source={{ uri: image.image }} />
               </View>
