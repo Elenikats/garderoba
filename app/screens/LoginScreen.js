@@ -51,6 +51,8 @@ export default function LoginScreen({ navigation }) {
       const res = await axios.post(url, {
         email: "cabbage@gmail.com",
         password: "cabbage",
+        // email: "testuser1@example.com",
+        // password:"random",
       });
 
       setUserObj(res.data);
