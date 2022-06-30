@@ -10,7 +10,7 @@ import { userContext } from '../../contexts/userContext';
 
 
 export default function LoginScreen({navigation}) {
-  const {user, setUser, token, setToken, userObj, setUserObj} = useContext(userContext);
+  const {user, setUser, token, setToken, setUserEmail, currentUserId, setCurrentUserId, userObj, setUserObj} = useContext(userContext);
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
   const [hidePassword, setHidePassword] = useState(true)
@@ -44,6 +44,9 @@ export default function LoginScreen({navigation}) {
       setUserObj(res.data)
       setUser(res.data.username);
       setToken(res.data.token);
+      setUserEmail(res.data.email)
+      setCurrentUserId(res.data._id)
+
       navigation.navigate("Main");
     } catch (error) {
       console.log("error in login", error);
