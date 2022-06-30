@@ -199,6 +199,7 @@ const styles = StyleSheet.create({
     width: "40%",
     position: "absolute",
     top: Constants.statusBarHeight,
+    pickerStyleType: "none",
   },
 
   box: {
