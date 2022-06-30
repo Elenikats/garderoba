@@ -24,7 +24,7 @@ export default function FavoriteScreen() {
         // console.log("result---", result.data);
         setFav(result.data);
       } catch (error) {
-        console.log(error);
+        console.log("error in fetching favorites",error);
       }
 
       

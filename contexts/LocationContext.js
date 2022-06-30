@@ -42,7 +42,6 @@ export default function LocationProvider(props) {
           url: `http://${ip}:9000/weatherApiKey`,
         });
 
-
         setWeatherApiKey(result.data);
         //getting the current weather
         if (weatherApiKey) {

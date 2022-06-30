@@ -22,18 +22,25 @@ export default function LoginScreen({navigation}) {
   const handleLogin = async () => {
 
     // login emails to use:
-    // { email: "baba123@gmail.com", password: "monika" }
+    // { email: "baba123@gmail.com", password: "kanmio123" }
     // { email: "angela.h@web.de", password: "123456" }
+    // {email: "cabbage@gmail.com",password: "cabbage"}
+  // {email: "testuser1@example.com",password: "random"}
+    
    
     const ip = await currentIP()
 
     const url = `http://${ip}:9000/users/login`;
     try {
       const res = await axios.post(url, {
+        // email,        
+        // password,
+        // email: "baba123@gmail.com", 
+        // password: "kanimo123" 
+        // email: "testuser1@example.com",
+        // password: "random"
         email: "cabbage@gmail.com",
-        password: "cabbage",
-        // email: "baba123@gmail.com",        
-        // password: "monika",
+        password: "cabbage"
       });
 
       setUserObj(res.data)
@@ -79,7 +86,6 @@ export default function LoginScreen({navigation}) {
         placeholder='Enter email'
         autoComplete="off"
         onChangeText={(email) => {
-          console.log(email)
           setEmail(email)
         }}
         style={styles.textInput}

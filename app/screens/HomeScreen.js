@@ -18,7 +18,6 @@ import currentIP from "../utils/ip.js";
 import { userContext } from "../../contexts/userContext.js";
 import LocationProvider, { LocationContext } from "../../contexts/LocationContext.js";
 import { RefreshContext } from "../../contexts/refreshContext.js";
-//const ip = await Network.getIpAddressAsync();
 
 const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
@@ -50,7 +49,8 @@ export default function HomeScreen() {
             url: `http://${ip}:9000/cloth/home?temperature=${currentWeather}`
           });
           
-          setImages(result.data.clothesAsPerWeather)
+          setImages((result.data.clothesAsPerWeather).reverse())
+          // setRefresh(!refresh)
         
       } catch (error) {
         console.log("error in homescreen:", error);

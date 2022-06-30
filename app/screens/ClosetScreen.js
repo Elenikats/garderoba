@@ -45,7 +45,6 @@ export default function ClosetScreen() {
   const [clothFilterOpt, setClothFilterOpt] = useState(filterCheckboxes);
   const [color, setColor] = useState("");
   const {refresh, setRefresh} = useContext(RefreshContext)
-   // const [menuModalVisible, setMenuModalVisible] = useState(false);
 
   useEffect(() => {
     async function getImagesFromBackend() {

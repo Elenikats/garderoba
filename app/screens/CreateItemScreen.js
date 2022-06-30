@@ -26,7 +26,6 @@ export default function CreateItemScreen({ route, navigation }) {
   const [style, setStyle] = useState("");
   const [color, setColor] = useState("");
   const [weather, setWeather] = useState("");
-
   const { image } = route.params;
 
   // console.log("user id is", user);
