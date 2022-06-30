@@ -16,50 +16,48 @@ import WeatherAPI from "./WeatherAPI.js";
 import axios from "axios";
 import currentIP from "../utils/ip.js";
 import { userContext } from "../../contexts/userContext.js";
-import LocationProvider, { LocationContext } from "../../contexts/LocationContext.js";
+import LocationProvider, {
+  LocationContext,
+} from "../../contexts/LocationContext.js";
 //const ip = await Network.getIpAddressAsync();
 
 const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
 
-
 export default function HomeScreen() {
-  const [ images, setImages ] = useState([]);
+  const [images, setImages] = useState([]);
   const { user, setUser, token, setToken } = useContext(userContext);
   const [toggleFav, setToggleFav] = useState(false);
-  const { currentWeather, setCurrentWeather } = useContext(LocationContext)
-  
+  const { currentWeather, setCurrentWeather } = useContext(LocationContext);
+
   //useEffect for images
   useEffect(() => {
     if (!token) {
-      return
+      return;
     }
     async function getImagesFromBackend() {
       const ip = await currentIP();
 
       try {
-          if(!currentWeather){
-            return;
-          }
-          const result = await axios({
-            method: "get",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },            
-            url: `http://${ip}:9000/cloth/home?temperature=${currentWeather}`
-          });
-          
-          setImages(result.data.clothesAsPerWeather)
-        
+        if (!currentWeather) {
+          return;
+        }
+        const result = await axios({
+          method: "get",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          url: `http://${ip}:9000/cloth/home?temperature=${currentWeather}`,
+        });
+
+        setImages(result.data.clothesAsPerWeather);
       } catch (error) {
         console.log("error in homescreen:", error);
       }
     }
 
     getImagesFromBackend();
-  
-
-  }, [currentWeather, token, toggleFav])
+  }, [currentWeather, token, toggleFav]);
 
   async function handleFavoriteBtn(image) {
     const ip = await currentIP();
@@ -70,7 +68,7 @@ export default function HomeScreen() {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,
-        },    
+        },
         data: { favorite: !image.favorite },
       });
 
@@ -98,9 +96,9 @@ export default function HomeScreen() {
             horizontal
             showsHorizontalScrollIndicator={false}
           >
-            {
-              images.filter((item)=>item.type ==="top")
-                    .map((image, index) => (
+            {images
+              .filter((item) => item.type === "top")
+              .map((image, index) => (
                 <View style={styles.image} key={index}>
                   <Image
                     style={{ width: "80%", height: "80%" }}
@@ -131,9 +129,9 @@ export default function HomeScreen() {
             horizontal
             showsHorizontalScrollIndicator={false}
           >
-            { 
-              images.filter((item)=>item.type ==="bottom")
-                    .map((image, index) => (
+            {images
+              .filter((item) => item.type === "bottom")
+              .map((image, index) => (
                 <View style={styles.image} key={index}>
                   <Image
                     style={{ width: "80%", height: "80%" }}

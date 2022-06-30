@@ -43,7 +43,7 @@ export default function ClosetScreen() {
   const [filterModalVisible, setFilterModalVisible] = useState(false);
   const [clothFilterOpt, setClothFilterOpt] = useState(filterCheckboxes);
   const [color, setColor] = useState("");
-   // const [menuModalVisible, setMenuModalVisible] = useState(false);
+  // const [menuModalVisible, setMenuModalVisible] = useState(false);
 
   useEffect(() => {
     async function getImagesFromBackend() {
@@ -58,9 +58,8 @@ export default function ClosetScreen() {
         });
         setCloset(result.data);
       } catch (error) {
-        console.log("error in receiving images from BE",error);
+        console.log("error in receiving images from BE", error);
       }
-
     }
 
     getImagesFromBackend();
@@ -123,7 +122,7 @@ export default function ClosetScreen() {
       });
       setCloset(result.data);
     } catch (error) {
-      console.log("error in handling submit of cloth form",error);
+      console.log("error in handling submit of cloth form", error);
     }
   }
 

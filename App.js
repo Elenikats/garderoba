@@ -26,17 +26,16 @@ export default function App() {
   return (
     <UserProvider>
       <LocationProvider>
-        
-          <NavigationContainer>
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
-              <Stack.Screen name="Login" component={LoginScreen} />
-              <Stack.Screen name="Register" component={RegisterScreen} />
-              <Stack.Screen name="User" component={UserScreen} />
-              <Stack.Screen name="UploadForm" component={CreateItemScreen} />
-              <Stack.Screen name="Main" component={BottomTab} />
-              <Stack.Screen name="EndScreen" component={EndScreen} />
-            </Stack.Navigator>
-          </NavigationContainer>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Register" component={RegisterScreen} />
+            <Stack.Screen name="User" component={UserScreen} />
+            <Stack.Screen name="UploadForm" component={CreateItemScreen} />
+            <Stack.Screen name="Main" component={BottomTab} />
+            <Stack.Screen name="EndScreen" component={EndScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
       </LocationProvider>
     </UserProvider>
   );

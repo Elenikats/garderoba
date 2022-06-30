@@ -17,9 +17,7 @@ import { userContext } from "../../contexts/userContext.js";
 //import * as Network from "expo-network";
 // import Icon from "react-native-vector-icons/Fontisto";
 
-
 export default function CreateItemScreen({ route, navigation }) {
-
   const { user, token, userObj } = useContext(userContext);
   const [type, setType] = useState("");
   const [season, setSeason] = useState("");
@@ -30,7 +28,7 @@ export default function CreateItemScreen({ route, navigation }) {
   const { image } = route.params;
 
   // console.log("user id is", user);
-  
+
   const readImage = async () => {
     const imageAsString = await FileSystem.readAsStringAsync(image, {
       encoding: FileSystem.EncodingType.Base64,

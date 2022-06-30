@@ -3,17 +3,19 @@ import React, { useEffect, useState, useContext } from "react";
 import { LocationContext } from "../../contexts/LocationContext";
 import axios from "axios";
 import currentIP from "../utils/ip";
-import { userContext } from "../../contexts/userContext";
+// import { userContext } from "../../contexts/userContext.js";
 //import * as Network from 'expo-network'
 
 export default function WeatherAPI() {
-  const { currentWeather, weatherIcon } = useContext(LocationContext)
+  const { currentWeather, weatherIcon } = useContext(LocationContext);
   const iconUrl = `https://openweathermap.org/img/w/${weatherIcon}.png`;
 
   return (
     <View style={styles.weatherContainer}>
       <Text style={styles.weatherText}>{currentWeather}°C</Text>
-     {weatherIcon && <Image style={styles.weatherIcon} source={{ uri: iconUrl }} />}
+      {weatherIcon && (
+        <Image style={styles.weatherIcon} source={{ uri: iconUrl }} />
+      )}
     </View>
   );
 }
