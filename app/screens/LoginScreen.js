@@ -73,7 +73,6 @@ export default function LoginScreen({ navigation }) {
           <View style={globalStyles.logoContainer}>
             <Image source={require("../assets/Garderoba_medium.png")} />
           </View>
-
           <TouchableOpacity
             onPress={() => {
               console.log("pressed google button");
@@ -88,9 +87,7 @@ export default function LoginScreen({ navigation }) {
               Login with Google
             </Text>
           </TouchableOpacity>
-
           <Text style={[globalStyles.text, { marginVertical: 30 }]}>or</Text>
-
           {/* <Text style={styles.label}>Email</Text> */}
           <TextInput
             value={email}
@@ -102,37 +99,6 @@ export default function LoginScreen({ navigation }) {
             }}
             style={styles.textInput}
           />
-
-          <TouchableOpacity
-            onPress={() => {
-              console.log("pressed google button");
-            }}
-            style={styles.googleButton}
-          >
-            <Image
-              source={require("../assets/googleIcon.png")}
-              style={{ width: 20, height: 20, marginRight: 10 }}
-            />
-            <Text style={[globalStyles.text, { color: "blue" }]}>
-              Login with Google
-            </Text>
-          </TouchableOpacity>
-
-          <Text style={[globalStyles.text, { marginVertical: 30 }]}>or</Text>
-
-          {/* <Text style={styles.label}>Email</Text> */}
-          <TextInput
-            value={email}
-            autoCapitalize="none"
-            placeholder="Enter email"
-            autoComplete="off"
-            onChangeText={(email) => {
-              console.log(email);
-              setEmail(email);
-            }}
-            style={styles.textInput}
-          />
-
           {/* <Text style={styles.label}>Password</Text> */}
           <View style={styles.passCont}>
             <TextInput
@@ -144,7 +110,6 @@ export default function LoginScreen({ navigation }) {
               autoComplete="off"
               secureTextEntry={hidePassword}
             ></TextInput>
-
             {hidePassword ? (
               <Icon
                 name="eye-off"
@@ -161,11 +126,9 @@ export default function LoginScreen({ navigation }) {
               />
             )}
           </View>
-
           <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
             <Text style={styles.textBtn}>Login</Text>
           </TouchableOpacity>
-
           <View style={styles.links}>
             <Link to={{ screen: "Register" }} style={styles.signup}>
               Sign up
