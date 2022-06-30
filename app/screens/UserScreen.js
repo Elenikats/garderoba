@@ -21,7 +21,7 @@ import { withSafeAreaInsets } from "react-native-safe-area-context";
 export default function UserScreen({ navigation }) {
   const {user, userEmail, setUser, setToken, setUserEmail, currentUserId} = useContext(userContext);
   const [modalVisible, setModalVisible] = useState(false);
-  const [newUsername, setNewUsername] = useState(false);
+  const [newUsername, setNewUsername] = useState(user);
   const [pen, setPen] = useState(true);
   const [errors, setErrors] = useState([])
 
