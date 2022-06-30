@@ -47,7 +47,7 @@ export default function RegisterScreen({navigation}) {
       .then(response => response.json())
       .then(result => {
         
-        console.log("result:", result)
+
         if (result.error) {
          throw new Error(result.error) 
         }

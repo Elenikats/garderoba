@@ -14,19 +14,19 @@ import axios from "axios";
 import * as FileSystem from "expo-file-system";
 import currentIP from "../utils/ip.js";
 import { userContext } from "../../contexts/userContext.js";
+import { RefreshContext } from "../../contexts/refreshContext.js";
 //import * as Network from "expo-network";
 // import Icon from "react-native-vector-icons/Fontisto";
 
-
 export default function CreateItemScreen({ route, navigation }) {
-
+  
   const { user, token, userObj } = useContext(userContext);
   const [type, setType] = useState("");
   const [season, setSeason] = useState("");
   const [style, setStyle] = useState("");
   const [color, setColor] = useState("");
   const [weather, setWeather] = useState("");
-
+  const {refresh, setRefresh} = useContext(RefreshContext)
   const { image } = route.params;
 
   // console.log("user id is", user);
@@ -59,6 +59,7 @@ export default function CreateItemScreen({ route, navigation }) {
     // *********************** AXIOS ******************************+
     //const ip = await Network.getIpAddressAsync();
     const ip = await currentIP();
+
     try {
       const response = await axios({
         url: `http://${ip}:9000/upload`,
@@ -70,6 +71,10 @@ export default function CreateItemScreen({ route, navigation }) {
         method: "POST",
       });
       // setHelper(!helper)
+      if (response.data) {
+        setRefresh(!refresh)
+      } 
+      
     } catch (error) {
       console.error("error in POST to upload an item", error.response.data);
     }

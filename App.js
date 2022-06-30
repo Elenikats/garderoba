@@ -10,6 +10,7 @@ import LocationProvider from "./contexts/LocationContext.js";
 import UserScreen from "./app/screens/UserScreen.js";
 import EndScreen from "./app/screens/EndScreen.js";
 import UserProvider from "./contexts/userContext.js";
+import  RefreshProvider  from "./contexts/refreshContext.js";
 
 const Stack = createNativeStackNavigator();
 
@@ -24,9 +25,9 @@ export default function App() {
   }
 
   return (
+    <RefreshProvider>
     <UserProvider>
       <LocationProvider>
-        
           <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
               <Stack.Screen name="Login" component={LoginScreen} />
@@ -39,5 +40,6 @@ export default function App() {
           </NavigationContainer>
       </LocationProvider>
     </UserProvider>
+    </RefreshProvider>
   );
 }
