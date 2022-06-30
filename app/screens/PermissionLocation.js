@@ -8,7 +8,7 @@ export default function PermissionLocation() {
   const [errorMsg, setErrorMsg] = useState(null);
 
   useEffect(() => {
-    console.log("permission loading-------?");
+
     const intervalFun = (async () => {
         const { status } = await Location.requestForegroundPermissionsAsync();
         if (status !== 'granted') {
@@ -19,7 +19,6 @@ export default function PermissionLocation() {
 
         const location = await Location.getCurrentPositionAsync({accuracy: Location.Accuracy.Highest});
         const { latitude, longitude } = location.coords
-        // console.log("location:", location)
         setCoordinates({
           ...coordinates,
           latitude,
@@ -29,19 +28,10 @@ export default function PermissionLocation() {
       });
 
       intervalFun()
-
-      // setInterval(() => {
-      //   intervalFun()
-      //   console.log("interval running")
-      // }, 100000);
+      
   }, []);
 
-  // let text = 'Waiting..';
-  // if (errorMsg) {
-  //   text = errorMsg;
-  // } else if (coordinates) {
-  //   text = JSON.stringify(coordinates.latitude);
-  // }
+ 
 
   return (
     <>
@@ -49,3 +39,19 @@ export default function PermissionLocation() {
     </>
   );
 }
+
+
+
+
+// codes as notes. 
+// setInterval(() => {     //from line 30-33
+      //   intervalFun()
+      //   console.log("interval running")
+      // }, 100000);
+
+ // let text = 'Waiting..';  //from line 36
+  // if (errorMsg) {
+  //   text = errorMsg;
+  // } else if (coordinates) {
+  //   text = JSON.stringify(coordinates.latitude);
+  // }

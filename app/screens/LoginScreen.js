@@ -10,7 +10,7 @@ import { userContext } from '../../contexts/userContext';
 
 
 export default function LoginScreen({navigation}) {
-  const {user, setUser, token, setToken} = useContext(userContext);
+  const {user, setUser, token, setToken, userObj, setUserObj} = useContext(userContext);
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
   const [hidePassword, setHidePassword] = useState(true)
@@ -19,24 +19,29 @@ export default function LoginScreen({navigation}) {
     setHidePassword(!hidePassword)
   }
     
-
   const handleLogin = async () => {
+
+    // login emails to use:
+    // { email: "baba123@gmail.com", password: "monika" }
+    // { email: "angela.h@web.de", password: "123456" }
    
     const ip = await currentIP()
-    console.log("ip:", ip);
 
     const url = `http://${ip}:9000/users/login`;
     try {
       const res = await axios.post(url, {
         email: "cabbage@gmail.com",
         password: "cabbage",
+        // email: "baba123@gmail.com",        
+        // password: "monika",
       });
-      console.log("res data:", res.data);
+
+      setUserObj(res.data)
       setUser(res.data.username);
       setToken(res.data.token);
       navigation.navigate("Main");
     } catch (error) {
-      console.log(error);
+      console.log("error in login", error);
       alert(error?.response?.data?.error || "Login failed, try again");
     }
   };

@@ -7,37 +7,31 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
-import Icon from "react-native-vector-icons/Fontisto";
 import { Picker } from "@react-native-picker/picker";
 import { globalStyles, colors } from "../styles/globalStyles.js";
 import ColorPalette from "react-native-color-palette";
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
-import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
-import { LocationContext } from "../../contexts/LocationContext.js";
-//import * as Network from "expo-network";
 import currentIP from "../utils/ip.js";
 import { userContext } from "../../contexts/userContext.js";
 import { RefreshContext } from "../../contexts/refreshContext.js";
+//import * as Network from "expo-network";
+// import Icon from "react-native-vector-icons/Fontisto";
 
 export default function CreateItemScreen({ route, navigation }) {
-  const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
-  const { imagesBoxBottom, setImagesBoxBottom } = useContext(ImageBoxesContext);
-  const { user, setUser, token, setToken } = useContext(userContext);
   const {refresh, setRefresh} = useContext(RefreshContext)
-
+  const { user, token, userObj } = useContext(userContext);
   const [type, setType] = useState("");
   const [season, setSeason] = useState("");
   const [style, setStyle] = useState("");
   const [color, setColor] = useState("");
   const [weather, setWeather] = useState("");
 
-  // const [imageFile, setImageFile] = useState(null)
-
   const { image } = route.params;
 
+  // console.log("user id is", user);
+  
   const readImage = async () => {
-    console.log("image inside readImage is---", image);
     const imageAsString = await FileSystem.readAsStringAsync(image, {
       encoding: FileSystem.EncodingType.Base64,
     });
@@ -47,11 +41,8 @@ export default function CreateItemScreen({ route, navigation }) {
   };
 
   const handleItemSave = async (e) => {
-    console.log("***********wowwwwooowwwooooooo***************");
     e.preventDefault();
     navigation.navigate("Main");
-
-    // console.log(imagesBoxTop);
 
     const readImageData = await readImage();
 
@@ -61,6 +52,7 @@ export default function CreateItemScreen({ route, navigation }) {
       style,
       color,
       weather,
+      user: userObj._id,
       image: readImageData,
     };
 
@@ -84,7 +76,7 @@ export default function CreateItemScreen({ route, navigation }) {
       } 
       
     } catch (error) {
-      console.error("error is .....", error.response.data);
+      console.error("error in POST to upload an item", error.response.data);
     }
   };
   return (
