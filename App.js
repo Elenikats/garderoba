@@ -3,16 +3,15 @@ import LoginScreen from "./app/screens/LoginScreen.js";
 import RegisterScreen from "./app/screens/RegisterScreen.js";
 import { useFonts } from "expo-font";
 import * as React from "react";
-import { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import BottomTab from "./app/screens/BottomTab.js";
 import CreateItemScreen from "./app/screens/CreateItemScreen.js";
 import LocationProvider from "./contexts/LocationContext.js";
-import ImageBoxesProvider from "./contexts/ImageBoxesContext.js";
 import UserScreen from "./app/screens/UserScreen.js";
 import EndScreen from "./app/screens/EndScreen.js";
 import UpdateUserScreen from './app/screens/UpdateUserScreen.js';
 import UserProvider from "./contexts/userContext.js";
+import  RefreshProvider  from "./contexts/refreshContext.js";
 
 const Stack = createNativeStackNavigator();
 
@@ -27,10 +26,13 @@ export default function App() {
   }
 
   return (
+<<<<<<< HEAD
    
+=======
+    <RefreshProvider>
+>>>>>>> 4ce386a3e2aa793741f3e45f2d4dd3181a447f5c
     <UserProvider>
       <LocationProvider>
-        <ImageBoxesProvider>
           <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
               <Stack.Screen name="Login" component={LoginScreen} />
@@ -39,11 +41,11 @@ export default function App() {
             <Stack.Screen name="UpdateUser" component={UpdateUserScreen} />
               <Stack.Screen name="UploadForm" component={CreateItemScreen} />
               <Stack.Screen name="Main" component={BottomTab} />
-            <Stack.Screen name="EndScreen" component={EndScreen} />
+              <Stack.Screen name="EndScreen" component={EndScreen} />
             </Stack.Navigator>
           </NavigationContainer>
-        </ImageBoxesProvider>
       </LocationProvider>
     </UserProvider>
+    </RefreshProvider>
   );
 }

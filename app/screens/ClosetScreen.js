@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   View,
   Text,
@@ -14,8 +14,9 @@ import CheckBox from "expo-checkbox";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { globalStyles, colors } from "../styles/globalStyles.js";
 import axios from "axios";
-
+import { userContext } from "../../contexts/userContext.js";
 import currentIP from "../utils/ip.js";
+import { RefreshContext } from "../../contexts/refreshContext.js";
 
 const { width } = Dimensions.get("window");
 
@@ -38,11 +39,12 @@ export default function ClosetScreen() {
     { id: 15, color: "brown", hex: "#8B4500", isChecked: false },
   ];
 
+  const { token } = useContext(userContext);
   const [closet, setCloset] = useState(null);
   const [filterModalVisible, setFilterModalVisible] = useState(false);
-  const [menuModalVisible, setMenuModalVisible] = useState(false);
   const [clothFilterOpt, setClothFilterOpt] = useState(filterCheckboxes);
   const [color, setColor] = useState("");
+  const {refresh, setRefresh} = useContext(RefreshContext)
 
   useEffect(() => {
     async function getImagesFromBackend() {
@@ -50,19 +52,21 @@ export default function ClosetScreen() {
       try {
         const result = await axios({
           method: "get",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
           url: `http://${ip}:9000/cloth/closet`,
         });
-        // console.log("result---", result.data);
         setCloset(result.data);
+        // setRefresh(!refresh)
       } catch (error) {
-        console.log(error);
+        console.log("error in receiving images from BE",error);
       }
 
-      console.log("closet here", closet);
     }
 
     getImagesFromBackend();
-  }, []);
+  }, [refresh]);
 
   //filter button:
   function handleFilterBtn() {
@@ -78,11 +82,10 @@ export default function ClosetScreen() {
       return item;
     });
     setClothFilterOpt(check);
-    console.log("selected---", clothFilterOpt);
   };
   const selectedFilter = clothFilterOpt.filter((item) => item.isChecked);
 
-  // //remove filter:
+  // //remove filter: --- take note
   // async function handleFilterRemove(id) {
   //   const ip = await currentIP();
 
@@ -112,14 +115,17 @@ export default function ClosetScreen() {
       let queryString = selectedFilter
         .map((item) => Object.keys(item)[1] + "=" + Object.values(item)[1])
         .join("&");
-      console.log("STRING___:", queryString);
+      // console.log("STRING___:", queryString);
       const result = await axios({
         method: "get",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         url: `http://${ip}:9000/cloth/closet?${queryString}`,
       });
       setCloset(result.data);
     } catch (error) {
-      console.log(error);
+      console.log("error in handling submit of cloth form",error);
     }
   }
 
@@ -131,9 +137,13 @@ export default function ClosetScreen() {
       const result = await axios({
         url: `http://${ip}:9000/cloth/closet/${image._id}`,
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       setCloset(result.data);
+      setRefresh(!refresh);
     } catch (error) {
       console.error("error in DELETE", error.response.data);
     }
@@ -177,7 +187,7 @@ export default function ClosetScreen() {
             </TouchableOpacity>
           ))}
       </View>
-      <ScrollView>
+      <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={styles.clothContainer}>
           {closet &&
             closet.map((image, index) => (
@@ -315,8 +325,14 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
   },
 
+  contentContainer: {
+    paddingBottom: 150,
+  },
+
   clothContainer: {
     flex: 1,
+    // top: 10,
+    // bottom: 150,
   },
 
   clothItem: {

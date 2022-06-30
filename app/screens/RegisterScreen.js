@@ -3,9 +3,10 @@ import { SafeAreaView, TextInput, ScrollView, TouchableOpacity, Image, StyleShee
 import CheckBox from "expo-checkbox";
 import { globalStyles, colors } from '../styles/globalStyles';
 import Icon from "react-native-vector-icons/Ionicons";
-//import * as Network from "expo-network";
+import { Link } from '@react-navigation/native';
 import currentIP from "../utils/ip.js";
 import { userContext } from '../../contexts/userContext';
+//import * as Network from "expo-network";
 
 export default function RegisterScreen({navigation}) {
   const {user, setUser, token, setToken, setUserEmail} = useContext(userContext);
@@ -22,11 +23,8 @@ export default function RegisterScreen({navigation}) {
   }
 
   const handleSignupBtn = async () => {
-
-
     // const ip = await Network.getIpAddressAsync();
     const ip = await currentIP()
-    console.log("ip:", ip);
 
     const url = `http://${ip}:9000/users/signup`;
     const payload = {
@@ -43,15 +41,13 @@ export default function RegisterScreen({navigation}) {
       },
       body: JSON.stringify(payload)
     }
-    console.log("payload:", payload)
+ 
 
     fetch(url, config)
       .then(response => response.json())
       .then(result => {
-        // console.log(result.error)
-        // console.log("status:", result.status)
-        // console.log("ok", result.ok)
-        console.log("result:", result)
+        
+
         if (result.error) {
          throw new Error(result.error) 
         }
@@ -177,6 +173,9 @@ export default function RegisterScreen({navigation}) {
             style={agree ? styles.registerButton : styles.unregisterButton}>
               <Text style={styles.textBtn}>Sign up</Text>
           </TouchableOpacity >
+
+          <Text>You have already an account?</Text>
+          <Link to={{screen: 'Login'}} style={{color: "blue"} }>Login</Link>
           
         </View>
       </ScrollView>
@@ -262,10 +261,10 @@ const styles = StyleSheet.create({
   pswIcon: {
     position: "absolute",
     alignSelf: "flex-end",
-    bottom: 10,
-    right: 10,
+    bottom: 14,
+    right: 12,
     color: "gray",
-    fontSize: 17
+    fontSize: 18
   },
   repeatPswIcon: {
     position: "absolute",

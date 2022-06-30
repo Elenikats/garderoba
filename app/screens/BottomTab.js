@@ -6,7 +6,6 @@ import HomeScreen from "./HomeScreen.js";
 import FavoriteScreen from "./FavoriteScreen.js";
 import ClosetScreen from "./ClosetScreen.js";
 import UserScreen from "./UserScreen.js";
-import CreateItemScreen from "./CreateItemScreen.js";
 import * as ImagePicker from "expo-image-picker";
 
 const Tab = createBottomTabNavigator();
@@ -25,8 +24,8 @@ export default function BottomTab({ navigation }) {
         });
       }
     } catch (error) {
-      console.log("123", error);
-      // show a message to user. you rejected, you cant use without camera permissions.
+      console.log("error in launching Camera", error);
+      // show a message to user. if you rejected, you cant use without camera permissions.
     }
   }
 
@@ -34,14 +33,13 @@ export default function BottomTab({ navigation }) {
     try {
       const options = { allowsMultipleSelection: true, base64: true };
       const data = await ImagePicker.launchImageLibraryAsync(options);
-      console.log(data.base64.length);
       if (!data.cancelled) {
         navigation.navigate("UploadForm", {
           image: data.uri,
         });
       }
     } catch (error) {
-      console.log(error);
+      console.log("error in launching phone Gallery", error);
     }
   }
 
@@ -112,7 +110,6 @@ export default function BottomTab({ navigation }) {
           }}
         />
 
-        {/* children={()=><CreateItemScreen image={imageData} />} */}
       </Tab.Navigator>
 
       <>

@@ -14,6 +14,7 @@ import {
   Alert,
   TextInput
 } from "react-native";
+import { withSafeAreaInsets } from "react-native-safe-area-context";
 
 
 
@@ -78,10 +79,6 @@ export default function UserScreen({ navigation }) {
   async function launchCamera() {
     console.log("Camera is on");
     try {
-      const options = { quality: 0.5, base64: true };
-      const data = await ImagePicker.launchCameraAsync(options);
-    } catch (error) {
-      //// show a message to user. you rejected, you cant use without camera permissions.
       Alert.alert("Allow camera permissions",
       [
         {
@@ -92,6 +89,11 @@ export default function UserScreen({ navigation }) {
           // text: Allow "that takes you to permissions settings!
         }
       ]);
+      const options = { quality: 0.5, base64: true };
+      const data = await ImagePicker.launchCameraAsync(options);
+    } catch (error) {
+      // show a message to user. you rejected, you cant use without camera permissions.
+      console.log("error", error);
     }
   }
 
@@ -100,6 +102,11 @@ export default function UserScreen({ navigation }) {
       const options = { allowsMultipleSelection: true, base64: true };
       const data = await ImagePicker.launchImageLibraryAsync(options);
       console.log(data.base64.length);
+      if (!data.cancelled) {
+        navigation.navigate("UploadForm", {      
+          image: data.uri,
+        });
+      }
     } catch (error) {
       console.log(error);
     }
@@ -116,8 +123,6 @@ export default function UserScreen({ navigation }) {
   return (
     <View style={styles.cont}>
       <View style={styles.subCont}>
-
-
         <ImageBackground
           style={styles.backgroundImage}
           source={require("../assets/closetDoors.jpg")}

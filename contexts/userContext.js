@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 import { useEffect, useState } from "react";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const userContext = React.createContext();
 let userFromStorage;
@@ -22,11 +22,9 @@ const getDataFromAsyncStorage = async () => {
      emailDefault = emailFromStorage ? JSON.parse(emailFromStorage) : null;
      tokenFromStorage = await AsyncStorage.getItem("token");
      tokenDefault = tokenFromStorage ? tokenFromStorage : null;
-}
+};
 
 getDataFromAsyncStorage()
-
-
 
 export default function UserProvider(props) {
 
@@ -34,6 +32,8 @@ export default function UserProvider(props) {
     const [token, setToken] = useState(tokenDefault);
     const [userEmail, setUserEmail] = useState(emailDefault)
     const [currentUserId, setCurrentUserId] = useState(userIdDefault)
+    const [userObj, setUserObj] = useState(null);
+
 
     console.log("token",token)
     console.log(user);
@@ -68,7 +68,7 @@ export default function UserProvider(props) {
         }
     }, [token]);
 
-    const value = {user, setUser, token, setToken, userEmail, setUserEmail, currentUserId, setCurrentUserId};
+    const value = {user, setUser, token, setToken, userEmail, setUserEmail, currentUserId, setCurrentUserId, setUserObj, userObj};
 
     return (
         <userContext.Provider value={value}>{props.children}</userContext.Provider>
