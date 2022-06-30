@@ -19,7 +19,7 @@ export default function FavoriteScreen() {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-          url: `http://${ip}:9000/cloth/fav`,
+          url: `http://${ip}:9000/cloth/favorite`,
         });
         // console.log("result---", result.data);
         setFav(result.data);

@@ -4,7 +4,7 @@ import { View, Text, Button, StyleSheet } from "react-native";
 export default function EndScreen({navigation, route}) {
   return (
     <View style={styles.cont}>
-      <Text>This is the {route.params.name}. See you soon!</Text>
+      <Text>See you soon!</Text>
       <Button
         onPress={() => {
           navigation.navigate("Login")

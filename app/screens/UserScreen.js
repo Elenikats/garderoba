@@ -1,25 +1,64 @@
-import React, { useState } from "react";
+import { userContext } from "../../contexts/userContext.js";
+import React, { useContext, useEffect, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
+import currentIP from "../utils/ip.js";
 import {
   View,
   Text,
   Image,
   Modal,
-  Link,
   Pressable,
   StyleSheet,
   TouchableOpacity,
   ImageBackground,
   Alert,
-  AsyncStorage,
+  TextInput
 } from "react-native";
 import { withSafeAreaInsets } from "react-native-safe-area-context";
 
+
+
 export default function UserScreen({ navigation }) {
+  const {user, userEmail, setUser, setToken, setUserEmail, currentUserId} = useContext(userContext);
   const [modalVisible, setModalVisible] = useState(false);
+  const [newUsername, setNewUsername] = useState(false);
+  const [pen, setPen] = useState(true);
+  const [errors, setErrors] = useState([])
+
+  useEffect( () => {
+    async function fetchData() {
+        
+      // console.log(newUsername)
+      const ip = await currentIP()
+      console.log("ip:", ip);
+      const url = `http://${ip}:9000/users/${currentUserId}`;
+      const payload = {username: newUsername}
+      const config = {
+        method: "put",
+        headers: {
+          "Content-Type": "application/json"
+
+        },
+        body: JSON.stringify(payload)
+      }
+      console.log("payload:", payload)
+
+      fetch(url, config)
+      .then(response => response.json())
+      .then(result => console.log("result .....", result))
+        // try {
+         
+        // }catch (error) {
+        //   console.log("error ......", error);
+        // }
+    } 
+    fetchData();
+
+
+  },[newUsername])
 
   function handleLogout() {
-    Alert.alert("Logout", "Are you sure yo want to logout?", [
+    Alert.alert("Logout", "Are you sure you want to logout?", [
       {
         text: "Cancel",
         onPress: () => console.log("Cancel Pressed"),
@@ -28,6 +67,9 @@ export default function UserScreen({ navigation }) {
       {
         text: "OK",
         onPress: () => {
+          setToken(null)
+          setUser(null)
+          setUserEmail(null)
           navigation.navigate("EndScreen", { name: "EndScreen" });
         },
       },
@@ -37,11 +79,21 @@ export default function UserScreen({ navigation }) {
   async function launchCamera() {
     console.log("Camera is on");
     try {
+      Alert.alert("Allow camera permissions",
+      [
+        {
+          text:"Cancel",
+          onPress: () => {navigation.name("UserScreen", {name: "UserScreen"})},
+        },
+        {
+          // text: Allow "that takes you to permissions settings!
+        }
+      ]);
       const options = { quality: 0.5, base64: true };
       const data = await ImagePicker.launchCameraAsync(options);
     } catch (error) {
-      console.log("error in launching Camera-UserScreen", error);
       // show a message to user. you rejected, you cant use without camera permissions.
+      console.log("error", error);
     }
   }
 
@@ -60,6 +112,14 @@ export default function UserScreen({ navigation }) {
     }
   }
 
+  async function handlePen() {
+    setPen(!pen)
+  }
+  async function handleTextInput(text) {
+   
+  }
+
+
   return (
     <View style={styles.cont}>
       <View style={styles.subCont}>
@@ -73,26 +133,50 @@ export default function UserScreen({ navigation }) {
             <Image
               style={styles.profileImage}
               source={require("../assets/userImage.png")}
-              style={{ width: 100, height: 100 }}
             />
           </TouchableOpacity>
         </View>
 
-        <View style={styles.nameNemail}>
-          <Text style={styles.name}>Latifah Alsubaie</Text>
-          <Text style={styles.email}>Latifah@email.com</Text>
 
-          <TouchableOpacity>
-            <Image
-              style={styles.editIcon}
-              source={require("../assets/edit.png")}
-              style={{ width: 30, height: 30 }}
-            />
-          </TouchableOpacity>
+        {/*......UserName, Pen and Email......*/}
+
+        <View style={styles.nameAndEmail}>
+          {
+            pen ? 
+            <Text style={styles.name}
+            >{user}
+            
+              <TouchableOpacity 
+              onPress={handlePen}
+              >
+                <Image
+                  style={styles.pen}
+                  autoFocus
+                  source={require("../assets/edit.png")}
+                />
+              </TouchableOpacity>
+
+            </Text> :
+
+            <TextInput
+            placeholder="New username"
+            autoCapitalize="none"
+            autoComplete="off"
+            style={styles.newUsername}
+            onSubmitEditing={(e) => setNewUsername(e.nativeEvent.text)}
+            ></TextInput>
+          }
+
+          <Text style={styles.email}>{userEmail}</Text>
         </View>
+        {/*...................................*/}
 
         <View style={styles.settingsCont}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("UpdateUser")
+            }}>
+              
             <Text style={styles.settings}>
               {" "}
               Settings
@@ -181,7 +265,7 @@ export default function UserScreen({ navigation }) {
       </>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   cont: {
@@ -209,7 +293,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
   },
-  nameNemail: {
+  profileImage:{
+    width:100,
+    height:100
+  },
+  nameAndEmail: {
     marginTop: 10,
     alignItems: "center",
     justifyContent: "center",
@@ -218,6 +306,11 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     fontSize: 16,
     fontWeight: "bold",
+    
+  },
+  textInput: {
+    borderBottomWidth: 1,
+    fontSize: 14
   },
   email: {
     fontStyle: "italic",
@@ -268,7 +361,7 @@ const styles = StyleSheet.create({
     right: -5,
     top: -7,
   },
-  textStyleX: {
+  textStyle: {
     color: "black",
     fontWeight: "bold",
   },
@@ -295,6 +388,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+  },
+  pen: {
+    width: 25,
+    height:25,
+    alignSelf: "flex-end"
   },
   button: {
     width: "100%",
