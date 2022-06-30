@@ -37,8 +37,10 @@ export default function LoginScreen({navigation}) {
         // password,
         // email: "baba123@gmail.com", 
         // password: "kanimo123" 
-        email: "testuser1@example.com",
-        password: "random"
+        // email: "testuser1@example.com",
+        // password: "random"
+        email: "cabbage@gmail.com",
+        password: "cabbage"
       });
 
       setUserObj(res.data)

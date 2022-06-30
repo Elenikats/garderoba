@@ -24,11 +24,10 @@ const { height } = width * 0.6;
 
 export default function HomeScreen() {
   const [ images, setImages ] = useState([]);
-  const {user, setUser, token, setToken} = useContext(userContext);
+  const { user, setUser, token, setToken } = useContext(userContext);
   const [toggleFav, setToggleFav] = useState(false);
   const { currentWeather, setCurrentWeather } = useContext(LocationContext)
   const {refresh, setRefresh} = useContext(RefreshContext)
-
   
   //useEffect for images
   useEffect(() => {

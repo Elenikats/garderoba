@@ -19,14 +19,13 @@ import { RefreshContext } from "../../contexts/refreshContext.js";
 // import Icon from "react-native-vector-icons/Fontisto";
 
 export default function CreateItemScreen({ route, navigation }) {
-  
+  const {refresh, setRefresh} = useContext(RefreshContext)
   const { user, token, userObj } = useContext(userContext);
   const [type, setType] = useState("");
   const [season, setSeason] = useState("");
   const [style, setStyle] = useState("");
   const [color, setColor] = useState("");
   const [weather, setWeather] = useState("");
-  const {refresh, setRefresh} = useContext(RefreshContext)
   const { image } = route.params;
 
   // console.log("user id is", user);
