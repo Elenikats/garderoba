@@ -19,47 +19,21 @@ import { Picker } from "@react-native-picker/picker";
 import axios from "axios";
 import currentIP from "../utils/ip.js";
 import { userContext } from "../../contexts/userContext.js";
-<<<<<<< HEAD
-//const ip = await Network.getIpAddressAsync();
 import LocationProvider, {
   LocationContext,
 } from "../../contexts/LocationContext.js";
-=======
-import LocationProvider, { LocationContext } from "../../contexts/LocationContext.js";
 //const ip = await Network.getIpAddressAsync();
->>>>>>> 5af3b57b08b68e77c30745c612615bc4fbe1af29
 
 const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
 
-<<<<<<< HEAD
 export default function HomeScreen() {
-  const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
-  const { imagesBoxBottom, setImagesBoxBottom } = useContext(ImageBoxesContext);
-  const { user, setUser, token, setToken } = useContext(userContext);
-  const [forecast, setForecast] = useState("");
-=======
->>>>>>> 5af3b57b08b68e77c30745c612615bc4fbe1af29
-
-export default function HomeScreen() {
-  const [ images, setImages ] = useState([]);
+  const [images, setImages] = useState([]);
   const { user, setUser, token, setToken } = useContext(userContext);
   const [toggleFav, setToggleFav] = useState(false);
-<<<<<<< HEAD
   const { currentWeather, setCurrentWeather } = useContext(LocationContext);
-  // console.log(currentWeather) need to get the state of current weather and pass it on as a value in query params of get request
-  // const [presentWeather, setPresentWeather] = useState(null)
+  const [forecast, setForecast] = useState("");
 
-  // const WeatherObj = {
-  //   summer: above 24
-  //   winter: below 12
-  //   fall: 12-24 degrees
-  // }
-
-=======
-  const { currentWeather, setCurrentWeather } = useContext(LocationContext)
-  
->>>>>>> 5af3b57b08b68e77c30745c612615bc4fbe1af29
   //useEffect for images
   useEffect(() => {
     if (!token) {
@@ -69,19 +43,18 @@ export default function HomeScreen() {
       const ip = await currentIP();
 
       try {
-          if(!currentWeather){
-            return;
-          }
-          const result = await axios({
-            method: "get",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },            
-            url: `http://${ip}:9000/cloth/home?temperature=${currentWeather}`
-          });
-          
-          setImages(result.data.clothesAsPerWeather)
-        
+        if (!currentWeather) {
+          return;
+        }
+        const result = await axios({
+          method: "get",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          url: `http://${ip}:9000/cloth/home?temperature=${currentWeather}`,
+        });
+
+        setImages(result.data.clothesAsPerWeather);
       } catch (error) {
         console.log("error in homescreen:", error);
       }
@@ -89,8 +62,6 @@ export default function HomeScreen() {
 
     getImagesFromBackend();
   }, [currentWeather, token, toggleFav]);
-
-  }, [currentWeather, token, toggleFav])
 
   async function handleFavoriteBtn(image) {
     const ip = await currentIP();
@@ -125,6 +96,7 @@ export default function HomeScreen() {
         <Picker
           selectedValue={forecast}
           onValueChange={(currentDay) => setForecast(currentDay)}
+          style={styles.picker}
         >
           <Picker.Item label="today" />
           <Picker.Item label="In one day" value="one" />
@@ -141,9 +113,9 @@ export default function HomeScreen() {
             horizontal
             showsHorizontalScrollIndicator={false}
           >
-            {
-              images.filter((item)=>item.type ==="top")
-                    .map((image, index) => (
+            {images
+              .filter((item) => item.type === "top")
+              .map((image, index) => (
                 <View style={styles.image} key={index}>
                   <Image
                     style={{ width: "80%", height: "80%" }}
@@ -174,9 +146,9 @@ export default function HomeScreen() {
             horizontal
             showsHorizontalScrollIndicator={false}
           >
-            { 
-              images.filter((item)=>item.type ==="bottom")
-                    .map((image, index) => (
+            {images
+              .filter((item) => item.type === "bottom")
+              .map((image, index) => (
                 <View style={styles.image} key={index}>
                   <Image
                     style={{ width: "80%", height: "80%" }}
@@ -210,7 +182,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Constants.statusBarHeight,
+    backgroundColor: "#F0F0F8",
   },
+
   home: {
     flex: 1,
   },
@@ -222,10 +196,9 @@ const styles = StyleSheet.create({
   },
 
   dropdownContainer: {
-    backgroundColor: "white",
-    borderRadius: 6,
     width: "40%",
-    alignSelf: "flex-end",
+    position: "absolute",
+    top: Constants.statusBarHeight,
   },
 
   box: {
