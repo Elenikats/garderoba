@@ -15,7 +15,6 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import { globalStyles, colors } from "../styles/globalStyles.js";
 import axios from "axios";
 import { userContext } from "../../contexts/userContext.js";
-
 import currentIP from "../utils/ip.js";
 
 const { width } = Dimensions.get("window");
@@ -39,12 +38,12 @@ export default function ClosetScreen() {
     { id: 15, color: "brown", hex: "#8B4500", isChecked: false },
   ];
 
-  const { user, setUser, token } = useContext(userContext);
+  const { token } = useContext(userContext);
   const [closet, setCloset] = useState(null);
   const [filterModalVisible, setFilterModalVisible] = useState(false);
-  // const [menuModalVisible, setMenuModalVisible] = useState(false);
   const [clothFilterOpt, setClothFilterOpt] = useState(filterCheckboxes);
   const [color, setColor] = useState("");
+   // const [menuModalVisible, setMenuModalVisible] = useState(false);
 
   useEffect(() => {
     async function getImagesFromBackend() {
@@ -57,13 +56,11 @@ export default function ClosetScreen() {
           },
           url: `http://${ip}:9000/cloth/closet`,
         });
-        // console.log("result---", result.data);
         setCloset(result.data);
       } catch (error) {
-        console.log(error);
+        console.log("error in receiving images from BE",error);
       }
 
-      console.log("closet here", closet);
     }
 
     getImagesFromBackend();
@@ -83,11 +80,10 @@ export default function ClosetScreen() {
       return item;
     });
     setClothFilterOpt(check);
-    console.log("selected---", clothFilterOpt);
   };
   const selectedFilter = clothFilterOpt.filter((item) => item.isChecked);
 
-  // //remove filter:
+  // //remove filter: --- take note
   // async function handleFilterRemove(id) {
   //   const ip = await currentIP();
 
@@ -117,7 +113,7 @@ export default function ClosetScreen() {
       let queryString = selectedFilter
         .map((item) => Object.keys(item)[1] + "=" + Object.values(item)[1])
         .join("&");
-      console.log("STRING___:", queryString);
+      // console.log("STRING___:", queryString);
       const result = await axios({
         method: "get",
         headers: {
@@ -127,7 +123,7 @@ export default function ClosetScreen() {
       });
       setCloset(result.data);
     } catch (error) {
-      console.log(error);
+      console.log("error in handling submit of cloth form",error);
     }
   }
 

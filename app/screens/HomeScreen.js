@@ -17,25 +17,35 @@ import PermissionLocation from "./PermissionLocation.js";
 import WeatherAPI from "./WeatherAPI.js";
 import { Picker } from "@react-native-picker/picker";
 import axios from "axios";
-import { ImageBoxesContext } from "../../contexts/ImageBoxesContext.js";
 import currentIP from "../utils/ip.js";
 import { userContext } from "../../contexts/userContext.js";
+<<<<<<< HEAD
 //const ip = await Network.getIpAddressAsync();
 import LocationProvider, {
   LocationContext,
 } from "../../contexts/LocationContext.js";
+=======
+import LocationProvider, { LocationContext } from "../../contexts/LocationContext.js";
+//const ip = await Network.getIpAddressAsync();
+>>>>>>> 5af3b57b08b68e77c30745c612615bc4fbe1af29
 
 const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
 
+<<<<<<< HEAD
 export default function HomeScreen() {
   const { imagesBoxTop, setImagesBoxTop } = useContext(ImageBoxesContext);
   const { imagesBoxBottom, setImagesBoxBottom } = useContext(ImageBoxesContext);
   const { user, setUser, token, setToken } = useContext(userContext);
   const [forecast, setForecast] = useState("");
+=======
+>>>>>>> 5af3b57b08b68e77c30745c612615bc4fbe1af29
 
-  const [favorites, setFavorites] = useState([]);
+export default function HomeScreen() {
+  const [ images, setImages ] = useState([]);
+  const { user, setUser, token, setToken } = useContext(userContext);
   const [toggleFav, setToggleFav] = useState(false);
+<<<<<<< HEAD
   const { currentWeather, setCurrentWeather } = useContext(LocationContext);
   // console.log(currentWeather) need to get the state of current weather and pass it on as a value in query params of get request
   // const [presentWeather, setPresentWeather] = useState(null)
@@ -46,31 +56,32 @@ export default function HomeScreen() {
   //   fall: 12-24 degrees
   // }
 
+=======
+  const { currentWeather, setCurrentWeather } = useContext(LocationContext)
+  
+>>>>>>> 5af3b57b08b68e77c30745c612615bc4fbe1af29
   //useEffect for images
   useEffect(() => {
     if (!token) {
       return;
     }
     async function getImagesFromBackend() {
-      console.log("getting images take 1----");
       const ip = await currentIP();
-      console.log("currentWeather is ----", currentWeather);
-      try {
-        // if(!currentWeather){
-        //   return;
-        // }
-        console.log("token---", token);
-        const result = await axios({
-          method: "get",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          url: `http://${ip}:9000/cloth/home?temperature=${currentWeather}`,
-        });
 
-        setImagesBoxTop(result.data.clothesTopBox);
-        setImagesBoxBottom(result.data.clothesBottomBox);
-        setFavorites(result.data.favorites);
+      try {
+          if(!currentWeather){
+            return;
+          }
+          const result = await axios({
+            method: "get",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },            
+            url: `http://${ip}:9000/cloth/home?temperature=${currentWeather}`
+          });
+          
+          setImages(result.data.clothesAsPerWeather)
+        
       } catch (error) {
         console.log("error in homescreen:", error);
       }
@@ -79,7 +90,8 @@ export default function HomeScreen() {
     getImagesFromBackend();
   }, [currentWeather, token, toggleFav]);
 
-  // [toggleFav, currentWeather]
+  }, [currentWeather, token, toggleFav])
+
   async function handleFavoriteBtn(image) {
     const ip = await currentIP();
 
@@ -129,8 +141,9 @@ export default function HomeScreen() {
             horizontal
             showsHorizontalScrollIndicator={false}
           >
-            {imagesBoxTop &&
-              imagesBoxTop.map((image, index) => (
+            {
+              images.filter((item)=>item.type ==="top")
+                    .map((image, index) => (
                 <View style={styles.image} key={index}>
                   <Image
                     style={{ width: "80%", height: "80%" }}
@@ -161,8 +174,9 @@ export default function HomeScreen() {
             horizontal
             showsHorizontalScrollIndicator={false}
           >
-            {imagesBoxBottom &&
-              imagesBoxBottom.map((image, index) => (
+            { 
+              images.filter((item)=>item.type ==="bottom")
+                    .map((image, index) => (
                 <View style={styles.image} key={index}>
                   <Image
                     style={{ width: "80%", height: "80%" }}
