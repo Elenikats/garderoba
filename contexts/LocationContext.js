@@ -52,22 +52,40 @@ export default function LocationProvider(props) {
         setWeatherApiKey(result.data);
         //getting the current weather
         if (weatherApiKey) {
-          const url = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${weatherApiKey}&units=metric`;
-          // const url = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${coordinates.latitude}&lon=${coordinates.longitude}&cnt=14&appid=729f9a5767727471e69bd342825d0b4b
-          // &units=metric` --another example url to get 14 days forecast
+          // const url = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${weatherApiKey}&units=metric`;
+          // // const url = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${coordinates.latitude}&lon=${coordinates.longitude}&cnt=14&appid=729f9a5767727471e69bd342825d0b4b
+          // // &units=metric` --another example url to get 14 days forecast
 
-          //api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+          // //api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
 
-          const callingUrl = await fetch(url);
-          const response = await callingUrl.json();
-          setCurrentWeather(response.main.temp.toFixed());
-          setWeatherIcon(response.weather[0].icon);
-          setWeatherLocation(response.name);
+          // const callingUrl = await fetch(url);
+          // const response = await callingUrl.json();
+          // setCurrentWeather(response.main.temp.toFixed());
+          // setWeatherIcon(response.weather[0].icon);
+          // setWeatherLocation(response.name);
+
+          // Line 55 to 65 deliberately commented out, to run the below code. 
+          // the above code might affect in bringing the clothes(as per weather) from the backend for now. 
+
+
           const url2 = `https://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${weatherApiKey}&units=metric`;
           const callingUrl2 = await fetch(url2);
           const response2 = await callingUrl2.json();
-          setForecastList(response2.list);
-          console.log("122233344", response2);
+          // setForecastList(response2.list);
+          // console.log("122233344", response2);
+          // console.log("response list is----", response2.list);
+          
+          const threeHourWeatherForecast = response2.list
+          
+          const weatherDetails = threeHourWeatherForecast.map((item)=>{
+            return{
+              temperature: item.main.temp,
+              time: item.dt_txt,
+              icon: item.weather[0].icon
+            }
+          })
+          console.log("weatherDetails here", weatherDetails);
+          console.log(weatherDetails.length);
         }
       } catch (error) {
         console.log("error in location context weather", error);
