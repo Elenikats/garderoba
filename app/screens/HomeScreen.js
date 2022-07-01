@@ -32,7 +32,7 @@ export default function HomeScreen() {
   const { user, setUser, token, setToken } = useContext(userContext);
   const [toggleFav, setToggleFav] = useState(false);
   const { currentWeather, setCurrentWeather } = useContext(LocationContext);
-  const [forecast, setForecast] = useState("");
+  const [forecast, setForecast] = useState("today");
   const { refresh, setRefresh } = useContext(RefreshContext);
 
   //useEffect for images
@@ -42,22 +42,26 @@ export default function HomeScreen() {
     }
     async function getImagesFromBackend() {
       const ip = await currentIP();
+      if (forecast == "today") {
+        try {
+          if (!currentWeather) {
+            return;
+          }
+          const result = await axios({
+            method: "get",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            url: `http://${ip}:9000/cloth/home?temperature=${currentWeather}`,
+          });
 
-      try {
-        if (!currentWeather) {
-          return;
+          setImages(result.data.clothesAsPerWeather);
+        } catch (error) {
+          console.log("error in homescreen:", error);
         }
-        const result = await axios({
-          method: "get",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          url: `http://${ip}:9000/cloth/home?temperature=${currentWeather}`,
-        });
-
-        setImages(result.data.clothesAsPerWeather);
-      } catch (error) {
-        console.log("error in homescreen:", error);
+      } else {
+        console.log("huhu");
+        return;
       }
     }
 
@@ -78,9 +82,37 @@ export default function HomeScreen() {
       });
 
       setToggleFav(!toggleFav);
+      setRefresh(!refresh);
     } catch (error) {
       console.error("error in PUT", error.response.data);
     }
+  }
+  async function handleForecast(e) {
+    console.log(e);
+    setForecast(e);
+    // const urlForecastData = await axios({
+    //   method: "get",
+    //   headers: {
+    //     Authorization: "",
+    //   },
+    // });
+    // const url = `https://api.openweathermap.org/data/2.5/forecast?lat=48.783333&lon=9.183333&appid=806513780cc07efedc5b9dabfbc00190&units=metric `;
+    // const callingUrl = await fetch(url);
+    // const response = await callingUrl.json();
+    // console.log(response.list[0].main.temp);
+    // try {
+    //   const result = await axios({
+    //     method: "get",
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //     url: `http://${ip}:9000/cloth/home?temperature=${currentWeather}`,
+    //   });
+
+    //   setImages(result.data.clothesAsPerWeather);
+    // } catch (error) {
+    //   console.log("error in homescreen:", error);
+    // }
   }
 
   // if (!currentWeather) {
@@ -96,7 +128,10 @@ export default function HomeScreen() {
       <View style={styles.dropdownContainer}>
         <Picker
           selectedValue={forecast}
-          onValueChange={(currentDay) => setForecast(currentDay)}
+          // onValueChange={(currentDay) => setForecast(currentDay)}
+          onValueChange={(e) => {
+            handleForecast(e);
+          }}
           style={styles.picker}
         >
           <Picker.Item label="today" />

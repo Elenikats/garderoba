@@ -18,6 +18,7 @@ export default function LocationProvider(props) {
   const [helper, setHelper] = useState(false);
   const [weatherIcon, setWeatherIcon] = useState(null);
   const [weatherLocation, setWeatherLocation] = useState(null);
+  const [forecastList, setForecastList] = useState([]);
 
   // const [ iconUrl, setIconUrl ] = useState(null);
   // const [iconUrl, setIconUrl ] = useState(null)
@@ -55,11 +56,18 @@ export default function LocationProvider(props) {
           // const url = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${coordinates.latitude}&lon=${coordinates.longitude}&cnt=14&appid=729f9a5767727471e69bd342825d0b4b
           // &units=metric` --another example url to get 14 days forecast
 
+          //api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+
           const callingUrl = await fetch(url);
           const response = await callingUrl.json();
           setCurrentWeather(response.main.temp.toFixed());
           setWeatherIcon(response.weather[0].icon);
           setWeatherLocation(response.name);
+          const url2 = `https://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${weatherApiKey}&units=metric`;
+          const callingUrl2 = await fetch(url2);
+          const response2 = await callingUrl2.json();
+          setForecastList(response2.list);
+          console.log("122233344", response2);
         }
       } catch (error) {
         console.log("error in location context weather", error);
