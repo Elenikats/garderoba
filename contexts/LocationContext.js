@@ -1,3 +1,91 @@
+// import React, { useContext, useEffect, useState } from "react"
+// import axios from "axios"
+// import currentIP from "../app/utils/ip.js"
+// import { userContext } from "./userContext.js"
+
+// export const LocationContext = React.createContext()
+
+// const getCoordinates = async (setCoordinates) => {
+//   // TODO: add try...catch
+//   const { status } = await Location.requestForegroundPermissionsAsync()
+//   if (status !== "granted") {
+//     setErrorMsg("Permission to access location was denied")
+//     return
+//   }
+
+//   // TODO: add try...catch
+//   const location = await Location.getCurrentPositionAsync({
+//     accuracy: Location.Accuracy.Highest,
+//   })
+//   const { latitude, longitude } = location.coords
+//   setCoordinates({
+//     ...coordinates,
+//     latitude,
+//     longitude
+//   })
+// }
+
+// const getWeatherApiKey = async setWeatherApiKey => {
+//   try {
+//     const ip = await currentIP()
+
+//     // TODO: add try...catch
+//     const result = await axios({
+//       method: "get",
+//       url: `http://${ip}:9000/weatherApiKey`,
+//     })
+
+//     setWeatherApiKey(result.data)
+//   } catch (error) {
+//     console.log("error in location context weather", error)
+//   }
+// }
+
+// const getWeather = async (coords, appid, setCurrentWeather, setWeatherIcon) => {
+//   const { lat: latitude, long: lon } = coords
+//   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appid}&units=metric`
+//   const response = await fetch(url)
+//   const result = await response.json()
+//   setCurrentWeather(result.main.temp.toFixed())
+//   setWeatherIcon(result.weather[0].icon)
+// }
+
+// export default function LocationProvider(props) {
+//   const [coordinates, setCoordinates] = useState(null)
+//   const [currentWeather, setCurrentWeather] = useState(null)
+//   const [weatherApiKey, setWeatherApiKey] = useState(null)
+//   const [weatherIcon, setWeatherIcon] = useState(null)
+//   const { token } = useContext(userContext)
+
+//   useEffect(() => {
+//     if (!token) {
+//       return
+//     }
+
+//     if (!coordinates) {
+//       getCoordinates(setCoordinates)
+//       return
+//     }
+
+//     if (!getWeatherApiKey) {
+//       getWeatherApiKey(setWeatherApiKey)
+//       return
+//     }
+
+//     getWeather(coordinates, weatherApiKey, setCurrentWeather, setWeatherIcon)
+//   }, [coordinates, weatherApiKey, token])
+
+//   const value = { coordinates, currentWeather, weatherIcon }
+
+//   return (
+//     <LocationContext.Provider value={value}>{props.children}</LocationContext.Provider>
+//   )
+// }
+
+
+
+
+
 import React, { useContext } from "react";
 import { useEffect, useState } from "react";
 import currentIP from "../app/utils/ip.js";
