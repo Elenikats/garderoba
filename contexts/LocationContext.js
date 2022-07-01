@@ -54,6 +54,8 @@ export default function LocationProvider(props) {
           const url = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${weatherApiKey}&units=metric`;
           // const url = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${coordinates.latitude}&lon=${coordinates.longitude}&cnt=14&appid=729f9a5767727471e69bd342825d0b4b
           // &units=metric` --another example url to get 14 days forecast
+          // api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+
 
           const callingUrl = await fetch(url);
           const response = await callingUrl.json();
