@@ -1,8 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
-
 import {
   View,
-  Text,
   StyleSheet,
   SafeAreaView,
   Image,
@@ -10,7 +8,8 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome5";
+import IconFeather from "react-native-vector-icons/Feather";
+import IconFA from "react-native-vector-icons/FontAwesome5";
 import { globalStyles } from "../styles/globalStyles.js";
 import Constants from "expo-constants";
 import PermissionLocation from "./PermissionLocation.js";
@@ -19,20 +18,31 @@ import { Picker } from "@react-native-picker/picker";
 import axios from "axios";
 import currentIP from "../utils/ip.js";
 import { userContext } from "../../contexts/userContext.js";
-import LocationProvider, {
-  LocationContext,
-} from "../../contexts/LocationContext.js";
+import { LocationContext } from "../../contexts/LocationContext.js";
 import { RefreshContext } from "../../contexts/refreshContext.js";
 
 const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
 
+const dayTimeButton = [
+  { name: "sunrise", time: "09:00:00" },
+  { name: "sun", time: "15:00:00" },
+  { name: "sunset", time: "21:00:00" },
+];
+
 export default function HomeScreen() {
   const [images, setImages] = useState([]);
-  const { user, setUser, token, setToken } = useContext(userContext);
+  const [sunIconStyle, setSuIconStyle] = useState(false);
+  const { token } = useContext(userContext);
   const [toggleFav, setToggleFav] = useState(false);
-  const { currentWeather, setCurrentWeather } = useContext(LocationContext);
-  const [forecast, setForecast] = useState("today");
+  const {
+    currentWeather,
+    dropdownLabel,
+    time,
+    setTime,
+    forecast,
+    setForecast,
+  } = useContext(LocationContext);
   const { refresh, setRefresh } = useContext(RefreshContext);
 
   //useEffect for images
@@ -42,26 +52,22 @@ export default function HomeScreen() {
     }
     async function getImagesFromBackend() {
       const ip = await currentIP();
-      if (forecast == "today") {
-        try {
-          if (!currentWeather) {
-            return;
-          }
-          const result = await axios({
-            method: "get",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-            url: `http://${ip}:9000/cloth/home?temperature=${currentWeather}`,
-          });
 
-          setImages(result.data.clothesAsPerWeather);
-        } catch (error) {
-          console.log("error in homescreen:", error);
+      try {
+        if (!currentWeather) {
+          return;
         }
-      } else {
-        console.log("huhu");
-        return;
+        const result = await axios({
+          method: "get",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          url: `http://${ip}:9000/cloth/home?temperature=${currentWeather}`,
+        });
+
+        setImages(result.data.clothesAsPerWeather);
+      } catch (error) {
+        console.log("error in homescreen:", error);
       }
     }
 
@@ -87,9 +93,10 @@ export default function HomeScreen() {
       console.error("error in PUT", error.response.data);
     }
   }
-  async function handleForecast(e) {
+  function handleForecast(e) {
     console.log(e);
-    setForecast(e);
+    setForecast(e); // ="2022-07-04"
+
     // const urlForecastData = await axios({
     //   method: "get",
     //   headers: {
@@ -119,6 +126,12 @@ export default function HomeScreen() {
   //   return <Text>Loading</Text>
   // }
 
+  function handleTimeIcon(item) {
+    setTime(item.time);
+    setSuIconStyle(!sunIconStyle);
+  }
+  console.log("time---", time);
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.weather}>
@@ -128,19 +141,28 @@ export default function HomeScreen() {
       <View style={styles.dropdownContainer}>
         <Picker
           selectedValue={forecast}
-          // onValueChange={(currentDay) => setForecast(currentDay)}
           onValueChange={(e) => {
             handleForecast(e);
           }}
           style={styles.picker}
         >
-          <Picker.Item label="today" />
-          <Picker.Item label="In one day" value="one" />
-          <Picker.Item label="In two days" value="two" />
-          <Picker.Item label="In three days" value="three" />
-          <Picker.Item label="In four days" value="four" />
-          <Picker.Item label="In five days" value="five" />
+          {dropdownLabel.map((item, index) => (
+            <Picker.Item label={item} value={item} key={index} />
+          ))}
         </Picker>
+        <View style={styles.iconSunContainer}>
+          {dayTimeButton.map((item, index) => (
+            <TouchableOpacity
+              key={index}
+              onPress={() => handleTimeIcon(item)}
+              // style={
+              //   sunIconStyle ? styles.activeSunIcon : styles.inactiveSunIcon
+              // }
+            >
+              <IconFeather name={item.name} size={22} />
+            </TouchableOpacity>
+          ))}
+        </View>
       </View>
       <View style={styles.home}>
         <View style={[styles.box, { backgroundColor: "white" }]}>
@@ -164,7 +186,7 @@ export default function HomeScreen() {
                       handleFavoriteBtn(image);
                     }}
                   >
-                    <Icon
+                    <IconFA
                       style={styles.favoritesIcon}
                       name="heart"
                       color="red"
@@ -197,7 +219,7 @@ export default function HomeScreen() {
                       handleFavoriteBtn(image);
                     }}
                   >
-                    <Icon
+                    <IconFA
                       style={styles.favoritesIcon}
                       name="heart"
                       color="red"
@@ -224,6 +246,7 @@ const styles = StyleSheet.create({
   home: {
     flex: 1,
   },
+
   weather: {
     height: 80,
     flex: 0,
@@ -236,6 +259,15 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: Constants.statusBarHeight,
     pickerStyleType: "none",
+  },
+
+  iconSunContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+
+  activeSunIcon: {
+    backgroundColor: "blue",
   },
 
   box: {
