@@ -32,7 +32,7 @@ const dayTimeButton = [
 
 export default function HomeScreen() {
   const [images, setImages] = useState([]);
-  const [sunIconStyle, setSuIconStyle] = useState(null);
+  const [sunIconStyle, setSuIconStyle] = useState("sunrise");
   const { token } = useContext(userContext);
   const [toggleFav, setToggleFav] = useState(false);
   const {
@@ -153,12 +153,12 @@ export default function HomeScreen() {
         </Picker>
         <View style={styles.iconSunContainer}>
           {dayTimeButton.map((item, index) => (
-            <TouchableOpacity
-              key={index}
-              onPress={() => handleTimeIcon(item)}
-              style={sunIconStyle === item.name ? styles.activeSunIcon : null}
-            >
-              <IconFeather name={item.name} size={22} />
+            <TouchableOpacity key={index} onPress={() => handleTimeIcon(item)}>
+              <IconFeather
+                name={item.name}
+                size={22}
+                style={sunIconStyle === item.name ? styles.activeSunIcon : null}
+              />
             </TouchableOpacity>
           ))}
         </View>
@@ -266,7 +266,7 @@ const styles = StyleSheet.create({
   },
 
   activeSunIcon: {
-    backgroundColor: "blue",
+    color: "#FF6D85",
   },
 
   box: {
