@@ -81,20 +81,30 @@ export default function LocationProvider(props) {
           const threeHourWeatherForecast = response2.list;
           // console.log("3h----", threeHourWeatherForecast);
           const weatherDetails = await threeHourWeatherForecast.map((item) => {
+
+            const time = item.dt_txt.split(" ")[1]
+            const timeHour = parseInt(time[0]+time[1])
+
             return {
               temperature: item.main.temp,
               date: item.dt_txt.split(" ")[0],
               time: item.dt_txt.split(" ")[1],
-              icon: item.weather[0].icon,
+              // helper variable.
+              icon: timeHour<9 || timeHour>20 ? item.weather[0].icon.replace("d","n") : item.weather[0].icon.replace("n","d"),            
             };
           });
+          // console.log("weatherdeets", weatherDetails);
 
-          const iconApi = weatherDetails.filter((item) => {
-            item.time == "21:00:00";
-          });
-          iconApi.map((i) => (i.icon = i.icon.slice(0, -1) + "n"));
+          // const extractWeatherDetails = 
+          
 
-          console.log(weatherDetails);
+          // const iconApi = weatherDetails.filter((item) => {
+          //   item.time == "21:00:00";
+          // });
+          // console.log("icons Arr", iconApi);
+          // iconApi.map((i) => (i.icon = i.icon.slice(0, -1) + "n"));
+     
+          console.log("just icons,----",weatherDetails[7].icon);
           const dateDetails = weatherDetails.map((item) => item.date);
           const uniqueDates = [...new Set(dateDetails)];
           setDropdownLabel(uniqueDates);
