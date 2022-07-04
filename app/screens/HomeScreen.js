@@ -45,6 +45,7 @@ export default function HomeScreen() {
   } = useContext(LocationContext);
   const { refresh, setRefresh } = useContext(RefreshContext);
 
+
   //useEffect for images
   useEffect(() => {
     if (!token) {

@@ -41,7 +41,7 @@ export default function CreateItemScreen({ route, navigation }) {
 
   const handleItemSave = async (e) => {
     e.preventDefault();
-    navigation.navigate("Main");
+    // navigation.navigate("Main");
 
     const readImageData = await readImage();
 
@@ -77,6 +77,7 @@ export default function CreateItemScreen({ route, navigation }) {
     } catch (error) {
       console.error("error in POST to upload an item", error.response.data);
     }
+    navigation.navigate("Main");
   };
   return (
     <SafeAreaView style={styles.container}>
