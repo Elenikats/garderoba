@@ -95,14 +95,6 @@ export default function LocationProvider(props) {
           });
           // console.log("weatherdeets", weatherDetails);
 
-          // const extractWeatherDetails = 
-          
-
-          // const iconApi = weatherDetails.filter((item) => {
-          //   item.time == "21:00:00";
-          // });
-          // console.log("icons Arr", iconApi);
-          // iconApi.map((i) => (i.icon = i.icon.slice(0, -1) + "n"));
      
           console.log("just icons,----",weatherDetails[7].icon);
           const dateDetails = weatherDetails.map((item) => item.date);
