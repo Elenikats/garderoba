@@ -32,7 +32,7 @@ const dayTimeButton = [
 
 export default function HomeScreen() {
   const [images, setImages] = useState([]);
-  const [sunIconStyle, setSuIconStyle] = useState(false);
+  const [sunIconStyle, setSuIconStyle] = useState(null);
   const { token } = useContext(userContext);
   const [toggleFav, setToggleFav] = useState(false);
   const {
@@ -127,8 +127,9 @@ export default function HomeScreen() {
   // }
 
   function handleTimeIcon(item) {
+    console.log("item here----", item);
     setTime(item.time);
-    setSuIconStyle(!sunIconStyle);
+    setSuIconStyle(item.name);
   }
   console.log("time---", time);
 
@@ -155,9 +156,7 @@ export default function HomeScreen() {
             <TouchableOpacity
               key={index}
               onPress={() => handleTimeIcon(item)}
-              // style={
-              //   sunIconStyle ? styles.activeSunIcon : styles.inactiveSunIcon
-              // }
+              style={sunIconStyle === item.name ? styles.activeSunIcon : null}
             >
               <IconFeather name={item.name} size={22} />
             </TouchableOpacity>

@@ -89,12 +89,12 @@ export default function LocationProvider(props) {
             };
           });
 
-          const iconApi = weatherDetails.filter((item) => {
-            item.time == "21:00:00";
-          });
-          iconApi.map((i) => (i.icon = i.icon.slice(0, -1) + "n"));
+          // const iconApi = weatherDetails.filter((item) => {
+          //   item.time == "21:00:00";
+          // });
+          // iconApi.map((i) => (i.icon = i.icon.slice(0, -1) + "n"));
 
-          console.log(weatherDetails);
+          // console.log(weatherDetails);
           const dateDetails = weatherDetails.map((item) => item.date);
           const uniqueDates = [...new Set(dateDetails)];
           setDropdownLabel(uniqueDates);
