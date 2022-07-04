@@ -88,10 +88,17 @@ export default function LocationProvider(props) {
               icon: item.weather[0].icon,
             };
           });
+
+          const iconApi = weatherDetails.filter((item) => {
+            item.time == "21:00:00";
+          });
+          iconApi.map((i) => (i.icon = i.icon.slice(0, -1) + "n"));
+
+          console.log(weatherDetails);
           const dateDetails = weatherDetails.map((item) => item.date);
           const uniqueDates = [...new Set(dateDetails)];
           setDropdownLabel(uniqueDates);
-
+          // console.log(response2);
           if (forecast == weatherDetails[0].date && time == "09:00:00") {
             //default weather:
             setCurrentWeather(weatherDetails[0].temperature.toFixed());
