@@ -132,7 +132,7 @@ export default function HomeScreen() {
     setTime(item.time);
     setSuIconStyle(item.name);
   }
-  console.log("time---", time);
+  // console.log("time---", time);
 
   return (
     <SafeAreaView style={styles.container}>

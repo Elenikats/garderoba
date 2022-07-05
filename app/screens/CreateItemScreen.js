@@ -6,6 +6,7 @@ import {
   Image,
   View,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { globalStyles, colors } from "../styles/globalStyles.js";
@@ -22,33 +23,30 @@ export default function CreateItemScreen({ route, navigation }) {
   const [season, setSeason]   = useState("");
   const [style, setStyle]     = useState("");
   const [type, setType]       = useState("");
-  const [weather, setWeather] = useState("");
+  // const [weather, setWeather] = useState("");
   const { image }             = route.params;
   const { token, userObj }    = useContext(userContext);
   const {refresh, setRefresh} = useContext(RefreshContext)
   
-  const readImage = async () => {
+  const imageBase64Converter = async () => {
     const imageAsString = await FileSystem.readAsStringAsync(image, {
       encoding: FileSystem.EncodingType.Base64,
     });
     const base64Image = "data:image/png;base64," + imageAsString;
-
     return base64Image;
   };
 
   const handleItemSave = async (e) => {
     e.preventDefault();
 
-    const readImageData = await readImage();
-
+    const base64Image = await imageBase64Converter();
     const payload = {
       type,
       season,
       style,
       color,
-      weather,
       user: userObj._id,
-      image: readImageData,
+      image: base64Image,
     };
 
     // *********************** AXIOS ******************************+
@@ -59,20 +57,20 @@ export default function CreateItemScreen({ route, navigation }) {
         url: `http://${ip}:9000/upload`,
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
         },
         data: payload,
         method: "POST",
       });
-      // setHelper(!helper)
+
       if (response.data) {
         setRefresh(!refresh)
+        navigation.navigate("Main");
       } 
       
     } catch (error) {
       console.error("error in POST to upload an item", error.response.data);
+      alert("oops somethings wrong, try again!");
     }
-    navigation.navigate("Main");
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -95,10 +93,8 @@ export default function CreateItemScreen({ route, navigation }) {
             onValueChange={(currentSeason) => setSeason(currentSeason)}
           >
             <Picker.Item label="choose season" />
-
-            <Picker.Item label="spring" value="spring" />
             <Picker.Item label="summer" value="summer" />
-            <Picker.Item label="fall" value="fall" />
+            <Picker.Item label="in-between" value="in-between" />
             <Picker.Item label="winter" value="winter" />
           </Picker>
           {/* <Text>Selected: {season}</Text> */}
@@ -111,35 +107,30 @@ export default function CreateItemScreen({ route, navigation }) {
             <Picker.Item label="casual" value="casual" />
             <Picker.Item label="formal" value="formal" />
             <Picker.Item label="work" value="work" />
-            <Picker.Item label="holiday" value="home" />
-          </Picker>
-          {/* **************Weather********************* */}
-          <Picker
-            selectedValue={weather}
-            onValueChange={(currentWeather) => setWeather(currentWeather)}
-          >
-            <Picker.Item label="choose weather" />
-            <Picker.Item label="sunny" value="sunny" />
+            <Picker.Item label="sports" value="sports" />
+            <Picker.Item label="night-out" value="night-out" />
+            <Picker.Item label="lounge-wear" value="lounge-wear" />
             <Picker.Item label="rainy" value="rainy" />
-            <Picker.Item label="snow" value="snow" />
+
           </Picker>
-          {/* <Picker.Item label="holiday" value="holiday" /> */}
           {/* *******************Color********************** */}
           <ColorPalette
             selectedValue={color}
             onChange={(currentColor) => setColor(currentColor)}
             colors={[
-              "#000",
               "#fff",
+              "#7A8B8B",
+              "#000",
               "#1C86EE",
               "#EE3B3B",
               "#FF82AB",
               "#E1C699",
               "#C1FFC1",
               "#2E8B57",
-              "#7A8B8B",
               "#FFB90F",
               "#8B4500",
+              "#C4FFFD",
+              "#7F09E3"
             ]}
             title={"choose color:"}
             icon={
@@ -154,9 +145,9 @@ export default function CreateItemScreen({ route, navigation }) {
         {/* **********Save Button******************* */}
         <TouchableOpacity
           onPress={(e) => handleItemSave(e)}
-          disabled={!type || !season || !style || !color || !weather}
+          disabled={!type || !season || !style || !color }
           style={
-            type && season && style && color && weather
+            type && season && style && color 
               ? globalStyles.activeButton
               : globalStyles.inactiveButton
           }

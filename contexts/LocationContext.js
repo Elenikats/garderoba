@@ -82,7 +82,7 @@ export default function LocationProvider(props) {
           });
           // console.log("weatherdeets", weatherDetails);
 
-          console.log("just icons,----", weatherDetails[7].icon);
+          // console.log("just icons,----", weatherDetails[7].icon);
           const dateDetails = weatherDetails.map((item) => item.date);
           const uniqueDates = [...new Set(dateDetails)];
           setDropdownLabel(uniqueDates);
