@@ -24,7 +24,7 @@ import { RefreshContext } from "../../contexts/refreshContext.js";
 const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
 
-const dayTimeButton = [
+const sunButtonValues = [
   { name: "sunrise", time: "09:00:00" },
   { name: "sun", time: "15:00:00" },
   { name: "sunset", time: "21:00:00" },
@@ -32,19 +32,18 @@ const dayTimeButton = [
 
 export default function HomeScreen() {
   const [images, setImages] = useState([]);
-  const [sunIconStyle, setSuIconStyle] = useState("sunrise");
   const { token } = useContext(userContext);
   const [toggleFav, setToggleFav] = useState(false);
   const {
     currentWeather,
-    dropdownLabel,
-    time,
-    setTime,
-    forecast,
-    setForecast,
+    dateDropdownLabel,
+    setForecastTime,
+    forecastDate,
+    setForecastDate,
+    sunButtonValue,
+    setSunButtonValue,
   } = useContext(LocationContext);
   const { refresh, setRefresh } = useContext(RefreshContext);
-
 
   //useEffect for images
   useEffect(() => {
@@ -94,45 +93,40 @@ export default function HomeScreen() {
       console.error("error in PUT", error.response.data);
     }
   }
-  function handleForecast(e) {
-    console.log(e);
-    setForecast(e); // ="2022-07-04"
+  // function handleForecast(e) {
+  // const urlForecastData = await axios({
+  //   method: "get",
+  //   headers: {
+  //     Authorization: "",
+  //   },
+  // });
+  // const url = `https://api.openweathermap.org/data/2.5/forecast?lat=48.783333&lon=9.183333&appid=806513780cc07efedc5b9dabfbc00190&units=metric `;
+  // const callingUrl = await fetch(url);
+  // const response = await callingUrl.json();
+  // console.log(response.list[0].main.temp);
+  // try {
+  //   const result = await axios({
+  //     method: "get",
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //     url: `http://${ip}:9000/cloth/home?temperature=${currentWeather}`,
+  //   });
 
-    // const urlForecastData = await axios({
-    //   method: "get",
-    //   headers: {
-    //     Authorization: "",
-    //   },
-    // });
-    // const url = `https://api.openweathermap.org/data/2.5/forecast?lat=48.783333&lon=9.183333&appid=806513780cc07efedc5b9dabfbc00190&units=metric `;
-    // const callingUrl = await fetch(url);
-    // const response = await callingUrl.json();
-    // console.log(response.list[0].main.temp);
-    // try {
-    //   const result = await axios({
-    //     method: "get",
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //     url: `http://${ip}:9000/cloth/home?temperature=${currentWeather}`,
-    //   });
-
-    //   setImages(result.data.clothesAsPerWeather);
-    // } catch (error) {
-    //   console.log("error in homescreen:", error);
-    // }
-  }
+  //   setImages(result.data.clothesAsPerWeather);
+  // } catch (error) {
+  //   console.log("error in homescreen:", error);
+  // }
+  // }
 
   // if (!currentWeather) {
   //   return <Text>Loading</Text>
   // }
 
   function handleTimeIcon(item) {
-    console.log("item here----", item);
-    setTime(item.time);
-    setSuIconStyle(item.name);
+    setForecastTime(item.time);
+    setSunButtonValue(item.name);
   }
-  console.log("time---", time);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -142,23 +136,27 @@ export default function HomeScreen() {
       </View>
       <View style={styles.dropdownContainer}>
         <Picker
-          selectedValue={forecast}
+          selectedValue={forecastDate}
           onValueChange={(e) => {
-            handleForecast(e);
+            setForecastDate(e);
           }}
           style={styles.picker}
         >
-          {dropdownLabel.map((item, index) => (
+          {dateDropdownLabel.map((item, index) => (
             <Picker.Item label={item} value={item} key={index} />
           ))}
         </Picker>
         <View style={styles.iconSunContainer}>
-          {dayTimeButton.map((item, index) => (
+          {sunButtonValues.map((item, index) => (
             <TouchableOpacity key={index} onPress={() => handleTimeIcon(item)}>
               <IconFeather
                 name={item.name}
                 size={22}
-                style={sunIconStyle === item.name ? styles.activeSunIcon : null}
+                style={
+                  sunButtonValue && sunButtonValue === item.name
+                    ? styles.activeSunIcon
+                    : null
+                }
               />
             </TouchableOpacity>
           ))}
