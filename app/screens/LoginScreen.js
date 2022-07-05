@@ -95,6 +95,9 @@ export default function LoginScreen({ navigation }) {
         password: "cabbage",
         // email: "testuser1@example.com",
         // password:"random",
+        // email: "angela.h@web.de",
+        // password: "123456",
+        // email: "testuser1@example.com",password: "random"
       });
 
       setUserObj(res.data);
