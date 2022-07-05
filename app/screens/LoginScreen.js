@@ -8,13 +8,18 @@ import {
   SafeAreaView,
   ScrollView,
 } from "react-native";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link } from "@react-navigation/native";
 import currentIP from "../utils/ip.js";
 import axios from "axios";
 import Icon from "react-native-vector-icons/Ionicons";
 import { globalStyles, colors } from "../styles/globalStyles";
 import { userContext } from "../../contexts/userContext";
+// import * as Google from "expo-google-app-auth"
+import * as Google from 'expo-auth-session/providers/google';
+import * as WebBrowser from 'expo-web-browser';
+
+WebBrowser.maybeCompleteAuthSession();
 
 export default function LoginScreen({ navigation }) {
   const {
@@ -31,7 +36,44 @@ export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
-  const [errors, setErrors] = useState([]);
+  const [accessToken, setAccessToken] = useState();
+  const [userInfo, setUserInfo] = useState();
+  const [message, setMessage] = useState();
+  // const [messageType, setMessageType] = useState();
+  // const [googleSubmitting, setGoogleSubmitting] = useState(false);
+
+  // const handleMessage = (message, type = "FAILED") => {
+  //   setMessage(message);
+  //   setMessageType(type);
+  // }
+
+  const [request, response, promptAsync] = Google.useAuthRequest({
+    // androidClientId: "745727160189-i3iilie0vgtch9604nsfo5k7t3kfjimn.apps.googleusercontent.com",
+    iosClientId: "745727160189-i3iilie0vgtch9604nsfo5k7t3kfjimn.apps.googleusercontent.com",
+    expoClientId: "745727160189-bg6uo509pj0ahfscfdtimecchfi32pjk.apps.googleusercontent.com"
+  });
+
+  // clientSecret: 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
+
+  useEffect(() => {
+    console.log("response google:", response)
+    setMessage(JSON.stringify(response));
+    if (response?.type === "success") {
+      setAccessToken(response.authentication.accessToken);
+    }
+  }, [response]);
+
+
+  async function getUserData() {
+    let userInfoResponse = await fetch("https://www.googleapis.com/userinfo/v2/me", {
+      headers: { Authorization: `Bearer ${accessToken}`}
+    });
+
+    userInfoResponse.json().then(data => {
+      setUserInfo(data);
+    });
+  }
+
 
   const handleOpenEye = () => {
     setHidePassword(!hidePassword);
@@ -72,13 +114,11 @@ export default function LoginScreen({ navigation }) {
     <SafeAreaView>
       <ScrollView>
         <View style={styles.cont}>
-          <View style={globalStyles.logoContainer}>
-            <Image source={require("../assets/Garderoba_medium.png")} />
-          </View>
+  
+          <Image source={require("../assets/Garderoba_medium.png")} style={styles.logo} />
+
           <TouchableOpacity
-            onPress={() => {
-              console.log("pressed google button");
-            }}
+            onPress={accessToken ? getUserData : () => { promptAsync({ useProxy: false, showInRecents: true }) }}
             style={styles.googleButton}
           >
             <Image
@@ -90,6 +130,7 @@ export default function LoginScreen({ navigation }) {
             </Text>
           </TouchableOpacity>
           <Text style={[globalStyles.text, { marginVertical: 30 }]}>or</Text>
+          <Text style={[globalStyles.text, { marginVertical: 10 }]}>Register with email</Text>
           {/* <Text style={styles.label}>Email</Text> */}
           <TextInput
             value={email}
@@ -177,7 +218,6 @@ const styles = StyleSheet.create({
     borderColor: "blue",
     borderRadius: 4,
     padding: 20,
-    marginTop: "10%",
     alignSelf: "center",
   },
   label: {

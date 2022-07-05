@@ -69,9 +69,7 @@ export default function RegisterScreen({navigation}) {
     <SafeAreaView>
       <ScrollView>
         <View style={ styles.cont }>
-          <Image 
-              source={require("../assets/clothespile.jpg")}  
-              style={{width: 100, height: 100, borderRadius: 50, marginTop: 50}} />
+          <Image source={require("../assets/Garderoba_medium.png")} style={styles.logo} />
           <TouchableOpacity 
             onPress={() => {console.log("pressed google button")}}
             style={styles.googleButton}
@@ -197,8 +195,14 @@ const styles = StyleSheet.create({
     borderColor: "blue",
     borderRadius: 4,
     padding: 20,
-    marginTop: "10%",
     alignSelf: "center"
+  },
+  logo: {
+    marginBottom: "20%",
+    marginTop: 50,
+    borderRadius: 50,
+    width: 100,
+    height: 100,
   },
   label: {
     paddingTop: 10,
