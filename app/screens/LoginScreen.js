@@ -49,8 +49,9 @@ export default function LoginScreen({ navigation }) {
     const url = `http://${ip}:9000/users/login`;
     try {
       const res = await axios.post(url, {
-        email: "testuser1@example.com",
-        password:"random",
+        email: "angela.h@web.de",
+        password: "123456",
+        // email: "testuser1@example.com",password: "random"
       });
 
       setUserObj(res.data);
