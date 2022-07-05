@@ -56,21 +56,6 @@ export default function LocationProvider(props) {
         setWeatherApiKey(result.data);
         //getting the current weather
         if (weatherApiKey) {
-          //   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${weatherApiKey}&units=metric`;
-          //   // const url = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${coordinates.latitude}&lon=${coordinates.longitude}&cnt=14&appid=729f9a5767727471e69bd342825d0b4b
-          //   // &units=metric` --another example url to get 14 days forecast
-
-          //   //api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
-
-          //   const callingUrl = await fetch(url);
-          //   const response = await callingUrl.json();
-          //   setCurrentWeather(response.main.temp.toFixed());
-          //   setWeatherIcon(response.weather[0].icon);
-          //   setWeatherLocation(response.name);
-
-          // Line 55 to 65 deliberately commented out, to run the below code.
-          // the above code might affect in bringing the clothes(as per weather) from the backend for now.
-
           const url2 = `https://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${weatherApiKey}&units=metric`;
           const callingUrl2 = await fetch(url2);
           const response2 = await callingUrl2.json();
@@ -81,22 +66,23 @@ export default function LocationProvider(props) {
           const threeHourWeatherForecast = response2.list;
           // console.log("3h----", threeHourWeatherForecast);
           const weatherDetails = await threeHourWeatherForecast.map((item) => {
-
-            const time = item.dt_txt.split(" ")[1]
-            const timeHour = parseInt(time[0]+time[1])
+            const time = item.dt_txt.split(" ")[1];
+            const timeHour = parseInt(time[0] + time[1]);
 
             return {
               temperature: item.main.temp,
               date: item.dt_txt.split(" ")[0],
               time: item.dt_txt.split(" ")[1],
               // helper variable.
-              icon: timeHour<9 || timeHour>20 ? item.weather[0].icon.replace("d","n") : item.weather[0].icon.replace("n","d"),            
+              icon:
+                timeHour < 9 || timeHour > 20
+                  ? item.weather[0].icon.replace("d", "n")
+                  : item.weather[0].icon.replace("n", "d"),
             };
           });
           // console.log("weatherdeets", weatherDetails);
 
-     
-          console.log("just icons,----",weatherDetails[7].icon);
+          console.log("just icons,----", weatherDetails[7].icon);
           const dateDetails = weatherDetails.map((item) => item.date);
           const uniqueDates = [...new Set(dateDetails)];
           setDropdownLabel(uniqueDates);

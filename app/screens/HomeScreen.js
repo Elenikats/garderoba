@@ -267,7 +267,7 @@ const styles = StyleSheet.create({
   },
 
   activeSunIcon: {
-    color: "#FF6D85",
+    color: "#FE5F10",
   },
 
   box: {

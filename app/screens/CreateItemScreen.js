@@ -1,4 +1,4 @@
-import react, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import {
   StyleSheet,
   SafeAreaView,
@@ -15,20 +15,17 @@ import * as FileSystem from "expo-file-system";
 import currentIP from "../utils/ip.js";
 import { userContext } from "../../contexts/userContext.js";
 import { RefreshContext } from "../../contexts/refreshContext.js";
-//import * as Network from "expo-network";
-// import Icon from "react-native-vector-icons/Fontisto";
+
 
 export default function CreateItemScreen({ route, navigation }) {
-  const {refresh, setRefresh} = useContext(RefreshContext)
-  const { user, token, userObj } = useContext(userContext);
-  const [type, setType] = useState("");
-  const [season, setSeason] = useState("");
-  const [style, setStyle] = useState("");
-  const [color, setColor] = useState("");
+  const [color, setColor]     = useState("");
+  const [season, setSeason]   = useState("");
+  const [style, setStyle]     = useState("");
+  const [type, setType]       = useState("");
   const [weather, setWeather] = useState("");
-  const { image } = route.params;
-
-  // console.log("user id is", user);
+  const { image }             = route.params;
+  const { token, userObj }    = useContext(userContext);
+  const {refresh, setRefresh} = useContext(RefreshContext)
   
   const readImage = async () => {
     const imageAsString = await FileSystem.readAsStringAsync(image, {
@@ -41,7 +38,6 @@ export default function CreateItemScreen({ route, navigation }) {
 
   const handleItemSave = async (e) => {
     e.preventDefault();
-    // navigation.navigate("Main");
 
     const readImageData = await readImage();
 
@@ -56,7 +52,6 @@ export default function CreateItemScreen({ route, navigation }) {
     };
 
     // *********************** AXIOS ******************************+
-    //const ip = await Network.getIpAddressAsync();
     const ip = await currentIP();
 
     try {
