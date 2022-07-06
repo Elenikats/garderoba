@@ -150,6 +150,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "70%",
     alignSelf: "center",
+    paddingTop: 100,
   },
   logo: {
     marginBottom: "20%",
@@ -176,7 +177,7 @@ const styles = StyleSheet.create({
     borderColor: "blue",
     borderRadius: 4,
     padding: 20,
-    marginTop: "10%",
+    marginTop: "20%",
     alignSelf: "center",
   },
   label: {

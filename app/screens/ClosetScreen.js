@@ -9,6 +9,7 @@ import {
   ScrollView,
   Modal,
   Dimensions,
+  Alert,
   Pressable,
 } from "react-native";
 import CheckBox from "expo-checkbox";
