@@ -9,6 +9,7 @@ import {
   ScrollView,
   Modal,
   Dimensions,
+  Alert
 } from "react-native";
 import CheckBox from "expo-checkbox";
 import Icon from "react-native-vector-icons/FontAwesome5";
