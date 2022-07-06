@@ -27,20 +27,24 @@ export default function ClosetScreen() {
   const [closet, setCloset] = useState(null);
   const [filterModalVisible, setFilterModalVisible] = useState(false);
   const [clothFilterOpt, setClothFilterOpt] = useState(filterCheckboxes);
-
-  const [color, setColor] = useState("");
   const { refresh, setRefresh } = useContext(RefreshContext);
+
+  const selectedFilter = clothFilterOpt.filter((item) => item.isChecked);
 
   useEffect(() => {
     async function getImagesFromBackend() {
       const ip = await currentIP();
       try {
+        let queryString = selectedFilter
+          .map((item) => Object.keys(item)[1] + "=" + Object.values(item)[1])
+          .join("&");
+        console.log("STRING___:", queryString);
         const result = await axios({
           method: "get",
           headers: {
             Authorization: `Bearer ${token}`,
           },
-          url: `http://${ip}:9000/cloth/closet`,
+          url: `http://${ip}:9000/cloth/closet?${queryString}`,
         });
         setCloset(result.data);
       } catch (error) {
@@ -49,7 +53,7 @@ export default function ClosetScreen() {
     }
 
     getImagesFromBackend();
-  }, [clothFilterOpt]);
+  }, [refresh, clothFilterOpt]);
 
   //filter button:
   function handleFilterBtn() {
@@ -57,7 +61,7 @@ export default function ClosetScreen() {
   }
 
   //handle Style and color checkboxes:
-  const handleFilter = (id) => {
+  function handleFilter(id) {
     let check = clothFilterOpt.map((item) => {
       if (id === item.id) {
         return { ...item, isChecked: !item.isChecked };
@@ -65,54 +69,16 @@ export default function ClosetScreen() {
       return item;
     });
     setClothFilterOpt(check);
-  };
-  const selectedFilter = clothFilterOpt.filter((item) => item.isChecked);
-
-  // //remove filter: --- take note
-  // async function handleFilterRemove(id) {
-  //   const ip = await currentIP();
-
-  //   try {
-  //     let queryString = selectedFilter
-  //       .map((item) => Object.keys(item)[1] + "=" + Object.values(item)[1])
-  //       .join("&");
-  //     console.log("STRING___:", queryString);
-  //     const result = await axios({
-  //       method: "get",
-  //       url: `http://${ip}:9000/cloth/closet?${queryString}`,
-  //     });
-  //     setCloset(result.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-  // }
-
-  //submit button im filterModal:
-  async function handleSubmit() {
-    const ip = await currentIP();
-
-    setFilterModalVisible(!filterModalVisible);
-
-    try {
-      let queryString = selectedFilter
-        .map((item) => Object.keys(item)[1] + "=" + Object.values(item)[1])
-        .join("&");
-      // console.log("STRING___:", queryString);
-      const result = await axios({
-        method: "get",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        url: `http://${ip}:9000/cloth/closet?${queryString}`,
-      });
-      setCloset(result.data);
-    } catch (error) {
-      console.log("error in handling submit of cloth form", error);
-    }
   }
 
-  //3 dots button:
+  //remove all filter button:
+  function handleRemoveAllFilter() {
+    setClothFilterOpt(filterCheckboxes);
+    setFilterModalVisible(false);
+    setRefresh(!refresh);
+  }
+
+  //delete cloth button:
   async function handleDeleteBtn(image) {
     const ip = await currentIP();
 
@@ -124,26 +90,10 @@ export default function ClosetScreen() {
           Authorization: `Bearer ${token}`,
         },
       });
-
-      // setCloset(result.data);
-      // setRefresh(!refresh);
+      setRefresh(!refresh);
     } catch (error) {
       console.error("error in DELETE", error.response.data);
     }
-
-    // console.log("image.id---", image._id);
-    // const ip = await currentIP();
-    // try {
-    //   await axios.delete(`http://${ip}:9000/cloth/closet/${image._id}`);
-    //   // setStatus("Delete successful");
-    // } catch (error) {
-    //   console.log(error);
-    // }
-  }
-
-  function handleRemoveFilter() {
-    setClothFilterOpt(filterCheckboxes);
-    setFilterModalVisible(!filterModalVisible);
   }
 
   return (
@@ -161,7 +111,7 @@ export default function ClosetScreen() {
             <TouchableOpacity
               key={index}
               onPress={() => {
-                // handleFilter(item.id), handleFilterRemove();
+                handleFilter(item.id);
               }}
             >
               <Text
@@ -281,10 +231,10 @@ export default function ClosetScreen() {
                     )}
                 </View>
 
-                <TouchableOpacity onPress={handleSubmit}>
+                <TouchableOpacity onPress={() => setFilterModalVisible(false)}>
                   <Text style={globalStyles.activeButton}>ok</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={handleRemoveFilter}>
+                <TouchableOpacity onPress={handleRemoveAllFilter}>
                   <Text
                     style={[
                       globalStyles.activeButton,
