@@ -187,13 +187,12 @@ export default function LoginScreen({ navigation, expoClientIdValue }) {
           <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
             <Text style={styles.textBtn}>Login</Text>
           </TouchableOpacity>
-          <View style={styles.links}>
-            <Link to={{ screen: "Register" }} style={styles.signup}>
-              Sign up
-            </Link>
-            <Link to={{ screen: "" }} style={styles.forgotPass}>
+          <View style={styles.linksCont}>
+          <Text>Don't have an account yet?</Text>
+            <Link to={{ screen: "Register" }} style={styles.signup}>Sign up</Link>
+            {/* <Link to={{ screen: "" }} style={styles.forgotPass}>
               Forgot password?
-            </Link>
+            </Link> */}
           </View>
         </View>
       </ScrollView>
@@ -215,13 +214,13 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
   },
-  links: {
+  linksCont: {
     flexDirection: "row",
-    marginTop: "10%",
+    marginTop: "10%"
   },
   signup: {
-    marginRight: "18%",
     color: "blue",
+    marginLeft: 10
   },
   forgotPass: {
     color: "blue",

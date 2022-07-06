@@ -46,8 +46,6 @@ export default function RegisterScreen({navigation}) {
     fetch(url, config)
       .then(response => response.json())
       .then(result => {
-        
-
         if (result.error) {
          throw new Error(result.error) 
         }
@@ -168,12 +166,14 @@ export default function RegisterScreen({navigation}) {
           <TouchableOpacity 
             onPress={handleSignupBtn}
             disabled={!agree}
-            style={agree ? styles.registerButton : styles.unregisterButton}>
+            style={username && email && password && repeatPassword && agree ? styles.registerButton : styles.unregisterButton}>
               <Text style={styles.textBtn}>Sign up</Text>
           </TouchableOpacity >
 
-          <Text>You have already an account?</Text>
-          <Link to={{screen: 'Login'}} style={{color: "blue"} }>Login</Link>
+          <View style={styles.linksCont}>
+            <Text>Already have an account?</Text>
+            <Link to={{screen: 'Login'}} style={styles.link}>Login</Link>
+          </View>
           
         </View>
       </ScrollView>
@@ -281,5 +281,13 @@ const styles = StyleSheet.create({
     color: "red",
     paddingTop: 3,
     fontSize: 12
+  },
+  linksCont: {
+    flexDirection: "row"
+  },
+  link: {
+    marginBottom: 50,
+    marginLeft: 10,
+    color: "blue"
   }
 })

@@ -4,11 +4,11 @@
     "slug": "garderoba",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./app/assets/icon.png",
+    "icon": "./app/assets/Garderoba_small.png",
     "scheme": "garderoba",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./app/assets/splash.png",
+      "image": "./app/assets/Garderoba_medium.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -24,13 +24,13 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./app/assets/adaptive-icon.png",
+        "foregroundImage": "./app/assets/Garderoba_medium.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.eleniwebdev.garderoba"
     },
     "web": {
-      "favicon": "./app/assets/favicon.png"
+      "favicon": "./app/assets/Garderoba_medium.png"
     }
     
   }
