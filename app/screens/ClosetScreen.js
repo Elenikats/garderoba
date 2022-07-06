@@ -237,7 +237,7 @@ export default function ClosetScreen() {
                   <Text
                     style={[
                       globalStyles.activeButton,
-                      { backgroundColor: "#FE5F10" },
+                      { backgroundColor: "#FE5F10", width: 130 },
                     ]}
                   >
                     remove all filter
@@ -318,6 +318,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 30,
   },
+
   filterOptionStyle: {
     paddingVertical: 5,
     paddingHorizontal: 10,
@@ -404,6 +405,7 @@ const styles = StyleSheet.create({
   checkboxContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
+    justifyContent: "center",
   },
   checkboxConWrapper: {
     flexDirection: "row",
@@ -425,7 +427,6 @@ const styles = StyleSheet.create({
 
   colorBox: {
     borderRadius: 50,
-
     paddingVertical: 1,
     paddingHorizontal: 8,
     borderWidth: 1,

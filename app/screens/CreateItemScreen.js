@@ -1,33 +1,31 @@
 import { useState, useContext } from "react";
 import {
-  StyleSheet,
   SafeAreaView,
   Text,
   Image,
   View,
   TouchableOpacity,
-  Alert,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { globalStyles, colors } from "../styles/globalStyles.js";
 import ColorPalette from "react-native-color-palette";
+import CheckBox from "expo-checkbox";
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
 import currentIP from "../utils/ip.js";
 import { userContext } from "../../contexts/userContext.js";
 import { RefreshContext } from "../../contexts/refreshContext.js";
-
+import { filterCheckboxes } from "../libs/clothFilter.js";
 
 export default function CreateItemScreen({ route, navigation }) {
-  const [color, setColor]     = useState("");
-  const [season, setSeason]   = useState("");
-  const [style, setStyle]     = useState("");
-  const [type, setType]       = useState("");
-  // const [weather, setWeather] = useState("");
-  const { image }             = route.params;
-  const { token, userObj }    = useContext(userContext);
-  const {refresh, setRefresh} = useContext(RefreshContext)
-  
+  const [color, setColor] = useState("");
+  const [season, setSeason] = useState("");
+  const [style, setStyle] = useState("");
+  const [type, setType] = useState("");
+  const { image } = route.params;
+  const { token, userObj } = useContext(userContext);
+  const { refresh, setRefresh } = useContext(RefreshContext);
+
   const imageBase64Converter = async () => {
     const imageAsString = await FileSystem.readAsStringAsync(image, {
       encoding: FileSystem.EncodingType.Base64,
@@ -63,124 +61,125 @@ export default function CreateItemScreen({ route, navigation }) {
       });
 
       if (response.data) {
-        setRefresh(!refresh)
+        setRefresh(!refresh);
         navigation.navigate("Main");
-      } 
-      
+      }
     } catch (error) {
       console.error("error in POST to upload an item", error.response.data);
       alert("oops somethings wrong, try again!");
     }
   };
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={{ marginTop: "20%" }}>
       <View>
         <View>
-          <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
-          {/* *******************Type:Top/Bottom/OnePiece************* */}
-          <Picker
-            selectedValue={type}
-            onValueChange={(currentType) => setType(currentType)}
-          >
-            <Picker.Item label="choose type" />
-            <Picker.Item label="Top" value="top" />
-            <Picker.Item label="bottom" value="bottom" />
-            <Picker.Item label="one piece" value="full" />
-          </Picker>
-          {/* ********************Season******************* */}
-          <Picker
-            selectedValue={season}
-            onValueChange={(currentSeason) => setSeason(currentSeason)}
-          >
-            <Picker.Item label="choose season" />
-            <Picker.Item label="summer" value="summer" />
-            <Picker.Item label="in-between" value="in-between" />
-            <Picker.Item label="winter" value="winter" />
-          </Picker>
-          {/* <Text>Selected: {season}</Text> */}
-          {/* *********************Style******************** */}
-          <Picker
-            selectedValue={style}
-            onValueChange={(currentStyle) => setStyle(currentStyle)}
-          >
-            <Picker.Item label="choose style" />
-            <Picker.Item label="casual" value="casual" />
-            <Picker.Item label="formal" value="formal" />
-            <Picker.Item label="work" value="work" />
-            <Picker.Item label="sports" value="sports" />
-            <Picker.Item label="night-out" value="night-out" />
-            <Picker.Item label="lounge-wear" value="lounge-wear" />
-            <Picker.Item label="rainy" value="rainy" />
-
-          </Picker>
-          {/* *******************Color********************** */}
-          <ColorPalette
-            selectedValue={color}
-            onChange={(currentColor) => setColor(currentColor)}
-            colors={[
-              "#fff",
-              "#7A8B8B",
-              "#000",
-              "#1C86EE",
-              "#EE3B3B",
-              "#FF82AB",
-              "#E1C699",
-              "#C1FFC1",
-              "#2E8B57",
-              "#FFB90F",
-              "#8B4500",
-              "#C4FFFD",
-              "#7F09E3"
-            ]}
-            title={"choose color:"}
-            icon={
-              <Text
-                style={color == "#000" ? styles.textWhite : styles.textBlack}
-              >
-                ✔
-              </Text>
-            }
+          <Image
+            source={{ uri: image }}
+            style={{ width: 200, height: 200, alignSelf: "center" }}
           />
+          <View style={{ margin: 20, alignSelf: "center" }}>
+            {/* *******************Type:Top/Bottom/OnePiece************* */}
+            <View style={{ marginBottom: 20, flexDirection: "row" }}>
+              {filterCheckboxes.map(
+                (item) =>
+                  Object.keys(item)[1] == "type" && (
+                    <TouchableOpacity
+                      key={item.id}
+                      onPress={() => setType(item.type)}
+                    >
+                      <Text
+                        style={
+                          type && type === item.type
+                            ? [
+                                globalStyles.activeButton,
+                                { backgroundColor: "#FE5F10" },
+                              ]
+                            : globalStyles.activeButton
+                        }
+                      >
+                        {item.type}
+                      </Text>
+                    </TouchableOpacity>
+                  )
+              )}
+            </View>
+            {/* ********************Season******************* */}
+            <Picker
+              selectedValue={season}
+              onValueChange={(currentSeason) => setSeason(currentSeason)}
+            >
+              <Picker.Item label="choose season" />
+              <Picker.Item label="summer" value="summer" />
+              <Picker.Item label="in-between" value="in-between" />
+              <Picker.Item label="winter" value="winter" />
+            </Picker>
+            {/* *********************Style******************** */}
+            <Picker
+              selectedValue={style}
+              onValueChange={(currentStyle) => setStyle(currentStyle)}
+            >
+              <Picker.Item label="choose style" />
+              {filterCheckboxes.map(
+                (item) =>
+                  Object.keys(item)[1] == "style" && (
+                    <Picker.Item
+                      key={item.id}
+                      label={item.style}
+                      value={item.style}
+                    />
+                  )
+              )}
+            </Picker>
+          </View>
+          {/* *******************Color********************** */}
+          <View style={{ marginBottom: 20 }}>
+            <ColorPalette
+              selectedValue={color}
+              onChange={(currentColor) => setColor(currentColor)}
+              colors={[
+                "#fff",
+                "#7A8B8B",
+                "#000",
+                "#1C86EE",
+                "#EE3B3B",
+                "#FF82AB",
+                "#E1C699",
+                "#C1FFC1",
+                "#2E8B57",
+                "#FFB90F",
+                "#8B4500",
+                "#C4FFFD",
+                "#7F09E3",
+              ]}
+              title={"choose color:"}
+              icon={
+                <Text
+                  style={
+                    color == "#000" ? { color: "white" } : { color: "black" }
+                  }
+                >
+                  ✔
+                </Text>
+              }
+            />
+          </View>
         </View>
         {/* **********Save Button******************* */}
         <TouchableOpacity
           onPress={(e) => handleItemSave(e)}
-          disabled={!type || !season || !style || !color }
-          style={
-            type && season && style && color 
-              ? globalStyles.activeButton
-              : globalStyles.inactiveButton
-          }
+          disabled={!type || !season || !style || !color}
         >
-          <Text style={styles.textBtn}>Save</Text>
+          <Text
+            style={
+              type && season && style && color
+                ? globalStyles.activeButton
+                : globalStyles.inactiveButton
+            }
+          >
+            Save
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: "15%",
-    flex: 1,
-    alignItems: "center",
-  },
-
-  textBtn: {
-    color: colors.white,
-    textAlign: "center",
-  },
-
-  textWhite: {
-    color: "white",
-  },
-  textBlack: {
-    color: "black",
-  },
-  weatherBtns: {
-    borderWidth: 2,
-    padding: 5,
-    borderColor: "black",
-    backgroundColor: "orange",
-  },
-});
