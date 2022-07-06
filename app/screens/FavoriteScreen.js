@@ -39,9 +39,9 @@ export default function FavoriteScreen() {
       <View style={styles.outerCont}></View>
       <ScrollView>
         <View style={styles.cont}>
-        {<View style={styles.clothItem}>
+        {/* {<View style={styles.clothItem}>
                     <Text>Folder</Text>
-                </View>}
+        </View>} */}
         { fav.map((image, index) => (
               <View style={styles.clothItem} key={index}>
                 <Image style={styles.image} source={{ uri: image.image }} />

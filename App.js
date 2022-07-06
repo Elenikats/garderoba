@@ -12,10 +12,32 @@ import EndScreen from "./app/screens/EndScreen.js";
 import UpdateUserScreen from './app/screens/UpdateUserScreen.js';
 import UserProvider from "./contexts/userContext.js";
 import  RefreshProvider  from "./contexts/refreshContext.js";
+import currentIP from "./app/utils/ip.js";
+import axios from "axios";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const [expoClientIdValue, setExpoClientIdValue] = React.useState("");
+
+  React.useEffect(() => {
+    const getExpoClientId = async () => {
+      try {
+        const ip = await currentIP();
+        const result = await axios({
+          method: "get",
+          url: `http://${ip}:9000/googleSignin`,
+        });
+        console.log("result.data googleIdKey:", result.data)
+        setExpoClientIdValue(result.data);
+      } catch (error){
+        console.log(error)
+      }
+  }
+
+  getExpoClientId()
+  }, [])
+  
   let [fontsLoaded] = useFonts({
     LatoRegular: require("./app/assets/fonts/Lato-Regular.ttf"),
     LatoBold: require("./app/assets/fonts/Lato-Bold.ttf"),
@@ -25,13 +47,17 @@ export default function App() {
     return null;
   }
 
+  if (!expoClientIdValue) {
+    return null;
+  }
+
   return (
     <RefreshProvider>
       <UserProvider>
         <LocationProvider>
             <NavigationContainer>
               <Stack.Navigator screenOptions={{ headerShown: false }}>
-                <Stack.Screen name="Login" component={LoginScreen} />
+                <Stack.Screen name="Login" >{(props) => <LoginScreen {...props} expoClientIdValue={expoClientIdValue}/>}</Stack.Screen>
                 <Stack.Screen name="Register" component={RegisterScreen} />
                 <Stack.Screen name="User" component={UserScreen} />
                 <Stack.Screen name="UpdateUser" component={UpdateUserScreen} />

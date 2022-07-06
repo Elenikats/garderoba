@@ -17,11 +17,12 @@ import { globalStyles, colors } from "../styles/globalStyles";
 import { userContext } from "../../contexts/userContext";
 // import * as Google from "expo-google-app-auth"
 import * as Google from 'expo-auth-session/providers/google';
+import * as AuthSession from "expo-auth-session";
 import * as WebBrowser from 'expo-web-browser';
 
 WebBrowser.maybeCompleteAuthSession();
 
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen({ navigation, expoClientIdValue }) {
   const {
     user,
     setUser,
@@ -39,21 +40,12 @@ export default function LoginScreen({ navigation }) {
   const [accessToken, setAccessToken] = useState();
   const [userInfo, setUserInfo] = useState();
   const [message, setMessage] = useState();
-  // const [messageType, setMessageType] = useState();
-  // const [googleSubmitting, setGoogleSubmitting] = useState(false);
 
-  // const handleMessage = (message, type = "FAILED") => {
-  //   setMessage(message);
-  //   setMessageType(type);
-  // }
+
 
   const [request, response, promptAsync] = Google.useAuthRequest({
-    // androidClientId: "745727160189-i3iilie0vgtch9604nsfo5k7t3kfjimn.apps.googleusercontent.com",
-    iosClientId: "745727160189-i3iilie0vgtch9604nsfo5k7t3kfjimn.apps.googleusercontent.com",
-    expoClientId: "745727160189-bg6uo509pj0ahfscfdtimecchfi32pjk.apps.googleusercontent.com"
+    expoClientId: expoClientIdValue
   });
-
-  // clientSecret: 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
 
   useEffect(() => {
     console.log("response google:", response)
@@ -63,17 +55,36 @@ export default function LoginScreen({ navigation }) {
     }
   }, [response]);
 
+  useEffect(() => {
+    if (!accessToken) {
+      return;
+    }
+    async function getUserData() {
+      let userInfoResponse = await fetch("https://www.googleapis.com/userinfo/v2/me", {
+        headers: { Authorization: `Bearer ${accessToken}`}
+      });
+  
+      userInfoResponse.json().then(data => {
+        setUserInfo(data);
+        console.log("data",data);
+      });
+    }
 
-  async function getUserData() {
-    let userInfoResponse = await fetch("https://www.googleapis.com/userinfo/v2/me", {
-      headers: { Authorization: `Bearer ${accessToken}`}
-    });
+    getUserData()
+  }, [accessToken])
 
-    userInfoResponse.json().then(data => {
-      setUserInfo(data);
-    });
-  }
+  useEffect(() => {
+    if (!userInfo) {
+      return;
+    }
+    navigation.navigate("Main");
+  }, [userInfo])
 
+  // if (!expoClientIdValue) {
+  //   return <Text>loadiiiiiiiiiiing</Text>;
+  // }
+
+  ////////////////////
 
   const handleOpenEye = () => {
     setHidePassword(!hidePassword);
@@ -121,7 +132,7 @@ export default function LoginScreen({ navigation }) {
           <Image source={require("../assets/Garderoba_medium.png")} style={styles.logo} />
 
           <TouchableOpacity
-            onPress={accessToken ? getUserData : () => { promptAsync({ useProxy: false, showInRecents: true }) }}
+            onPress={ () => { promptAsync({ useProxy: true, redirectUri: AuthSession.makeRedirectUri({useProxy: true}) , showInRecents: true }) }}
             style={styles.googleButton}
           >
             <Image

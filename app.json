@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./app/assets/icon.png",
-    "scheme": "com.eleniwebdev.garderoba",
+    "scheme": "garderoba",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./app/assets/splash.png",
