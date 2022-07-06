@@ -125,8 +125,8 @@ export default function ClosetScreen() {
         },
       });
 
-      setCloset(result.data);
-      setRefresh(!refresh);
+      // setCloset(result.data);
+      // setRefresh(!refresh);
     } catch (error) {
       console.error("error in DELETE", error.response.data);
     }
