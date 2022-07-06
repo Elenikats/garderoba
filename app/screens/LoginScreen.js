@@ -96,6 +96,7 @@ export default function LoginScreen({ navigation, expoClientIdValue }) {
     // { email: "angela.h@web.de", password: "123456" }
     // {email: "cabbage@gmail.com",password: "cabbage"}
     // {email: "testuser1@example.com",password: "random"}
+    // {email: "testuser4@eg.com",password: "random123"}
 
     const ip = await currentIP();
 
