@@ -216,7 +216,7 @@ export default function ClosetScreen() {
             <View style={styles.centeredViewFilter}>
               <Pressable
                 style={styles.closeModal}
-                onPress={() => setFilterModalVisible(!filterModalVisible)}
+                onPress={() => setFilterModalVisible(false)}
               >
                 <Text style={styles.textStyleX}>X</Text>
               </Pressable>
