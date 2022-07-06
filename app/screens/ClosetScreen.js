@@ -64,7 +64,7 @@ export default function ClosetScreen() {
     }
 
     getImagesFromBackend();
-  }, []);
+  }, [refresh]);
 
   //filter button:
   function handleFilterBtn() {
@@ -129,8 +129,8 @@ export default function ClosetScreen() {
 
   //3 dots button:
   async function handleDeleteBtn(image) {
-    const ip = await currentIP();
 
+    const ip = await currentIP();
     try {
       const result = await axios({
         url: `http://${ip}:9000/cloth/closet/${image._id}`,
@@ -140,7 +140,7 @@ export default function ClosetScreen() {
         },
       });
 
-      setCloset(result.data);
+      // setCloset(result.data);
       setRefresh(!refresh);
     } catch (error) {
       console.error("error in DELETE", error.response.data);
