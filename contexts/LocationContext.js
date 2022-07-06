@@ -100,29 +100,28 @@ export default function LocationProvider(props) {
     longitude: "",
     loading: true,
   });
-  const [currentWeather, setCurrentWeather] = useState(null);
-  const [weatherApiKey, setWeatherApiKey] = useState(null);
   const { token } = useContext(userContext);
-  const [helper, setHelper] = useState(false);
+  const [weatherApiKey, setWeatherApiKey] = useState(null);
+  const [currentWeather, setCurrentWeather] = useState(null);
   const [weatherIcon, setWeatherIcon] = useState(null);
   const [weatherLocation, setWeatherLocation] = useState(null);
-  const [dropdownLabel, setDropdownLabel] = useState([]);
-  const [forecast, setForecast] = useState(null);
-  const [time, setTime] = useState("09:00:00");
+  const [dateDropdownLabel, setDateDropdownLabel] = useState([]);
+  const [forecastDate, setForecastDate] = useState(null);
+  const [forecastTime, setForecastTime] = useState("");
+  const [sunButtonValue, setSunButtonValue] = useState("");
 
   const value = {
     coordinates,
     setCoordinates,
     currentWeather,
-    setCurrentWeather,
     weatherIcon,
     weatherLocation,
-    helper,
-    time,
-    setTime,
-    forecast,
-    setForecast,
-    dropdownLabel,
+    setForecastTime,
+    forecastDate,
+    setForecastDate,
+    dateDropdownLabel,
+    sunButtonValue,
+    setSunButtonValue,
   };
 
   useEffect(() => {
@@ -147,12 +146,8 @@ export default function LocationProvider(props) {
           const url2 = `https://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${weatherApiKey}&units=metric`;
           const callingUrl2 = await fetch(url2);
           const response2 = await callingUrl2.json();
-          // setForecastList(response2.list);
-          // console.log("122233344", response2);
-          // console.log("response list is----", response2.list);
           setWeatherLocation(response2.city.name);
           const threeHourWeatherForecast = response2.list;
-          // console.log("3h----", threeHourWeatherForecast);
           const weatherDetails = await threeHourWeatherForecast.map((item) => {
             const time = item.dt_txt.split(" ")[1];
             const timeHour = parseInt(time[0] + time[1]);
@@ -161,32 +156,42 @@ export default function LocationProvider(props) {
               temperature: item.main.temp,
               date: item.dt_txt.split(" ")[0],
               time: item.dt_txt.split(" ")[1],
-              // helper variable.
               icon:
                 timeHour < 9 || timeHour > 20
                   ? item.weather[0].icon.replace("d", "n")
                   : item.weather[0].icon.replace("n", "d"),
+              dayTimeButton:
+                timeHour >= 6 && timeHour <= 9
+                  ? "sunrise"
+                  : timeHour >= 12 && timeHour <= 18
+                  ? "sun"
+                  : "sunset",
             };
           });
-          // console.log("weatherdeets", weatherDetails);
 
-          console.log("just icons,----", weatherDetails[7].icon);
           const dateDetails = weatherDetails.map((item) => item.date);
           const uniqueDates = [...new Set(dateDetails)];
-          setDropdownLabel(uniqueDates);
-          // console.log(response2);
-          if (forecast == weatherDetails[0].date && time == "09:00:00") {
+          setDateDropdownLabel(uniqueDates);
+
+          if (!forecastTime) {
+            setForecastTime(weatherDetails[0].time);
+            setSunButtonValue(weatherDetails[0].dayTimeButton);
+          }
+
+          if (
+            forecastDate == weatherDetails[0].date &&
+            forecastTime == weatherDetails[0].time
+          ) {
             //default weather:
             setCurrentWeather(weatherDetails[0].temperature.toFixed());
             setWeatherIcon(weatherDetails[0].icon);
           } else {
             //selected weather:
-            const findCurrentWeather = weatherDetails.filter(
-              (item) => item.date === forecast && item.time === time
+            const findCurrentWeather = weatherDetails.find(
+              (item) => item.date === forecastDate && item.time === forecastTime
             );
-
-            setCurrentWeather(findCurrentWeather[0].temperature.toFixed());
-            setWeatherIcon(findCurrentWeather[0].icon);
+            setCurrentWeather(findCurrentWeather.temperature.toFixed());
+            setWeatherIcon(findCurrentWeather.icon);
           }
         }
       } catch (error) {
@@ -195,7 +200,7 @@ export default function LocationProvider(props) {
     };
 
     getWeather();
-  }, [coordinates, weatherApiKey, token, forecast, time]);
+  }, [coordinates, weatherApiKey, token, forecastDate, forecastTime]);
 
   return (
     <LocationContext.Provider value={value}>
