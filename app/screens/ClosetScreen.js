@@ -44,7 +44,7 @@ export default function ClosetScreen() {
   const [filterModalVisible, setFilterModalVisible] = useState(false);
   const [clothFilterOpt, setClothFilterOpt] = useState(filterCheckboxes);
   const [color, setColor] = useState("");
-  const {refresh, setRefresh} = useContext(RefreshContext)
+  const { refresh, setRefresh } = useContext(RefreshContext);
 
   useEffect(() => {
     async function getImagesFromBackend() {
@@ -59,9 +59,8 @@ export default function ClosetScreen() {
         });
         setCloset(result.data);
       } catch (error) {
-        console.log("error in receiving images from BE",error);
+        console.log("error in receiving images from BE", error);
       }
-
     }
 
     getImagesFromBackend();
@@ -124,7 +123,7 @@ export default function ClosetScreen() {
       });
       setCloset(result.data);
     } catch (error) {
-      console.log("error in handling submit of cloth form",error);
+      console.log("error in handling submit of cloth form", error);
     }
   }
 
@@ -168,8 +167,9 @@ export default function ClosetScreen() {
           <Icon name="filter" size={30} />
         </TouchableOpacity>
         {selectedFilter &&
-          selectedFilter.map((item) => (
+          selectedFilter.map((item, index) => (
             <TouchableOpacity
+              key={index}
               onPress={() => {
                 // handleFilter(item.id), handleFilterRemove();
               }}
