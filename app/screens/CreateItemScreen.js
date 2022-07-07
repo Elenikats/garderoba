@@ -19,7 +19,7 @@ import { filterCheckboxes } from "../libs/clothFilter.js";
 
 export default function CreateItemScreen({ route, navigation }) {
   const [color, setColor] = useState("");
-  const [season, setSeason] = useState([]);
+  const [selectedSeason, setSelectedSeason] = useState([]);
   const [style, setStyle] = useState("");
   const [type, setType] = useState("");
   const { image } = route.params;
@@ -34,13 +34,23 @@ export default function CreateItemScreen({ route, navigation }) {
     return base64Image;
   };
 
+  function handleSeason(season) {
+    const findSeason = selectedSeason.find((item) => season == item);
+    if (findSeason) {
+      const removeSeason = selectedSeason.filter((item) => findSeason != item);
+      setSelectedSeason(removeSeason);
+      return;
+    }
+    setSelectedSeason([...selectedSeason, season]);
+  }
+
   const handleItemSave = async (e) => {
     e.preventDefault();
 
     const base64Image = await imageBase64Converter();
     const payload = {
       type,
-      season,
+      season: selectedSeason,
       style,
       color,
       user: userObj._id,
@@ -104,15 +114,26 @@ export default function CreateItemScreen({ route, navigation }) {
               )}
             </View>
             {/* ********************Season******************* */}
-            <Picker
-              selectedValue={season}
-              onValueChange={(currentSeason) => setSeason(...season,currentSeason)}
-            >
-              <Picker.Item label="choose season" />
-              <Picker.Item label="summer" value="summer" />
-              <Picker.Item label="in-between" value="in-between" />
-              <Picker.Item label="winter" value="winter" />
-            </Picker>
+
+            <View style={{ marginBottom: 20, flexDirection: "row" }}>
+              {filterCheckboxes.map(
+                (item, index) =>
+                  Object.keys(item)[1] == "season" && (
+                    <View key={index} style={{ margin: 20 }}>
+                      <CheckBox
+                        value={
+                          selectedSeason.includes(item.season) ? true : false
+                        }
+                        onValueChange={() => {
+                          handleSeason(item.season);
+                        }}
+                      />
+                      <Text>{item.season}</Text>
+                    </View>
+                  )
+              )}
+            </View>
+
             {/* *********************Style******************** */}
             <Picker
               selectedValue={style}
@@ -167,11 +188,11 @@ export default function CreateItemScreen({ route, navigation }) {
         {/* **********Save Button******************* */}
         <TouchableOpacity
           onPress={(e) => handleItemSave(e)}
-          disabled={!type || !season || !style || !color}
+          disabled={!type || !selectedSeason || !style || !color}
         >
           <Text
             style={
-              type && season && style && color
+              type && selectedSeason && style && color
                 ? globalStyles.activeButton
                 : globalStyles.inactiveButton
             }

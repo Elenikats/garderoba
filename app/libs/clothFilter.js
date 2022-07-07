@@ -24,6 +24,6 @@ export const filterCheckboxes = [
   { id: 21, type: "top" },
   { id: 22, type: "bottom" },
   { id: 23, season: "summer" },
-  { id: 24, season: "winter" },
-  { id: 25, season: "in-between" },
+  { id: 24, season: "in-between" },
+  { id: 25, season: "winter" },
 ];

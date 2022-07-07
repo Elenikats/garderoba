@@ -48,6 +48,7 @@ export default function ClosetScreen() {
           url: `http://${ip}:9000/cloth/closet?${queryString}`,
         });
         setCloset(result.data);
+        console.log(result.data);
       } catch (error) {
         console.log("error in receiving images from BE", error);
       }
@@ -133,8 +134,15 @@ export default function ClosetScreen() {
               <View style={styles.clothItem} key={index}>
                 <Image style={styles.image} source={{ uri: image.image }} />
                 <View>
-                  <Text>season: {image.season}</Text>
-                  <Text>style: {image.style}</Text>
+                  {console.log("iSeason---", image.season)}
+                  <Text style={{ fontWeight: "bold" }}>season: </Text>
+                  {image.season.map((i, index) => (
+                    <Text key={index}>{i}</Text>
+                  ))}
+                  <Text style={{ fontWeight: "bold", marginTop: 5 }}>
+                    style:
+                  </Text>
+                  <Text>{image.style}</Text>
                 </View>
 
                 <TouchableOpacity
