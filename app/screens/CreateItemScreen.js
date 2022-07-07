@@ -19,7 +19,7 @@ import { filterCheckboxes } from "../libs/clothFilter.js";
 
 export default function CreateItemScreen({ route, navigation }) {
   const [color, setColor] = useState("");
-  const [season, setSeason] = useState("");
+  const [season, setSeason] = useState([]);
   const [style, setStyle] = useState("");
   const [type, setType] = useState("");
   const { image } = route.params;
@@ -106,7 +106,7 @@ export default function CreateItemScreen({ route, navigation }) {
             {/* ********************Season******************* */}
             <Picker
               selectedValue={season}
-              onValueChange={(currentSeason) => setSeason(currentSeason)}
+              onValueChange={(currentSeason) => setSeason(...season,currentSeason)}
             >
               <Picker.Item label="choose season" />
               <Picker.Item label="summer" value="summer" />
