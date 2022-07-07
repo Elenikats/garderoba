@@ -15,7 +15,7 @@ import * as FileSystem from "expo-file-system";
 import currentIP from "../utils/ip.js";
 import { userContext } from "../../contexts/userContext.js";
 import { RefreshContext } from "../../contexts/refreshContext.js";
-import { filterCheckboxes } from "../libs/clothFilter.js";
+import { clothOptionsArray } from "../libs/clothFilter.js";
 
 export default function CreateItemScreen({ route, navigation }) {
   const [color, setColor] = useState("");
@@ -90,7 +90,7 @@ export default function CreateItemScreen({ route, navigation }) {
           <View style={{ margin: 20, alignSelf: "center" }}>
             {/* *******************Type:Top/Bottom/OnePiece************* */}
             <View style={{ marginBottom: 20, flexDirection: "row" }}>
-              {filterCheckboxes.map(
+              {clothOptionsArray.map(
                 (item) =>
                   Object.keys(item)[1] == "type" && (
                     <TouchableOpacity
@@ -116,7 +116,7 @@ export default function CreateItemScreen({ route, navigation }) {
             {/* ********************Season******************* */}
 
             <View style={{ marginBottom: 20, flexDirection: "row" }}>
-              {filterCheckboxes.map(
+              {clothOptionsArray.map(
                 (item, index) =>
                   Object.keys(item)[1] == "season" && (
                     <View key={index} style={{ margin: 20 }}>
@@ -140,7 +140,7 @@ export default function CreateItemScreen({ route, navigation }) {
               onValueChange={(currentStyle) => setStyle(currentStyle)}
             >
               <Picker.Item label="choose style" />
-              {filterCheckboxes.map(
+              {clothOptionsArray.map(
                 (item) =>
                   Object.keys(item)[1] == "style" && (
                     <Picker.Item

@@ -19,7 +19,7 @@ import axios from "axios";
 import { userContext } from "../../contexts/userContext.js";
 import currentIP from "../utils/ip.js";
 import { RefreshContext } from "../../contexts/refreshContext.js";
-import { filterCheckboxes } from "../libs/clothFilter.js";
+import { clothOptionsArray } from "../libs/clothFilter.js";
 
 const { width } = Dimensions.get("window");
 
@@ -27,7 +27,7 @@ export default function ClosetScreen() {
   const { token } = useContext(userContext);
   const [closet, setCloset] = useState(null);
   const [filterModalVisible, setFilterModalVisible] = useState(false);
-  const [clothFilterOpt, setClothFilterOpt] = useState(filterCheckboxes);
+  const [clothFilterOpt, setClothFilterOpt] = useState(clothOptionsArray);
   const { refresh, setRefresh } = useContext(RefreshContext);
 
   const selectedFilter = clothFilterOpt.filter((item) => item.isChecked);
@@ -75,7 +75,7 @@ export default function ClosetScreen() {
 
   //remove all filter button:
   function handleRemoveAllFilter() {
-    setClothFilterOpt(filterCheckboxes);
+    setClothFilterOpt(clothOptionsArray);
     setFilterModalVisible(false);
     setRefresh(!refresh);
   }
