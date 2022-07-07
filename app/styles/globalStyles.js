@@ -41,19 +41,25 @@ const globalStyles = StyleSheet.create({
 
   inactiveButton: {
     backgroundColor: colors.gray,
-    borderRadius: 40,
-    padding: 5,
-    margin: 10,
+    color: colors.white,
     textAlign: "center",
+    alignSelf: "center",
+    width: 100,
+    borderRadius: 50,
+    padding: 10,
+    margin: 15,
   },
 
   activeButton: {
     backgroundColor: colors.dark,
     color: colors.white,
-    borderRadius: 40,
-    padding: 5,
-    margin: 10,
     textAlign: "center",
+    alignSelf: "center",
+    width: 100,
+    borderRadius: 50,
+    padding: 10,
+    marginVertical: 15,
+    marginHorizontal: 15,
   },
 });
 
