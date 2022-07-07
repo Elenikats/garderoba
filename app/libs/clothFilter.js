@@ -1,6 +1,6 @@
 import React from "react";
 
-export const filterCheckboxes = [
+export const clothOptionsArray = [
   { id: 1, style: "casual", isChecked: false },
   { id: 2, style: "formal", isChecked: false },
   { id: 3, style: "work", isChecked: false },
@@ -21,4 +21,9 @@ export const filterCheckboxes = [
   { id: 18, color: "brown", hex: "#8B4500", isChecked: false },
   { id: 19, color: "lightblue", hex: "#C4FFFD", isChecked: false },
   { id: 20, color: "purple", hex: "#7F09E3", isChecked: false },
+  { id: 21, type: "top" },
+  { id: 22, type: "bottom" },
+  { id: 23, season: "summer" },
+  { id: 24, season: "in-between" },
+  { id: 25, season: "winter" },
 ];

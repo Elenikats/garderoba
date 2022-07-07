@@ -43,15 +43,14 @@ export default function LoginScreen({ navigation }) {
     // { email: "angela.h@web.de", password: "123456" }
     // {email: "cabbage@gmail.com",password: "cabbage"}
     // {email: "testuser1@example.com",password: "random"}
-    // {email: "testuser4@eg.com",password: "random123"}
-
+    // {email: "testUser2@eg.com",password: "random123"}
     const ip = await currentIP();
 
     const url = `http://${ip}:9000/users/login`;
     try {
       const res = await axios.post(url, {
-        // email: "angela.h@web.de",
-        // password: "123456",
+        email: "angela.h@web.de",
+        password: "123456",
         // email: "testuser1@example.com",password: "random"
       });
 
@@ -151,6 +150,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "70%",
     alignSelf: "center",
+    paddingTop: 100,
   },
   logo: {
     marginBottom: "20%",
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     borderColor: "blue",
     borderRadius: 4,
     padding: 20,
-    marginTop: "10%",
+    marginTop: "20%",
     alignSelf: "center",
   },
   label: {
