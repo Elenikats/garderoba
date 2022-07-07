@@ -10,9 +10,7 @@ import {
 } from "react-native";
 import IconFeather from "react-native-vector-icons/Feather";
 import IconFA from "react-native-vector-icons/FontAwesome5";
-import { globalStyles } from "../styles/globalStyles.js";
 import Constants from "expo-constants";
-import PermissionLocation from "./PermissionLocation.js";
 import WeatherAPI from "./WeatherAPI.js";
 import { Picker } from "@react-native-picker/picker";
 import axios from "axios";
@@ -20,6 +18,7 @@ import currentIP from "../utils/ip.js";
 import { userContext } from "../../contexts/userContext.js";
 import { LocationContext } from "../../contexts/LocationContext.js";
 import { RefreshContext } from "../../contexts/refreshContext.js";
+import AppLoader from "./AppLoader.js";
 
 const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
@@ -44,9 +43,11 @@ export default function HomeScreen() {
     setSunButtonValue,
   } = useContext(LocationContext);
   const { refresh, setRefresh } = useContext(RefreshContext);
+  const {isLoading, setIsLoading} = useContext(RefreshContext);
 
   //useEffect for images
   useEffect(() => {
+    
     if (!token) {
       return;
     }
@@ -66,11 +67,11 @@ export default function HomeScreen() {
         });
 
         setImages(result.data.clothesAsPerWeather);
+        setIsLoading(false);
       } catch (error) {
         console.log("error in homescreen:", error);
       }
     }
-
     getImagesFromBackend();
   }, [currentWeather, token, toggleFav, refresh]);
 
@@ -128,10 +129,14 @@ export default function HomeScreen() {
     setSunButtonValue(item.name);
   }
 
+   if (isLoading) {
+     return <AppLoader/>
+   }
+
   return (
+    <>
     <SafeAreaView style={styles.container}>
       <View style={styles.weather}>
-        <PermissionLocation />
         <WeatherAPI />
       </View>
       <View style={styles.dropdownContainer}>
@@ -231,6 +236,8 @@ export default function HomeScreen() {
         </View>
       </View>
     </SafeAreaView>
+    {/* {isLoading ? <AppLoader/> : null} */}
+    </>
   );
 }
 

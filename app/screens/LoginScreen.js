@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
   ScrollView,
+  ActivityIndicator
 } from "react-native";
 import React, { useContext, useState, useEffect } from "react";
 import { Link } from "@react-navigation/native";
@@ -15,25 +16,16 @@ import axios from "axios";
 import Icon from "react-native-vector-icons/Ionicons";
 import { globalStyles, colors } from "../styles/globalStyles";
 import { userContext } from "../../contexts/userContext";
-// import * as Google from "expo-google-app-auth"
 import * as Google from 'expo-auth-session/providers/google';
 import * as AuthSession from "expo-auth-session";
 import * as WebBrowser from 'expo-web-browser';
+import { RefreshContext } from "../../contexts/refreshContext.js";
 
 WebBrowser.maybeCompleteAuthSession();
 
 export default function LoginScreen({ navigation, expoClientIdValue }) {
-  const {
-    user,
-    setUser,
-    token,
-    setToken,
-    setUserEmail,
-    currentUserId,
-    setCurrentUserId,
-    userObj,
-    setUserObj,
-  } = useContext(userContext);
+  const {setUser, setToken, setUserEmail, setCurrentUserId, setUserObj} = useContext(userContext);
+  const {isLoading, setIsLoading} = useContext(RefreshContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
@@ -42,7 +34,7 @@ export default function LoginScreen({ navigation, expoClientIdValue }) {
   const [message, setMessage] = useState();
 
 
-
+  // calling google auth
   const [request, response, promptAsync] = Google.useAuthRequest({
     expoClientId: expoClientIdValue
   });
@@ -80,10 +72,6 @@ export default function LoginScreen({ navigation, expoClientIdValue }) {
     navigation.navigate("Main");
   }, [userInfo])
 
-  // if (!expoClientIdValue) {
-  //   return <Text>loadiiiiiiiiiiing</Text>;
-  // }
-
   ////////////////////
 
   const handleOpenEye = () => {
@@ -97,6 +85,7 @@ export default function LoginScreen({ navigation, expoClientIdValue }) {
     // {email: "cabbage@gmail.com",password: "cabbage"}
     // {email: "testuser1@example.com",password: "random"}
     // {email: "testuser4@eg.com",password: "random123"}
+    // setIsLoading(true);
 
     const ip = await currentIP();
 
@@ -118,6 +107,7 @@ export default function LoginScreen({ navigation, expoClientIdValue }) {
       setUserEmail(res.data.email);
       setCurrentUserId(res.data._id);
 
+      // setIsLoading(false);
       navigation.navigate("Main");
     } catch (error) {
       console.log("error in login", error);
@@ -126,11 +116,14 @@ export default function LoginScreen({ navigation, expoClientIdValue }) {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.bigCont}>
       <ScrollView>
+
         <View style={styles.cont}>
-  
+        
+        <View style={styles.logoCont}>
           <Image source={require("../assets/Garderoba_medium.png")} style={styles.logo} />
+          </View>
 
           <TouchableOpacity
             onPress={ () => { promptAsync({ useProxy: true, redirectUri: AuthSession.makeRedirectUri({useProxy: true}) , showInRecents: true }) }}
@@ -201,18 +194,29 @@ export default function LoginScreen({ navigation, expoClientIdValue }) {
 }
 
 const styles = StyleSheet.create({
+  bigCont: {
+    backgroundColor: "white",
+    flex: 1
+  },
   cont: {
     justifyContent: "center",
     alignItems: "center",
     width: "70%",
-    alignSelf: "center",
+    alignSelf: "center"
+  },
+  logoCont: {
+    shadowColor: "#27272A",
+    shadowOpacity: 0.80,
+    elevation: 10
   },
   logo: {
     marginBottom: "20%",
     marginTop: 50,
-    borderRadius: 50,
-    width: 100,
-    height: 100,
+    borderRadius: 80,
+    width: 130,
+    height: 130,
+    shadowColor: "black",
+    shadowOpacity: 20
   },
   linksCont: {
     flexDirection: "row",
@@ -231,8 +235,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "blue",
     borderRadius: 4,
-    padding: 20,
-    alignSelf: "center",
+    padding: 15,
+    alignSelf: "center"
   },
   label: {
     paddingTop: 10,
@@ -272,7 +276,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: colors.black,
     marginTop: 30,
-    marginBottom: 30,
+    marginBottom: 30
   },
   unregisterButton: {
     backgroundColor: "lightgray",

@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "./app/screens/LoginScreen.js";
 import RegisterScreen from "./app/screens/RegisterScreen.js";
 import { useFonts } from "expo-font";
-import * as React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import BottomTab from "./app/screens/BottomTab.js";
 import CreateItemScreen from "./app/screens/CreateItemScreen.js";
@@ -11,16 +11,18 @@ import UserScreen from "./app/screens/UserScreen.js";
 import EndScreen from "./app/screens/EndScreen.js";
 import UpdateUserScreen from './app/screens/UpdateUserScreen.js';
 import UserProvider from "./contexts/userContext.js";
-import  RefreshProvider  from "./contexts/refreshContext.js";
+import RefreshProvider from "./contexts/refreshContext.js";
 import currentIP from "./app/utils/ip.js";
 import axios from "axios";
+import { globalStyles, colors } from "./app/styles/globalStyles.js";
+import { ActivityIndicator, View, Text } from "react-native";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [expoClientIdValue, setExpoClientIdValue] = React.useState("");
+  const [expoClientIdValue, setExpoClientIdValue] = useState("");
 
-  React.useEffect(() => {
+  useEffect(() => {
     const getExpoClientId = async () => {
       try {
         const ip = await currentIP();
@@ -28,7 +30,6 @@ export default function App() {
           method: "get",
           url: `http://${ip}:9000/googleSignin`,
         });
-        console.log("result.data googleIdKey:", result.data)
         setExpoClientIdValue(result.data);
       } catch (error){
         console.log(error)

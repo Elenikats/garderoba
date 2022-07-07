@@ -97,7 +97,7 @@ export default function RegisterScreen({navigation}) {
             
           ></TextInput>
 
-          { errors && errors.message && errors.message.includes("username-invalid") && <Text style={styles.errorMessage}>The username can contain only small letters, numbers and - or _.</Text>}
+          { errors && errors.message && errors.message.includes("username-invalid") && <Text style={styles.errorMessage}>The username can contain only letters, numbers and characters like -_.</Text>}
           { errors && errors.message && errors.message.includes("duplicate key") && errors.message.includes("username") && <Text style={styles.errorMessage}>This username is already being used.</Text>}
 
 

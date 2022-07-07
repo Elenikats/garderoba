@@ -4,7 +4,7 @@
     "slug": "garderoba",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./app/assets/Garderoba_small.png",
+    "icon": "./app/assets/Garderoba_medium.png",
     "scheme": "garderoba",
     "userInterfaceStyle": "light",
     "splash": {
