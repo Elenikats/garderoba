@@ -8,7 +8,7 @@
     "scheme": "garderoba",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./app/assets/Garderoba_medium.png",
+      "image": "./app/assets/Garderoba-big.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

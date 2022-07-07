@@ -122,7 +122,7 @@ export default function LoginScreen({ navigation, expoClientIdValue }) {
         <View style={styles.cont}>
         
         <View style={styles.logoCont}>
-          <Image source={require("../assets/Garderoba_medium.png")} style={styles.logo} />
+          <Image source={require("../assets/Garderoba-big.png")} style={styles.logo} />
           </View>
 
           <TouchableOpacity
@@ -204,19 +204,12 @@ const styles = StyleSheet.create({
     width: "70%",
     alignSelf: "center"
   },
-  logoCont: {
-    shadowColor: "#27272A",
-    shadowOpacity: 0.80,
-    elevation: 10
-  },
   logo: {
     marginBottom: "20%",
     marginTop: 50,
     borderRadius: 80,
-    width: 130,
-    height: 130,
-    shadowColor: "black",
-    shadowOpacity: 20
+    width: 150,
+    height: 150
   },
   linksCont: {
     flexDirection: "row",

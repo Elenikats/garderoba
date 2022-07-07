@@ -64,10 +64,10 @@ export default function RegisterScreen({navigation}) {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.bigCont}>
       <ScrollView>
         <View style={ styles.cont }>
-          <Image source={require("../assets/Garderoba_medium.png")} style={styles.logo} />
+          <Image source={require("../assets/Garderoba-big.png")} style={styles.logo} />
           <TouchableOpacity 
             onPress={() => {console.log("pressed google button")}}
             style={styles.googleButton}
@@ -182,6 +182,10 @@ export default function RegisterScreen({navigation}) {
 }
 
 const styles = StyleSheet.create({
+  bigCont: {
+    backgroundColor: "white",
+    flex: 1
+  },
   cont: {
     justifyContent: "center",
     alignItems: "center",
@@ -194,15 +198,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "blue",
     borderRadius: 4,
-    padding: 20,
+    padding: 15,
     alignSelf: "center"
   },
   logo: {
     marginBottom: "20%",
     marginTop: 50,
-    borderRadius: 50,
-    width: 100,
-    height: 100,
+    width: 150,
+    height:150,
   },
   label: {
     paddingTop: 10,
