@@ -39,7 +39,6 @@ export default function ClosetScreen() {
         let queryString = selectedFilter
           .map((item) => Object.keys(item)[1] + "=" + Object.values(item)[1])
           .join("&");
-        console.log("STRING___:", queryString);
         const result = await axios({
           method: "get",
           headers: {
@@ -48,7 +47,6 @@ export default function ClosetScreen() {
           url: `http://${ip}:9000/cloth/closet?${queryString}`,
         });
         setCloset(result.data);
-        console.log(result.data);
       } catch (error) {
         console.log("error in receiving images from BE", error);
       }
@@ -134,7 +132,6 @@ export default function ClosetScreen() {
               <View style={styles.clothItem} key={index}>
                 <Image style={styles.image} source={{ uri: image.image }} />
                 <View>
-                  {console.log("iSeason---", image.season)}
                   <Text style={{ fontWeight: "bold" }}>season: </Text>
                   {image.season.map((i, index) => (
                     <Text key={index}>{i}</Text>
