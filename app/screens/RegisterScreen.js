@@ -6,10 +6,9 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { Link } from '@react-navigation/native';
 import currentIP from "../utils/ip.js";
 import { userContext } from '../../contexts/userContext';
-//import * as Network from "expo-network";
 
 export default function RegisterScreen({navigation}) {
-  const {user, setUser, token, setToken, setUserEmail} = useContext(userContext);
+  const {setUser, setToken, setUserEmail} = useContext(userContext);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -46,8 +45,6 @@ export default function RegisterScreen({navigation}) {
     fetch(url, config)
       .then(response => response.json())
       .then(result => {
-        
-
         if (result.error) {
          throw new Error(result.error) 
         }
@@ -66,12 +63,10 @@ export default function RegisterScreen({navigation}) {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.bigCont}>
       <ScrollView>
         <View style={ styles.cont }>
-          <Image 
-              source={require("../assets/clothespile.jpg")}  
-              style={{width: 100, height: 100, borderRadius: 50, marginTop: 50}} />
+          <Image source={require("../assets/Garderoba-150.png")} style={styles.logo} />
           <TouchableOpacity 
             onPress={() => {console.log("pressed google button")}}
             style={styles.googleButton}
@@ -101,7 +96,7 @@ export default function RegisterScreen({navigation}) {
             
           ></TextInput>
 
-          { errors && errors.message && errors.message.includes("username-invalid") && <Text style={styles.errorMessage}>The username can contain only small letters, numbers and - or _.</Text>}
+          { errors && errors.message && errors.message.includes("username-invalid") && <Text style={styles.errorMessage}>The username can contain only letters, numbers and characters like -_.</Text>}
           { errors && errors.message && errors.message.includes("duplicate key") && errors.message.includes("username") && <Text style={styles.errorMessage}>This username is already being used.</Text>}
 
 
@@ -170,12 +165,14 @@ export default function RegisterScreen({navigation}) {
           <TouchableOpacity 
             onPress={handleSignupBtn}
             disabled={!agree}
-            style={agree ? styles.registerButton : styles.unregisterButton}>
+            style={username && email && password && repeatPassword && agree ? styles.registerButton : styles.unregisterButton}>
               <Text style={styles.textBtn}>Sign up</Text>
           </TouchableOpacity >
 
-          <Text>You have already an account?</Text>
-          <Link to={{screen: 'Login'}} style={{color: "blue"} }>Login</Link>
+          <View style={styles.linksCont}>
+            <Text>Already have an account?</Text>
+            <Link to={{screen: 'Login'}} style={styles.link}>Login</Link>
+          </View>
           
         </View>
       </ScrollView>
@@ -184,6 +181,10 @@ export default function RegisterScreen({navigation}) {
 }
 
 const styles = StyleSheet.create({
+  bigCont: {
+    backgroundColor: "white",
+    flex: 1
+  },
   cont: {
     justifyContent: "center",
     alignItems: "center",
@@ -196,9 +197,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "blue",
     borderRadius: 4,
-    padding: 20,
-    marginTop: "10%",
+    padding: 15,
     alignSelf: "center"
+  },
+  logo: {
+    marginBottom: "10%",
+    marginTop: 50
   },
   label: {
     paddingTop: 10,
@@ -277,5 +281,13 @@ const styles = StyleSheet.create({
     color: "red",
     paddingTop: 3,
     fontSize: 12
+  },
+  linksCont: {
+    flexDirection: "row"
+  },
+  link: {
+    marginBottom: 50,
+    marginLeft: 10,
+    color: "blue"
   }
 })

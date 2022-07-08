@@ -20,6 +20,7 @@ import { userContext } from "../../contexts/userContext.js";
 import currentIP from "../utils/ip.js";
 import { RefreshContext } from "../../contexts/refreshContext.js";
 import { clothOptionsArray } from "../libs/clothFilter.js";
+import AppLoader from "./AppLoader.js";
 
 const { width } = Dimensions.get("window");
 
@@ -28,7 +29,7 @@ export default function ClosetScreen() {
   const [closet, setCloset] = useState(null);
   const [filterModalVisible, setFilterModalVisible] = useState(false);
   const [clothFilterOpt, setClothFilterOpt] = useState(clothOptionsArray);
-  const { refresh, setRefresh } = useContext(RefreshContext);
+  const { refresh, setRefresh, isLoading, setIsLoading } = useContext(RefreshContext);
 
   const selectedFilter = clothFilterOpt.filter((item) => item.isChecked);
 
@@ -39,7 +40,7 @@ export default function ClosetScreen() {
         let queryString = selectedFilter
           .map((item) => Object.keys(item)[1] + "=" + Object.values(item)[1])
           .join("&");
-        console.log("STRING___:", queryString);
+
         const result = await axios({
           method: "get",
           headers: {
@@ -48,7 +49,6 @@ export default function ClosetScreen() {
           url: `http://${ip}:9000/cloth/closet?${queryString}`,
         });
         setCloset(result.data);
-        console.log(result.data);
       } catch (error) {
         console.log("error in receiving images from BE", error);
       }
@@ -97,6 +97,10 @@ export default function ClosetScreen() {
     }
   }
 
+  if (isLoading) {
+    return <AppLoader/>
+  }
+
   return (
     <SafeAreaView>
       <View style={styles.filterContainer}>
@@ -134,7 +138,6 @@ export default function ClosetScreen() {
               <View style={styles.clothItem} key={index}>
                 <Image style={styles.image} source={{ uri: image.image }} />
                 <View>
-                  {console.log("iSeason---", image.season)}
                   <Text style={{ fontWeight: "bold" }}>season: </Text>
                   {image.season.map((i, index) => (
                     <Text key={index}>{i}</Text>
@@ -184,9 +187,9 @@ export default function ClosetScreen() {
                 <View style={styles.checkboxContainer}>
                   {clothFilterOpt &&
                     clothFilterOpt.map(
-                      (item) =>
+                      (item, index) =>
                         Object.keys(item)[1] == "style" && (
-                          <View style={styles.checkboxConWrapper} key={item.id}>
+                          <View style={styles.checkboxConWrapper} key={index}>
                             <CheckBox
                               value={item.isChecked}
                               style={styles.checkbox}
@@ -204,11 +207,11 @@ export default function ClosetScreen() {
                 <View style={styles.checkboxContainer}>
                   {clothFilterOpt &&
                     clothFilterOpt.map(
-                      (item) =>
+                      (item, index) =>
                         Object.keys(item)[1] == "color" && (
                           <View
                             style={styles.checkboxConWrapper2}
-                            key={item.id}
+                            key={index}
                           >
                             <TouchableOpacity
                               style={[
