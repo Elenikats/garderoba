@@ -6,10 +6,9 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { Link } from '@react-navigation/native';
 import currentIP from "../utils/ip.js";
 import { userContext } from '../../contexts/userContext';
-//import * as Network from "expo-network";
 
 export default function RegisterScreen({navigation}) {
-  const {user, setUser, token, setToken, setUserEmail} = useContext(userContext);
+  const {setUser, setToken, setUserEmail} = useContext(userContext);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -67,7 +66,7 @@ export default function RegisterScreen({navigation}) {
     <SafeAreaView style={styles.bigCont}>
       <ScrollView>
         <View style={ styles.cont }>
-          <Image source={require("../assets/Garderoba-big.png")} style={styles.logo} />
+          <Image source={require("../assets/Garderoba-150.png")} style={styles.logo} />
           <TouchableOpacity 
             onPress={() => {console.log("pressed google button")}}
             style={styles.googleButton}
@@ -202,10 +201,8 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   logo: {
-    marginBottom: "20%",
-    marginTop: 50,
-    width: 150,
-    height:150,
+    marginBottom: "10%",
+    marginTop: 50
   },
   label: {
     paddingTop: 10,

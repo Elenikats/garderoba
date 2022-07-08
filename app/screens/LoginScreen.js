@@ -84,29 +84,23 @@ export default function LoginScreen({ navigation, expoClientIdValue }) {
     // { email: "angela.h@web.de", password: "123456" }
     // {email: "cabbage@gmail.com",password: "cabbage"}
     // {email: "testuser1@example.com",password: "random"}
-<<<<<<< HEAD
     // {email: "testuser4@eg.com",password: "random123"}
     // setIsLoading(true);
 
-=======
     // {email: "testUser2@eg.com",password: "random123"}
->>>>>>> e29d3ad3cf4694c84da0ce297129ea2d4a8f43b3
     const ip = await currentIP();
 
     const url = `http://${ip}:9000/users/login`;
     try {
       const res = await axios.post(url, {
-<<<<<<< HEAD
         email: "cabbage@gmail.com",
         password: "cabbage",
         // email: "testuser1@example.com",
         // password:"random",
         // email: "angela.h@web.de",
         // password: "123456",
-=======
-        email: "angela.h@web.de",
-        password: "123456",
->>>>>>> e29d3ad3cf4694c84da0ce297129ea2d4a8f43b3
+        // email: "angela.h@web.de",
+        // password: "123456",
         // email: "testuser1@example.com",password: "random"
       });
 
@@ -131,7 +125,7 @@ export default function LoginScreen({ navigation, expoClientIdValue }) {
         <View style={styles.cont}>
         
         <View style={styles.logoCont}>
-          <Image source={require("../assets/Garderoba-big.png")} style={styles.logo} />
+          <Image source={require("../assets/Garderoba-150.png")} style={styles.logo} />
           </View>
 
           <TouchableOpacity
@@ -211,19 +205,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: "70%",
-<<<<<<< HEAD
     alignSelf: "center"
-=======
-    alignSelf: "center",
-    paddingTop: 100,
->>>>>>> e29d3ad3cf4694c84da0ce297129ea2d4a8f43b3
   },
   logo: {
-    marginBottom: "20%",
-    marginTop: 50,
-    borderRadius: 80,
-    width: 150,
-    height: 150
+    marginBottom: "10%",
+    marginTop: 50
   },
   linksCont: {
     flexDirection: "row",
@@ -242,14 +228,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "blue",
     borderRadius: 4,
-<<<<<<< HEAD
     padding: 15,
     alignSelf: "center"
-=======
-    padding: 20,
-    marginTop: "20%",
-    alignSelf: "center",
->>>>>>> e29d3ad3cf4694c84da0ce297129ea2d4a8f43b3
   },
   label: {
     paddingTop: 10,

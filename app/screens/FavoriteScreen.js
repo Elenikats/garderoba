@@ -4,11 +4,12 @@ import { userContext } from "../../contexts/userContext";
 import currentIP from "../utils/ip.js";
 import axios from "axios";
 import { RefreshContext } from "../../contexts/refreshContext";
+import AppLoader from "./AppLoader";
 
 export default function FavoriteScreen() {
   const { token } = useContext(userContext);
   const [fav, setFav] = useState([]);
-  const {refresh, setRefresh} = useContext(RefreshContext)
+  const {refresh, setRefresh, isLoading, setIsLoading } = useContext(RefreshContext)
 
   useEffect(() => {
     async function getImagesFromBackend() {
@@ -21,9 +22,7 @@ export default function FavoriteScreen() {
           },
           url: `http://${ip}:9000/cloth/favorite`,
         });
-        //console.log("result---", result.data);
         setFav(result.data);
-
 
       } catch (error) {
         console.log("error in fetching favorites",error);
@@ -33,15 +32,17 @@ export default function FavoriteScreen() {
 
     getImagesFromBackend();
   }, [refresh]);
+
+  if (isLoading) {
+    return <AppLoader/>
+  }
+
   
   return (
     <SafeAreaView>
-      <View style={styles.outerCont}></View>
+      <View style={styles.outerCont} />
       <ScrollView>
         <View style={styles.cont}>
-        {/* {<View style={styles.clothItem}>
-                    <Text>Folder</Text>
-        </View>} */}
         { fav.map((image, index) => (
               <View style={styles.clothItem} key={index}>
                 <Image style={styles.image} source={{ uri: image.image }} />

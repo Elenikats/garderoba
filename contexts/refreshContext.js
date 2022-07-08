@@ -7,7 +7,6 @@ export default function RefreshProvider({ children }) {
   const [refresh, setRefresh] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-
   const value = {
     refresh,
     setRefresh,
