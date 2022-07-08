@@ -197,8 +197,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "blue",
     borderRadius: 4,
-    padding: 15,
-    alignSelf: "center"
+    padding: 17,
+    justifyContent: "center",
+    alignContent: "center",
+    alignSelf: "center",
+    width: "100%"
   },
   logo: {
     marginBottom: "10%",

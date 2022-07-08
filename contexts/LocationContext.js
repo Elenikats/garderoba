@@ -121,6 +121,11 @@ export default function LocationProvider(props) {
         const findCurrentWeather = weatherDetails.find(
           (item) => item.date === forecastDate && item.time === forecastTime
         );
+
+        if (!findCurrentWeather) {
+          return;
+        }
+
         setCurrentWeather(findCurrentWeather.temperature.toFixed());
         setWeatherIcon(findCurrentWeather.icon);
         
