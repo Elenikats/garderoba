@@ -32,7 +32,7 @@ export default function App() {
         });
         setExpoClientIdValue(result.data);
       } catch (error){
-        console.log(error)
+        console.log("error in expoClient ",error)
       }
   }
 

@@ -93,15 +93,15 @@ export default function LoginScreen({ navigation, expoClientIdValue }) {
     const url = `http://${ip}:9000/users/login`;
     try {
       const res = await axios.post(url, {
-        email: "cabbage@gmail.com",
-        password: "cabbage",
+        // email: "cabbage@gmail.com",
+        // password: "cabbage",
         // email: "testuser1@example.com",
         // password:"random",
         // email: "angela.h@web.de",
         // password: "123456",
         // email: "angela.h@web.de",
         // password: "123456",
-        // email: "testuser1@example.com",password: "random"
+        email: "testuser3@eg.com",password: "random321"
       });
 
       setUserObj(res.data);
