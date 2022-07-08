@@ -88,6 +88,7 @@ export default function LocationProvider(props) {
           if (!forecastTime) {
             setForecastTime(weatherDetails[0].time);
             setSunButtonValue(weatherDetails[0].dayTimeButton);
+            return;
           }
 
           if (
