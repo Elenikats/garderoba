@@ -14,7 +14,7 @@ import Constants from "expo-constants";
 import WeatherAPI from "./WeatherAPI.js";
 import { Picker } from "@react-native-picker/picker";
 import axios from "axios";
-import currentIP from "../utils/ip.js";
+import currentIP from "../libs/ip.js";
 import { userContext } from "../../contexts/userContext.js";
 import { LocationContext } from "../../contexts/LocationContext.js";
 import { RefreshContext } from "../../contexts/refreshContext.js";

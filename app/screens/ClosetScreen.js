@@ -17,7 +17,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import { globalStyles, colors } from "../styles/globalStyles.js";
 import axios from "axios";
 import { userContext } from "../../contexts/userContext.js";
-import currentIP from "../utils/ip.js";
+import currentIP from "../libs/ip.js";
 import { RefreshContext } from "../../contexts/refreshContext.js";
 import { clothOptionsArray } from "../libs/clothFilter.js";
 import AppLoader from "./AppLoader.js";

@@ -1,7 +1,7 @@
 import { userContext } from "../../contexts/userContext.js";
 import React, { useContext, useEffect, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
-import currentIP from "../utils/ip.js";
+import currentIP from "../libs/ip.js";
 import {
   View,
   Text,

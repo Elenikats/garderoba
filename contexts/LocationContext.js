@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useEffect, useState } from "react";
-import currentIP from "../app/utils/ip.js";
+import currentIP from "../app/libs/ip.js";
 import axios from "axios";
 import { userContext } from "./userContext.js";
 import * as Location from 'expo-location';

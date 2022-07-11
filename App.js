@@ -12,7 +12,7 @@ import EndScreen from "./app/screens/EndScreen.js";
 import UpdateUserScreen from './app/screens/UpdateUserScreen.js';
 import UserProvider from "./contexts/userContext.js";
 import RefreshProvider from "./contexts/refreshContext.js";
-import currentIP from "./app/utils/ip.js";
+import currentIP from "./app/libs/ip.js";
 import axios from "axios";
 import { globalStyles, colors } from "./app/styles/globalStyles.js";
 import { ActivityIndicator, View, Text } from "react-native";
