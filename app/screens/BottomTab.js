@@ -2,7 +2,6 @@ import { StyleSheet, View, Text, Button, Modal, Pressable, Alert } from "react-n
 import React, { useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import IconMat from "react-native-vector-icons/MaterialCommunityIcons";
-
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./HomeScreen.js";
 import FavoriteScreen from "./FavoriteScreen.js";
