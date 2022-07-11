@@ -7,31 +7,72 @@ import {
   TouchableOpacity,
   SafeAreaView,
   ScrollView,
+  ActivityIndicator
 } from "react-native";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link } from "@react-navigation/native";
 import currentIP from "../utils/ip.js";
 import axios from "axios";
 import Icon from "react-native-vector-icons/Ionicons";
 import { globalStyles, colors } from "../styles/globalStyles";
 import { userContext } from "../../contexts/userContext";
+import * as Google from 'expo-auth-session/providers/google';
+import * as AuthSession from "expo-auth-session";
+import * as WebBrowser from 'expo-web-browser';
+import { RefreshContext } from "../../contexts/refreshContext.js";
 
-export default function LoginScreen({ navigation }) {
-  const {
-    user,
-    setUser,
-    token,
-    setToken,
-    setUserEmail,
-    currentUserId,
-    setCurrentUserId,
-    userObj,
-    setUserObj,
-  } = useContext(userContext);
+WebBrowser.maybeCompleteAuthSession();
+
+export default function LoginScreen({ navigation, expoClientIdValue }) {
+  const {setUser, setToken, setUserEmail, setCurrentUserId, setUserObj} = useContext(userContext);
+  const {isLoading, setIsLoading} = useContext(RefreshContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
-  const [errors, setErrors] = useState([]);
+  const [accessToken, setAccessToken] = useState();
+  const [userInfo, setUserInfo] = useState();
+  const [message, setMessage] = useState();
+
+
+  // calling google auth
+  const [request, response, promptAsync] = Google.useAuthRequest({
+    expoClientId: expoClientIdValue
+  });
+
+  useEffect(() => {
+    // console.log("response google:", response)
+    setMessage(JSON.stringify(response));
+    if (response?.type === "success") {
+      setAccessToken(response.authentication.accessToken);
+    }
+  }, [response]);
+
+  useEffect(() => {
+    if (!accessToken) {
+      return;
+    }
+    async function getUserData() {
+      let userInfoResponse = await fetch("https://www.googleapis.com/userinfo/v2/me", {
+        headers: { Authorization: `Bearer ${accessToken}`}
+      });
+  
+      userInfoResponse.json().then(data => {
+        setUserInfo(data);
+        console.log("data",data);
+      });
+    }
+
+    getUserData()
+  }, [accessToken])
+
+  useEffect(() => {
+    if (!userInfo) {
+      return;
+    }
+    navigation.navigate("Main");
+  }, [userInfo])
+
+  ////////////////////
 
   const handleOpenEye = () => {
     setHidePassword(!hidePassword);
@@ -43,12 +84,21 @@ export default function LoginScreen({ navigation }) {
     // { email: "angela.h@web.de", password: "123456" }
     // {email: "cabbage@gmail.com",password: "cabbage"}
     // {email: "testuser1@example.com",password: "random"}
+    // {email: "testuser4@eg.com",password: "random123"}
+    // setIsLoading(true);
+
     // {email: "testUser2@eg.com",password: "random123"}
     const ip = await currentIP();
 
     const url = `http://${ip}:9000/users/login`;
     try {
       const res = await axios.post(url, {
+        // email: "cabbage@gmail.com",
+        // password: "cabbage",
+        // email: "testuser1@example.com",
+        // password:"random",
+        // email: "angela.h@web.de",
+        // password: "123456",
         // email: "angela.h@web.de",
         // password: "123456",
         email: "testuser3@eg.com",password: "random321"
@@ -60,6 +110,7 @@ export default function LoginScreen({ navigation }) {
       setUserEmail(res.data.email);
       setCurrentUserId(res.data._id);
 
+      // setIsLoading(false);
       navigation.navigate("Main");
     } catch (error) {
       console.log("error in login", error);
@@ -68,16 +119,17 @@ export default function LoginScreen({ navigation }) {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.bigCont}>
       <ScrollView>
+
         <View style={styles.cont}>
-          <View style={globalStyles.logoContainer}>
-            <Image source={require("../assets/Garderoba_medium.png")} />
+        
+        <View style={styles.logoCont}>
+          <Image source={require("../assets/Garderoba-150.png")} style={styles.logo} />
           </View>
+
           <TouchableOpacity
-            onPress={() => {
-              console.log("pressed google button");
-            }}
+            onPress={ () => { promptAsync({ useProxy: true, redirectUri: AuthSession.makeRedirectUri({useProxy: true}) , showInRecents: true }) }}
             style={styles.googleButton}
           >
             <Image
@@ -89,6 +141,7 @@ export default function LoginScreen({ navigation }) {
             </Text>
           </TouchableOpacity>
           <Text style={[globalStyles.text, { marginVertical: 30 }]}>or</Text>
+          <Text style={[globalStyles.text, { marginVertical: 10 }]}>Register with email</Text>
           {/* <Text style={styles.label}>Email</Text> */}
           <TextInput
             value={email}
@@ -130,13 +183,12 @@ export default function LoginScreen({ navigation }) {
           <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
             <Text style={styles.textBtn}>Login</Text>
           </TouchableOpacity>
-          <View style={styles.links}>
-            <Link to={{ screen: "Register" }} style={styles.signup}>
-              Sign up
-            </Link>
-            <Link to={{ screen: "" }} style={styles.forgotPass}>
+          <View style={styles.linksCont}>
+          <Text>Don't have an account yet?</Text>
+            <Link to={{ screen: "Register" }} style={styles.signup}>Sign up</Link>
+            {/* <Link to={{ screen: "" }} style={styles.forgotPass}>
               Forgot password?
-            </Link>
+            </Link> */}
           </View>
         </View>
       </ScrollView>
@@ -145,27 +197,27 @@ export default function LoginScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  bigCont: {
+    backgroundColor: "white",
+    flex: 1
+  },
   cont: {
     justifyContent: "center",
     alignItems: "center",
     width: "70%",
-    alignSelf: "center",
-    paddingTop: 100,
+    alignSelf: "center"
   },
   logo: {
-    marginBottom: "20%",
-    marginTop: 50,
-    borderRadius: 50,
-    width: 100,
-    height: 100,
+    marginBottom: "10%",
+    marginTop: 50
   },
-  links: {
+  linksCont: {
     flexDirection: "row",
-    marginTop: "10%",
+    marginTop: "10%"
   },
   signup: {
-    marginRight: "18%",
     color: "blue",
+    marginLeft: 10
   },
   forgotPass: {
     color: "blue",
@@ -176,9 +228,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "blue",
     borderRadius: 4,
-    padding: 20,
-    marginTop: "20%",
+    padding: 17,
+    justifyContent: "center",
+    alignContent: "center",
     alignSelf: "center",
+    width: "100%"
   },
   label: {
     paddingTop: 10,
@@ -218,7 +272,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: colors.black,
     marginTop: 30,
-    marginBottom: 30,
+    marginBottom: 30
   },
   unregisterButton: {
     backgroundColor: "lightgray",
