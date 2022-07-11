@@ -12,9 +12,9 @@ import ColorPalette from "react-native-color-palette";
 import CheckBox from "expo-checkbox";
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
-import currentIP from "../utils/ip.js";
-import { userContext } from "../../contexts/userContext.js";
-import { RefreshContext } from "../../contexts/refreshContext.js";
+import currentIP from "../libs/ip.js";
+import { userContext } from "../../contexts/UserContext.js";
+import { RefreshContext } from "../../contexts/RefreshContext.js";
 import { clothOptionsArray } from "../libs/clothFilter.js";
 
 export default function CreateItemScreen({ route, navigation }) {

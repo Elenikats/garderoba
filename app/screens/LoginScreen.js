@@ -11,15 +11,15 @@ import {
 } from "react-native";
 import React, { useContext, useState, useEffect } from "react";
 import { Link } from "@react-navigation/native";
-import currentIP from "../utils/ip.js";
+import currentIP from "../libs/ip.js";
 import axios from "axios";
 import Icon from "react-native-vector-icons/Ionicons";
 import { globalStyles, colors } from "../styles/globalStyles";
-import { userContext } from "../../contexts/userContext";
+import { userContext } from "../../contexts/UserContext";
 import * as Google from 'expo-auth-session/providers/google';
 import * as AuthSession from "expo-auth-session";
 import * as WebBrowser from 'expo-web-browser';
-import { RefreshContext } from "../../contexts/refreshContext.js";
+import { RefreshContext } from "../../contexts/RefreshContext.js";
 
 WebBrowser.maybeCompleteAuthSession();
 

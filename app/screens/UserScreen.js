@@ -1,7 +1,7 @@
-import { userContext } from "../../contexts/userContext.js";
+import { userContext } from "../../contexts/UserContext.js";
 import React, { useContext, useEffect, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
-import currentIP from "../utils/ip.js";
+import currentIP from "../libs/ip.js";
 import {
   View,
   Text,
@@ -28,9 +28,8 @@ export default function UserScreen({ navigation }) {
   useEffect( () => {
     async function fetchData() {
         
-      // console.log(newUsername)
+
       const ip = await currentIP()
-      console.log("ip:", ip);
       const url = `http://${ip}:9000/users/${currentUserId}`;
       const payload = {username: newUsername}
       const config = {
@@ -43,7 +42,7 @@ export default function UserScreen({ navigation }) {
       }
       fetch(url, config)
       .then(response => response.json())
-      .then(result => console.log("result .....", result))
+      // .then(result => console.log("result .....", result))
         // try {
          
         // }catch (error) {

@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, Image} from "react-native";
 import React, { useContext, useEffect, useState } from "react";
-import { userContext } from "../../contexts/userContext";
-import currentIP from "../utils/ip.js";
+import { userContext } from "../../contexts/UserContext";
+import currentIP from "../libs/ip.js";
 import axios from "axios";
-import { RefreshContext } from "../../contexts/refreshContext";
+import { RefreshContext } from "../../contexts/RefreshContext";
 import AppLoader from "./AppLoader";
 
 export default function FavoriteScreen() {

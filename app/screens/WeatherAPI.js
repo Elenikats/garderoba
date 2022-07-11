@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import React, { useContext } from "react";
 import { LocationContext } from "../../contexts/LocationContext";
-import currentIP from "../utils/ip";
+import currentIP from "../libs/ip";
 import { LinearGradient } from "expo-linear-gradient";
 
 //import * as Network from 'expo-network'

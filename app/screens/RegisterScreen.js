@@ -4,8 +4,8 @@ import CheckBox from "expo-checkbox";
 import { globalStyles, colors } from '../styles/globalStyles';
 import Icon from "react-native-vector-icons/Ionicons";
 import { Link } from '@react-navigation/native';
-import currentIP from "../utils/ip.js";
-import { userContext } from '../../contexts/userContext';
+import currentIP from "../libs/ip.js";
+import { userContext } from '../../contexts/UserContext';
 
 export default function RegisterScreen({navigation}) {
   const {setUser, setToken, setUserEmail} = useContext(userContext);
