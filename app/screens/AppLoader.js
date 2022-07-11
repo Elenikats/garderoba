@@ -1,7 +1,7 @@
 import { ActivityIndicator, StyleSheet, View } from 'react-native'
 import { globalStyles, colors } from "../styles/globalStyles";
 import React, { useContext } from 'react'
-import { RefreshContext } from '../../contexts/refreshContext';
+import { RefreshContext } from '../../contexts/RefreshContext';
 import LottieView from "lottie-react-native";
 
 export default function AppLoader() {

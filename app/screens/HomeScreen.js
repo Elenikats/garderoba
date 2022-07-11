@@ -15,9 +15,9 @@ import WeatherAPI from "./WeatherAPI.js";
 import { Picker } from "@react-native-picker/picker";
 import axios from "axios";
 import currentIP from "../libs/ip.js";
-import { userContext } from "../../contexts/userContext.js";
+import { userContext } from "../../contexts/UserContext.js";
 import { LocationContext } from "../../contexts/LocationContext.js";
-import { RefreshContext } from "../../contexts/refreshContext.js";
+import { RefreshContext } from "../../contexts/RefreshContext.js";
 import AppLoader from "./AppLoader.js";
 
 const { width } = Dimensions.get("window");
