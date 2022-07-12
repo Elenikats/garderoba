@@ -43,7 +43,7 @@ export default function HomeScreen() {
     setSunButtonValue,
   } = useContext(LocationContext);
   const { refresh, setRefresh } = useContext(RefreshContext);
-  const {isLoading, setIsLoading} = useContext(RefreshContext);
+  const [ homepageIsLoading, setHomepageIsLoading ] = useState(true);
 
   //useEffect for images
   useEffect(() => {
@@ -58,6 +58,7 @@ export default function HomeScreen() {
         if (!currentWeather) {
           return;
         }
+        
         const result = await axios({
           method: "get",
           headers: {
@@ -67,7 +68,7 @@ export default function HomeScreen() {
         });
 
         setImages(result.data.clothesAsPerWeather);
-        setIsLoading(false);
+        setHomepageIsLoading(false);
       } catch (error) {
         console.log("error in homescreen:", error);
       }
@@ -87,8 +88,10 @@ export default function HomeScreen() {
         },
         data: { favorite: !image.favorite },
       });
-
+ 
       setToggleFav(!toggleFav);
+      setHomepageIsLoading(false);
+
       setRefresh(!refresh);
     } catch (error) {
       console.error("error in PUT", error.response.data);
@@ -129,7 +132,7 @@ export default function HomeScreen() {
     setSunButtonValue(item.name);
   }
 
-   if (isLoading) {
+   if (homepageIsLoading) {
      return <AppLoader/>
    }
 
