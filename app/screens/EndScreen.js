@@ -1,24 +1,60 @@
 import React from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { globalStyles, colors } from "../styles/globalStyles";
+import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from "react-native";
+import LottieView from "lottie-react-native";
 
 export default function EndScreen({navigation, route}) {
   return (
-    <View style={styles.cont}>
-      <Text>See you soon!</Text>
-      <Button
-        onPress={() => {
-          navigation.navigate("Login")
-        }}
-        title="Login"> Login
-    </Button>
-    </View>
+    <SafeAreaView style={[globalStyles.container, styles.bigCont]}>   
+         <LottieView source={require("../assets/logout.json")} autoPlay loop />
+
+      <View style={styles.textCon}>
+        <Text style={styles.text}>See you soon!</Text>
+        <TouchableOpacity style={[globalStyles.activeButton, styles.loginBtn]}
+          onPress={() => {
+            navigation.navigate("Login")
+          }}> 
+          <Text style={styles.loginText}>Login</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-cont: {
-  flex:1,
-  justifyContent: 'center',
-  alignItems: 'center'
-}
+  bigCont: {
+    backgroundColor: "white"
+  },
+  animation: {
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  textCon: {
+    bottom: 230, 
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  loginBtn: {
+    top: 450,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 10,
+    width: 200
+  },
+  loginText: {
+    color: colors.white,
+    fontSize: 17
+  },
+  text: {
+    color: "white",
+    backgroundColor: "orange",
+    borderRadius: 5,
+    fontSize: 30,
+    padding: 20,
+    textAlign: "center",
+    shadowColor: "#27272A",
+    shadowOpacity: 0.25,
+    elevation: 10,
+
+  }
 })

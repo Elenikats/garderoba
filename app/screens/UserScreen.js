@@ -132,7 +132,7 @@ export default function UserScreen({ navigation }) {
           <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
             <Image
               style={styles.profileImage}
-              source={require("../assets/userImage.png")}
+              source={require("../assets/rauliveera.png")}
             />
           </TouchableOpacity>
         </View>
@@ -295,7 +295,8 @@ const styles = StyleSheet.create({
   },
   profileImage:{
     width:100,
-    height:100
+    height:100,
+    borderRadius: 100,
   },
   nameAndEmail: {
     marginTop: 10,

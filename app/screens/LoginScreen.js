@@ -6,8 +6,7 @@ import {
   Image,
   TouchableOpacity,
   SafeAreaView,
-  ScrollView,
-  ActivityIndicator
+  ScrollView
 } from "react-native";
 import React, { useContext, useState, useEffect } from "react";
 import { Link } from "@react-navigation/native";
