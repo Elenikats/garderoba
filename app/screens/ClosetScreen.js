@@ -29,7 +29,7 @@ export default function ClosetScreen() {
   const [closet, setCloset] = useState(null);
   const [filterModalVisible, setFilterModalVisible] = useState(false);
   const [clothFilterOpt, setClothFilterOpt] = useState(clothOptionsArray);
-  const { refresh, setRefresh, isLoading, setIsLoading } = useContext(RefreshContext);
+  const { refresh, setRefresh, isLoading } = useContext(RefreshContext);
 
   const selectedFilter = clothFilterOpt.filter((item) => item.isChecked);
 
@@ -56,13 +56,11 @@ export default function ClosetScreen() {
     getImagesFromBackend();
   }, [refresh, clothFilterOpt]);
 
-  //filter button:
   function handleFilterBtn() {
     return setFilterModalVisible(true);
   }
 
-  //handle Style and color checkboxes:
-  function handleFilter(id) {
+  function updateFilterOptIsCheckedValue(id) {
     let check = clothFilterOpt.map((item) => {
       if (id === item.id) {
         return { ...item, isChecked: !item.isChecked };
@@ -72,14 +70,12 @@ export default function ClosetScreen() {
     setClothFilterOpt(check);
   }
 
-  //remove all filter button:
   function handleRemoveAllFilter() {
     setClothFilterOpt(clothOptionsArray);
     setFilterModalVisible(false);
     setRefresh(!refresh);
   }
 
-  //delete cloth button:
   async function handleDeleteBtn(image) {
     const ip = await currentIP();
     try {
@@ -115,7 +111,7 @@ export default function ClosetScreen() {
             <TouchableOpacity
               key={index}
               onPress={() => {
-                handleFilter(item.id);
+                updateFilterOptIsCheckedValue(item.id);
               }}
             >
               <Text
@@ -159,8 +155,6 @@ export default function ClosetScreen() {
             ))}
         </View>
       </ScrollView>
-
-      {/* //Filter Modal! */}
       <>
         {filterModalVisible && (
           <Modal
@@ -192,7 +186,7 @@ export default function ClosetScreen() {
                               value={item.isChecked}
                               style={styles.checkbox}
                               onValueChange={() => {
-                                handleFilter(item.id);
+                                updateFilterOptIsCheckedValue(item.id);
                               }}
                             />
                             <Text>{Object.values(item)[1]}</Text>
@@ -217,7 +211,7 @@ export default function ClosetScreen() {
                                 { backgroundColor: item.hex },
                               ]}
                               onPress={() => {
-                                handleFilter(item.id);
+                                updateFilterOptIsCheckedValue(item.id);
                               }}
                             >
                               {item.isChecked ? (

@@ -7,7 +7,6 @@ const colors = {
   white: "#F8FAFC",
   black: "#000000",
 };
-
 const globalStyles = StyleSheet.create({
   logoContainer: {
     zIndex: 5,
@@ -19,7 +18,6 @@ const globalStyles = StyleSheet.create({
     elevation: 20,
     width: 80,
     height: 80,
-    // borderRadius: 30,
   },
   container: {
     flex: 1,
@@ -38,7 +36,6 @@ const globalStyles = StyleSheet.create({
     fontFamily: "LatoRegular",
     fontSize: 18,
   },
-
   inactiveButton: {
     backgroundColor: colors.gray,
     color: colors.white,
@@ -49,7 +46,6 @@ const globalStyles = StyleSheet.create({
     padding: 10,
     margin: 15,
   },
-
   activeButton: {
     backgroundColor: colors.dark,
     color: colors.white,

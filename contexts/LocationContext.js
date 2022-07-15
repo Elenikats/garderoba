@@ -68,9 +68,6 @@ export default function LocationProvider(props) {
 
         const result = await axios({
           method: "get",
-          // headers:{
-          //   Authorization: `Bearer ${token}`
-          // }, -- might need it later?
           url: `http://${ip}:9000/weatherApiKey`,
         });
         const weatherApiKey = result.data

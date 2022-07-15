@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Button, Modal, Pressable, Alert } from "react-native";
+import { StyleSheet, View, Text, Modal, Pressable, Alert } from "react-native";
 import React, { useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import IconMat from "react-native-vector-icons/MaterialCommunityIcons";
@@ -26,7 +26,6 @@ export default function BottomTab({ navigation }) {
       }
     } catch (error) {
       console.log("error in launching Camera", error);
-      // show a message to user. if you rejected, you cant use without camera permissions.
     }
   }
 
@@ -77,7 +76,6 @@ export default function BottomTab({ navigation }) {
           name=" "
           component={HomeScreen}
           options={{
-            // tabBarStyle: { display: "none" },
             tabBarIcon: ({ color, size }) => (
               <View style={styles.circle}>
                 <Icon
