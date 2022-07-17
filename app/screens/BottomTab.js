@@ -18,7 +18,7 @@ export default function BottomTab({ navigation }) {
     try {
       const options = { quality: 0.5, base64: true };
       const data = await ImagePicker.launchCameraAsync(options);
-
+      
       if (!data.cancelled) {
         navigation.navigate("UploadForm", {
           image: data.uri,

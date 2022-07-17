@@ -17,6 +17,39 @@ import { userContext } from "../../contexts/UserContext.js";
 import { RefreshContext } from "../../contexts/RefreshContext.js";
 import { clothOptionsArray } from "../libs/clothFilter.js";
 
+
+async function getPresignedUrl(fileName,token){
+  const ip = await currentIP();
+  try {
+    const response = await axios({
+      url: `http://${ip}:9000/presignedUrl?filename=${fileName}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      method: "get",
+    });
+    const signedUrl = response.data
+    return signedUrl;
+
+    // if (response.data) {
+    //   setRefresh(!refresh);
+    //   navigation.navigate("Main");
+    // }
+  } catch (error) {
+    console.error("error in POST to upload an item", error.response.data);
+    alert("oops somethings wrong, try again!");
+  }
+}
+
+async function makeAWSRequest(url,file){
+  console.log("makeAWSReq,url, file:", url);
+  const response = await fetch(url, {method: 'PUT', body: file});
+  console.log(response);
+  return response;
+}
+
+
+
 export default function CreateItemScreen({ route, navigation }) {
   const [color, setColor] = useState("");
   const [selectedSeason, setSelectedSeason] = useState([]);
@@ -46,7 +79,19 @@ export default function CreateItemScreen({ route, navigation }) {
 
   const handleItemSave = async (e) => {
     e.preventDefault();
-    const base64Image = await imageBase64Converter();
+
+    const splittedData = image.split("/ImagePicker/")
+    const fileName = splittedData[splittedData.length-1]
+    
+    const preSignedUrl = await getPresignedUrl(fileName,token);
+    let img = await fetch(image);
+    img = await img.blob();
+
+    const file = new File([img], fileName);
+    const link = await makeAWSRequest(preSignedUrl,file);
+    console.log("link", link);
+
+    // const base64Image = await imageBase64Converter();
     const payload = {
       type,
       season: selectedSeason,
