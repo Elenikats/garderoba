@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   SafeAreaView,
   ScrollView,
-  ActivityIndicator
 } from "react-native";
 import React, { useContext, useState, useEffect } from "react";
 import { Link } from "@react-navigation/native";
@@ -19,19 +18,17 @@ import { userContext } from "../../contexts/UserContext";
 import * as Google from 'expo-auth-session/providers/google';
 import * as AuthSession from "expo-auth-session";
 import * as WebBrowser from 'expo-web-browser';
-import { RefreshContext } from "../../contexts/RefreshContext.js";
 
 WebBrowser.maybeCompleteAuthSession();
 
 export default function LoginScreen({ navigation, expoClientIdValue }) {
   const {setUser, setToken, setUserEmail, setCurrentUserId, setUserObj} = useContext(userContext);
-  const {isLoading, setIsLoading} = useContext(RefreshContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
   const [accessToken, setAccessToken] = useState();
   const [userInfo, setUserInfo] = useState();
-  const [message, setMessage] = useState();
+  const [message,setMessage] = useState();
 
 
   // calling google auth
@@ -40,7 +37,6 @@ export default function LoginScreen({ navigation, expoClientIdValue }) {
   });
 
   useEffect(() => {
-    // console.log("response google:", response)
     setMessage(JSON.stringify(response));
     if (response?.type === "success") {
       setAccessToken(response.authentication.accessToken);
@@ -55,13 +51,11 @@ export default function LoginScreen({ navigation, expoClientIdValue }) {
       let userInfoResponse = await fetch("https://www.googleapis.com/userinfo/v2/me", {
         headers: { Authorization: `Bearer ${accessToken}`}
       });
-  
       userInfoResponse.json().then(data => {
         setUserInfo(data);
         console.log("data",data);
       });
     }
-
     getUserData()
   }, [accessToken])
 
@@ -72,33 +66,16 @@ export default function LoginScreen({ navigation, expoClientIdValue }) {
     navigation.navigate("Main");
   }, [userInfo])
 
-  ////////////////////
-
   const handleOpenEye = () => {
     setHidePassword(!hidePassword);
   };
 
   const handleLogin = async () => {
-    // login emails to use:
-    // { email: "baba123@gmail.com", password: "kanmio123" }
-    // { email: "angela.h@web.de", password: "123456" }
-    // {email: "cabbage@gmail.com",password: "cabbage"}
-    // {email: "testuser1@example.com",password: "random"}
-    // {email: "testuser4@eg.com",password: "random123"}
-    // setIsLoading(true);
-
-    // {email: "testUser2@eg.com",password: "random123"}
     const ip = await currentIP();
 
     const url = `http://${ip}:9000/users/login`;
     try {
       const res = await axios.post(url, {
-        // email: "cabbage@gmail.com",
-        // password: "cabbage",
-        // email: "testuser1@example.com",
-        // password:"random",
-        // email: "angela.h@web.de",
-        // password: "123456",
         // email: "angela.h@web.de",
         // password: "123456",
         email: "testuser3@eg.com",password: "random321"
@@ -109,9 +86,8 @@ export default function LoginScreen({ navigation, expoClientIdValue }) {
       setToken(res.data.token);
       setUserEmail(res.data.email);
       setCurrentUserId(res.data._id);
-
-      // setIsLoading(false);
       navigation.navigate("Main");
+
     } catch (error) {
       console.log("error in login", error);
       alert(error?.response?.data?.error || "Login failed, try again");
@@ -142,7 +118,6 @@ export default function LoginScreen({ navigation, expoClientIdValue }) {
           </TouchableOpacity>
           <Text style={[globalStyles.text, { marginVertical: 30 }]}>or</Text>
           <Text style={[globalStyles.text, { marginVertical: 10 }]}>Register with email</Text>
-          {/* <Text style={styles.label}>Email</Text> */}
           <TextInput
             value={email}
             autoCapitalize="none"
@@ -153,7 +128,6 @@ export default function LoginScreen({ navigation, expoClientIdValue }) {
             }}
             style={styles.textInput}
           />
-          {/* <Text style={styles.label}>Password</Text> */}
           <View style={styles.passCont}>
             <TextInput
               value={password}
@@ -186,9 +160,6 @@ export default function LoginScreen({ navigation, expoClientIdValue }) {
           <View style={styles.linksCont}>
           <Text>Don't have an account yet?</Text>
             <Link to={{ screen: "Register" }} style={styles.signup}>Sign up</Link>
-            {/* <Link to={{ screen: "" }} style={styles.forgotPass}>
-              Forgot password?
-            </Link> */}
           </View>
         </View>
       </ScrollView>

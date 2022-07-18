@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, ScrollView, Image} from "react-native";
+import { StyleSheet, View, SafeAreaView, ScrollView, Image} from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { userContext } from "../../contexts/UserContext";
 import currentIP from "../libs/ip.js";
@@ -9,7 +9,7 @@ import AppLoader from "./AppLoader";
 export default function FavoriteScreen() {
   const { token } = useContext(userContext);
   const [fav, setFav] = useState([]);
-  const {refresh, setRefresh, isLoading, setIsLoading } = useContext(RefreshContext)
+  const {refresh, isLoading } = useContext(RefreshContext)
 
   useEffect(() => {
     async function getImagesFromBackend() {
@@ -23,13 +23,10 @@ export default function FavoriteScreen() {
           url: `http://${ip}:9000/cloth/favorite`,
         });
         setFav(result.data);
-
       } catch (error) {
         console.log("error in fetching favorites",error);
-      }
-      
+      }  
     }
-
     getImagesFromBackend();
   }, [refresh]);
 
@@ -37,7 +34,6 @@ export default function FavoriteScreen() {
     return <AppLoader/>
   }
 
-  
   return (
     <SafeAreaView>
       <View style={styles.outerCont} />
@@ -86,7 +82,6 @@ const styles = StyleSheet.create({
   image: {
     width: 100,
     height: 100,
-    // borderWidth: 1,
     borderColor: "lightgray",
   },
 });

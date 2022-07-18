@@ -45,9 +45,7 @@ export default function HomeScreen() {
   const { refresh, setRefresh } = useContext(RefreshContext);
   const {isLoading, setIsLoading} = useContext(RefreshContext);
 
-  //useEffect for images
   useEffect(() => {
-    
     if (!token) {
       return;
     }
@@ -77,7 +75,6 @@ export default function HomeScreen() {
 
   async function handleFavoriteBtn(image) {
     const ip = await currentIP();
-
     try {
       await axios({
         url: `http://${ip}:9000/cloth/${image._id}`,
@@ -94,35 +91,6 @@ export default function HomeScreen() {
       console.error("error in PUT", error.response.data);
     }
   }
-  // function handleForecast(e) {
-  // const urlForecastData = await axios({
-  //   method: "get",
-  //   headers: {
-  //     Authorization: "",
-  //   },
-  // });
-  // const url = `https://api.openweathermap.org/data/2.5/forecast?lat=48.783333&lon=9.183333&appid=806513780cc07efedc5b9dabfbc00190&units=metric `;
-  // const callingUrl = await fetch(url);
-  // const response = await callingUrl.json();
-  // console.log(response.list[0].main.temp);
-  // try {
-  //   const result = await axios({
-  //     method: "get",
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //     url: `http://${ip}:9000/cloth/home?temperature=${currentWeather}`,
-  //   });
-
-  //   setImages(result.data.clothesAsPerWeather);
-  // } catch (error) {
-  //   console.log("error in homescreen:", error);
-  // }
-  // }
-
-  // if (!currentWeather) {
-  //   return <Text>Loading</Text>
-  // }
 
   function handleTimeIcon(item) {
     setForecastTime(item.time);
@@ -182,7 +150,6 @@ export default function HomeScreen() {
                     style={{ width: "80%", height: "80%" }}
                     source={{ uri: image.image }}
                   />
-
                   <TouchableOpacity
                     style={styles.boxFavorites}
                     onPress={() => {
@@ -215,7 +182,6 @@ export default function HomeScreen() {
                     style={{ width: "80%", height: "80%" }}
                     source={{ uri: image.image }}
                   />
-
                   <TouchableOpacity
                     style={styles.boxFavorites}
                     onPress={() => {
@@ -236,7 +202,6 @@ export default function HomeScreen() {
         </View>
       </View>
     </SafeAreaView>
-    {/* {isLoading ? <AppLoader/> : null} */}
     </>
   );
 }
@@ -303,6 +268,7 @@ const styles = StyleSheet.create({
     right: 15,
     top: 15,
   },
+  
   favoritesIcon: {
     padding: 7,
   },

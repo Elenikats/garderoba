@@ -3,9 +3,6 @@ import currentIP from "../libs/ip.js";
 import {View, Text, Button, TextInput, StyleSheet} from "react-native"
 import style from "react-native-icon-picker/src/style.js";
 
-
-
-
 export default function UpdateUserScreen(navigation) {
 
   const [username, setUsername] = useState("")

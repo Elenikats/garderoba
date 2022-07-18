@@ -40,7 +40,6 @@ export default function UserScreen({ navigation }) {
         },
         body: JSON.stringify(payload)
       }
-
       fetch(url, config)
       .then(response => response.json())
       // .then(result => console.log("result .....", result))

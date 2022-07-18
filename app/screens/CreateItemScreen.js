@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import { globalStyles, colors } from "../styles/globalStyles.js";
+import { globalStyles } from "../styles/globalStyles.js";
 import ColorPalette from "react-native-color-palette";
 import CheckBox from "expo-checkbox";
 import axios from "axios";
@@ -46,7 +46,6 @@ export default function CreateItemScreen({ route, navigation }) {
 
   const handleItemSave = async (e) => {
     e.preventDefault();
-
     const base64Image = await imageBase64Converter();
     const payload = {
       type,
@@ -57,7 +56,6 @@ export default function CreateItemScreen({ route, navigation }) {
       image: base64Image,
     };
 
-    // *********************** AXIOS ******************************+
     const ip = await currentIP();
 
     try {
@@ -88,7 +86,7 @@ export default function CreateItemScreen({ route, navigation }) {
             style={{ width: 200, height: 200, alignSelf: "center" }}
           />
           <View style={{ margin: 20, alignSelf: "center" }}>
-            {/* *******************Type:Top/Bottom/OnePiece************* */}
+          
             <View style={{ marginBottom: 20, flexDirection: "row" }}>
               {clothOptionsArray.map(
                 (item) =>
@@ -113,7 +111,6 @@ export default function CreateItemScreen({ route, navigation }) {
                   )
               )}
             </View>
-            {/* ********************Season******************* */}
 
             <View style={{ marginBottom: 20, flexDirection: "row" }}>
               {clothOptionsArray.map(
@@ -134,7 +131,6 @@ export default function CreateItemScreen({ route, navigation }) {
               )}
             </View>
 
-            {/* *********************Style******************** */}
             <Picker
               selectedValue={style}
               onValueChange={(currentStyle) => setStyle(currentStyle)}
@@ -152,7 +148,7 @@ export default function CreateItemScreen({ route, navigation }) {
               )}
             </Picker>
           </View>
-          {/* *******************Color********************** */}
+  
           <View style={{ marginBottom: 20 }}>
             <ColorPalette
               selectedValue={color}
@@ -185,7 +181,7 @@ export default function CreateItemScreen({ route, navigation }) {
             />
           </View>
         </View>
-        {/* **********Save Button******************* */}
+  
         <TouchableOpacity
           onPress={(e) => handleItemSave(e)}
           disabled={!type || !selectedSeason || !style || !color}
