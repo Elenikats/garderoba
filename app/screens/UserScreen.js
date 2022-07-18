@@ -1,61 +1,55 @@
+import currentIP from "../utils/ip.js";
+import * as ImagePicker from "expo-image-picker";
+import { colors } from "../styles/globalStyles.js";
 import { userContext } from "../../contexts/userContext.js";
 import React, { useContext, useEffect, useState } from "react";
-import * as ImagePicker from "expo-image-picker";
-import currentIP from "../utils/ip.js";
 import {
-  View,
   Text,
-  Image,
+  View,
   Modal,
-  Pressable,
-  StyleSheet,
-  TouchableOpacity,
-  ImageBackground,
   Alert,
-  TextInput
+  Image,
+  Pressable,
+  TextInput,
+  StyleSheet,
+  ImageBackground,
+  TouchableOpacity,
 } from "react-native";
-import { withSafeAreaInsets } from "react-native-safe-area-context";
-
-
 
 export default function UserScreen({ navigation }) {
-  const {user, userEmail, setUser, setToken, setUserEmail, currentUserId} = useContext(userContext);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [newUsername, setNewUsername] = useState(false);
   const [pen, setPen] = useState(true);
-  const [errors, setErrors] = useState([])
+  const [profileImage, setProfileImage] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
+  const { user, userEmail, setUser, setToken, setUserEmail, currentUserId } = useContext(userContext);
 
-  useEffect( () => {
+  useEffect(() => {
+
     async function fetchData() {
-        
-      // console.log(newUsername)
-      const ip = await currentIP()
-      console.log("ip:", ip);
+
+      const ip = await currentIP();
       const url = `http://${ip}:9000/users/${currentUserId}`;
-      const payload = {username: newUsername}
+
+      const payload = {
+        username: user,
+        email: userEmail,
+      };
+
       const config = {
         method: "put",
         headers: {
-          "Content-Type": "application/json"
-
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload)
-      }
-      console.log("payload:", payload)
+        body: JSON.stringify(payload),
+      };
 
+      console.log("payload:", payload);
       fetch(url, config)
-      .then(response => response.json())
-      .then(result => console.log("result .....", result))
-        // try {
-         
-        // }catch (error) {
-        //   console.log("error ......", error);
-        // }
-    } 
+      .then((response) => response.json())
+      .then((result) => console.log("result .....", result));
+    }
+
     fetchData();
-
-
-  },[newUsername])
+  }, [user, userEmail]);
 
   function handleLogout() {
     Alert.alert("Logout", "Are you sure you want to logout?", [
@@ -67,58 +61,85 @@ export default function UserScreen({ navigation }) {
       {
         text: "OK",
         onPress: () => {
-          setToken(null)
-          setUser(null)
-          setUserEmail(null)
+          setToken(null);
+          setUser(null);
+          setUserEmail(null);
           navigation.navigate("EndScreen", { name: "EndScreen" });
         },
       },
     ]);
   }
-
   async function launchCamera() {
-    console.log("Camera is on");
     try {
-      Alert.alert("Allow camera permissions",
-      [
-        {
-          text:"Cancel",
-          onPress: () => {navigation.name("UserScreen", {name: "UserScreen"})},
-        },
-        {
-          // text: Allow "that takes you to permissions settings!
-        }
-      ]);
       const options = { quality: 0.5, base64: true };
       const data = await ImagePicker.launchCameraAsync(options);
+      console.log(data.base64.length);
+      if (!data.cancelled) {
+        navigation.navigate("User", {
+          image: data.uri,
+        });
+        async function fetchData() {
+          const ip = await currentIP();
+          const url = `http://${ip}:9000/users/${currentUserId}`;
+          const payload = {
+            profileImage: data.uri,
+          };
+          const config = {
+            method: "put",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          };
+          console.log("payload:", payload);
+          fetch(url, config)
+          .then((response) => response.json())
+          .then((result) => setProfileImage(result.profileImage));
+        }
+
+        fetchData();
+      }
     } catch (error) {
-      // show a message to user. you rejected, you cant use without camera permissions.
-      console.log("error", error);
+      console.log(error);
     }
   }
-
   async function launchGallery() {
     try {
       const options = { allowsMultipleSelection: true, base64: true };
       const data = await ImagePicker.launchImageLibraryAsync(options);
       console.log(data.base64.length);
       if (!data.cancelled) {
-        navigation.navigate("UploadForm", {      
+        navigation.navigate("User", {
           image: data.uri,
         });
+        async function fetchData() {
+          const ip = await currentIP();
+          const url = `http://${ip}:9000/users/${currentUserId}`;
+          const payload = {
+            profileImage: data.uri,
+          };
+          const config = {
+            method: "put",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          };
+          console.log("payload:", payload);
+          fetch(url, config)
+            .then((response) => response.json())
+            .then((result) => setProfileImage(result.profileImage));
+        }
+
+        fetchData();
       }
     } catch (error) {
       console.log(error);
     }
   }
-
-  async function handlePen() {
-    setPen(!pen)
+  function handlePen() {
+    setPen(!pen);
   }
-  async function handleTextInput(text) {
-   
-  }
-
 
   return (
     <View style={styles.cont}>
@@ -132,40 +153,43 @@ export default function UserScreen({ navigation }) {
           <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
             <Image
               style={styles.profileImage}
-              source={require("../assets/userImage.png")}
+              source={
+                profileImage
+                  ? { uri: profileImage }
+                  : require("../assets/userImage.png")
+              }
             />
           </TouchableOpacity>
         </View>
 
-
         {/*......UserName, Pen and Email......*/}
 
         <View style={styles.nameAndEmail}>
-          {
-            pen ? 
-            <Text style={styles.name}
-            >{user}
-            
-              <TouchableOpacity 
-              onPress={handlePen}
-              >
+          {pen ? (
+            <View style={styles.nameAndPenCon}>
+              <Text style={styles.name}>{user}</Text>
+              <TouchableOpacity onPress={handlePen}>
                 <Image
-                  style={styles.pen}
                   autoFocus
+                  style={styles.pen}
                   source={require("../assets/edit.png")}
                 />
               </TouchableOpacity>
-
-            </Text> :
-
+            </View>
+          ) : (
             <TextInput
-            placeholder="New username"
-            autoCapitalize="none"
-            autoComplete="off"
-            style={styles.newUsername}
-            onSubmitEditing={(e) => setNewUsername(e.nativeEvent.text)}
-            ></TextInput>
-          }
+              style={styles.newUsername}
+              placeholder="New username"
+              autoCapitalize="none"
+              autoComplete="off"
+              onSubmitEditing={(e) => {
+                setUser(e.nativeEvent.text);
+                setPen(!pen);
+              }}
+            >
+              {user}
+            </TextInput>
+          )}
 
           <Text style={styles.email}>{userEmail}</Text>
         </View>
@@ -174,11 +198,10 @@ export default function UserScreen({ navigation }) {
         <View style={styles.settingsCont}>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("UpdateUser")
-            }}>
-              
+              navigation.navigate("UpdateUser");
+            }}
+          >
             <Text style={styles.settings}>
-              {" "}
               Settings
               <Image
                 style={styles.arrow}
@@ -187,9 +210,12 @@ export default function UserScreen({ navigation }) {
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("TermsAndConditions");
+            }}
+          >
             <Text style={styles.settings}>
-              {" "}
               Terms & Conditions
               <Image
                 style={styles.arrow}
@@ -198,9 +224,8 @@ export default function UserScreen({ navigation }) {
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity>
-            <Text style={styles.settings} onPress={handleLogout}>
-              {" "}
+          <TouchableOpacity onPress={handleLogout}>
+            <Text style={styles.settings}>
               Logout
               <Image
                 style={styles.arrow}
@@ -210,8 +235,7 @@ export default function UserScreen({ navigation }) {
           </TouchableOpacity>
 
           <TouchableOpacity>
-            <Text style={styles.settings}>
-              {" "}
+            <Text style={styles.link}>
               Link to DevWebsite
               {/* <Link to={{}}/> */}
             </Text>
@@ -265,8 +289,7 @@ export default function UserScreen({ navigation }) {
       </>
     </View>
   );
-};
-
+}
 const styles = StyleSheet.create({
   cont: {
     flex: 1,
@@ -274,7 +297,7 @@ const styles = StyleSheet.create({
   },
   subCont: {
     marginTop: 40,
-    // padding: 10,
+    // padding        : 10,
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
@@ -293,24 +316,29 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
   },
-  profileImage:{
-    width:100,
-    height:100
+  profileImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 100,
   },
   nameAndEmail: {
     marginTop: 10,
     alignItems: "center",
     justifyContent: "center",
   },
+  nameAndPenCon: {
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+  },
   name: {
     marginBottom: 5,
     fontSize: 16,
     fontWeight: "bold",
-    
   },
   textInput: {
     borderBottomWidth: 1,
-    fontSize: 14
+    fontSize: 14,
   },
   email: {
     fontStyle: "italic",
@@ -325,7 +353,7 @@ const styles = StyleSheet.create({
     elevation: 5,
     marginTop: 35,
     justifyContent: "space-around",
-    // alignItems: 'center'
+    // alignItems     : 'center'
   },
   settings: {
     marginLeft: 30,
@@ -339,7 +367,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 1,
     borderColor: "lightgrey",
-
     backgroundColor: "#F5F5F5",
     shadowColor: "#27272A",
     shadowOpacity: 0.25,
@@ -351,7 +378,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-
   closeModal: {
     borderWidth: 0.5,
     backgroundColor: "white",
@@ -367,7 +393,6 @@ const styles = StyleSheet.create({
   },
   centeredView: {
     flex: 1,
-
     justifyContent: "flex-end",
     alignItems: "center",
     marginTop: 22,
@@ -391,8 +416,8 @@ const styles = StyleSheet.create({
   },
   pen: {
     width: 25,
-    height:25,
-    alignSelf: "flex-end"
+    height: 25,
+    marginLeft: 5,
   },
   button: {
     width: "100%",
@@ -400,13 +425,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
     padding: 10,
     elevation: 2,
-    backgroundColor: "black",
+    backgroundColor: colors.black,
   },
   buttonOpen: {
-    backgroundColor: "black",
+    backgroundColor: colors.black,
   },
   buttonClose: {
-    backgroundColor: "black",
+    backgroundColor: colors.black,
   },
   textStyle: {
     color: "white",
@@ -416,5 +441,9 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center",
+  },
+  link: {
+    marginLeft: 30,
+    color: "blue",
   },
 });
