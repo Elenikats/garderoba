@@ -1,21 +1,21 @@
-import React, { useState }  from 'react'
+import React, { useState, useRef }  from 'react'
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { globalStyles, colors } from "../styles/globalStyles";
 import Constants from "expo-constants";
-// import VideoPlayer from 'react-native-video-player';
-import { Video, AVPlaybackStatus } from 'expo-av';
+import { Video } from 'expo-av';
 
 const { width } = Dimensions.get("window");
 const { height } = width * 0.6;
 
 export default function LandingScreen({ navigation }) {
-  const video = React.useRef(null);
+  const video = useRef(null);
   const [status, setStatus] = useState({});
 
   return (
     <SafeAreaView style={styles.bigCon}>
-          <View style={[styles.box]}>  
+
+          <View style={styles.box}>  
             <Video
               ref={video}
               style={styles.video}
@@ -27,13 +27,12 @@ export default function LandingScreen({ navigation }) {
             />
           </View>
 
-          <View style={[styles.box]}>
+          <View style={styles.box}>
             <Video
                 ref={video}
                 style={styles.video}
                 // source={{uri: "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4?_=1'"}}
                 source={require("../assets/Garderoba-bottom-last.mp4")}
-                // useNativeControls
                 resizeMode="cover"
                 shouldPlay
                 isLooping
@@ -48,6 +47,7 @@ export default function LandingScreen({ navigation }) {
               <Text style={styles.textBtn}>Login</Text>
             </TouchableOpacity>
           </View>
+          
     </SafeAreaView>
   )
 }
@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
   alignSelf: "center",
   width: 350,
   height: 350,
-  marginTop: 30,
   backgroundColor: "orange",
   margin: 20,
   borderWidth: 5,
