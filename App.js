@@ -15,6 +15,7 @@ import RefreshProvider from "./contexts/RefreshContext.js";
 import currentIP from "./app/libs/ip.js";
 import axios from "axios";
 import LandingScreen from "./app/screens/LandingScreen.js";
+import TermsAndConditions from "./app/screens/TermsAndConditions.js";
 
 const Stack = createNativeStackNavigator();
 
@@ -62,6 +63,7 @@ export default function App() {
                 <Stack.Screen name="Register" component={RegisterScreen} />
                 <Stack.Screen name="User" component={UserScreen} />
                 <Stack.Screen name="UpdateUser" component={UpdateUserScreen} />
+                <Stack.Screen name="TermsAndConditions" component={TermsAndConditions} />
                 <Stack.Screen name="UploadForm" component={CreateItemScreen} />
                 <Stack.Screen name="Main" component={BottomTab} />
                 <Stack.Screen name="EndScreen" component={EndScreen} />
