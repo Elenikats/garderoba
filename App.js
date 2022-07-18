@@ -14,8 +14,7 @@ import UserProvider from "./contexts/userContext.js";
 import RefreshProvider from "./contexts/refreshContext.js";
 import currentIP from "./app/utils/ip.js";
 import axios from "axios";
-import { globalStyles, colors } from "./app/styles/globalStyles.js";
-import { ActivityIndicator, View, Text } from "react-native";
+import LandingScreen from "./app/screens/LandingScreen.js";
 
 const Stack = createNativeStackNavigator();
 
@@ -58,6 +57,7 @@ export default function App() {
         <LocationProvider>
             <NavigationContainer>
               <Stack.Navigator screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="LandingPage" component={LandingScreen}/>
                 <Stack.Screen name="Login" >{(props) => <LoginScreen {...props} expoClientIdValue={expoClientIdValue}/>}</Stack.Screen>
                 <Stack.Screen name="Register" component={RegisterScreen} />
                 <Stack.Screen name="User" component={UserScreen} />

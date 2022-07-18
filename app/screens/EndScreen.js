@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { globalStyles, colors } from "../styles/globalStyles";
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from "react-native";
 import LottieView from "lottie-react-native";
+import { RefreshContext } from "../../contexts/refreshContext.js";
+
 
 export default function EndScreen({navigation, route}) {
+  const { refresh, setRefresh } = useContext(RefreshContext);
+
+  useEffect(() => {
+    setRefresh(!refresh);
+  }, [])
   return (
-    <SafeAreaView style={[globalStyles.container, styles.bigCont]}>   
+    <SafeAreaView style={[globalStyles.container, styles.bigCont]}>
+
          <LottieView source={require("../assets/logout.json")} autoPlay loop />
 
       <View style={styles.textCon}>

@@ -296,7 +296,7 @@ const styles = StyleSheet.create({
     bottom: 14,
     right: 12,
     color: "gray",
-    fontSize: 18,
+    fontSize: 21,
   },
   errorMessage: {
     alignSelf: "flex-start",
