@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { globalStyles, colors } from "../styles/globalStyles";
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from "react-native";
 import LottieView from "lottie-react-native";
-import { RefreshContext } from "../../contexts/refreshContext.js";
+import { RefreshContext } from "../../contexts/RefreshContext.js";
 
 
-export default function EndScreen({navigation, route}) {
+export default function EndScreen({navigation}) {
   const { refresh, setRefresh } = useContext(RefreshContext);
 
   useEffect(() => {

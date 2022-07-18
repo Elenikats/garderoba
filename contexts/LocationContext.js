@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { useEffect, useState } from "react";
-import currentIP from "../app/utils/ip.js";
+import currentIP from "../app/libs/ip.js";
 import axios from "axios";
-import { userContext } from "./userContext.js";
+import { userContext } from "./UserContext.js";
 import * as Location from 'expo-location';
 
 export const LocationContext = React.createContext();
@@ -68,9 +68,6 @@ export default function LocationProvider(props) {
 
         const result = await axios({
           method: "get",
-          // headers:{
-          //   Authorization: `Bearer ${token}`
-          // }, -- might need it later?
           url: `http://${ip}:9000/weatherApiKey`,
         });
         const weatherApiKey = result.data

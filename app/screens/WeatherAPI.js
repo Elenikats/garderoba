@@ -1,10 +1,7 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import React, { useContext } from "react";
 import { LocationContext } from "../../contexts/LocationContext";
-import currentIP from "../utils/ip";
 import { LinearGradient } from "expo-linear-gradient";
-
-//import * as Network from 'expo-network'
 
 export default function WeatherAPI() {
   const { currentWeather, weatherIcon, weatherLocation } =
@@ -41,13 +38,11 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
   },
-
   location: {
     position: "absolute",
     top: 60,
     right: 15,
   },
-
   weatherWrapper: {
     flexDirection: "row",
     alignItems: "center",

@@ -4,8 +4,8 @@ import CheckBox from "expo-checkbox";
 import { globalStyles, colors } from '../styles/globalStyles';
 import Icon from "react-native-vector-icons/Ionicons";
 import { Link } from '@react-navigation/native';
-import currentIP from "../utils/ip.js";
-import { userContext } from '../../contexts/userContext';
+import currentIP from "../libs/ip.js";
+import { userContext } from '../../contexts/UserContext';
 
 export default function RegisterScreen({navigation}) {
   const {setUser, setToken, setUserEmail} = useContext(userContext);
@@ -22,9 +22,7 @@ export default function RegisterScreen({navigation}) {
   }
 
   const handleSignupBtn = async () => {
-    // const ip = await Network.getIpAddressAsync();
     const ip = await currentIP()
-
     const url = `http://${ip}:9000/users/signup`;
     const payload = {
       username,
@@ -32,7 +30,6 @@ export default function RegisterScreen({navigation}) {
       password,
       repeatPassword
     }
-
     const config = {
       method: "POST",
       headers: {
@@ -40,8 +37,6 @@ export default function RegisterScreen({navigation}) {
       },
       body: JSON.stringify(payload)
     }
- 
-
     fetch(url, config)
       .then(response => response.json())
       .then(result => {
@@ -51,14 +46,10 @@ export default function RegisterScreen({navigation}) {
         setUser(result.username);
         setToken(result.token);
         setUserEmail(result.email)
-
         navigation.navigate('Main')
-        
       })
       .catch(err => {
         setErrors(err)
-        //alert(err?.response?.data?.error || "Login failed, please try again");
-        
       })
   }
 
@@ -82,10 +73,6 @@ export default function RegisterScreen({navigation}) {
             <Text style={[globalStyles.text, {marginBottom: 14}]}>Register with email</Text>
           </View>
 
-          
-          {/* <Text style={styles.label}>Name:</Text> */}
-
-          {/* { errors.includes("username") && <Text>username is too short</Text> } */}
           <TextInput 
             value={username}
             placeholder="Enter username"
@@ -93,17 +80,10 @@ export default function RegisterScreen({navigation}) {
             autoCapitalize="none"
             autoComplete="off"
             onChangeText={(text) => setUsername(text)}
-            
           ></TextInput>
 
           { errors && errors.message && errors.message.includes("username-invalid") && <Text style={styles.errorMessage}>The username can contain only letters, numbers and characters like -_.</Text>}
           { errors && errors.message && errors.message.includes("duplicate key") && errors.message.includes("username") && <Text style={styles.errorMessage}>This username is already being used.</Text>}
-
-
-
-          {/* <Text style={styles.label}>Email:</Text> */}
-          {/* { errors.includes("email") && <Text>email is invalid</Text> } */}
-
           
           <TextInput 
             value={email}
@@ -117,8 +97,6 @@ export default function RegisterScreen({navigation}) {
 
           { errors && errors.message && errors.message.includes("email-invalid") && <Text style={styles.errorMessage}>The email is not valid.</Text>}
           { errors && errors.message && errors.message.includes("duplicate key") && errors.message.includes("email") && <Text style={styles.errorMessage}>An account already exists with this email.</Text>}
-
-          {/* <Text style={styles.label}>Password:</Text> */}
          
          <View style={styles.passCont}>
           <TextInput 
@@ -136,11 +114,7 @@ export default function RegisterScreen({navigation}) {
 
           { errors && errors.message && errors.message.includes("password-too-short") && <Text style={styles.errorMessage}>The password is too short (min 6 characters).</Text>}
           { errors && errors.message && errors.message.includes("password-too-long") && <Text style={styles.errorMessage}>The password is too long (max 20 characters).</Text>}
-        
-          
-
-          {/* <Text style={styles.label}>Repeat password:</Text> */}
-      
+              
           <TextInput 
             value={repeatPassword}
             placeholder="Repeat password"
@@ -149,10 +123,9 @@ export default function RegisterScreen({navigation}) {
             onChangeText={(text) => setRepeatPassword(text)}
             style={styles.textInput}
             secureTextEntry={hidePassword}
-          ></TextInput>
+          />
           { password !== repeatPassword && <Text style={styles.errorMessage}>The passwords don't match.</Text>}
           
-
           <View style={styles.checkboxConWrapper}>
             <CheckBox     
             value={agree}
@@ -227,7 +200,6 @@ const styles = StyleSheet.create({
     position: "relative",
     width: "100%",
     justifyContent: "center",
-
   },
   checkboxConWrapper: {
     flexDirection: 'row',
