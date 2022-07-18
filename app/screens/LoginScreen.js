@@ -76,9 +76,16 @@ export default function LoginScreen({ navigation, expoClientIdValue }) {
     const url = `http://${ip}:9000/users/login`;
     try {
       const res = await axios.post(url, {
-        // email: "angela.h@web.de",
-        // password: "123456",
-        email: "testuser3@eg.com",password: "random321"
+        // email,        
+        // password,
+        // email: "baba123@gmail.com", 
+        // password: "kanimo123" 
+        // email: "testuser1@example.com",
+        // password: "random"
+        // email: "la@gmail.com",
+        // password: "123456"
+        email: "latifah44@email.com",
+        password: "123456"
       });
 
       setUserObj(res.data);
@@ -205,21 +212,21 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: "100%"
   },
-  label: {
-    paddingTop: 10,
-    marginBottom: 5,
-    fontSize: 14,
-    alignSelf: "flex-start",
+  label              : {
+  paddingTop         : 10,
+  marginBottom       : 5,
+  fontSize           : 14,
+  alignSelf          : "flex-start",
   },
-  textInput: {
-    width: "100%",
-    borderWidth: 1,
-    borderColor: "#bbb",
-    paddingHorizontal: 8,
-    paddingVertical: 10,
-    fontSize: 14,
-    borderRadius: 5,
-    marginTop: 12,
+  textInput          : {
+  width              : "100%",
+  borderWidth        : 1,
+  borderColor        : "#bbb",
+  paddingHorizontal  : 8,
+  paddingVertical    : 10,
+  fontSize           : 14,
+  borderRadius       : 5,
+  marginTop          : 12,
   },
   passCont: {
     position: "relative",
