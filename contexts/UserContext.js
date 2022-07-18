@@ -33,10 +33,6 @@ export default function UserProvider(props) {
     const [currentUserId, setCurrentUserId] = useState(userIdDefault);
     const [userObj, setUserObj]             = useState(null);
 
-  console.log("token", token);
-  console.log(user);
-
-  // this stores the login to AsyncStorage in JSON format. The useEffect will update when [.. ] changes. WE SEND DATA
   useEffect(() => {
     const setUser = async () => {
       if (user) {

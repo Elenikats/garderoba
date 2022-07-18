@@ -1,12 +1,10 @@
-import currentIP from "../utils/ip.js";
+import currentIP from "../libs/ip.js";
 import Logo from '../assets/Logo.png'
 import react, {useState, useContext, useEffect} from "react";
-import { userContext } from "../../contexts/userContext.js";
+import { userContext } from "../../contexts/UserContext.js";
 import { colors } from '../styles/globalStyles.js';
 import Icon from "react-native-vector-icons/Ionicons";
 import {View, Text, Image, TextInput, StyleSheet, TouchableOpacity} from "react-native";
-
-
 
 
 

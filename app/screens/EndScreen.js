@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 
-export default function EndScreen({navigation, route}) {
+export default function EndScreen({navigation}) {
   return (
     <View style={styles.cont}>
       <Text>See you soon!</Text>

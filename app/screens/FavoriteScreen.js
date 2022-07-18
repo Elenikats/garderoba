@@ -1,14 +1,15 @@
-import { StyleSheet, Text, View, SafeAreaView, ScrollView, Image} from "react-native";
+import { StyleSheet, View, SafeAreaView, ScrollView, Image} from "react-native";
 import React, { useContext, useEffect, useState } from "react";
-import { userContext } from "../../contexts/userContext";
-import currentIP from "../utils/ip.js";
+import { userContext } from "../../contexts/UserContext";
+import currentIP from "../libs/ip.js";
 import axios from "axios";
-import { RefreshContext } from "../../contexts/refreshContext";
+import { RefreshContext } from "../../contexts/RefreshContext";
+import AppLoader from "./AppLoader";
 
 export default function FavoriteScreen() {
   const { token } = useContext(userContext);
-  const [fav, setFav] = useState(null);
-  const {refresh, setRefresh} = useContext(RefreshContext)
+  const [fav, setFav] = useState([]);
+  const {refresh, isLoading } = useContext(RefreshContext)
 
   useEffect(() => {
     async function getImagesFromBackend() {
@@ -19,30 +20,26 @@ export default function FavoriteScreen() {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-          url: `http://${ip}:9000/cloth/fav`,
+          url: `http://${ip}:9000/cloth/favorite`,
         });
-        // console.log("result---", result.data);
         setFav(result.data);
       } catch (error) {
         console.log("error in fetching favorites",error);
-      }
-
-      
+      }  
     }
-
     getImagesFromBackend();
   }, [refresh]);
-  
+
+  if (isLoading) {
+    return <AppLoader/>
+  }
+
   return (
     <SafeAreaView>
-      <View style={styles.outerCont}></View>
+      <View style={styles.outerCont} />
       <ScrollView>
         <View style={styles.cont}>
-        {fav && <View style={styles.clothItem}>
-                    <Text>Folder</Text>
-                </View>}
-        {fav &&
-            fav.map((image, index) => (
+        { fav.map((image, index) => (
               <View style={styles.clothItem} key={index}>
                 <Image style={styles.image} source={{ uri: image.image }} />
               </View>
@@ -85,7 +82,6 @@ const styles = StyleSheet.create({
   image: {
     width: 100,
     height: 100,
-    // borderWidth: 1,
     borderColor: "lightgray",
   },
 });

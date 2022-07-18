@@ -9,8 +9,18 @@ const colors = {
   red: "#D10000"
 
 };
-
 const globalStyles = StyleSheet.create({
+  logoContainer: {
+    zIndex: 5,
+    borderWidth: 1,
+    borderColor: "lightgrey",
+    backgroundColor: "#Fff",
+    shadowColor: "#black",
+    shadowOpacity: 0.5,
+    elevation: 20,
+    width: 80,
+    height: 80,
+  },
   container: {
     flex: 1,
     alignItems: "center",
@@ -28,22 +38,26 @@ const globalStyles = StyleSheet.create({
     fontFamily: "LatoRegular",
     fontSize: 18,
   },
-
   inactiveButton: {
     backgroundColor: colors.gray,
-    borderRadius: 40,
-    padding: 5,
-    margin: 10,
+    color: colors.white,
     textAlign: "center",
+    alignSelf: "center",
+    width: 100,
+    borderRadius: 50,
+    padding: 10,
+    margin: 15,
   },
-
   activeButton: {
     backgroundColor: colors.dark,
     color: colors.white,
-    borderRadius: 40,
-    padding: 5,
-    margin: 10,
     textAlign: "center",
+    alignSelf: "center",
+    width: 100,
+    borderRadius: 50,
+    padding: 10,
+    marginVertical: 15,
+    marginHorizontal: 15,
   },
 });
 
