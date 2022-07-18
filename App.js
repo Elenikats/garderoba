@@ -14,9 +14,8 @@ import UserProvider from "./contexts/UserContext.js";
 import RefreshProvider from "./contexts/RefreshContext.js";
 import currentIP from "./app/libs/ip.js";
 import axios from "axios";
+import LandingScreen from "./app/screens/LandingScreen.js";
 import TermsAndConditions from "./app/screens/TermsAndConditions.js";
-
-
 
 const Stack = createNativeStackNavigator();
 
@@ -59,6 +58,7 @@ export default function App() {
         <LocationProvider>
             <NavigationContainer>
               <Stack.Navigator screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="LandingPage" component={LandingScreen}/>
                 <Stack.Screen name="Login" >{(props) => <LoginScreen {...props} expoClientIdValue={expoClientIdValue}/>}</Stack.Screen>
                 <Stack.Screen name="Register" component={RegisterScreen} />
                 <Stack.Screen name="User" component={UserScreen} />

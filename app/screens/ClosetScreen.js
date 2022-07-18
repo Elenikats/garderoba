@@ -29,7 +29,8 @@ export default function ClosetScreen() {
   const [closet, setCloset] = useState(null);
   const [filterModalVisible, setFilterModalVisible] = useState(false);
   const [clothFilterOpt, setClothFilterOpt] = useState(clothOptionsArray);
-  const { refresh, setRefresh, isLoading } = useContext(RefreshContext);
+  const { refresh, setRefresh } = useContext(RefreshContext);
+  const  [closetIsLoading, setClosetIsLoading] = useState(false);
 
   const selectedFilter = clothFilterOpt.filter((item) => item.isChecked);
 
@@ -37,6 +38,12 @@ export default function ClosetScreen() {
     async function getImagesFromBackend() {
       const ip = await currentIP();
       try {
+
+        const isAnyFilterChecked = clothFilterOpt.some((item) => item.isChecked)
+        if (!isAnyFilterChecked && !filterModalVisible) {
+          setClosetIsLoading(true)
+        }
+
         let queryString = selectedFilter
           .map((item) => Object.keys(item)[1] + "=" + Object.values(item)[1])
           .join("&");
@@ -48,6 +55,7 @@ export default function ClosetScreen() {
           url: `http://${ip}:9000/cloth/closet?${queryString}`,
         });
         setCloset(result.data);
+        setClosetIsLoading(false);
       } catch (error) {
         console.log("error in receiving images from BE", error);
       }
@@ -67,6 +75,7 @@ export default function ClosetScreen() {
       }
       return item;
     });
+    console.log("check:", check)
     setClothFilterOpt(check);
   }
 
@@ -92,7 +101,7 @@ export default function ClosetScreen() {
     }
   }
 
-  if (isLoading) {
+  if (closetIsLoading) {
     return <AppLoader/>
   }
 

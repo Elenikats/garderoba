@@ -6,7 +6,7 @@ import {
   Image,
   TouchableOpacity,
   SafeAreaView,
-  ScrollView,
+  ScrollView
 } from "react-native";
 import React, { useContext, useState, useEffect } from "react";
 import { Link } from "@react-navigation/native";
@@ -76,6 +76,13 @@ export default function LoginScreen({ navigation, expoClientIdValue }) {
     const url = `http://${ip}:9000/users/login`;
     try {
       const res = await axios.post(url, {
+        email: "rauliveera@joelshouse.de",
+        password: "rauliveera",
+        // email: "testuser1@example.com",
+        // password:"random",
+        // email: "angela.h@web.de",
+        // password: "123456",
+        // email: "testuser3@eg.com",password: "random321"
         // email,        
         // password,
         // email: "baba123@gmail.com", 
@@ -84,8 +91,8 @@ export default function LoginScreen({ navigation, expoClientIdValue }) {
         // password: "random"
         // email: "la@gmail.com",
         // password: "123456"
-        email: "latifah44@email.com",
-        password: "123456"
+        // email: "latifah44@email.com",
+        // password: "123456"
       });
 
       setUserObj(res.data);
@@ -275,7 +282,7 @@ const styles = StyleSheet.create({
     bottom: 14,
     right: 12,
     color: "gray",
-    fontSize: 18,
+    fontSize: 21,
   },
   errorMessage: {
     alignSelf: "flex-start",

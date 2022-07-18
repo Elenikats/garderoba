@@ -9,7 +9,8 @@ import AppLoader from "./AppLoader";
 export default function FavoriteScreen() {
   const { token } = useContext(userContext);
   const [fav, setFav] = useState([]);
-  const {refresh, isLoading } = useContext(RefreshContext)
+  const {refresh } = useContext(RefreshContext);
+  const [ favoriteLoading, setFavoriteLoading ] = useState(true)
 
   useEffect(() => {
     async function getImagesFromBackend() {
@@ -23,6 +24,8 @@ export default function FavoriteScreen() {
           url: `http://${ip}:9000/cloth/favorite`,
         });
         setFav(result.data);
+        setFavoriteLoading(false);
+
       } catch (error) {
         console.log("error in fetching favorites",error);
       }  
@@ -30,7 +33,7 @@ export default function FavoriteScreen() {
     getImagesFromBackend();
   }, [refresh]);
 
-  if (isLoading) {
+  if (favoriteLoading) {
     return <AppLoader/>
   }
 
