@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "./app/screens/LoginScreen.js";
 import RegisterScreen from "./app/screens/RegisterScreen.js";
 import { useFonts } from "expo-font";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import BottomTab from "./app/screens/BottomTab.js";
 import CreateItemScreen from "./app/screens/CreateItemScreen.js";
