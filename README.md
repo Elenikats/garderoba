@@ -15,8 +15,8 @@ Garderoba is a react-native-mobile App. The code-base has been built in a durati
 # Rest Api
 - [Open Weather Map](https://openweathermap.org/)
 
-#
-- To initialize the project, use `npm install` and `npm start`.
+# How to start the project
+- To start the project, use `npm install` and `npm start`.
 
 #
 For more information about the project, please follow this [link](https://github.com/AngelaHerrig/garderoba-presentation/blob/main/README.md).
