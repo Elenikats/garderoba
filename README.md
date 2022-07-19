@@ -4,8 +4,8 @@ Garderoba is a react-native-mobile App. The code-base has been built in a durati
 
 # Tools used
 [![My Skills](https://skills.thijs.gg/icons?i=js,react,nodejs,figma&theme=light)](https://skills.thijs.gg)
-- expo 
-- axios
+- Expo 
+- Axios
 - Android Studio
 - Excalidraw
 - Canva
