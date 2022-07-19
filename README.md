@@ -2,6 +2,17 @@
 This is a frontend code base for our final project at DCI. 
 Garderoba is a react-native-mobile App. The code-base has been built in a duration of 1 & half months.  
 
+- [Video coming soon]<!--(https://www.youtube.com/watch?v=-5OaHI0zonk) -->
+
+# Features
+User can:  
+- create an account and login,  
+- add each piece of a clothing item into the App directly from the camera features of the app, or select from the phone's gallery,
+- get clothing reccommendations based on the current weather and also based on the forecast for the next 5 days,
+- mark the items they like as a favorite and find it in the favorite screen,
+- sort the clothes according to style and color,
+- update the name and profile image. 
+
 # Tools used
 [![My Skills](https://skills.thijs.gg/icons?i=js,react,nodejs,figma&theme=light)](https://skills.thijs.gg)
 - Expo 
