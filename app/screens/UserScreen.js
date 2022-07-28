@@ -23,6 +23,14 @@ export default function UserScreen({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
   const { user, userEmail, setUser, setToken, setUserEmail, currentUserId } = useContext(userContext);
 
+  const imageBase64Converter = async () => {
+    const imageAsString = await FileSystem.readAsStringAsync(image, {
+      encoding: FileSystem.EncodingType.Base64,
+    });
+    const base64Image = "data:image/png;base64," + imageAsString;
+    return base64Image;
+  };
+
   useEffect(() => {
 
     async function fetchData() {
@@ -32,7 +40,7 @@ export default function UserScreen({ navigation }) {
 
       const payload = {
         username: user,
-        email: userEmail,
+        // email: userEmail,
       };
 
       const config = {
@@ -40,7 +48,7 @@ export default function UserScreen({ navigation }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(payload) ,
       };
 
       console.log("payload:", payload);
@@ -70,6 +78,9 @@ export default function UserScreen({ navigation }) {
       },
     ]);
   }
+
+
+
   async function launchCamera() {
     try {
       const options = { quality: 0.5, base64: true };
@@ -79,6 +90,8 @@ export default function UserScreen({ navigation }) {
         navigation.navigate("User", {
           image: data.uri,
         });
+
+        // const base64Image = await imageBase64Converter();
         async function fetchData() {
           const ip = await currentIP();
           const url = `http://${ip}:9000/users/${currentUserId}`;
@@ -104,6 +117,7 @@ export default function UserScreen({ navigation }) {
       console.log(error);
     }
   }
+
   async function launchGallery() {
     try {
       const options = { allowsMultipleSelection: true, base64: true };
@@ -152,13 +166,19 @@ export default function UserScreen({ navigation }) {
 
         <View style={styles.profileImageCont}>
           <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
-            <Image
+            {/* <Image
               style={styles.profileImage}
               source={
                 profileImage
                   ? { uri: profileImage }
                   : require("../assets/userImage.png")
               }
+            /> */}
+
+            {/* hardcoded image */}
+            <Image
+              style={styles.profileImage}
+              source={require("../assets/rauliveera.png")}
             />
           </TouchableOpacity>
         </View>

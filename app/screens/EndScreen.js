@@ -4,12 +4,11 @@ import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from "react-na
 import LottieView from "lottie-react-native";
 import { RefreshContext } from "../../contexts/RefreshContext.js";
 
-
 export default function EndScreen({navigation}) {
-  const { refresh, setRefresh } = useContext(RefreshContext);
+  const [refreshEndScreen, setRefreshEndScreen] = useState(false)
 
   useEffect(() => {
-    setRefresh(!refresh);
+    setRefreshEndScreen(!refreshEndScreen);
   }, [])
   return (
     <SafeAreaView style={[globalStyles.container, styles.bigCont]}>
@@ -20,7 +19,7 @@ export default function EndScreen({navigation}) {
         <Text style={styles.text}>See you soon!</Text>
         <TouchableOpacity style={[globalStyles.activeButton, styles.loginBtn]}
           onPress={() => {
-            navigation.navigate("Login")
+            navigation.navigate("LandingPage")
           }}> 
           <Text style={styles.loginText}>Login</Text>
         </TouchableOpacity>
