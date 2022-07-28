@@ -73,7 +73,7 @@ export default function LocationProvider(props) {
         const weatherApiKey = result.data
 
         if (!weatherApiKey) {
-          return alert("Something is wrong!!!");
+          return alert("The API key is not working!");
         }
 
         const url2 = `https://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${weatherApiKey}&units=metric`;

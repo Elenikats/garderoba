@@ -1,7 +1,6 @@
 import { View } from 'react-native'
 import { globalStyles } from "../styles/globalStyles";
-import React, { useContext } from 'react'
-import { RefreshContext } from '../../contexts/RefreshContext';
+import React from 'react'
 import LottieView from "lottie-react-native";
 
 export default function AppLoader() {
