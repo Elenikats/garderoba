@@ -204,21 +204,21 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: "100%"
   },
-  label              : {
-  paddingTop         : 10,
-  marginBottom       : 5,
-  fontSize           : 14,
-  alignSelf          : "flex-start",
+  label: {
+  paddingTop: 10,
+  marginBottom: 5,
+  fontSize: 14,
+  alignSelf: "flex-start",
   },
-  textInput          : {
-  width              : "100%",
-  borderWidth        : 1,
-  borderColor        : "#bbb",
-  paddingHorizontal  : 8,
-  paddingVertical    : 10,
-  fontSize           : 14,
-  borderRadius       : 5,
-  marginTop          : 12,
+  textInput: {
+  width: "100%",
+  borderWidth: 1,
+  borderColor: "#bbb",
+  paddingHorizontal: 8,
+  paddingVertical: 10,
+  fontSize: 14,
+  borderRadius: 5,
+  marginTop: 12,
   },
   passCont: {
     position: "relative",

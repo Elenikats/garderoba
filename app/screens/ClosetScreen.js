@@ -273,15 +273,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
   },
-
   contentContainer: {
     paddingBottom: 150,
   },
-
   clothContainer: {
     flex: 1,
   },
-
   clothItem: {
     width: width,
     height: 150,
@@ -298,17 +295,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     flexDirection: "row",
   },
-
   image: {
     width: 100,
     height: 100,
     borderColor: "lightgray",
   },
-
   menuIcon: {
     padding: 10,
   },
-
   filterOptionStyle: {
     paddingVertical: 5,
     paddingHorizontal: 10,
@@ -320,7 +314,6 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
   },
-
   filterOptionColor: {
     paddingVertical: 2,
     paddingHorizontal: 12,
@@ -329,13 +322,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "lightgrey",
   },
-
   centeredViewFilter: {
     flex: 1,
     alignItems: "center",
     marginTop: 50,
   },
-
   modalViewFilter: {
     width: "80%",
     height: "80%",
@@ -351,7 +342,6 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-
   closeModal: {
     borderWidth: 1,
     borderColor: "lightgrey",
@@ -368,7 +358,6 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 18,
   },
-
   checkboxContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
@@ -379,18 +368,15 @@ const styles = StyleSheet.create({
     marginVertical: 15,
     marginHorizontal: 5,
   },
-
   checkbox: {
     color: "blue",
     marginRight: 10,
   },
-
   checkboxConWrapper2: {
     marginVertical: 15,
     marginHorizontal: 5,
     padding: 5,
   },
-
   colorBox: {
     borderRadius: 50,
     paddingVertical: 1,
@@ -408,7 +394,6 @@ const styles = StyleSheet.create({
     fontSize: 10,
     paddingVertical: 3,
   },
-
   textWhite: {
     color: "white",
   },

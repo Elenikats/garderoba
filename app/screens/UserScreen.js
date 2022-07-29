@@ -16,12 +16,12 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-
 export default function UserScreen({ navigation }) {
   const [pen, setPen] = useState(true);
   const [profileImage, setProfileImage] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
-  const { user, userEmail, setUser, setToken, setUserEmail, currentUserId } = useContext(userContext);
+  const { user, userEmail, setUser, setToken, setUserEmail, currentUserId } =
+    useContext(userContext);
 
   const imageBase64Converter = async () => {
     const imageAsString = await FileSystem.readAsStringAsync(image, {
@@ -32,15 +32,12 @@ export default function UserScreen({ navigation }) {
   };
 
   useEffect(() => {
-
     async function fetchData() {
-
       const ip = await currentIP();
       const url = `http://${ip}:9000/users/${currentUserId}`;
 
       const payload = {
         username: user,
-        // email: userEmail,
       };
 
       const config = {
@@ -48,13 +45,13 @@ export default function UserScreen({ navigation }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload) ,
+        body: JSON.stringify(payload),
       };
 
       console.log("payload:", payload);
       fetch(url, config)
-      .then((response) => response.json())
-      .then((result) => console.log("result .....", result));
+        .then((response) => response.json())
+        .then((result) => console.log("result .....", result));
     }
 
     fetchData();
@@ -78,8 +75,6 @@ export default function UserScreen({ navigation }) {
       },
     ]);
   }
-
-
 
   async function launchCamera() {
     try {
@@ -107,8 +102,8 @@ export default function UserScreen({ navigation }) {
           };
           console.log("payload:", payload);
           fetch(url, config)
-          .then((response) => response.json())
-          .then((result) => setProfileImage(result.profileImage));
+            .then((response) => response.json())
+            .then((result) => setProfileImage(result.profileImage));
         }
 
         fetchData();
@@ -214,7 +209,6 @@ export default function UserScreen({ navigation }) {
 
           <Text style={styles.email}>{userEmail}</Text>
         </View>
-        {/*...................................*/}
 
         <View style={styles.settingsCont}>
           <TouchableOpacity
@@ -258,7 +252,6 @@ export default function UserScreen({ navigation }) {
           <TouchableOpacity>
             <Text style={styles.link}>
               Link to DevWebsite
-              {/* <Link to={{}}/> */}
             </Text>
           </TouchableOpacity>
         </View>
@@ -281,7 +274,7 @@ export default function UserScreen({ navigation }) {
                   style={styles.closeModal}
                   onPress={() => setModalVisible(!modalVisible)}
                 >
-                  <Text style={styles.textStyleX}>X</Text>
+                  <Text style={styles.textStyle}>X</Text>
                 </Pressable>
 
                 <Pressable
@@ -318,7 +311,6 @@ const styles = StyleSheet.create({
   },
   subCont: {
     marginTop: 40,
-    // padding        : 10,
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
@@ -373,8 +365,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     elevation: 5,
     marginTop: 35,
-    justifyContent: "space-around",
-    // alignItems     : 'center'
+    justifyContent: "space-around"
   },
   settings: {
     marginLeft: 30,
