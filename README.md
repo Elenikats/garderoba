@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="https://angelaherrig.github.io/garderoba-presentation/">
+    <img src="./assets/Garderoba.png" alt="Gaderoba" width="250">
+  </a>
+</p>
+
 # Garderoba
 This is a frontend code base for our final project at DCI. 
 Garderoba is a react-native-mobile App. The code-base has been built in a duration of 1 & half months.  
