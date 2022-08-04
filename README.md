@@ -6,7 +6,7 @@
 
 # Garderoba
 This is a frontend code base for our final project at DCI. 
-Garderoba is a react-native-mobile App. The code-base has been built in a duration of 1 & half months.  
+Garderoba is a react-native-mobile App that helps users to digitise their wardrobe and makes outfit suggestions according to the weather. The code-base has been built in a duration of 1 & half months.  
 
 - Video explaining the concept of our app: 
   https://www.youtube.com/watch?v=-5OaHI0zonk
