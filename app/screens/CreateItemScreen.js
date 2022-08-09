@@ -16,7 +16,7 @@ import currentIP from "../libs/ip.js";
 import { userContext } from "../../contexts/UserContext.js";
 import { RefreshContext } from "../../contexts/RefreshContext.js";
 import { clothOptionsArray } from "../libs/clothFilter.js";
-
+import { Buffer } from "buffer";
 
 async function getPresignedUrl(fileName,token){
   const ip = await currentIP();
@@ -30,25 +30,39 @@ async function getPresignedUrl(fileName,token){
     });
     const signedUrl = response.data
     return signedUrl;
-
-    // if (response.data) {
-    //   setRefresh(!refresh);
-    //   navigation.navigate("Main");
-    // }
   } catch (error) {
     console.error("error in POST to upload an item", error.response.data);
     alert("oops somethings wrong, try again!");
   }
+
 }
 
-async function makeAWSRequest(url,file){
-  console.log("makeAWSReq,url, file:", url);
-  const response = await fetch(url, {method: 'PUT', body: file});
-  console.log(response);
-  return response;
+async function makeAWSRequest(url,fileContent){
+  // console.log("makeAWSReq,url, file:", file);
+
+  const array = ['<a id="a"><b id="b">hey!</b></a>']; // an array consisting of a single string
+  const blob = new Blob(array, {type : 'text/html'}); // the blob
+
+
+
+  try {
+    console.log("url in makereq--", url);
+
+    const response = await axios(url, {
+      method: 'PUT',
+      // headers:{
+      //   'x-amz-acl': 'public-read'
+      // },
+      body: "abcasdjflkdsjf"
+    });
+    console.log("response-----",response);
+    return response;
+  } catch (error) {
+    console.log("error in makeReq---", error);
+    console.log(error.response);
+  }
+
 }
-
-
 
 export default function CreateItemScreen({ route, navigation }) {
   const [color, setColor] = useState("");
@@ -63,7 +77,8 @@ export default function CreateItemScreen({ route, navigation }) {
     const imageAsString = await FileSystem.readAsStringAsync(image, {
       encoding: FileSystem.EncodingType.Base64,
     });
-    const base64Image = "data:image/png;base64," + imageAsString;
+    const base64Image = imageAsString;
+    // const base64Image = "data:image/png;base64," + imageAsString;
     return base64Image;
   };
 
@@ -77,32 +92,69 @@ export default function CreateItemScreen({ route, navigation }) {
     setSelectedSeason([...selectedSeason, season]);
   }
 
+  async function getImageBlob(){
+
+    const base64Representation = await imageBase64Converter()
+    let blob = Buffer.from(base64Representation, "base64");
+
+    
+    // const img = await fetch(filename);
+    // const imgBlob = await img.blob();
+    // const blob = await new Promise((resolve, reject) => {
+    //   console.log("filename ----",filename);
+    //   const xhr = new XMLHttpRequest();
+    //   xhr.onload = function() {
+    //     resolve(xhr.response);
+    //   };
+    //   xhr.onerror = function() {
+    //     reject(new TypeError('Network request failed'));
+    //   };
+    //   xhr.responseType = 'blob';
+    //   xhr.open('GET', filename, true);
+    //   xhr.send(null);
+    // });
+    return blob;
+  }
+
+
   const handleItemSave = async (e) => {
     e.preventDefault();
 
-    const splittedData = image.split("/ImagePicker/")
-    const fileName = splittedData[splittedData.length-1]
-    
-    const preSignedUrl = await getPresignedUrl(fileName,token);
-    let img = await fetch(image);
-    img = await img.blob();
+    // const splittedData = image.split("/ImagePicker/")
+    // // const fileName = splittedData[splittedData.length-1]
+    // const fileName = "test2.txt"
+    // const preSignedUrl = await getPresignedUrl(fileName,token);
+  
+    // const img = await getImageBlob()
+    // // console.log("img-----",img);
+    // const file = new File([img], fileName);
+    // const link = await makeAWSRequest(preSignedUrl,file);
+    // console.log("link", link);
 
-    const file = new File([img], fileName);
-    const link = await makeAWSRequest(preSignedUrl,file);
-    console.log("link", link);
-
-    // const base64Image = await imageBase64Converter();
+    const base64Image = await imageBase64Converter();
     const payload = {
-      type,
-      season: selectedSeason,
-      style,
-      color,
-      user: userObj._id,
-      image: base64Image,
+      // type,
+      // season: selectedSeason,
+      // style,
+      // color,
+      // user: userObj._id,
+      // image: base64Image,
+      body: base64Image,
+      fileName: "test.jpeg"
     };
 
     const ip = await currentIP();
-
+    try {
+      const response = await axios({
+        url: `http://${ip}:9000/presignedUrl`,
+        method: "POST",
+        payload
+      })
+      console.log("response ---", response);
+    } catch (error) {
+      console.log("error in upload", error);
+    }
+    return;
     try {
       const response = await axios({
         url: `http://${ip}:9000/upload`,
@@ -229,7 +281,7 @@ export default function CreateItemScreen({ route, navigation }) {
   
         <TouchableOpacity
           onPress={(e) => handleItemSave(e)}
-          disabled={!type || !selectedSeason || !style || !color}
+          // disabled={!type || !selectedSeason || !style || !color}
         >
           <Text
             style={
