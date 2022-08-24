@@ -10,6 +10,14 @@ Garderoba is a react-native-mobile App that helps users to digitise their wardro
 
 - Video explaining the concept of our app: 
   https://www.youtube.com/watch?v=-5OaHI0zonk
+  
+# Live demonstration
+
+
+
+https://user-images.githubusercontent.com/82475131/186457178-1b44a42a-ad75-4246-8e5b-1c1f9a96349a.mp4
+
+
 
 # Features
 User can:  
